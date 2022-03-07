@@ -5,7 +5,7 @@
         'type' => 'test',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'b4282d35993a201b8aa6c95002626f1fe04a600d',
+        'reference' => '10a008fffaea2a5356baad1dac673192a54b55a2',
         'name' => 'butler_hjemmeside/composer',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'test',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'b4282d35993a201b8aa6c95002626f1fe04a600d',
+            'reference' => '10a008fffaea2a5356baad1dac673192a54b55a2',
             'dev_requirement' => false,
         ),
         'doctrine/instantiator' => array(
@@ -119,12 +119,12 @@
             'dev_requirement' => false,
         ),
         'phpunit/php-code-coverage' => array(
-            'pretty_version' => '9.2.14',
-            'version' => '9.2.14.0',
+            'pretty_version' => '9.2.15',
+            'version' => '9.2.15.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpunit/php-code-coverage',
             'aliases' => array(),
-            'reference' => '9f4d60b6afe5546421462b76cd4e633ebc364ab4',
+            'reference' => '2e9da11878c4202f97915c1cb4bb1ca318a63f5f',
             'dev_requirement' => false,
         ),
         'phpunit/php-file-iterator' => array(
