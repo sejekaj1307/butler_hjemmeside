@@ -15,15 +15,15 @@
         <div class="navbar_top"><img src="../img/navbar-cross.png" alt="navbar cross" class="navbar_cross"></div>
         <div class="navbar_mid"></div>
         <ul class="navbar_ul">
-            <li><a href="../Profil/profil.html">Profil</a></li>
-            <li><a href="../Medarbejdere/ansatte.html">Medarbejder</a></li>
-            <li><a href="../Kalender/kalender-maskiner.html">Kalender</a></li>
-            <li><a href="../Sagsstyring/sager.html">Sagsstyring</a></li>
-            <li><a href="../Tidsregistrering/tidsregistrering.html" class="active-main-site">Tidsregistrering</a></li>
-            <li><a href="../Opgaver/fejl-og-mangler.html">Opgaver</a></li>
-            <li><a href="../Lagerstyring/lade.html">Lager styring</a></li>
+            <li><a href="../Profil/profil.php">Profil</a></li>
+            <li><a href="../Medarbejdere/ansatte.php">Medarbejder</a></li>
+            <li><a href="../Kalender/kalender-maskiner.php">Kalender</a></li>
+            <li><a href="../Sagsstyring/sager.php">Sagsstyring</a></li>
+            <li><a href="../Tidsregistrering/tidsregistrering.php" class="active-main-site">Tidsregistrering</a></li>
+            <li><a href="../Opgaver/fejl-og-mangler.php">Opgaver</a></li>
+            <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
         </ul>
-        <div class="log_out"><a href="../index.html"></a></div>
+        <div class="log_out"><a href="../index.php"></a></div>
     </div>
 
     <div class="site_container">
@@ -37,8 +37,8 @@
                         src="../img/arrow.png" alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Tidsregistrering/tidsregistrering.html">Tidsregistrering</a></li>
-                <li><a href="../Tidsregistrering/intern-sag.html" class="active_site_dropdown">2022 intern sag</a></li>
+                <li><a href="../Tidsregistrering/tidsregistrering.php">Tidsregistrering</a></li>
+                <li><a href="../Tidsregistrering/intern-sag.php" class="active_site_dropdown">2022 intern sag</a></li>
             </ul>
         </div>
 

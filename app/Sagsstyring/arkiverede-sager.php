@@ -17,16 +17,16 @@
         <div class="navbar_mid"></div>
         <ul class="navbar_ul">
             <div>
-                <li><a href="../Profil/profil.html">Profil</a></li>
-                <li><a href="../Medarbejdere/ansatte.html">Medarbejder</a></li>
-                <li><a href="../Kalender/kalender-maskiner.html">Kalender</a></li>
-                <li><a href="../Sagsstyring/sager.html" class="active-main-site">Sagsstyring</a></li>
-                <li><a href="../Tidsregistrering/tidsregistrering.html">Tidsregistrering</a></li>
-                <li><a href="../Opgaver/fejl-og-mangler.html">Opgaver</a></li>
-                <li><a href="../Lagerstyring/lade.html">Lager styring</a></li>
+                <li><a href="../Profil/profil.php">Profil</a></li>
+                <li><a href="../Medarbejdere/ansatte.php">Medarbejder</a></li>
+                <li><a href="../Kalender/kalender-maskiner.php">Kalender</a></li>
+                <li><a href="../Sagsstyring/sager.php" class="active-main-site">Sagsstyring</a></li>
+                <li><a href="../Tidsregistrering/tidsregistrering.php">Tidsregistrering</a></li>
+                <li><a href="../Opgaver/fejl-og-mangler.php">Opgaver</a></li>
+                <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
             </div>
             <div class="log_out_container">
-                <li><a href="../index.html">Log ud</a></li>
+                <li><a href="../index.php">Log ud</a></li>
             </div>
         </ul>
     </div>
@@ -42,8 +42,8 @@
                         src="../img/arrow.png" alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Sagsstyring/sager.html">Sager liste</a></li>
-                <li><a href="../Sagsstyring/arkiverede-sager.html" class="active_site_dropdown">Arkiverede sager</a>
+                <li><a href="../Sagsstyring/sager.php">Sager liste</a></li>
+                <li><a href="../Sagsstyring/arkiverede-sager.php" class="active_site_dropdown">Arkiverede sager</a>
                 </li>
             </ul>
         </div>

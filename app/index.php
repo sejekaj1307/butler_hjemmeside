@@ -1,5 +1,5 @@
 <?php 
-    $conn = new mysqli("localhost:3306", "admin", "admin", "butlerdb");
+    // $conn = new mysqli("localhost:3306", "admin", "admin", "butlerdb");
 ?>
 
 
@@ -17,7 +17,7 @@
     <?php echo '<p>Hello woo</p>'; ?>
     <div>
         <h1>Login</h1>
-        <button><a href="Tidsregistrering/tidsregistrering.html">Login</a></button>
+        <button><a href="Tidsregistrering/tidsregistrering.php">Login</a></button>
     </div>
 
     <!-- <script src="index.js"></script> -->
