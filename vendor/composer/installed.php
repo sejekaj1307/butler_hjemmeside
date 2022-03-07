@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'type' => 'library',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'type' => 'test',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
-        'name' => '__root__',
+        'reference' => '081f471749fe360debe351da82a9f552849feab3',
+        'name' => 'butler_hjemmeside/composer',
         'dev' => true,
     ),
     'versions' => array(
-        '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'type' => 'library',
+        'butler_hjemmeside/composer' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'type' => 'test',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '081f471749fe360debe351da82a9f552849feab3',
             'dev_requirement' => false,
         ),
         'doctrine/instantiator' => array(

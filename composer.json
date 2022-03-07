@@ -1,4 +1,14 @@
 {
+    "name": "butler_hjemmeside/composer",
+    "description": "test",
+    "type": "test",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "John Doe",
+            "email": "john@example.com"
+        }
+    ],
     "require": {
         "phpunit/phpunit": "^9.5"
     },
@@ -6,10 +16,5 @@
         "psr-4": {
             "App\\": "app"
         }
-    },
-
-    "license": [
-       "proprietary"
-    ]
-
+    }
 }
