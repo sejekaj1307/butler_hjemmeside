@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+.time_registration, .profile_list, .case_list, .calender_container, .task_list, .archived_case_list, .in_house_time {
+    width: $page-content-width;
+    border: 1px solid #000;
+    height: 500px;   
+    margin: 50px auto;
+}
+
+
+/*---------------------------------
+    Time registration navbar
+---------------------------------*/
+.time_registration_navbar, .in_house_time_navbar {
+    width: 100%;
+    border-bottom: 3px solid #149DB9;
+    height: 45px;
+    display: flex;
+    align-items: flex-end;
+    button {
+        border: none;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        width: 100%;
+        border: 1px solid $time_registration_navbar_border;
+        font-size: 14px;
+        cursor: pointer;
+        &:hover {
+            background-color: $time_registration_navbar_active_hover;
+        }
+    }
+    .active_time_registration_page {
+        background-color: $time_registration_navbar_active;
+    }
+}
+
+.add-new-link {
+    border: none;
+    background: none;
+    color: #149DB9;
+    font-size: 18px;
+    display: flex;
+    img {
+        width: 16px;
+        margin-right: 5px;
+    }
+}
+
+
+/*Tablet - S */
+@media screen and(min-width: 900px) {
+    body {
+        background-color: rgb(176, 240, 210);
+    }    
+    .site_container { //every site can be seen right of navbar
+        margin-left: $nav_with-s;    
+    }
+    .time_registration, .profile_list, .case_list, .calender_container, .task_list, .archived_case_list, .in_house_time  {
+        width: $page-content-width-s;
+        border: 1px solid #000;
+        height: 500px;   
+        margin-left: $space-from-navbar-s;
+        margin-top: 50px;
+    }
+}
+
+/*Lille pc - M*/
+@media screen and(min-width: 1100px) {
+    body {
+        background-color: rgb(152, 173, 231);
+    }    
+    .site_container { //every site can be seen right of navbar
+        margin-left: $nav_with-l;    
+    }
+    .time_registration, .profile_list, .case_list, .calender_container, .task_list, .archived_case_list, .in_house_time  {
+        width: $page-content-width-l;
+        border: 1px solid #000;
+        height: 500px;   
+        margin-left: $space-from-navbar-m;
+        margin-top: 50px;
+    }
+    .time_registration_navbar, .in_house_time_navbar {
+        button {
+            font-size: 18px;
+            width: 175px;
+        }
+    }
+
+}
+/*Stor pc - L*/
+@media screen and(min-width: 1450px) {
+    body {
+        background-color: rgb(219, 143, 203);
+    }    
+
+}
