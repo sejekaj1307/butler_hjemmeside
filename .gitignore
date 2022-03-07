@@ -1,3 +1,5 @@
 node_modules
 .phpunit.result.cache
 .phplint-cache
+build/phplint.cache
+cypress/videos/sample_spec.js.mp4
