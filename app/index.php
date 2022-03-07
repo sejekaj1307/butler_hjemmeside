@@ -1,18 +1,13 @@
-<?php
-$conn = mysqli_connect('localhost', 'victor', 'test1234', 'butler_hjemmeside');
-if (!$conn) {
-    echo 'Connection error: ' . mysqli_connect_error();
-}
+ <?php 
+    $conn = new mysqli("localhost:3306", "admin", "admin", "butlerdb");
 ?>
-
 <html>
-
 <head>
     <title>PHP Test</title>
 </head>
 
 <body>
-    <?php echo '<p>Hello World</p>'; ?>
+    <?php echo '<p>Hello woo</p>'; ?>
 </body>
 
 </html>
