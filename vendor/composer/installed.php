@@ -5,7 +5,7 @@
         'type' => 'test',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '68a6811db279d1264c2ec9ec3c63c1520286b579',
+        'reference' => 'fe4051153e1e6bbd7c0aedd9f9a97ab0f46f30e2',
         'name' => 'butler_hjemmeside/composer',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'test',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '68a6811db279d1264c2ec9ec3c63c1520286b579',
+            'reference' => 'fe4051153e1e6bbd7c0aedd9f9a97ab0f46f30e2',
             'dev_requirement' => false,
         ),
         'doctrine/instantiator' => array(
