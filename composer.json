@@ -16,5 +16,8 @@
         "psr-4": {
             "App\\": "app"
         }
+    },
+    "require-dev": {
+        "overtrue/phplint": "^4.0"
     }
 }
