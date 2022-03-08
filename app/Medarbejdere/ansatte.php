@@ -53,6 +53,40 @@
         </div>
 
 
+            <?php 
+                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                // $sql = "select * from bil";
+                // $result = $conn->query($sql);
+
+                // echo '<table border="5" cellpadding="5">';
+                // echo '<tr>';
+                // echo "<th>BilId</th>";
+                // echo "<th>Model</th>";
+                // echo "<th>Farve</th>";
+                // echo "<th>År</th>";
+                // echo '</tr>';
+
+                // //Vi tjekker om der er biler. der kan opstå fejl, hvis man beder php printe noget og der ikke er noget data. vi undersøger, om vi har data
+                // if($result->num_rows > 0)
+                // {
+                //     while($row = $result->fetch_assoc())
+                //     {
+                //         echo "<tr>";
+                //         echo "<td>" . $row["id"] . "</td>";
+                //         echo "<td>" . $row["model"] . "</td>";
+                //         echo "<td>" . $row["farve"] . "</td>";
+                //         echo "<td>" . $row["aar"] . "</td>";
+                //         echo "</tr>";
+                //     }
+                // }
+
+
+
+                // echo '</table>';
+            
+            ?>
+
+
     </div>
     <script src="../javaScript/navbars.js"></script>
 </body>

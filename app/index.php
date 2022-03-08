@@ -1,5 +1,5 @@
 <?php 
-    // $conn = new mysqli("localhost:3306", "admin", "admin", "butlerdb");
+    $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
 ?>
 
 
