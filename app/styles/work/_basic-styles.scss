@@ -57,17 +57,51 @@
 
 
 .employee_list {
-    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    .employee_list_header {
+        display: flex;
+        padding: 15px 0;
+        border-bottom: 3px solid $th_border_bottom;
+        .table_first_item {
+            padding-left: 15px;
+            width: 80%;
+        }
+    }
+    .mobile_employee_information {
+        display: flex;
+        border-bottom: 2px solid $tr_border_bottom;
+        :hover {
+            cursor: pointer;    
+        }
+        .table_first_item {
+            padding-left: 15px;
+            width: 80%;
+        }
+    }
     p {
+        padding: 10px 0;
     }
     .employee_dropdown_mobile {
-        // display: none;
-    }
-    .table_first_item {
-        padding-left: 15px;
+        display: none;
+        .dark_dropdown_table {
+            padding-left: 15px;
+            background-color: $dark_dropdown_background;        
+        }
+        .light_dropdown_table {
+            padding-left: 15px;
+            background-color: $light_dropdown_background;
+        }
+        :last-child {
+            border-bottom: 2px solid $time_registration_navbar_border;
+        }
     }
 
+
 }
+
+
+
 
 
 

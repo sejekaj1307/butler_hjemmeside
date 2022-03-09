@@ -79,11 +79,64 @@
 }
 
 .employee_list {
-  border: 1px solid red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.employee_list .table_first_item {
+.employee_list .employee_list_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 15px 0;
+  border-bottom: 3px solid #5068CB;
+}
+
+.employee_list .employee_list_header .table_first_item {
   padding-left: 15px;
+  width: 80%;
+}
+
+.employee_list .mobile_employee_information {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 2px solid #AEBFF6;
+}
+
+.employee_list .mobile_employee_information :hover {
+  cursor: pointer;
+}
+
+.employee_list .mobile_employee_information .table_first_item {
+  padding-left: 15px;
+  width: 80%;
+}
+
+.employee_list p {
+  padding: 10px 0;
+}
+
+.employee_list .employee_dropdown_mobile {
+  display: none;
+}
+
+.employee_list .employee_dropdown_mobile .dark_dropdown_table {
+  padding-left: 15px;
+  background-color: #ECF0FD;
+}
+
+.employee_list .employee_dropdown_mobile .light_dropdown_table {
+  padding-left: 15px;
+  background-color: #FAFBFF;
+}
+
+.employee_list .employee_dropdown_mobile :last-child {
+  border-bottom: 2px solid #149DB9;
 }
 
 /*Tablet - S */

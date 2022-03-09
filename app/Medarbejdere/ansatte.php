@@ -56,60 +56,44 @@
             <button class="add-new-link"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
-                $sql = "select * from employees";
+               $sql = "select * from employees";
                 $result = $conn->query($sql);
 
-                echo '<table class="employee_list">';
-                    echo '<tr>';
-                        echo '<th class="table_first_item">Medarbejder</th>';
-                        echo '<th>Initialer</th>';
-                        echo '<div class="employee_dropdown_mobile">';
-                            echo '<th>Arbejds-tlf</th>';
-                            echo '<th>Mobil</th>';
-                            echo '<th>Email</th>';
-                            echo '<th>Kontaktperson</th>';
-                        echo '</div>';
-                    echo '</tr>';
 
-                // //Vi tjekker om der er biler. der kan opstå fejl, hvis man beder php printe noget og der ikke er noget data. vi undersøger, om vi har data
-                if($result->num_rows > 0)
-                {
-                    while($row = $result->fetch_assoc())
-                    {
-                        echo '<tr class="table_row">';
-                            echo '<td class="table_first_item">' . $row["last_name"] . ", " . $row["first_name"] . '</td>';
-                            echo '<td>' . $row["initials"] . '</td>';
-                            echo '<div class="employee_dropdown_mobile">';
-                                echo '<td>' . $row["phone"] . '</td>';
-                                echo '<td>' . $row["phone_private"] . '</td>';
-                                echo '<td>' . $row["email"] . '</td>';
-                                echo '<td>' . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</td>';
-                            echo '</div>';
-                        echo '</tr>';
-                    }
-                }
-                echo '</table>';
-            
+                echo '<div class="employee_list">';
+                    echo '<div class="table_row">';
+                        echo '<div class="employee_list_header">';
+                            echo '<p class="table_first_item">Medarbejder</p>';
+                            echo '<p>Initialer</p>';
+                        echo '</div>';
+
+                        //if og while her 
+                        if($result->num_rows > 0)
+                        {
+                            while($row = $result->fetch_assoc())
+                            {
+                                echo '<div class="mobile_employee_information" onclick=open_close_employee_info()>';
+                                    echo '<p class="table_first_item">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
+                                    echo '<p>' . $row["initials"] . '</p>';
+                                echo '</div>';
+                                echo '<div class="employee_dropdown_mobile">';
+                                    echo '<p class="dark_dropdown_table">' . $row["phone"] . '</p>';
+                                    echo '<p class="light_dropdown_table">' . $row["phone_private"] . '</p>';
+                                    echo '<p class="dark_dropdown_table">' . $row["email"] . '</p>';
+                                    echo '<p class="light_dropdown_table">' . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</p>';
+                                echo '</div>';
+                            }   
+                        }
+                    echo '</div>';
+                echo '</div>';
             ?>
         </div>
 
-
-                <div class="employee_list">
-                    <div class="table_row">
-                        <p class="table_first_item">Medarbejder</p>
-                        <p>Initialer</p>
-                        <div class="employee_dropdown_mobile">
-                            <p>Arbejds-tlf</p>
-                            <p>Mobil</p>
-                            <p>Email</p>
-                            <p>Kontaktperson</p>
-                        </div>
-                    </div>
-                </div>
-
+       
 
     </div>
     <script src="../javaScript/navbars.js"></script>
+    <script src="medarbejdere.js"></script>
 </body>
 
 </html>
