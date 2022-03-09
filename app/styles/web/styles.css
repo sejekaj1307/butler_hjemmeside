@@ -2,6 +2,7 @@
       colours
 ------------------*/
 /*Navbar*/
+/*Table colours*/
 /*------------------------
         navbars
 ------------------------*/
@@ -16,8 +17,7 @@
 
 .time_registration, .profile_list, .case_list, .calender_container, .task_list, .archived_case_list, .in_house_time {
   width: 90vw;
-  border: 1px solid #000;
-  height: 500px;
+  border: 1px solid #878787;
   margin: 50px auto;
 }
 
@@ -26,7 +26,7 @@
 ---------------------------------*/
 .time_registration_navbar, .in_house_time_navbar {
   width: 100%;
-  border-bottom: 3px solid #149DB9;
+  border-bottom: 3px solid #ace2ec;
   height: 45px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -78,18 +78,34 @@
   margin-right: 5px;
 }
 
+.employee_list {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.employee_list th {
+  text-align: left;
+  padding: 20px 0 12px 0;
+  border-bottom: 2px solid #5068CB;
+}
+
+.employee_list .table_row {
+  border-bottom: 2px solid #AEBFF6;
+  height: 50px;
+}
+
 /*Tablet - S */
 @media screen and (min-width: 900px) {
   body {
-    background-color: #b0f0d2;
+    background-color: #e1fcef;
   }
   .site_container {
     margin-left: 22vw;
   }
   .time_registration, .profile_list, .case_list, .calender_container, .task_list, .archived_case_list, .in_house_time {
     width: 68vw;
-    border: 1px solid #000;
-    height: 500px;
+    border: 1px solid #878787;
     margin-left: 50px;
     margin-top: 50px;
   }
@@ -105,8 +121,7 @@
   }
   .time_registration, .profile_list, .case_list, .calender_container, .task_list, .archived_case_list, .in_house_time {
     width: 72vw;
-    border: 1px solid #000;
-    height: 500px;
+    border: 1px solid #878787;
     margin-left: 100px;
     margin-top: 50px;
   }
@@ -119,7 +134,7 @@
 /*Stor pc - L*/
 @media screen and (min-width: 1450px) {
   body {
-    background-color: #db8fcb;
+    background-color: #eccde5;
   }
 }
 

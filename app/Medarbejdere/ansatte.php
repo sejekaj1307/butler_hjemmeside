@@ -54,41 +54,42 @@
 
         <div class="profile_list">
             <button class="add-new-link"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
+            <?php 
+                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                $sql = "select * from employees";
+                $result = $conn->query($sql);
+
+                echo '<table class="employee_list">';
+                    echo '<tr>';
+                        echo '<th>Medarbejder</th>';
+                        echo '<th>Initialer</th>';
+                        echo '<th>Arbejds-tlf</th>';
+                        echo '<th>Mobil</th>';
+                        echo '<th>Email</th>';
+                        echo '<th>Kontaktperson</th>';
+                    echo '</tr>';
+
+                // //Vi tjekker om der er biler. der kan opstå fejl, hvis man beder php printe noget og der ikke er noget data. vi undersøger, om vi har data
+                if($result->num_rows > 0)
+                {
+                    while($row = $result->fetch_assoc())
+                    {
+                        echo '<tr class="table_row">';
+                            echo '<td>' . $row["last_name"] . ", " . $row["first_name"] . '</td>';
+                            echo '<td>' . $row["initials"] . '</td>';
+                            echo '<td>' . $row["phone"] . '</td>';
+                            echo '<td>' . $row["phone_private"] . '</td>';
+                            echo '<td>' . $row["email"] . '</td>';
+                            echo '<td>' . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</td>';
+                        echo '</tr>';
+                    }
+                }
+                echo '</table>';
+            
+            ?>
         </div>
 
 
-            <?php 
-                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
-                // $sql = "select * from bil";
-                // $result = $conn->query($sql);
-
-                // echo '<table border="5" cellpadding="5">';
-                // echo '<tr>';
-                // echo "<th>BilId</th>";
-                // echo "<th>Model</th>";
-                // echo "<th>Farve</th>";
-                // echo "<th>År</th>";
-                // echo '</tr>';
-
-                // //Vi tjekker om der er biler. der kan opstå fejl, hvis man beder php printe noget og der ikke er noget data. vi undersøger, om vi har data
-                // if($result->num_rows > 0)
-                // {
-                //     while($row = $result->fetch_assoc())
-                //     {
-                //         echo "<tr>";
-                //         echo "<td>" . $row["id"] . "</td>";
-                //         echo "<td>" . $row["model"] . "</td>";
-                //         echo "<td>" . $row["farve"] . "</td>";
-                //         echo "<td>" . $row["aar"] . "</td>";
-                //         echo "</tr>";
-                //     }
-                // }
-
-
-
-                // echo '</table>';
-            
-            ?>
 
 
     </div>
