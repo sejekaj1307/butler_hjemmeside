@@ -61,12 +61,14 @@
 
                 echo '<table class="employee_list">';
                     echo '<tr>';
-                        echo '<th>Medarbejder</th>';
+                        echo '<th class="table_first_item">Medarbejder</th>';
                         echo '<th>Initialer</th>';
-                        echo '<th>Arbejds-tlf</th>';
-                        echo '<th>Mobil</th>';
-                        echo '<th>Email</th>';
-                        echo '<th>Kontaktperson</th>';
+                        echo '<div class="employee_dropdown_mobile">';
+                            echo '<th>Arbejds-tlf</th>';
+                            echo '<th>Mobil</th>';
+                            echo '<th>Email</th>';
+                            echo '<th>Kontaktperson</th>';
+                        echo '</div>';
                     echo '</tr>';
 
                 // //Vi tjekker om der er biler. der kan opstå fejl, hvis man beder php printe noget og der ikke er noget data. vi undersøger, om vi har data
@@ -75,12 +77,14 @@
                     while($row = $result->fetch_assoc())
                     {
                         echo '<tr class="table_row">';
-                            echo '<td>' . $row["last_name"] . ", " . $row["first_name"] . '</td>';
+                            echo '<td class="table_first_item">' . $row["last_name"] . ", " . $row["first_name"] . '</td>';
                             echo '<td>' . $row["initials"] . '</td>';
-                            echo '<td>' . $row["phone"] . '</td>';
-                            echo '<td>' . $row["phone_private"] . '</td>';
-                            echo '<td>' . $row["email"] . '</td>';
-                            echo '<td>' . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</td>';
+                            echo '<div class="employee_dropdown_mobile">';
+                                echo '<td>' . $row["phone"] . '</td>';
+                                echo '<td>' . $row["phone_private"] . '</td>';
+                                echo '<td>' . $row["email"] . '</td>';
+                                echo '<td>' . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</td>';
+                            echo '</div>';
                         echo '</tr>';
                     }
                 }
@@ -90,6 +94,18 @@
         </div>
 
 
+                <div class="employee_list">
+                    <div class="table_row">
+                        <p class="table_first_item">Medarbejder</p>
+                        <p>Initialer</p>
+                        <div class="employee_dropdown_mobile">
+                            <p>Arbejds-tlf</p>
+                            <p>Mobil</p>
+                            <p>Email</p>
+                            <p>Kontaktperson</p>
+                        </div>
+                    </div>
+                </div>
 
 
     </div>

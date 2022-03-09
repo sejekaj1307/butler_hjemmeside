@@ -164,10 +164,7 @@
 
 
 /*Tablet - S */
-@media screen and(min-width: 900px) {
-    body {
-        background-color: rgb(176, 240, 210);
-    }    
+@media screen and(min-width: 900px) {  
     /*---------------------------
             Navbar 900
     ---------------------------*/
@@ -266,10 +263,7 @@
 
 
 /*Lille pc - M*/
-@media screen and(min-width: 1100px) {
-    body {
-        background-color: rgb(152, 173, 231);
-    }    
+@media screen and(min-width: 1100px) {   
 
     /*---------------------------
                Navbar 1150
@@ -310,8 +304,5 @@
 
 /*Stor pc - L*/
 @media screen and(min-width: 1450px) {
-    body {
-        background-color: rgb(219, 143, 203);
-    }    
 
 }

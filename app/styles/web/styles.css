@@ -79,26 +79,17 @@
 }
 
 .employee_list {
-  border-spacing: 0;
-  border-collapse: collapse;
-  width: 100%;
+  border: 1px solid red;
 }
 
-.employee_list th {
-  text-align: left;
-  padding: 20px 0 12px 0;
-  border-bottom: 2px solid #5068CB;
-}
-
-.employee_list .table_row {
-  border-bottom: 2px solid #AEBFF6;
-  height: 50px;
+.employee_list .table_first_item {
+  padding-left: 15px;
 }
 
 /*Tablet - S */
 @media screen and (min-width: 900px) {
   body {
-    background-color: #e1fcef;
+    background-color: #c7ecda;
   }
   .site_container {
     margin-left: 22vw;
@@ -134,7 +125,7 @@
 /*Stor pc - L*/
 @media screen and (min-width: 1450px) {
   body {
-    background-color: #eccde5;
+    background-color: #f5c3e9;
   }
 }
 
@@ -381,9 +372,6 @@
 
 /*Tablet - S */
 @media screen and (min-width: 900px) {
-  body {
-    background-color: #b0f0d2;
-  }
   /*---------------------------
             Navbar 900
     ---------------------------*/
@@ -476,9 +464,6 @@
 
 /*Lille pc - M*/
 @media screen and (min-width: 1100px) {
-  body {
-    background-color: #98ade7;
-  }
   /*---------------------------
                Navbar 1150
     ---------------------------*/
@@ -503,9 +488,4 @@
 }
 
 /*Stor pc - L*/
-@media screen and (min-width: 1450px) {
-  body {
-    background-color: #db8fcb;
-  }
-}
 /*# sourceMappingURL=styles.css.map */

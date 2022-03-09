@@ -57,28 +57,24 @@
 
 
 .employee_list {
-    border-spacing: 0;
-    border-collapse: collapse; 
-    width: 100%;
-    th {
-        text-align: left;
-        padding: 20px 0 12px 0;
-        border-bottom: 2px solid $th_border_bottom;
+    border: 1px solid red;
+    p {
     }
-    .table_row {
-        border-bottom: 2px solid $tr_border_bottom;
-        height: 50px;     
+    .employee_dropdown_mobile {
+        // display: none;
+    }
+    .table_first_item {
+        padding-left: 15px;
     }
 
 }
 
 
 
-
 /*Tablet - S */
 @media screen and(min-width: 900px) {
     body {
-        background-color: rgb(225, 252, 239);
+        background-color: rgb(199, 236, 218);
     }    
     .site_container { //every site can be seen right of navbar
         margin-left: $nav_with-s;    
@@ -118,7 +114,7 @@
 /*Stor pc - L*/
 @media screen and(min-width: 1450px) {
     body {
-        background-color: rgb(236, 205, 229);
+        background-color: rgb(245, 195, 233);
     }    
 
 }
