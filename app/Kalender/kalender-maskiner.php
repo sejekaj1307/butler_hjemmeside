@@ -24,7 +24,7 @@
             <li><a href="../Opgaver/fejl-og-mangler.php">Opgaver</a></li>
             <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
         </ul>
-        <div class="log_out"><a href="../index.php"></a></div>
+        <div class="log_out_container"><a href="../index.php">Log ud</a></div>
     </div>
 
     <div class="site_container">
@@ -48,6 +48,7 @@
 
         <div class="calender_container">
             <button class="add-new-link"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
+            <h1>Kal</h1>
         </div>
 
 

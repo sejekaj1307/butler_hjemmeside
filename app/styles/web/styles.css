@@ -212,6 +212,11 @@
   position: absolute;
   width: 100%;
   background-color: #000C3D;
+  height: 100px;
+}
+
+.navbar_container .log_out_container a {
+  color: #fff;
 }
 
 /*---------------------------

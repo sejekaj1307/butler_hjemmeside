@@ -56,8 +56,13 @@
         position: absolute;
         width: 100%;
         background-color:   $log_out_blue;
+        height: 100px;
+        a {
+            color: #fff;
+        }
     }
 }
+
 
 /*---------------------------
           Masthead
