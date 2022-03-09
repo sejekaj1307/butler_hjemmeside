@@ -56,9 +56,18 @@
         position: absolute;
         width: 100%;
         background-color:   $log_out_blue;
-        height: 100px;
+        height: 60px;
+        :hover {
+            background-color: $log_out_blue_hover;
+        }
         a {
             color: #fff;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
         }
     }
 }

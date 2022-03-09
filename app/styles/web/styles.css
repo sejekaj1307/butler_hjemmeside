@@ -212,11 +212,27 @@
   position: absolute;
   width: 100%;
   background-color: #000C3D;
-  height: 100px;
+  height: 60px;
+}
+
+.navbar_container .log_out_container :hover {
+  background-color: #000830;
 }
 
 .navbar_container .log_out_container a {
   color: #fff;
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
 }
 
 /*---------------------------
