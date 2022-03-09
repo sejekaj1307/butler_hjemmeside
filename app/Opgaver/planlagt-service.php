@@ -1,3 +1,7 @@
+<?php 
+    $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
