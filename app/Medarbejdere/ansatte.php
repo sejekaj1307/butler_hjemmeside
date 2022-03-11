@@ -65,6 +65,10 @@
                         echo '<div class="employee_list_header">';
                             echo '<p class="table_first_item">Medarbejder</p>';
                             echo '<p>Initialer</p>';
+                            echo '<p>Arbejds-tlf</p>';
+                            echo '<p>Mobil</p>';
+                            echo '<p>Email</p>';
+                            echo '<p>Kontaktperson</p>';
                         echo '</div>';
 
                         //if og while her 
@@ -72,15 +76,17 @@
                         {
                             while($row = $result->fetch_assoc())
                             {
-                                echo '<div class="mobile_employee_information" onclick=open_close_employee_info()>';
-                                    echo '<p class="table_first_item">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
-                                    echo '<p>' . $row["initials"] . '</p>';
-                                echo '</div>';
-                                echo '<div class="employee_dropdown_mobile">';
-                                    echo '<p class="dark_dropdown_table">' . $row["phone"] . '</p>';
-                                    echo '<p class="light_dropdown_table">' . $row["phone_private"] . '</p>';
-                                    echo '<p class="dark_dropdown_table">' . $row["email"] . '</p>';
-                                    echo '<p class="light_dropdown_table">' . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</p>';
+                                echo '<div class="employee_tester">';
+                                    echo '<div class="mobile_employee_information" onclick=open_close_employee_info()>';
+                                        echo '<p class="table_first_item">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
+                                        echo '<p class="employee_initials">' . $row["initials"] . '</p>';
+                                    echo '</div>';
+                                    echo '<div class="employee_dropdown_mobile">';
+                                        echo '<p class="dark_dropdown_table employee_phone">' . $row["phone"] . '</p>';
+                                        echo '<p class="light_dropdown_table employee_phone">' . $row["phone_private"] . '</p>';
+                                        echo '<p class="dark_dropdown_table employee_email">' . $row["email"] . '</p>';
+                                        echo '<p class="light_dropdown_table employee_emergency">' . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</p>';
+                                    echo '</div>';
                                 echo '</div>';
                             }   
                         }

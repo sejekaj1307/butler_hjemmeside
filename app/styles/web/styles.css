@@ -101,41 +101,47 @@
   width: 80%;
 }
 
-.employee_list .mobile_employee_information {
+.employee_list .employee_tester .mobile_employee_information {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   border-bottom: 2px solid #AEBFF6;
 }
 
-.employee_list .mobile_employee_information :hover {
+.employee_list .employee_tester .mobile_employee_information :hover {
   cursor: pointer;
 }
 
-.employee_list .mobile_employee_information .table_first_item {
+.employee_list .employee_tester .mobile_employee_information .table_first_item {
   padding-left: 15px;
   width: 80%;
 }
 
-.employee_list p {
+.employee_list .employee_tester p {
   padding: 10px 0;
 }
 
-.employee_list .employee_dropdown_mobile {
-  display: none;
+.employee_list .employee_tester .employee_dropdown_mobile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.employee_list .employee_dropdown_mobile .dark_dropdown_table {
+.employee_list .employee_tester .employee_dropdown_mobile .dark_dropdown_table {
   padding-left: 15px;
   background-color: #ECF0FD;
 }
 
-.employee_list .employee_dropdown_mobile .light_dropdown_table {
+.employee_list .employee_tester .employee_dropdown_mobile .light_dropdown_table {
   padding-left: 15px;
   background-color: #FAFBFF;
 }
 
-.employee_list .employee_dropdown_mobile :last-child {
+.employee_list .employee_tester .employee_dropdown_mobile :last-child {
   border-bottom: 2px solid #149DB9;
 }
 
@@ -156,7 +162,7 @@
 }
 
 /*Lille pc - M*/
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 1200px) {
   body {
     background-color: #98ade7;
   }
@@ -173,12 +179,101 @@
     font-size: 18px;
     width: 175px;
   }
+  .employee_list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .employee_list .employee_list_header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 15px 0;
+    border-bottom: 3px solid #5068CB;
+  }
+  .employee_list .employee_list_header .table_first_item {
+    padding-left: 15px;
+  }
+  .employee_list .employee_tester {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-left: 5px solid blue;
+    border-bottom: 2px solid #AEBFF6;
+    padding: 7px 0;
+  }
+  .employee_list .employee_tester .mobile_employee_information {
+    width: 17vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .employee_list .employee_tester .mobile_employee_information .table_first_item {
+    width: 14vw;
+  }
+  .employee_list .employee_tester .mobile_employee_information .employee_initials {
+    width: 4vw;
+  }
+  .employee_list .employee_tester .mobile_employee_information {
+    border-bottom: 2px solid rgba(0, 0, 0, 0);
+  }
+  .employee_list .employee_tester .mobile_employee_information :hover {
+    cursor: auto;
+  }
+  .employee_list .employee_tester .mobile_employee_information .table_first_item {
+    padding-left: 12px;
+  }
+  .employee_list .employee_tester .employee_dropdown_mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .employee_list .employee_tester .employee_dropdown_mobile .employee_phone {
+    width: 7.5vw;
+  }
+  .employee_list .employee_tester .employee_dropdown_mobile .employee_email {
+    width: 22vw;
+  }
+  .employee_list .employee_tester .employee_dropdown_mobile .employee_emergency {
+    width: 17.3vw;
+  }
+  .employee_list .employee_tester .employee_dropdown_mobile .employee_phone, .employee_list .employee_tester .employee_dropdown_mobile .employee_email, .employee_list .employee_tester .employee_dropdown_mobile .employee_emergency {
+    padding-left: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom: 2px solid rgba(0, 0, 0, 0);
+  }
 }
 
 /*Stor pc - L*/
-@media screen and (min-width: 1450px) {
+@media screen and (min-width: 1600px) {
   body {
     background-color: #f5c3e9;
+  }
+  .employee_list .employee_tester .mobile_employee_information {
+    width: 20.5vw;
+  }
+  .employee_list .employee_tester .mobile_employee_information .table_first_item {
+    width: 13vw;
+  }
+  .employee_list .employee_tester .mobile_employee_information .employee_initials {
+    width: 7.5vw;
+  }
+  .employee_list .employee_tester .employee_phone {
+    width: 9vw !important;
+  }
+  .employee_list .employee_tester .employee_email {
+    width: 20vw !important;
+  }
+  .employee_list .employee_tester .employee_emergency {
+    width: 13vw !important;
   }
 }
 
@@ -516,7 +611,7 @@
 }
 
 /*Lille pc - M*/
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 1200px) {
   /*---------------------------
                Navbar 1150
     ---------------------------*/
