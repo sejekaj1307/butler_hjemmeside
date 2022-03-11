@@ -89,16 +89,27 @@
 }
 
 .employee_list .employee_list_header {
+  border-bottom: 3px solid #5068CB;
+  padding: 15px 0 15px 15px;
+}
+
+.employee_list .employee_list_header .mobile_employee_information_header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 15px 0;
-  border-bottom: 3px solid #5068CB;
+  width: 100%;
 }
 
-.employee_list .employee_list_header .table_first_item {
-  padding-left: 15px;
+.employee_list .employee_list_header .mobile_employee_information_header .table_first_item_header {
   width: 80%;
+}
+
+.employee_list .employee_list_header .employee_phone_header, .employee_list .employee_list_header .employee_phone_header, .employee_list .employee_list_header .employee_email_header, .employee_list .employee_list_header .employee_emergency_header {
+  display: none;
+}
+
+.employee_list .employee_list_header .table_first_item_header, .employee_list .employee_list_header .employee_initials_header, .employee_list .employee_list_header .employee_phone_header, .employee_list .employee_list_header .employee_phone_header, .employee_list .employee_list_header .employee_email_header, .employee_list .employee_list_header .employee_emergency_header {
+  font-weight: 600;
 }
 
 .employee_list .employee_tester .mobile_employee_information {
@@ -106,9 +117,6 @@
   display: -ms-flexbox;
   display: flex;
   border-bottom: 2px solid #AEBFF6;
-}
-
-.employee_list .employee_tester .mobile_employee_information :hover {
   cursor: pointer;
 }
 
@@ -179,53 +187,54 @@
     font-size: 18px;
     width: 175px;
   }
-  .employee_list {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
   .employee_list .employee_list_header {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     padding: 15px 0;
-    border-bottom: 3px solid #5068CB;
   }
-  .employee_list .employee_list_header .table_first_item {
-    padding-left: 15px;
+  .employee_list .employee_list_header .employee_phone_header, .employee_list .employee_list_header .employee_phone_header, .employee_list .employee_list_header .employee_email_header, .employee_list .employee_list_header .employee_emergency_header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .employee_list .mobile_employee_information_header, .employee_list .mobile_employee_information {
+    width: 20vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    display: flex;
+    cursor: auto;
+    border-bottom: 2px solid rgba(0, 0, 0, 0) !important;
+  }
+  .employee_list .table_first_item, .employee_list .table_first_item_header {
+    width: 14vw !important;
+    padding: 0 0 0 15px;
+  }
+  .employee_list .employee_initials, .employee_list .employee_initials_header {
+    width: 4vw !important;
+    padding-left: 0 !important;
+    padding: 0;
+  }
+  .employee_list .employee_phone, .employee_list .employee_phone_header {
+    width: 7.5vw !important;
+  }
+  .employee_list .employee_email, .employee_list .employee_email_header {
+    width: 22vw;
+  }
+  .employee_list .employee_emergency, .employee_list .employee_emergency_header {
+    width: 15.5vw !important;
   }
   .employee_list .employee_tester {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    border-left: 5px solid blue;
     border-bottom: 2px solid #AEBFF6;
     padding: 7px 0;
-  }
-  .employee_list .employee_tester .mobile_employee_information {
-    width: 17vw;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-  .employee_list .employee_tester .mobile_employee_information .table_first_item {
-    width: 14vw;
-  }
-  .employee_list .employee_tester .mobile_employee_information .employee_initials {
-    width: 4vw;
-  }
-  .employee_list .employee_tester .mobile_employee_information {
-    border-bottom: 2px solid rgba(0, 0, 0, 0);
-  }
-  .employee_list .employee_tester .mobile_employee_information :hover {
-    cursor: auto;
-  }
-  .employee_list .employee_tester .mobile_employee_information .table_first_item {
-    padding-left: 12px;
   }
   .employee_list .employee_tester .employee_dropdown_mobile {
     display: -webkit-box;
@@ -236,19 +245,19 @@
         -ms-flex-direction: row;
             flex-direction: row;
   }
-  .employee_list .employee_tester .employee_dropdown_mobile .employee_phone {
-    width: 7.5vw;
-  }
-  .employee_list .employee_tester .employee_dropdown_mobile .employee_email {
-    width: 22vw;
-  }
-  .employee_list .employee_tester .employee_dropdown_mobile .employee_emergency {
-    width: 17.3vw;
-  }
   .employee_list .employee_tester .employee_dropdown_mobile .employee_phone, .employee_list .employee_tester .employee_dropdown_mobile .employee_email, .employee_list .employee_tester .employee_dropdown_mobile .employee_emergency {
     padding-left: 0;
     background-color: rgba(0, 0, 0, 0);
     border-bottom: 2px solid rgba(0, 0, 0, 0);
+  }
+  .employee_list .employee_dropdown_mobile, .employee_list .employee_dropdown_mobile_all_headers {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
   }
 }
 
@@ -257,22 +266,23 @@
   body {
     background-color: #f5c3e9;
   }
-  .employee_list .employee_tester .mobile_employee_information {
-    width: 20.5vw;
+  .employee_list .mobile_employee_information_header, .employee_list .mobile_employee_information {
+    width: 20.5vw !important;
   }
-  .employee_list .employee_tester .mobile_employee_information .table_first_item {
-    width: 13vw;
+  .employee_list .table_first_item, .employee_list .table_first_item_header {
+    width: 13vw !important;
   }
-  .employee_list .employee_tester .mobile_employee_information .employee_initials {
+  .employee_list .employee_initials, .employee_list .employee_initials_header {
     width: 7.5vw;
+    padding-left: 0 !important;
   }
-  .employee_list .employee_tester .employee_phone {
+  .employee_list .employee_phone, .employee_list .employee_phone_header {
     width: 9vw !important;
   }
-  .employee_list .employee_tester .employee_email {
+  .employee_list .employee_email, .employee_list .employee_email_header {
     width: 20vw !important;
   }
-  .employee_list .employee_tester .employee_emergency {
+  .employee_list .employee_emergency, .employee_list .employee_emergency_header {
     width: 13vw !important;
   }
 }

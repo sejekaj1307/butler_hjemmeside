@@ -59,16 +59,23 @@
                $sql = "select * from employees";
                 $result = $conn->query($sql);
 
+                function tester() {
+                    echo '<script>console.log("Maja")</script>';
+                }
 
                 echo '<div class="employee_list">';
                     echo '<div class="table_row">';
                         echo '<div class="employee_list_header">';
-                            echo '<p class="table_first_item">Medarbejder</p>';
-                            echo '<p>Initialer</p>';
-                            echo '<p>Arbejds-tlf</p>';
-                            echo '<p>Mobil</p>';
-                            echo '<p>Email</p>';
-                            echo '<p>Kontaktperson</p>';
+                            echo '<div class="mobile_employee_information_header">';
+                                echo '<p class="table_first_item_header">Medarbejder</p>';
+                                echo '<p class="employee_initials_header">Initialer</p>';
+                            echo '</div>';
+                            echo '<div class="employee_dropdown_mobile_all_headers">';
+                                echo '<p class="employee_phone_header">Arbejds-tlf</p>';
+                                echo '<p class="employee_phone_header">Mobil</p>';
+                                echo '<p class="employee_email_header">Email</p>';
+                                echo '<p class="employee_emergency_header">Kontaktperson</p>';
+                            echo '</div>';
                         echo '</div>';
 
                         //if og while her 
@@ -77,7 +84,7 @@
                             while($row = $result->fetch_assoc())
                             {
                                 echo '<div class="employee_tester">';
-                                    echo '<div class="mobile_employee_information" onclick=open_close_employee_info()>';
+                                    echo '<div class="mobile_employee_information" onclick=open_close_employee_info()> ';
                                         echo '<p class="table_first_item">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
                                         echo '<p class="employee_initials">' . $row["initials"] . '</p>';
                                     echo '</div>';
