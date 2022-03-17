@@ -231,7 +231,7 @@
         Externals and suppliers width 1200
     ------------------------------------------*/
     .external_name_header, .external_name {
-        width: 20vw !important;
+        width: 18vw !important;
         padding-left: 15px !important;
     }
     .external_phone, .external_phone_header {
@@ -240,8 +240,8 @@
     .external_email, .external_email_header{
         width: 22vw;
     }
-    .external_emergency, .external_emergency_header {
-        width: 15.5vw !important;
+    .external_product, .external_product_header {
+        width: 15vw !important;
     }
     /*------------------------------------
             Machines width 1200
@@ -271,7 +271,7 @@
             Employees
     ---------------------------*/
     .employee_list {
-        .employee_all_headers, .mobile_employee_information {
+        .employee_mobile_headers, .mobile_employee_information {
             width: 20.5vw !important;
         }
         .employee_name, .employee_name_header {
@@ -290,7 +290,21 @@
             width: 13vw !important;
         }
     }
-
+    /*------------------------------------------
+        Externals and suppliers width 1200
+    ------------------------------------------*/
+    .external_name_header, .external_name {
+        width: 16vw !important;
+    }
+    .external_phone, .external_phone_header {
+        width: 9.5vw !important;
+    }
+    .external_email, .external_email_header{
+        width: 21vw;
+    }
+    .external_product, .external_product_header {
+        width: 14.6vw !important;
+    }
     
 }
 
