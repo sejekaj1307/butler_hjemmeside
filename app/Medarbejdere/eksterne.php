@@ -52,7 +52,7 @@
 
 
         <div class="profile_list">
-            <button class="add-new-link"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
+            <button class="add_new_link"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                 $sql = "select * from externals";

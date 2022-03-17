@@ -21,7 +21,7 @@
   margin: 50px auto;
 }
 
-.add-new-link {
+.add_new_link {
   border: none;
   background: none;
   color: #149DB9;
@@ -29,9 +29,13 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  cursor: pointer;
 }
 
-.add-new-link img {
+.add_new_link img {
   width: 16px;
   margin-right: 5px;
 }
@@ -148,6 +152,10 @@
 
 .employee_list .employee_data_row .employee_dropdown_mobile :last-child, .employee_list .employee_data_row .machine_dropdown_mobile :last-child, .employee_list .employee_data_row .external_dropdown_mobile :last-child, .employee_list .external_data_row .employee_dropdown_mobile :last-child, .employee_list .external_data_row .machine_dropdown_mobile :last-child, .employee_list .external_data_row .external_dropdown_mobile :last-child, .employee_list .machine_data_row .employee_dropdown_mobile :last-child, .employee_list .machine_data_row .machine_dropdown_mobile :last-child, .employee_list .machine_data_row .external_dropdown_mobile :last-child, .external_list .employee_data_row .employee_dropdown_mobile :last-child, .external_list .employee_data_row .machine_dropdown_mobile :last-child, .external_list .employee_data_row .external_dropdown_mobile :last-child, .external_list .external_data_row .employee_dropdown_mobile :last-child, .external_list .external_data_row .machine_dropdown_mobile :last-child, .external_list .external_data_row .external_dropdown_mobile :last-child, .external_list .machine_data_row .employee_dropdown_mobile :last-child, .external_list .machine_data_row .machine_dropdown_mobile :last-child, .external_list .machine_data_row .external_dropdown_mobile :last-child, .machine_list .employee_data_row .employee_dropdown_mobile :last-child, .machine_list .employee_data_row .machine_dropdown_mobile :last-child, .machine_list .employee_data_row .external_dropdown_mobile :last-child, .machine_list .external_data_row .employee_dropdown_mobile :last-child, .machine_list .external_data_row .machine_dropdown_mobile :last-child, .machine_list .external_data_row .external_dropdown_mobile :last-child, .machine_list .machine_data_row .employee_dropdown_mobile :last-child, .machine_list .machine_data_row .machine_dropdown_mobile :last-child, .machine_list .machine_data_row .external_dropdown_mobile :last-child {
   border-bottom: 2px solid #149DB9;
+}
+
+.employee_list .employee_data_row .button_container, .employee_list .external_data_row .button_container, .employee_list .machine_data_row .button_container, .external_list .employee_data_row .button_container, .external_list .external_data_row .button_container, .external_list .machine_data_row .button_container, .machine_list .employee_data_row .button_container, .machine_list .external_data_row .button_container, .machine_list .machine_data_row .button_container {
+  display: none;
 }
 
 /*----------------------------------
@@ -297,14 +305,20 @@
   .employee_list .employee_data_row .employee_dropdown_mobile :last-child, .employee_list .employee_data_row .external_dropdown_mobile :last-child, .employee_list .employee_data_row .machine_dropdown_mobile :last-child, .employee_list .external_data_row .employee_dropdown_mobile :last-child, .employee_list .external_data_row .external_dropdown_mobile :last-child, .employee_list .external_data_row .machine_dropdown_mobile :last-child, .employee_list .machine_data_row .employee_dropdown_mobile :last-child, .employee_list .machine_data_row .external_dropdown_mobile :last-child, .employee_list .machine_data_row .machine_dropdown_mobile :last-child, .external_list .employee_data_row .employee_dropdown_mobile :last-child, .external_list .employee_data_row .external_dropdown_mobile :last-child, .external_list .employee_data_row .machine_dropdown_mobile :last-child, .external_list .external_data_row .employee_dropdown_mobile :last-child, .external_list .external_data_row .external_dropdown_mobile :last-child, .external_list .external_data_row .machine_dropdown_mobile :last-child, .external_list .machine_data_row .employee_dropdown_mobile :last-child, .external_list .machine_data_row .external_dropdown_mobile :last-child, .external_list .machine_data_row .machine_dropdown_mobile :last-child, .machine_list .employee_data_row .employee_dropdown_mobile :last-child, .machine_list .employee_data_row .external_dropdown_mobile :last-child, .machine_list .employee_data_row .machine_dropdown_mobile :last-child, .machine_list .external_data_row .employee_dropdown_mobile :last-child, .machine_list .external_data_row .external_dropdown_mobile :last-child, .machine_list .external_data_row .machine_dropdown_mobile :last-child, .machine_list .machine_data_row .employee_dropdown_mobile :last-child, .machine_list .machine_data_row .external_dropdown_mobile :last-child, .machine_list .machine_data_row .machine_dropdown_mobile :last-child {
     border-bottom: none !important;
   }
+  .employee_list .employee_data_row .button_container, .employee_list .external_data_row .button_container, .employee_list .machine_data_row .button_container, .external_list .employee_data_row .button_container, .external_list .external_data_row .button_container, .external_list .machine_data_row .button_container, .machine_list .employee_data_row .button_container, .machine_list .external_data_row .button_container, .machine_list .machine_data_row .button_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 5vw;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
   /*------------------------------------------
                 employee width 1200
     ------------------------------------------*/
-  .mobile_employee_information {
-    width: 20vw;
-  }
   .employee_name, .employee_name_header {
-    width: 13vw !important;
+    width: 12vw !important;
     padding-left: 15px !important;
   }
   .employee_initials, .employee_initials_header {
@@ -314,10 +328,10 @@
     width: 7.5vw !important;
   }
   .employee_email, .employee_email_header {
-    width: 22vw;
+    width: 21vw;
   }
   .employee_emergency, .employee_emergency_header {
-    width: 15.5vw !important;
+    width: 14vw !important;
   }
   /*------------------------------------------
         Externals and suppliers width 1200
@@ -358,23 +372,23 @@
   /*---------------------------
             Employees
     ---------------------------*/
-  .employee_list .employee_mobile_headers, .employee_list .mobile_employee_information {
-    width: 20.5vw !important;
-  }
   .employee_list .employee_name, .employee_list .employee_name_header {
-    width: 13vw !important;
+    width: 12vw !important;
   }
   .employee_list .employee_initials, .employee_list .employee_initials_header {
-    width: 7.5vw;
+    width: 8vw;
   }
   .employee_list .employee_phone, .employee_list .employee_phone_header {
-    width: 9vw !important;
+    width: 7.5vw !important;
   }
   .employee_list .employee_email, .employee_list .employee_email_header {
     width: 20vw !important;
   }
   .employee_list .employee_emergency, .employee_list .employee_emergency_header {
-    width: 13vw !important;
+    width: 15vw !important;
+  }
+  .button_container {
+    width: 3vw;
   }
   /*------------------------------------------
         Externals and suppliers width 1200

@@ -13,12 +13,14 @@
     margin: 50px auto;
 }
 
-.add-new-link {
+.add_new_link {
     border: none;
     background: none;
     color: #149DB9;
     font-size: 18px;
     display: flex;
+    width: fit-content !important;
+    cursor: pointer;
     img {
         width: 16px;
         margin-right: 5px;
@@ -103,6 +105,9 @@
                 border-bottom: 2px solid $time_registration_navbar_border;
             }
         }
+        .button_container {
+            display: none;
+        }
     }
 }
 /*----------------------------------
@@ -112,8 +117,7 @@
 
 
 
-    
-    
+
 
 
 
@@ -203,16 +207,18 @@
                     border-bottom: none !important;
                 }
             }
+            .button_container { //button container, crud, read and delete
+                display: flex;
+                width: 5vw;
+                justify-content: space-between;
+            }
         }
     }
     /*------------------------------------------
                 employee width 1200
     ------------------------------------------*/
-    .mobile_employee_information {
-        width: 20vw;    
-    }
     .employee_name, .employee_name_header {
-        width: 13vw !important;
+        width: 12vw !important;
         padding-left: 15px !important;
     }   
     .employee_initials, .employee_initials_header {
@@ -222,10 +228,10 @@
         width: 7.5vw !important;
     }
     .employee_email, .employee_email_header{
-        width: 22vw;
+        width: 21vw;
     }
     .employee_emergency, .employee_emergency_header {
-        width: 15.5vw !important;
+        width: 14vw !important;
     }
     /*------------------------------------------
         Externals and suppliers width 1200
@@ -272,23 +278,26 @@
     ---------------------------*/
     .employee_list {
         .employee_mobile_headers, .mobile_employee_information {
-            width: 20.5vw !important;
+            // width: 7vw !important;
         }
         .employee_name, .employee_name_header {
-            width: 13vw !important;
+            width: 12vw !important;
         }   
         .employee_initials, .employee_initials_header {
-            width: 7.5vw;
+            width: 8vw;
         }
         .employee_phone, .employee_phone_header {
-            width: 9vw !important;
+            width: 7.5vw !important;
         }
         .employee_email, .employee_email_header{
             width: 20vw !important;
         }
         .employee_emergency, .employee_emergency_header {
-            width: 13vw !important;
+            width: 15vw !important;
         }
+    }
+    .button_container { //button container, crud, read and delete
+        width: 3vw;
     }
     /*------------------------------------------
         Externals and suppliers width 1200
