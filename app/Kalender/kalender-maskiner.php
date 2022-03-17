@@ -52,7 +52,6 @@
 
         <div class="calender_container">
             <button class="add-new-link"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
-            <h1>Kal</h1>
         </div>
 
 
