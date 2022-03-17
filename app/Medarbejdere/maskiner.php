@@ -52,6 +52,42 @@
 
         <div class="profile_list">
             <button class="add-new-link"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
+            <?php 
+                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+               $sql = "select * from machines";
+                $result = $conn->query($sql);
+
+                function tester() {
+                    echo '<script>console.log("Maja")</script>';
+                }
+
+                echo '<div class="machine_list">';
+                    echo '<div class="machine_list_header">';
+                    echo '<p class="machine_name_header">Navn</p>';
+                        echo '<div class="machines_all_headers">';
+                            echo '<p class="machine_nordic_name_header">Nordic navn</p>';
+                            echo '<p class="machine_link_header">Link til BB hjemmeside</p>';
+                        echo '</div>';
+                    echo '</div>';
+
+                    //if og while her 
+                    if($result->num_rows > 0)
+                    {
+                        while($row = $result->fetch_assoc())
+                        {
+                            echo '<div class="machine_data_row">';
+                                echo '<div class="machine_information" onclick=open_close_employee_info()> ';
+                                    echo '<p class="machine_name">' . $row["name"] . '</p>';
+                                echo '</div>';
+                                echo '<div class="machine_dropdown_mobile">';
+                                    echo '<p class="dark_dropdown_table machine_nordic_name">' . $row["name_nordic"] . '</p>';
+                                    echo '<p class="light_dropdown_table machine_link">' . "<a href=" . $row['link'] . ">Link til BB hjemmeside</a>" . '</p>';
+                                echo '</div>';
+                            echo '</div>';
+                        }   
+                    }
+                echo '</div>';
+            ?>
         </div>
 
 

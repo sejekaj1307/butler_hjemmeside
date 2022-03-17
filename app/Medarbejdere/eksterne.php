@@ -53,6 +53,46 @@
 
         <div class="profile_list">
             <button class="add-new-link"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
+            <?php 
+                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                $sql = "select * from externals";
+                $result = $conn->query($sql);
+
+                function tester() {
+                    echo '<script>console.log("Maja")</script>';
+                }
+
+                echo '<div class="external_list">';
+                    echo '<div class="external_list_header">';
+                        echo '<p class="external_name_header">Efternavn, fornavn</p>';
+                        echo '<div class="external_all_headers">';
+                            echo '<p class="external_phone_header">Telefon</p>';
+                            echo '<p class="external_phone_header">Mobil</p>';
+                            echo '<p class="external_email_header">Email</p>';
+                            echo '<p class="external_product_header">Produkt</p>';
+                        echo '</div>';
+                    echo '</div>';
+
+                    //if og while her 
+                    if($result->num_rows > 0)
+                    {
+                        while($row = $result->fetch_assoc())
+                        {
+                            echo '<div class="external_data_row">';
+                                echo '<div class="mobile_external_information" onclick=open_close_employee_info()> ';
+                                    echo '<p class="external_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
+                                echo '</div>';
+                                echo '<div class="external_dropdown_mobile">';
+                                    echo '<p class="dark_dropdown_table external_phone">' . $row["phone"] . '</p>';
+                                    echo '<p class="light_dropdown_table external_phone">' . $row["phone_private"] . '</p>';
+                                    echo '<p class="dark_dropdown_table external_email">' . $row["email"] . '</p>';
+                                    echo '<p class="light_dropdown_table external_product">' . $row["contact_type"] . '</p>';
+                                echo '</div>';
+                            echo '</div>';
+                        }   
+                    }
+                echo '</div>';
+            ?>
         </div>
 
 

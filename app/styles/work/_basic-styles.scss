@@ -13,6 +13,17 @@
     margin: 50px auto;
 }
 
+.add-new-link {
+    border: none;
+    background: none;
+    color: #149DB9;
+    font-size: 18px;
+    display: flex;
+    img {
+        width: 16px;
+        margin-right: 5px;
+    }
+}
 
 /*---------------------------------
     Time registration navbar
@@ -43,69 +54,49 @@
     }
 }
 
-.add-new-link {
-    border: none;
-    background: none;
-    color: #149DB9;
-    font-size: 18px;
-    display: flex;
-    img {
-        width: 16px;
-        margin-right: 5px;
-    }
-}
 
 
 
 
-
-
-
-
-
-
-.employee_list {
-    display: flex;
+/*-------------------------------
+        Employee lists
+-------------------------------*/
+.employee_list, .external_list, .machine_list { //Aller yderste der har alt
     flex-direction: column;
-    .employee_list_header {
+    p {
+        padding: 10px 0 ;
+    }
+    .employee_list_header, .machine_list_header, .external_list_header { //div rundt om ALLE headers
         border-bottom: 3px solid $th_border_bottom;
-        padding: 15px 0 15px 15px;
-        .mobile_employee_information_header {
+        padding: 15px 0;
+        font-weight: 600;
+        .employee_mobile_headers {
             display: flex;
-            width: 100%;
-            .table_first_item_header{
+            .employee_name_header { //Første header på alle headers
                 width: 80%;
             }
         }
-        .employee_phone_header, .employee_phone_header, .employee_email_header, .employee_emergency_header {
-            display: none;
-        }
-        .table_first_item_header, .employee_initials_header, .employee_phone_header, .employee_phone_header, .employee_email_header, .employee_emergency_header {
-            font-weight: 600;
+        .employee_all_headers, .machines_all_headers, .external_all_headers { //div rundt om navn- og initialer-header kun på ansatte siden
+            display: flex;
+            flex-direction: row;
+            display: none;                 
         }
     }
-    .employee_tester {
-        .mobile_employee_information {
+    .employee_data_row, .external_data_row, .machine_data_row {
+        .mobile_employee_information, .mobile_external_information, .machine_information { //Den øverste bar, som kan ses af data, f.eks. Ibsen, Steen - Si
             display: flex;
             border-bottom: 2px solid $tr_border_bottom;
             cursor: pointer;    
-            .table_first_item {
-                padding-left: 15px;
+            .employee_name, .external_name, .machine_name {
                 width: 80%;
             }
         }
-        p {
-            padding: 10px 0;
-        }
-        .employee_dropdown_mobile {
-            display: flex;
+        .employee_dropdown_mobile, .machine_dropdown_mobile, .external_dropdown_mobile {
             flex-direction: column;
             .dark_dropdown_table {
-                padding-left: 15px;
                 background-color: $dark_dropdown_background;        
             }
             .light_dropdown_table {
-                padding-left: 15px;
                 background-color: $light_dropdown_background;
             }
             :last-child {
@@ -114,6 +105,19 @@
         }
     }
 }
+/*----------------------------------
+        Employees lists STOP
+----------------------------------*/
+
+
+
+
+    
+    
+
+
+
+
 
 
 
@@ -138,13 +142,6 @@
 }
 
 
-
-
-
-
-
-
-
 /*Lille pc - M*/
 @media screen and(min-width: 1200px) {
     body {
@@ -167,114 +164,124 @@
     }
 
 
-
-
-//Ny data her
-    .employee_list {
-        .employee_list_header {
+    /*---------------------------
+            Employees 1200
+    ---------------------------*/
+    .employee_list, .external_list, .machine_list {
+        .employee_list_header, .external_list_header, .machine_list_header {
             display: flex;
-            padding: 15px 0;
-            .employee_phone_header, .employee_phone_header, .employee_email_header, .employee_emergency_header {
+            .machines_all_headers, .machines_all_headers, .external_all_headers {
                 display: flex;
             }
         }
-        //Div der holder navn og initialer, både header og data
-        .mobile_employee_information_header, .mobile_employee_information {
-            width: 20vw;
+        //Div der holder alle andre headers og data
+        .employee_all_headers, .machines_all_headers, .external_all_headers {
             display: flex;
             flex-direction: row;
-            display: flex;
-            cursor: auto;
-            border-bottom: 2px solid $no_colour !important;
-        }
-        .table_first_item, .table_first_item_header {
-            width: 14vw !important;
-            padding: 0 0 0 15px;
-            // padding-left: 15px !important;
         }   
-        .employee_initials, .employee_initials_header {
-            width: 4vw !important;
-            padding-left: 0 !important;
-            padding: 0;
-            
+        //Div der holder navn og initialer, både header og data
+        .mobile_employee_information, .mobile_external_information, .machine_information {
+            flex-direction: row;
+            display: flex;
+            cursor: auto !important;
+            border-bottom: none !important;
         }
-        .employee_phone, .employee_phone_header {
-            width: 7.5vw !important;
-        }
-        .employee_email, .employee_email_header{
-            width: 22vw;
-        }
-        .employee_emergency, .employee_emergency_header {
-            width: 15.5vw !important;
-        }
-    //ny data slut her
-            .employee_tester {
-                display: flex;
-                border-bottom: 2px solid $tr_border_bottom;
-                padding: 7px 0;
-                .employee_dropdown_mobile {
-                    display: flex;
-                    flex-direction: row;
-                    .employee_phone, .employee_email, .employee_emergency {
-                        padding-left: 0;
-                        background-color: $no_colour; 
-                        border-bottom: 2px solid $no_colour;
-                    }
-                }
-            }
-            //Div der holder alle andre headers og data
-            .employee_dropdown_mobile, .employee_dropdown_mobile_all_headers {
+        .employee_data_row, .external_data_row, .machine_data_row { //En hel række af data, al data per id
+            display: flex;
+            border-bottom: 2px solid $tr_border_bottom;
+            padding: 7px 0;
+            .employee_dropdown_mobile, .external_dropdown_mobile, .machine_dropdown_mobile {
                 display: flex;
                 flex-direction: row;
-        }   
-
+                .employee_phone, .employee_email, .employee_emergency,
+                .external_phone, .external_email, .external_product,
+                .machine_nordic_name, .machine_link {
+                    padding-left: 0;
+                    background-color: $no_colour; 
+                }
+                :last-child {
+                    border-bottom: none !important;
+                }
+            }
+        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /*------------------------------------------
+                employee width 1200
+    ------------------------------------------*/
+    .mobile_employee_information {
+        width: 20vw;    
+    }
+    .employee_name, .employee_name_header {
+        width: 13vw !important;
+        padding-left: 15px !important;
+    }   
+    .employee_initials, .employee_initials_header {
+        width: 5vw !important;
+    }
+    .employee_phone, .employee_phone_header {
+        width: 7.5vw !important;
+    }
+    .employee_email, .employee_email_header{
+        width: 22vw;
+    }
+    .employee_emergency, .employee_emergency_header {
+        width: 15.5vw !important;
+    }
+    /*------------------------------------------
+        Externals and suppliers width 1200
+    ------------------------------------------*/
+    .external_name_header, .external_name {
+        width: 20vw !important;
+        padding-left: 15px !important;
+    }
+    .external_phone, .external_phone_header {
+        width: 7.5vw !important;
+    }
+    .external_email, .external_email_header{
+        width: 22vw;
+    }
+    .external_emergency, .external_emergency_header {
+        width: 15.5vw !important;
+    }
+    /*------------------------------------
+            Machines width 1200
+    ------------------------------------*/             
+    .machine_name_header, .machine_name {
+        width: 18vw !important;
+        padding-left: 15px !important;
+    }
+    .machine_nordic_name_header, .machine_nordic_name {
+        width: 37.5vw !important;
+    }
+    .machine_link_header, .machine_link {
+        width: 15vw !important;
+    } 
 
 }
+
+
+
 /*Stor pc - L*/
 @media screen and(min-width: 1600px) {
     body {
         background-color: rgb(245, 195, 233);
     }    
+
+    /*---------------------------
+            Employees
+    ---------------------------*/
     .employee_list {
-        .mobile_employee_information_header, .mobile_employee_information {
+        .employee_all_headers, .mobile_employee_information {
             width: 20.5vw !important;
         }
-        .table_first_item, .table_first_item_header {
+        .employee_name, .employee_name_header {
             width: 13vw !important;
-            // border: 1px solid red;
         }   
         .employee_initials, .employee_initials_header {
             width: 7.5vw;
-            padding-left: 0 !important;
-            // border: 1px solid red;
         }
         .employee_phone, .employee_phone_header {
             width: 9vw !important;
-            // border: 1px solid red;
         }
         .employee_email, .employee_email_header{
             width: 20vw !important;
@@ -283,6 +290,8 @@
             width: 13vw !important;
         }
     }
+
+    
 }
 
 

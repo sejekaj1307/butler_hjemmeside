@@ -59,45 +59,39 @@
                $sql = "select * from employees";
                 $result = $conn->query($sql);
 
-                function tester() {
-                    echo '<script>console.log("Maja")</script>';
-                }
-
                 echo '<div class="employee_list">';
-                    echo '<div class="table_row">';
-                        echo '<div class="employee_list_header">';
-                            echo '<div class="mobile_employee_information_header">';
-                                echo '<p class="table_first_item_header">Medarbejder</p>';
-                                echo '<p class="employee_initials_header">Initialer</p>';
-                            echo '</div>';
-                            echo '<div class="employee_dropdown_mobile_all_headers">';
-                                echo '<p class="employee_phone_header">Arbejds-tlf</p>';
-                                echo '<p class="employee_phone_header">Mobil</p>';
-                                echo '<p class="employee_email_header">Email</p>';
-                                echo '<p class="employee_emergency_header">Kontaktperson</p>';
-                            echo '</div>';
+                    echo '<div class="employee_list_header">';
+                        echo '<div class="employee_mobile_headers">';
+                            echo '<p class="employee_name_header">Medarbejder</p>';
+                            echo '<p class="employee_initials_header">Initialer</p>';
                         echo '</div>';
-
-                        //if og while her 
-                        if($result->num_rows > 0)
-                        {
-                            while($row = $result->fetch_assoc())
-                            {
-                                echo '<div class="employee_tester">';
-                                    echo '<div class="mobile_employee_information" onclick=open_close_employee_info()> ';
-                                        echo '<p class="table_first_item">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
-                                        echo '<p class="employee_initials">' . $row["initials"] . '</p>';
-                                    echo '</div>';
-                                    echo '<div class="employee_dropdown_mobile">';
-                                        echo '<p class="dark_dropdown_table employee_phone">' . $row["phone"] . '</p>';
-                                        echo '<p class="light_dropdown_table employee_phone">' . $row["phone_private"] . '</p>';
-                                        echo '<p class="dark_dropdown_table employee_email">' . $row["email"] . '</p>';
-                                        echo '<p class="light_dropdown_table employee_emergency">' . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</p>';
-                                    echo '</div>';
-                                echo '</div>';
-                            }   
-                        }
+                        echo '<div class="machines_all_headers">';
+                            echo '<p class="employee_phone_header">Arbejds-tlf</p>';
+                            echo '<p class="employee_phone_header">Mobil</p>';
+                            echo '<p class="employee_email_header">Email</p>';
+                            echo '<p class="employee_emergency_header">Kontaktperson</p>';
+                        echo '</div>';
                     echo '</div>';
+
+                    //if og while her 
+                    if($result->num_rows > 0)
+                    {
+                        while($row = $result->fetch_assoc())
+                        {
+                            echo '<div class="employee_data_row">';
+                                echo '<div class="mobile_employee_information" onclick=open_close_employee_info()> ';
+                                    echo '<p class="employee_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
+                                    echo '<p class="employee_initials">' . $row["initials"] . '</p>';
+                                echo '</div>';
+                                echo '<div class="employee_dropdown_mobile">';
+                                    echo '<p class="dark_dropdown_table employee_phone">' . $row["phone"] . '</p>';
+                                    echo '<p class="light_dropdown_table employee_phone">' . $row["phone_private"] . '</p>';
+                                    echo '<p class="dark_dropdown_table employee_email">' . $row["email"] . '</p>';
+                                    echo '<p class="light_dropdown_table employee_emergency">' . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</p>';
+                                echo '</div>';
+                            echo '</div>';
+                        }   
+                    }
                 echo '</div>';
             ?>
         </div>
