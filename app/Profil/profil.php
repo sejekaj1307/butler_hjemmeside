@@ -1,5 +1,27 @@
 <?php 
-    $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+    // session_start();
+
+
+    $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");  
+    // $_session['email'] = $playernameGlobal;
+    // $playernameGlobal = $_GET["email"]; ///http request på sidens url
+
+    //logged in data from playername
+    $sql = $conn->prepare( "select * from employees where email = ?");
+    $sql->bind_param("s", $playernameGlobal); 
+    $sql->execute();
+    $result = $sql->get_result();
+    if($result->num_rows > 0) 
+    {
+        $row = $result->fetch_assoc();
+        // $email = $row['email'];
+        // $playerAvatar = $row['avatar'];
+    }
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +70,83 @@
                 </li>
             </ul>
         </div>
+
+
+    <!-------------------------------
+            My profile form
+    -------------------------------->    
+    <form action="profil.php" method="post" class="myProfileForm"> 
+        <?php
+            $fejltekst = "";
+
+            /*------------------------------------
+                Request to database on submit
+            -----------------------------------*/
+            if($_SERVER['REQUEST_METHOD'] === 'POST')
+            {
+                if($_REQUEST['knap'] == "Update Profile")
+                {
+                    $sql = $conn->prepare("select * from employees where email = ?");
+                    $sql->bind_param("s", $playernameGlobal); 
+                    $sql->execute();
+                    $result = $sql->get_result();
+                    if($result->num_rows > 0) //If there's data, read the variables
+                    {
+                        $row = $result->fetch_assoc();
+                        echo "noget data?";
+                    }
+                    else //If the player has reached the site, but not logged in correctly
+                    {
+                        $fejltekst = "Player nummer $playernameGlobal findes ikke";
+                        $tekstfarve = "#ff0000";
+                    } 
+                }
+            }        
+        ?>
+
+        
+    <!--------------------------
+            My Profile page
+    --------------------------->
+    <div class="myProfilePage">
+        <div class="myProfile">
+            <h3>Your profile</h3>
+            <p><i>Your highscore: </p>
+            <p><i>Your email:</i></p>
+            <p><i>Your player name:</i></p>
+            <input type="submit" value="Update Profile" name="knap" id="updateProfileBtn" class="grayButton"><!-- Isset i php tjekker om følgende har en værdi -->
+            <p style="color: <?php echo $tekstfarve ?>"><?php echo $fejltekst ?> </p> 
+        </div>
+
+
+
+        
+        <?php 
+            $conn->close();
+        ?>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </div>
     <script src="../javaScript/navbars.js"></script>

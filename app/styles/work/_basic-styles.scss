@@ -66,7 +66,7 @@
 .employee_list, .external_list, .machine_list { //Aller yderste der har alt
     flex-direction: column;
     p {
-        padding: 10px 0 ;
+        padding: 10px 15px;
     }
     .employee_list_header, .machine_list_header, .external_list_header { //div rundt om ALLE headers
         border-bottom: 3px solid $th_border_bottom;
@@ -172,6 +172,9 @@
             Employees 1200
     ---------------------------*/
     .employee_list, .external_list, .machine_list {
+        p {
+            padding: 10px 0;
+        }
         .employee_list_header, .external_list_header, .machine_list_header {
             display: flex;
             .machines_all_headers, .machines_all_headers, .external_all_headers {

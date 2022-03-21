@@ -43,7 +43,9 @@
                             if($passwordInput == $password) 
                             {
                                 // echo "<script> window.location.href = 'Medarbejdere/ansatte.php'; </script>"; //HEADER
-                                echo "succes";
+                                $_session['email'] = $playernameGlobal;
+                                echo "<script> window.location.href = 'Profil/profil.php?playername=$useremail'; </script>"; //HEADER
+                                
                             }
                             else { 
                                 $fejltekst = "Forkert email eller password";
