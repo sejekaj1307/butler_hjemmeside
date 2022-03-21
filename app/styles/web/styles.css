@@ -337,17 +337,17 @@
         Externals and suppliers width 1200
     ------------------------------------------*/
   .external_name_header, .external_name {
-    width: 18vw !important;
+    width: 15vw !important;
     padding-left: 15px !important;
   }
   .external_phone, .external_phone_header {
-    width: 7.5vw !important;
+    width: 8vw !important;
   }
   .external_email, .external_email_header {
     width: 22vw;
   }
   .external_product, .external_product_header {
-    width: 15vw !important;
+    width: 13vw !important;
   }
   /*------------------------------------
             Machines width 1200
@@ -357,10 +357,10 @@
     padding-left: 15px !important;
   }
   .machine_nordic_name_header, .machine_nordic_name {
-    width: 37.5vw !important;
+    width: 32.5vw !important;
   }
   .machine_link_header, .machine_link {
-    width: 15vw !important;
+    width: 16vw !important;
   }
 }
 
@@ -400,10 +400,10 @@
     width: 9.5vw !important;
   }
   .external_email, .external_email_header {
-    width: 21vw;
+    width: 19vw;
   }
   .external_product, .external_product_header {
-    width: 14.6vw !important;
+    width: 13vw !important;
   }
 }
 

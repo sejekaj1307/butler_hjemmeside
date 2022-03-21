@@ -83,6 +83,12 @@
                                     echo '<p class="dark_dropdown_table machine_nordic_name">' . $row["name_nordic"] . '</p>';
                                     echo '<p class="light_dropdown_table machine_link">' . "<a href=" . $row['link'] . ">Link til BB hjemmeside</a>" . '</p>';
                                 echo '</div>';
+                                ?> 
+                                    <div class="button_container">
+                                        <button type="submit" name="knap" value="re">Re</button>
+                                        <button type="submit" name="knap" value="de">De</button>
+                                    </div>
+                                <?php 
                             echo '</div>';
                         }   
                     }

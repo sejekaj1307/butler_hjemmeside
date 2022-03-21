@@ -88,6 +88,12 @@
                                     echo '<p class="dark_dropdown_table external_email">' . $row["email"] . '</p>';
                                     echo '<p class="dark_dropdown_table external_product">' . $row["product"] . '</p>';
                                 echo '</div>';
+                                ?> 
+                                    <div class="button_container">
+                                        <button type="submit" name="knap" value="re">Re</button>
+                                        <button type="submit" name="knap" value="de">De</button>
+                                    </div>
+                                <?php 
                             echo '</div>';
                         }   
                     }
