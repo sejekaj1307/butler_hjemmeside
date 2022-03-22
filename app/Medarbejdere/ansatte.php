@@ -204,7 +204,7 @@
             ?>
         </div>
 
-      <?php 
+        <?php 
         //Man skal huske at slukke for forbindelsen. Det er ikke så vigtigt i små programmer, men vi gør det for en god ordens skyld
             $conn->close();
         

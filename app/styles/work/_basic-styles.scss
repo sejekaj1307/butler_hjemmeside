@@ -57,18 +57,20 @@
 }
 
 
-
-
+.case_list {
+    color: red !important;
+    background-color: #149DB9;
+}
 
 /*-------------------------------
         Employee lists
 -------------------------------*/
-.employee_list, .external_list, .machine_list { //Aller yderste der har alt
+.employee_list, .external_list, .machine_list, .case_list { //Aller yderste der har alt
     flex-direction: column;
     p {
         padding: 10px 15px;
     }
-    .employee_list_header, .machine_list_header, .external_list_header { //div rundt om ALLE headers
+    .employee_list_header, .machine_list_header, .external_list_header, .case_list_header { //div rundt om ALLE headers
         border-bottom: 3px solid $th_border_bottom;
         padding: 15px 0;
         font-weight: 600;
@@ -78,22 +80,22 @@
                 width: 80%;
             }
         }
-        .employee_all_headers, .machines_all_headers, .external_all_headers { //div rundt om navn- og initialer-header kun på ansatte siden
+        .employee_all_headers, .machines_all_headers, .external_all_headers, .case_all_headers { //div rundt om navn- og initialer-header kun på ansatte siden
             display: flex;
             flex-direction: row;
             display: none;                 
         }
     }
     .employee_data_row, .external_data_row, .machine_data_row {
-        .mobile_employee_information, .mobile_external_information, .machine_information { //Den øverste bar, som kan ses af data, f.eks. Ibsen, Steen - Si
+        .mobile_employee_information, .mobile_external_information, .machine_information, .mobile_case_information { //Den øverste bar, som kan ses af data, f.eks. Ibsen, Steen - Si
             display: flex;
             border-bottom: 2px solid $tr_border_bottom;
             cursor: pointer;    
-            .employee_name, .external_name, .machine_name {
+            .employee_name, .external_name, .machine_name, .case_name {
                 width: 80%;
             }
         }
-        .employee_dropdown_mobile, .machine_dropdown_mobile, .external_dropdown_mobile {
+        .employee_dropdown_mobile, .machine_dropdown_mobile, .external_dropdown_mobile, .case_dropdown_mobile {
             flex-direction: column;
             .dark_dropdown_table {
                 background-color: $dark_dropdown_background;        
@@ -316,6 +318,12 @@
     }
     .external_product, .external_product_header {
         width: 13vw !important;
+    }
+    /*------------------------------------
+            Machines width 1200
+    ------------------------------------*/       
+    .machine_nordic_name_header, .machine_nordic_name {
+        width: 33vw !important;
     }
     
 }

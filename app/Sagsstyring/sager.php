@@ -49,12 +49,162 @@
         </div>
 
 
-
+<!-- -----------------------------
+            Sager
+------------------------------ -->
+    <form action="sager.php" method="post">
+        <?php
+            //har vi en post? har serveren en request?
+            if($_SERVER['REQUEST_METHOD'] === 'POST')
+            {
+                //read
+                if($_REQUEST['knap'] == "re")
+                {
+                    // $bilid = $_REQUEST['bilid'];
+                    // if(is_numeric($bilid))
+                    // {
+                    //     $sql = $conn->prepare( "select * from bil where id = ?");
+                    //     $sql->bind_param("i", $bilid); //i står for integar
+                    //     $sql->execute();
+                    //     $result = $sql->get_result();
+                    //     $row = $result->fetch_assoc();
+                    //     $bilid = $row['id'];
+                    //     $model = $row['model'];
+                    //     $farve = $row['farve'];
+                    //     $aar = $row['aar'];
+                    // } 
+                    echo "Read";
+                }
+                //create
+                if($_REQUEST['knap'] == "cr")
+                {
+                    // $bilid = $_REQUEST['bilid'];
+                    // $model = $_REQUEST['model'];
+                    // $farve = $_REQUEST['farve'];
+                    // $aar = $_REQUEST['aar'];
+                    // if($model == "") $model = "ukendt";
+                    // if($farve == "") $farve = "ukendt";
+                    // if($aar == "") $aar = -1;
+                    // if(is_numeric($bilid))
+                    // {
+                    //     $sql = $conn->prepare("insert into bil (id, mode, farve, aar) values (?, ?, ?, ?)");
+                    //     $sql->bind_param("issi", $bilid, $model, $farve, $aar);
+                    //     $sql->execute();
+                    // }
+                    echo "Create";
+                }
+                //delete
+                if($_REQUEST['knap'] == "de")
+                {
+                    // $bilid = $_REQUEST['delete'];
+                    // if(is_numeric($bilid))
+                    // {
+                    //     $sql = $conn->prepare("delete from bil where id = ?");
+                    //     $sql->bins_param("i", $bilid);
+                    //     $sql->execute();
+                    // }
+                    echo "delete";
+                }
+                //update
+                if($_REQUEST['knap'] == "up")
+                {
+                    // $bilid = $_REQUEST['bilid'];
+                    // $model = $_REQUEST['model'];
+                    // $farve = $_REQUEST['farve'];
+                    // $aar = $_REQUEST['aar'];
+                    // if($model == "") $model = "ukendt";
+                    // if($farve == "") $farve = "ukendt";
+                    // if($aar == "") $aar = -1;
+                    // if(is_numeric($bilid))
+                    // {
+                    //     $sql = $conn->prepare("update bil set model = ?, farve = ?, aar = ? where id = ?");
+                    //     $sql->bind_param("ssii", $model, $farve, $aar, $bilid);
+                    //     $sql->execute();
+                    // }
+                    echo "update";
+                }
+            }
+        ?>
+    <p>
+        <input type="submit" name="knap" value="up">
+    </p>
 
 
         <div class="case_list">
-            <button class="add_new_link"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
+            <button class="add_new_link" type="submit" name="knap" value="cr" style="width:80px"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
+            <?php 
+                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                $sql = "select * from cases";
+                $result = $conn->query($sql);
+
+                echo '<div class="case_list">';
+                    echo '<div class="case_list_header">';
+                        echo '<div class="case_mobile_headers">';
+                            echo '<p class="case_name_header">Sagsnr.</p>';
+                            echo '<p class="case_initials_header">Sagsoversigt</p>';
+                        echo '</div>';
+                        echo '<div class="case_all_headers">';
+                            echo '<p class="case_phone_header">Ansvalig</p>';
+                            echo '<p class="case_phone_header">Opstart</p>';
+                            echo '<p class="case_email_header">Deadline</p>';
+                            echo '<p class="case_emergency_header">Status</p>';
+                        echo '</div>';
+                    echo '</div>';
+
+                    //if og while her 
+                    if($result->num_rows > 0)
+                    {
+                        while($row = $result->fetch_assoc())
+                        {
+                            echo '<div class="case_data_row">';
+                                echo '<div class="mobile_case_information"> ';
+                                    echo '<p class="case_name">' . $row["case_nr"] . '</p>';
+                                    echo '<p class="case_initials">' . $row["location"] . '</p>';
+                                echo '</div>';
+                                echo '<div class="case_dropdown_mobile">';
+                                    echo '<p class="dark_dropdown_table case_phone">' . $row["case_responsible"] . '</p>';
+                                    echo '<p class="light_dropdown_table case_phone">' . $row["est_start_date"] . '</p>';
+                                    echo '<p class="dark_dropdown_table case_email">' . $row["est_end_date"] . '</p>';
+                                    echo '<p class="light_dropdown_table case_emergency">' . $row["status"] . '</p>';
+                                echo '</div>';
+                                ?> 
+                            <div class="button_container">
+                                <button type="submit" name="knap" value="re">Re</button>
+                                <button type="submit" name="knap" value="de">De</button>
+                            </div>
+                        <?php 
+
+                            echo '</div>';
+                        }   
+                    }
+                echo '</div>';
+            ?>
         </div>
+
+        <?php 
+        //Man skal huske at slukke for forbindelsen. Det er ikke så vigtigt i små programmer, men vi gør det for en god ordens skyld
+            $conn->close();
+        
+        ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
