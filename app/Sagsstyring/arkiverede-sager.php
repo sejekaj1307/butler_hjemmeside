@@ -148,12 +148,12 @@
                         echo '<div class="case_mobile_headers">';
                             echo '<p class="case_nr_header">Sagsnr.</p>';
                             echo '<p class="case_responsible_header">Ansvarlig</p>';
-                            echo '<p class="case_status_header">Status</p>';
+                            echo '<p class="case_archived_at_header">Arkiveret</p>';
                         echo '</div>';
                         echo '<div class="case_all_headers">';
+                            echo '<p class="case_status_header">Status</p>';
                             echo '<p class="case_location_header">Sagsoversigt</p>';
                             echo '<p class="case_est_start_header">Opstart</p>';
-                            echo '<p class="case_deadline_header">Deadline</p>';
                             echo '<p class="button_container_header">Rediger</p>';
                         echo '</div>';
                     echo '</div>';
@@ -167,12 +167,12 @@
                                 echo '<div class="case_information"> ';
                                     echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
                                     echo '<p class="dark_dropdown_table case_responsible">' . $row["case_responsible"] . '</p>';
-                                    echo '<p class="light_dropdown_table case_status">' . $row["status"] . '</p>';
+                                    echo '<p class="dark_dropdown_table case_archived_at">' . $row["archived_at"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="case_dropdown_mobile">';
-                                    echo '<p class="dark_dropdown_table case_location">' . $row["location"] . '</p>';
-                                    echo '<p class="light_dropdown_table case_est_start">' . $row["est_start_date"] . '</p>';
-                                    echo '<p class="dark_dropdown_table case_deadline">' . $row["est_end_date"] . '</p>';
+                                    echo '<p class="dark_dropdown_table case_status">' . $row["status"] . '</p>';
+                                    echo '<p class="light_dropdown_table case_location">' . $row["location"] . '</p>';
+                                    echo '<p class="dark_dropdown_table case_est_start">' . $row["est_start_date"] . '</p>';
                                 echo '</div>';
                                 ?> 
                             <div class="button_container">
