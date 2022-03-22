@@ -70,6 +70,7 @@
                             echo '<p class="external_phone_header">Mobil</p>';
                             echo '<p class="external_email_header">Email</p>';
                             echo '<p class="external_product_header">Produkt</p>';
+                            echo '<p class="button_container_header">Rediger</p>';
                         echo '</div>';
                     echo '</div>';
 

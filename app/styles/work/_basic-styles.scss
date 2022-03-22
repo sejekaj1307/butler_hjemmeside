@@ -6,10 +6,9 @@
 
 
 
-.time_registration, .profile_list, .case_list, .calender_container, .task_list, .archived_case_list, .in_house_time {
+.time_registration, .profile_list, .calender_container, .task_list, .archived_case_list_page, .case_list_page, .in_house_time {
     width: $page-content-width;
     border: 1px solid #878787;
-    // height: 500px;   
     margin: 50px auto;
 }
 
@@ -57,10 +56,6 @@
 }
 
 
-.case_list {
-    color: red !important;
-    background-color: #149DB9;
-}
 
 /*-------------------------------
         Employee lists
@@ -68,13 +63,13 @@
 .employee_list, .external_list, .machine_list, .case_list { //Aller yderste der har alt
     flex-direction: column;
     p {
-        padding: 10px 15px;
+        padding: 10px 0 10px 15px;
     }
     .employee_list_header, .machine_list_header, .external_list_header, .case_list_header { //div rundt om ALLE headers
         border-bottom: 3px solid $th_border_bottom;
         padding: 15px 0;
         font-weight: 600;
-        .employee_mobile_headers {
+        .employee_mobile_headers, .case_mobile_headers {
             display: flex;
             .employee_name_header { //Første header på alle headers
                 width: 80%;
@@ -86,12 +81,18 @@
             display: none;                 
         }
     }
-    .employee_data_row, .external_data_row, .machine_data_row {
-        .mobile_employee_information, .mobile_external_information, .machine_information, .mobile_case_information { //Den øverste bar, som kan ses af data, f.eks. Ibsen, Steen - Si
+    .case_mobile_headers, .case_information {
+        justify-content: space-between;
+        p {
+            padding-right: 15px;
+        }
+    }
+    .employee_data_row, .external_data_row, .machine_data_row, .case_data_row {
+        .mobile_employee_information, .mobile_external_information, .machine_information, .case_information { //Den øverste bar, som kan ses af data, f.eks. Ibsen, Steen - Si
             display: flex;
             border-bottom: 2px solid $tr_border_bottom;
             cursor: pointer;    
-            .employee_name, .external_name, .machine_name, .case_name {
+            .employee_name, .external_name, .machine_name {
                 width: 80%;
             }
         }
@@ -107,9 +108,9 @@
                 border-bottom: 2px solid $time_registration_navbar_border;
             }
         }
-        .button_container {
-            display: none;
-        }
+    }
+    .button_container {
+        display: none;
     }
 }
 /*----------------------------------
@@ -138,7 +139,7 @@
     .site_container { //every site can be seen right of navbar
         margin-left: $nav_with-s;    
     }
-    .time_registration, .profile_list, .case_list, .calender_container, .task_list, .archived_case_list, .in_house_time  {
+    .time_registration, .profile_list, .case_list_page, .calender_container, .task_list, .archived_case_list, .in_house_time  {
         width: $page-content-width-s;
         border: 1px solid #878787;
         // height: 500px;   
@@ -156,7 +157,7 @@
     .site_container { //every site can be seen right of navbar
         margin-left: $nav_with-l;    
     }
-    .time_registration, .profile_list, .case_list, .calender_container, .task_list, .archived_case_list, .in_house_time  {
+    .time_registration, .profile_list, .case_list_page, .calender_container, .task_list, .archived_case_list, .in_house_time  {
         width: $page-content-width-l;
         border: 1px solid #878787;
         margin-left: $space-from-navbar-m;
@@ -173,57 +174,55 @@
     /*---------------------------
             Employees 1200
     ---------------------------*/
-    .employee_list, .external_list, .machine_list {
+    .employee_list, .external_list, .machine_list, .case_list {
         p {
-            padding: 10px 0;
+            padding: 17px 0;
         }
-        .employee_list_header, .external_list_header, .machine_list_header {
+        .employee_list_header, .external_list_header, .machine_list_header, .case_list_header {
             display: flex;
-            .machines_all_headers, .machines_all_headers, .external_all_headers {
-                display: flex;
-            }
         }
         //Div der holder alle andre headers og data
-        .employee_all_headers, .machines_all_headers, .external_all_headers {
-            display: flex;
+        .employee_all_headers, .machines_all_headers, .external_all_headers, .case_all_headers {
+            display: flex !important;
             flex-direction: row;
         }   
+        .case_mobile_headers, .case_information {
+            p {
+                padding-right: 0;
+            }
+        }
         //Div der holder navn og initialer, både header og data
-        .mobile_employee_information, .mobile_external_information, .machine_information {
+        .mobile_employee_information, .mobile_external_information, .machine_information, .case_information {
             flex-direction: row;
             display: flex;
             cursor: auto !important;
             border-bottom: none !important;
         }
-        .employee_data_row, .external_data_row, .machine_data_row { //En hel række af data, al data per id
+        .employee_data_row, .external_data_row, .machine_data_row, .case_data_row { //En hel række af data, al data per id
             display: flex;
             border-bottom: 2px solid $tr_border_bottom;
-            padding: 7px 0;
-            .employee_dropdown_mobile, .external_dropdown_mobile, .machine_dropdown_mobile {
+            .employee_dropdown_mobile, .external_dropdown_mobile, .machine_dropdown_mobile, .case_dropdown_mobile {
                 display: flex;
                 flex-direction: row;
-                .employee_phone, .employee_email, .employee_emergency,
-                .external_phone, .external_email, .external_product,
-                .machine_nordic_name, .machine_link {
-                    padding-left: 0;
+                .light_dropdown_table, .dark_dropdown_table{
                     background-color: $no_colour; 
                 }
                 :last-child {
                     border-bottom: none !important;
                 }
             }
-            .button_container { //button container, crud, read and delete
+        }
+            .button_container, .button_container_header { //button container, crud, read and delete
                 display: flex;
-                width: 5vw;
+                width: 5vw !important;
                 justify-content: space-between;
             }
-        }
     }
     /*------------------------------------------
                 employee width 1200
     ------------------------------------------*/
     .employee_name, .employee_name_header {
-        width: 12vw !important;
+        width: 11vw !important;
         padding-left: 15px !important;
     }   
     .employee_initials, .employee_initials_header {
@@ -236,7 +235,7 @@
         width: 21vw;
     }
     .employee_emergency, .employee_emergency_header {
-        width: 14vw !important;
+        width: 13.5vw !important;
     }
     /*------------------------------------------
         Externals and suppliers width 1200
@@ -267,6 +266,29 @@
     .machine_link_header, .machine_link {
         width: 16vw !important;
     } 
+    /*------------------------------------
+            cases width 1200
+    ------------------------------------*/             
+    .case_nr_header, .case_nr {
+        width: 10vw !important;
+        padding-left: 15px !important;
+    }
+    .case_responsible_header, .case_responsible {
+        width: 8vw !important;
+    }
+    .case_status_header, .case_status {
+        width: 8vw !important;
+    }
+    .case_location_header, .case_location {
+        width: 18vw !important;
+    }
+    .case_est_start_header, .case_est_start {
+        width: 11vw !important;
+    }
+    .case_deadline_header, .case_deadline {
+        width: 11vw !important;
+    }
+
 
 }
 
@@ -324,6 +346,12 @@
     ------------------------------------*/       
     .machine_nordic_name_header, .machine_nordic_name {
         width: 33vw !important;
+    }
+    /*------------------------------------
+            cases width 1200
+    ------------------------------------*/             
+    .case_location_header, .case_location {
+        width: 22vw !important;
     }
     
 }

@@ -67,6 +67,7 @@
                         echo '<div class="machines_all_headers">';
                             echo '<p class="machine_nordic_name_header">Nordic navn</p>';
                             echo '<p class="machine_link_header">Link til BB hjemmeside</p>';
+                            echo '<p class="button_container_header">Rediger</p>';
                         echo '</div>';
                     echo '</div>';
 

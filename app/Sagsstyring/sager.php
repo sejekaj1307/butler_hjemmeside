@@ -125,12 +125,12 @@
                 }
             }
         ?>
-    <p>
-        <input type="submit" name="knap" value="up">
-    </p>
+        <p>
+            <input type="submit" name="knap" value="up">
+        </p>
 
 
-        <div class="case_list">
+        <div class="case_list_page">
             <button class="add_new_link" type="submit" name="knap" value="cr" style="width:80px"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
@@ -140,14 +140,15 @@
                 echo '<div class="case_list">';
                     echo '<div class="case_list_header">';
                         echo '<div class="case_mobile_headers">';
-                            echo '<p class="case_name_header">Sagsnr.</p>';
-                            echo '<p class="case_initials_header">Sagsoversigt</p>';
+                            echo '<p class="case_nr_header">Sagsnr.</p>';
+                            echo '<p class="case_responsible_header">Ansvarlig</p>';
+                            echo '<p class="case_status_header">Status</p>';
                         echo '</div>';
                         echo '<div class="case_all_headers">';
-                            echo '<p class="case_phone_header">Ansvalig</p>';
-                            echo '<p class="case_phone_header">Opstart</p>';
-                            echo '<p class="case_email_header">Deadline</p>';
-                            echo '<p class="case_emergency_header">Status</p>';
+                            echo '<p class="case_location_header">Sagsoversigt</p>';
+                            echo '<p class="case_est_start_header">Opstart</p>';
+                            echo '<p class="case_deadline_header">Deadline</p>';
+                            echo '<p class="button_container_header">Rediger</p>';
                         echo '</div>';
                     echo '</div>';
 
@@ -157,15 +158,15 @@
                         while($row = $result->fetch_assoc())
                         {
                             echo '<div class="case_data_row">';
-                                echo '<div class="mobile_case_information"> ';
-                                    echo '<p class="case_name">' . $row["case_nr"] . '</p>';
-                                    echo '<p class="case_initials">' . $row["location"] . '</p>';
+                                echo '<div class="case_information"> ';
+                                    echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
+                                    echo '<p class="dark_dropdown_table case_responsible">' . $row["case_responsible"] . '</p>';
+                                    echo '<p class="light_dropdown_table case_status">' . $row["status"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="case_dropdown_mobile">';
-                                    echo '<p class="dark_dropdown_table case_phone">' . $row["case_responsible"] . '</p>';
-                                    echo '<p class="light_dropdown_table case_phone">' . $row["est_start_date"] . '</p>';
-                                    echo '<p class="dark_dropdown_table case_email">' . $row["est_end_date"] . '</p>';
-                                    echo '<p class="light_dropdown_table case_emergency">' . $row["status"] . '</p>';
+                                    echo '<p class="dark_dropdown_table case_location">' . $row["location"] . '</p>';
+                                    echo '<p class="light_dropdown_table case_est_start">' . $row["est_start_date"] . '</p>';
+                                    echo '<p class="dark_dropdown_table case_deadline">' . $row["est_end_date"] . '</p>';
                                 echo '</div>';
                                 ?> 
                             <div class="button_container">

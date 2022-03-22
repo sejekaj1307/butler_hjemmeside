@@ -141,16 +141,9 @@
     ?>
 
 
-
-
     <p>
-
-
         <input type="submit" name="knap" value="up">
     </p>
-
-
-
 
 
         <div class="profile_list">
@@ -171,6 +164,7 @@
                             echo '<p class="employee_phone_header">Mobil</p>';
                             echo '<p class="employee_email_header">Email</p>';
                             echo '<p class="employee_emergency_header">Kontaktperson</p>';
+                            echo '<p class="button_container_header">Rediger</p>';
                         echo '</div>';
                     echo '</div>';
 
