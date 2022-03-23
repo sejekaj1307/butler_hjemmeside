@@ -321,7 +321,7 @@
                 Email : <input type="text" name="email" value="<?php echo isset($email) ? $email : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
                 <br/>
                 <br/>
-                Produkt : <input type="text" name="contact_type" value="<?php echo isset($contact_type) ? $contact_type : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
+                Kontakttype : <input type="text" name="contact_type" value="<?php echo isset($contact_type) ? $contact_type : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
                 <br/>
                 <br/>
             </p>
