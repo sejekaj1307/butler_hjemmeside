@@ -264,7 +264,7 @@
                 employee width 1200
     ------------------------------------------*/
   .employee_name, .employee_name_header {
-    width: 11vw !important;
+    width: 11.5vw !important;
     padding-left: 15px !important;
   }
   .employee_initials, .employee_initials_header {
@@ -299,7 +299,7 @@
             Machines width 1200
     ------------------------------------*/
   .machine_name_header, .machine_name {
-    width: 18vw !important;
+    width: 17.5vw !important;
     padding-left: 15px !important;
   }
   .machine_nordic_name_header, .machine_nordic_name {
@@ -347,9 +347,6 @@
   /*---------------------------
             Employees
     ---------------------------*/
-  .employee_list .employee_name, .employee_list .employee_name_header {
-    width: 12vw !important;
-  }
   .employee_list .employee_initials, .employee_list .employee_initials_header {
     width: 8vw !important;
   }
@@ -357,10 +354,10 @@
     width: 7.5vw !important;
   }
   .employee_list .employee_email, .employee_list .employee_email_header {
-    width: 20vw !important;
+    width: 19vw !important;
   }
   .employee_list .employee_emergency, .employee_list .employee_emergency_header {
-    width: 15vw !important;
+    width: 14vw !important;
   }
   .button_container {
     width: 3vw;
@@ -376,9 +373,6 @@
   }
   .external_email, .external_email_header {
     width: 19vw !important;
-  }
-  .external_product, .external_product_header {
-    width: 13vw !important;
   }
   /*------------------------------------
             Machines width 1200
