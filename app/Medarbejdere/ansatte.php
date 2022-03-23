@@ -1,5 +1,9 @@
 <!-- Start session -->
 <?php session_start(); ?>
+<!-- Forbindelse til database -->
+    <?php 
+        $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,234 +58,207 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <form action="ansatte.php" method="post">
-        <!-- Forbindelse til database -->
-            <?php 
-                $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
-            ?>
-
-            <?php 
-            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
-                function findes($employee_id, $c)
+    <!-- FORM emploeyee list with CRUD PHP and pop-up modals  -->
+    <form action="ansatte.php" method="post">
+        <?php 
+        //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+            function findes($employee_id, $c)
+            {
+                $sql = $c->prepare("select * from employees where employee_id = ?");
+                $sql->bind_param("i", $employee_id);
+                $sql->execute();
+                $result = $sql->get_result();
+                if($result->num_rows > 0)
                 {
-                    $sql = $c->prepare("select * from employees where employee_id = ?");
-                    $sql->bind_param("i", $employee_id);
+                    return true;
+                }
+                else 
+                {
+                    return false;
+                }
+            }
+            //Knapper på siden. Active eller disable. start værdier
+            $buttonExecute = "disabled";
+            $buttonCancel = "disabled";
+            $buttonClear = "";
+            $buttonCreate = "";
+            $buttonRead = "";
+            $buttonUpdate = "";
+            $buttonDelete = "";
+            $buttonClear = "";
+        ?>
+
+        <?php
+        // CRUD, create, read, update, delete - og confirm og cancel knap til delete
+        if($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            //read, koden køres hvis "read button" bliver requested 
+            if($_REQUEST['knap'] == "read")
+            {
+                $employee_id = $_REQUEST['employee_id'];
+                if(is_numeric($employee_id) && is_numeric(0 + $employee_id))
+                {
+                    $sql = $conn->prepare( "select * from employees where employee_id = ?");
+                    $sql->bind_param("i", $employee_id); 
                     $sql->execute();
                     $result = $sql->get_result();
-                    if($result->num_rows > 0)
+                    if($result->num_rows > 0) 
                     {
-                        return true;
+                        $row = $result->fetch_assoc();
+                        $employee_id = $row['employee_id'];
+                        $first_name = $row['first_name'];
+                        $initials = $row['initials'];
+                        $phone = $row['phone'];
+                        $phone_private = $row['phone_private'];
+                        $email = $row['email'];
+                        $emergency_name = $row['emergency_name'];
+                        $fejltekst = "read ok";
+                        $tekstfarve = "#000000";
                     }
-                    else 
+                    else //Hvis ikke der returneres et resultat, hvis det indtastede employee_id ikke findes
                     {
-                        return false;
+                        $fejltekst = "employees nummer $employee_id findes ikke";
+                        $tekstfarve = "#ff0000";
                     }
+                } 
+                else //Hvis brugeren ikke har indtastet en korrekt værdi (heltal)
+                {
+                    $fejltekst = "employee_id skal være heltal";
+                    $tekstfarve = "#ff0000";
                 }
-                //Knapper på siden. Active eller disable. start værdier
-                $buttonExecute = "disabled";
-                $buttonCancel = "disabled";
-                $buttonClear = "";
-                $buttonCreate = "";
-                $buttonRead = "";
-                $buttonUpdate = "";
-                $buttonDelete = "";
-                $buttonClear = "";
-            ?>
-
-            <?php
-            // CRUD, create, read, update, delete - og confirm og cancel knap til delete
-            if($_SERVER['REQUEST_METHOD'] === 'POST')
+            }
+            //create, køres hvis "create button" bliver requested
+            if($_REQUEST['knap'] == "create")
             {
-                //read, koden køres hvis "read button" bliver requested 
-                if($_REQUEST['knap'] == "read")
+                $employee_id = $_REQUEST['employee_id'];
+                $first_name = $_REQUEST['first_name'];
+                $initials = $_REQUEST['initials'];
+                $phone = $_REQUEST['phone'];
+                $phone_private = $_REQUEST['phone_private'];
+                $email = $_REQUEST['email'];
+                $emergency_name = $_REQUEST['emergency_name'];
+                if(is_numeric($employee_id) && is_integer(0 + $employee_id)) 
                 {
-                    $employee_id = $_REQUEST['employee_id'];
-                    if(is_numeric($employee_id) && is_numeric(0 + $employee_id))
+                    if(!findes($employee_id, $conn)) //opret ny klub
                     {
-                        $sql = $conn->prepare( "select * from employees where employee_id = ?");
-                        $sql->bind_param("i", $employee_id); 
+                        $sql = $conn->prepare("insert into employees (employee_id, first_name, initials, phone, phone_private, email, emergency_name) values (?, ?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("issssss", $employee_id, $first_name, $initials, $phone, $phone_private, $email, $emergency_name);
                         $sql->execute();
-                        $result = $sql->get_result();
-                        if($result->num_rows > 0) 
-                        {
-                            $row = $result->fetch_assoc();
-                            $employee_id = $row['employee_id'];
-                            $first_name = $row['first_name'];
-                            $initials = $row['initials'];
-                            $phone = $row['phone'];
-                            $phone_private = $row['phone_private'];
-                            $email = $row['email'];
-                            $emergency_name = $row['emergency_name'];
-                            $fejltekst = "read ok";
-                            $tekstfarve = "#000000";
-                        }
-                        else //Hvis ikke der returneres et resultat, hvis det indtastede employee_id ikke findes
-                        {
-                            $fejltekst = "employees nummer $employee_id findes ikke";
-                            $tekstfarve = "#ff0000";
-                        }
-                    } 
-                    else //Hvis brugeren ikke har indtastet en korrekt værdi (heltal)
+                        $fejltekst = "Create Ok";
+                        $tekstfarve = "#000000";
+                    }
+                    else //hvis klub nummer allerede eksiterer i databasen
                     {
-                        $fejltekst = "employee_id skal være heltal";
+                        $fejltekst = "employees nummer $employee_id findes allerede";
                         $tekstfarve = "#ff0000";
                     }
-                }
-                //create, køres hvis "create button" bliver requested
-                if($_REQUEST['knap'] == "create")
+                } //forkert input af employee_id, klub employee_id skal være heltal
+                else 
                 {
-                    $employee_id = $_REQUEST['employee_id'];
-                    $first_name = $_REQUEST['first_name'];
-                    $initials = $_REQUEST['initials'];
-                    $phone = $_REQUEST['phone'];
-                    $phone_private = $_REQUEST['phone_private'];
-                    $email = $_REQUEST['email'];
-                    $emergency_name = $_REQUEST['emergency_name'];
-                    if(is_numeric($employee_id) && is_integer(0 + $employee_id)) 
+                    $fejltekst = "employee_id skal være heltal";
+                    $tekstfarve = "#ff0000";
+                }
+            }
+            //delete
+            if($_REQUEST['knap'] == "delete")
+            {
+                $employee_id = $_REQUEST['employee_id'];
+                if(is_numeric($employee_id) && is_integer(0 + $employee_id))
+                {
+                    if(findes($employee_id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                     {
-                        if(!findes($employee_id, $conn)) //opret ny klub
-                        {
-                            $sql = $conn->prepare("insert into employees (employee_id, first_name, initials, phone, phone_private, email, emergency_name) values (?, ?, ?, ?, ?, ?, ?)");
-                            $sql->bind_param("issssss", $employee_id, $first_name, $initials, $phone, $phone_private, $email, $emergency_name);
-                            $sql->execute();
-                            $fejltekst = "Create Ok";
-                            $tekstfarve = "#000000";
-                        }
-                        else //hvis klub nummer allerede eksiterer i databasen
-                        {
-                            $fejltekst = "employees nummer $employee_id findes allerede";
-                            $tekstfarve = "#ff0000";
-                        }
-                    } //forkert input af employee_id, klub employee_id skal være heltal
-                    else 
-                    {
-                        $fejltekst = "employee_id skal være heltal";
-                        $tekstfarve = "#ff0000";
+                        $_SESSION["bilTilDelete"] = $employee_id;
+                        $buttonExecute = "";
+                        $buttonCancel = "";
+                        $buttonClear = "disabled";
+                        $buttonRead = "disabled";
+                        $buttonCreate = "disabled";
+                        $buttonUpdate = "disabled";
+                        $buttonDelete = "disabled";
+                        $buttonClear = "disabled";
+                        $fejltekst = "Tryk 'Execute' for at slette employees $employee_id . tryk 'cancel' for at annullere";
+                        $tekstfarve = "#ff00ff";
                     }
                 }
-                //delete
-                if($_REQUEST['knap'] == "delete")
+                else //hvis input af klub employee_id er forkert
                 {
-                    $employee_id = $_REQUEST['employee_id'];
-                    if(is_numeric($employee_id) && is_integer(0 + $employee_id))
+                    $fejltekst = "employees nummer $employee_id findes ikke";
+                    $tekstfarve = "#ff0000";
+                }
+            }
+            //update
+            if($_REQUEST['knap'] == "update") 
+            {
+                $employee_id = $_REQUEST['employee_id'];
+                $first_name = $_REQUEST['first_name'];
+                $initials = $_REQUEST['initials'];
+                $phone = $_REQUEST['phone'];
+                $phone_private = $_REQUEST['phone_private'];
+                $email = $_REQUEST['email'];
+                $emergency_name = $_REQUEST['emergency_name'];
+                if(is_numeric($employee_id) && is_integer(0 + $employee_id))
+                {
+                    if(findes($employee_id, $conn)) //opdaterer alle objektets elementer til databasen
                     {
-                        if(findes($employee_id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
-                        {
-                            $_SESSION["bilTilDelete"] = $employee_id;
-                            $buttonExecute = "";
-                            $buttonCancel = "";
-                            $buttonClear = "disabled";
-                            $buttonRead = "disabled";
-                            $buttonCreate = "disabled";
-                            $buttonUpdate = "disabled";
-                            $buttonDelete = "disabled";
-                            $buttonClear = "disabled";
-                            $fejltekst = "Tryk 'Execute' for at slette employees $employee_id . tryk 'cancel' for at annullere";
-                            $tekstfarve = "#ff00ff";
-                        }
+                        $sql = $conn->prepare("update employees set first_name = ?, initials = ?, phone = ?, phone_private = ?, email = ?, emergency_name = ? where employee_id = ?");
+                        $sql->bind_param("ssssssi", $first_name, $initials, $phone, $phone_private, $email, $emergency_name, $employee_id);
+                        $sql->execute();
                     }
-                    else //hvis input af klub employee_id er forkert
+                    else //forkert input af klub employee_id
                     {
                         $fejltekst = "employees nummer $employee_id findes ikke";
                         $tekstfarve = "#ff0000";
                     }
                 }
-                //update
-                if($_REQUEST['knap'] == "update") 
-                {
-                    $employee_id = $_REQUEST['employee_id'];
-                    $first_name = $_REQUEST['first_name'];
-                    $initials = $_REQUEST['initials'];
-                    $phone = $_REQUEST['phone'];
-                    $phone_private = $_REQUEST['phone_private'];
-                    $email = $_REQUEST['email'];
-                    $emergency_name = $_REQUEST['emergency_name'];
-                    if(is_numeric($employee_id) && is_integer(0 + $employee_id))
-                    {
-                        if(findes($employee_id, $conn)) //opdaterer alle objektets elementer til databasen
-                        {
-                            $sql = $conn->prepare("update employees set first_name = ?, initials = ?, phone = ?, phone_private = ?, email = ?, emergency_name = ? where employee_id = ?");
-                            $sql->bind_param("ssssssi", $first_name, $initials, $phone, $phone_private, $email, $emergency_name, $employee_id);
-                            $sql->execute();
-                        }
-                        else //forkert input af klub employee_id
-                        {
-                            $fejltekst = "employees nummer $employee_id findes ikke";
-                            $tekstfarve = "#ff0000";
-                        }
-                    }
-                }
-                //Execute - confirm delete
-                if($_REQUEST['knap'] == "execute")
-                {
-                    //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede employee_id forbliver det samme hvis siden genindlæses.
-                    //Vi skal have fat i bilid, men vi kan ikke længere bruge den tidligere variabel. Vi skal sikre at brugeren ikke har ændret tallet i mellemtiden
-                    $employee_id = $_SESSION["bilTilDelete"];
-                    $sql = $conn->prepare("delete from employees where employee_id = ?");
-                    $sql->bind_param("i", $employee_id);
-                    $sql->execute();
-                    $fejltekst = "delete ok";
-                    $tekstfarve = "#000000";
-                    
-                }
-                //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
-                if($_REQUEST['knap'] == "cancel")
-                {
-                    $employee_id = "";
-                    $first_name = "";
-                    $initials = "";
-                    $phone = "";
-                    $phone_private = "";
-                    $email = "";
-                    $emergency_name = "";
-                    $fejltekst = "Delete cancelled";
-                    $tekstfarve = "#000000";
-                }
-
-                //clear
-                if($_REQUEST['knap'] == "clear")
-                {
-                    $employee_id = "";
-                    $first_name = "";
-                    $initials = "";
-                    $phone = "";
-                    $phone_private = "";
-                    $email = "";
-                    $emergency_name = "";
-                    $fejltekst = "employees database";
-                    $tekstfarve = "#000000";
-                }
             }
-            else 
+            //Execute - confirm delete
+            if($_REQUEST['knap'] == "execute")
             {
+                //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede employee_id forbliver det samme hvis siden genindlæses.
+                //Vi skal have fat i bilid, men vi kan ikke længere bruge den tidligere variabel. Vi skal sikre at brugeren ikke har ændret tallet i mellemtiden
+                $employee_id = $_SESSION["bilTilDelete"];
+                $sql = $conn->prepare("delete from employees where employee_id = ?");
+                $sql->bind_param("i", $employee_id);
+                $sql->execute();
+                $fejltekst = "delete ok";
+                $tekstfarve = "#000000";
+                
+            }
+            //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+            if($_REQUEST['knap'] == "cancel")
+            {
+                $employee_id = "";
+                $first_name = "";
+                $initials = "";
+                $phone = "";
+                $phone_private = "";
+                $email = "";
+                $emergency_name = "";
+                $fejltekst = "Delete cancelled";
+                $tekstfarve = "#000000";
+            }
+
+            //clear
+            if($_REQUEST['knap'] == "clear")
+            {
+                $employee_id = "";
+                $first_name = "";
+                $initials = "";
+                $phone = "";
+                $phone_private = "";
+                $email = "";
+                $emergency_name = "";
                 $fejltekst = "employees database";
                 $tekstfarve = "#000000";
             }
-            
-            ?>
-
-
-
-
-
+        }
+        else 
+        {
+            $fejltekst = "employees database";
+            $tekstfarve = "#000000";
+        }
+        
+    ?>
 
 
 
@@ -348,7 +325,8 @@
                         }   
                     }
                 echo '</div>';
-?>
+            ?>
+        </div>
 
 
 

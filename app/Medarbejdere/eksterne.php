@@ -1,10 +1,10 @@
 <?php 
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+    session_start(); 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../styles/web/styles.css">
     <title>Eksterne</title>
 </head>
-
 <body>
 
     <!-- Navigationsbar -->
@@ -51,16 +50,211 @@
         </div>
 
 
+    <!-- FORM emploeyee list with CRUD PHP and pop-up modals  -->
+    <form action="eksterne.php" method="post">
+        <?php 
+        //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+            function findes($id, $c)
+            {
+                $sql = $c->prepare("select * from externals where id = ?");
+                $sql->bind_param("i", $id);
+                $sql->execute();
+                $result = $sql->get_result();
+                if($result->num_rows > 0)
+                {
+                    return true;
+                }
+                else 
+                {
+                    return false;
+                }
+            }
+            //Knapper på siden. Active eller disable. start værdier
+            $buttonExecute = "disabled";
+            $buttonCancel = "disabled";
+            $buttonClear = "";
+            $buttonCreate = "";
+            $buttonRead = "";
+            $buttonUpdate = "";
+            $buttonDelete = "";
+            $buttonClear = "";
+        ?>
+
+        <?php
+        // CRUD, create, read, update, delete - og confirm og cancel knap til delete
+        if($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            //read, koden køres hvis "read button" bliver requested 
+            if($_REQUEST['knap'] == "read")
+            {
+                $id = $_REQUEST['id'];
+                if(is_numeric($id) && is_numeric(0 + $id))
+                {
+                    $sql = $conn->prepare( "select * from externals where id = ?");
+                    $sql->bind_param("i", $id); 
+                    $sql->execute();
+                    $result = $sql->get_result();
+                    if($result->num_rows > 0) 
+                    {
+                        $row = $result->fetch_assoc();
+                        $id = $row['id'];
+                        $first_name = $row['first_name'];
+                        $phone = $row['phone'];
+                        $phone_private = $row['phone_private'];
+                        $email = $row['email'];
+                        $contact_type = $row['contact_type'];
+                        $fejltekst = "read ok";
+                        $tekstfarve = "#000000";
+                    }
+                    else //Hvis ikke der returneres et resultat, hvis det indtastede id ikke findes
+                    {
+                        $fejltekst = "externals nummer $id findes ikke";
+                        $tekstfarve = "#ff0000";
+                    }
+                } 
+                else //Hvis brugeren ikke har indtastet en korrekt værdi (heltal)
+                {
+                    $fejltekst = "id skal være heltal";
+                    $tekstfarve = "#ff0000";
+                }
+            }
+            //create, køres hvis "create button" bliver requested
+            if($_REQUEST['knap'] == "create")
+            {
+                $id = $_REQUEST['id'];
+                $first_name = $_REQUEST['first_name'];
+                $phone = $_REQUEST['phone'];
+                $phone_private = $_REQUEST['phone_private'];
+                $email = $_REQUEST['email'];
+                $contact_type = $_REQUEST['contact_type'];
+                if(is_numeric($id) && is_integer(0 + $id)) 
+                {
+                    if(!findes($id, $conn)) //opret ny klub
+                    {
+                        $sql = $conn->prepare("insert into externals (id, first_name, phone, phone_private, email, contact_type) values (?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("isssss", $id, $first_name, $phone, $phone_private, $email, $contact_type);
+                        $sql->execute();
+                        $fejltekst = "Create Ok";
+                        $tekstfarve = "#000000";
+                    }
+                    else //hvis klub nummer allerede eksiterer i databasen
+                    {
+                        $fejltekst = "externals nummer $id findes allerede";
+                        $tekstfarve = "#ff0000";
+                    }
+                } //forkert input af id, klub id skal være heltal
+                else 
+                {
+                    $fejltekst = "id skal være heltal";
+                    $tekstfarve = "#ff0000";
+                }
+            }
+            //delete
+            if($_REQUEST['knap'] == "delete")
+            {
+                $id = $_REQUEST['id'];
+                if(is_numeric($id) && is_integer(0 + $id))
+                {
+                    if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                    {
+                        $_SESSION["bilTilDelete"] = $id;
+                        $buttonExecute = "";
+                        $buttonCancel = "";
+                        $buttonClear = "disabled";
+                        $buttonRead = "disabled";
+                        $buttonCreate = "disabled";
+                        $buttonUpdate = "disabled";
+                        $buttonDelete = "disabled";
+                        $buttonClear = "disabled";
+                        $fejltekst = "Tryk 'Execute' for at slette externals $id . tryk 'cancel' for at annullere";
+                        $tekstfarve = "#ff00ff";
+                    }
+                }
+                else //hvis input af klub id er forkert
+                {
+                    $fejltekst = "externals nummer $id findes ikke";
+                    $tekstfarve = "#ff0000";
+                }
+            }
+            //update
+            if($_REQUEST['knap'] == "update") 
+            {
+                $id = $_REQUEST['id'];
+                $first_name = $_REQUEST['first_name'];
+                $phone = $_REQUEST['phone'];
+                $phone_private = $_REQUEST['phone_private'];
+                $email = $_REQUEST['email'];
+                $contact_type = $_REQUEST['contact_type'];
+                if(is_numeric($id) && is_integer(0 + $id))
+                {
+                    if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                    {
+                        $sql = $conn->prepare("update externals set first_name = ?, phone = ?, phone_private = ?, email = ?, contact_type = ? where id = ?");
+                        $sql->bind_param("sssssi", $first_name, $phone, $phone_private, $email, $contact_type, $id);
+                        $sql->execute();
+                    }
+                    else //forkert input af klub id
+                    {
+                        $fejltekst = "externals nummer $id findes ikke";
+                        $tekstfarve = "#ff0000";
+                    }
+                }
+            }
+            //Execute - confirm delete
+            if($_REQUEST['knap'] == "execute")
+            {
+                //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede id forbliver det samme hvis siden genindlæses.
+                //Vi skal have fat i bilid, men vi kan ikke længere bruge den tidligere variabel. Vi skal sikre at brugeren ikke har ændret tallet i mellemtiden
+                $id = $_SESSION["bilTilDelete"];
+                $sql = $conn->prepare("delete from externals where id = ?");
+                $sql->bind_param("i", $id);
+                $sql->execute();
+                $fejltekst = "delete ok";
+                $tekstfarve = "#000000";
+                
+            }
+            //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+            if($_REQUEST['knap'] == "cancel")
+            {
+                $id = "";
+                $first_name = "";
+                $phone = "";
+                $phone_private = "";
+                $email = "";
+                $contact_type = "";
+                $fejltekst = "Delete cancelled";
+                $tekstfarve = "#000000";
+            }
+
+            //clear
+            if($_REQUEST['knap'] == "clear")
+            {
+                $id = "";
+                $first_name = "";
+                $phone = "";
+                $phone_private = "";
+                $email = "";
+                $contact_type= "";
+                $fejltekst = "externals database";
+                $tekstfarve = "#000000";
+            }
+        }
+        else 
+        {
+            $fejltekst = "externals database";
+            $tekstfarve = "#000000";
+        }        
+    ?>
+
+
+
+        <!-- SELVE TABELLEN -->
         <div class="profile_list">
             <button class="add_new_link"><img src="../img/kryds.png" alt="plus">Tilføj ny ekstern</button>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                 $sql = "select * from externals";
                 $result = $conn->query($sql);
-
-                function tester() {
-                    echo '<script>console.log("Maja")</script>';
-                }
 
                 echo '<div class="external_list">';
                     echo '<div class="external_list_header">';
@@ -103,7 +297,55 @@
         </div>
 
 
+
+
+        <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
+            <?php 
+            //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årsager
+                $conn->close();
+            ?>
+
+            <p>
+                id : <input type="text" name="id" value="<?php echo isset($id) ? $id : '' ?>" style="position: relative; left:15px; width:100px; height:22px"> <!--Isset i php tjekker om følgende har en værdi-->
+                <br/>
+                <br/>
+                Name : <input type="text" name="first_name" value="<?php echo isset($first_name) ? $first_name : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
+                <br/>
+                <br/>
+                phone : <input type="text" name="phone" value="<?php echo isset($phone) ? $phone : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
+                <br/>
+                <br/>
+                Mobil : <input type="text" name="phone_private" value="<?php echo isset($phone_private) ? $phone_private : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
+                <br/>
+                <br/>
+                Email : <input type="text" name="email" value="<?php echo isset($email) ? $email : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
+                <br/>
+                <br/>
+                Produkt : <input type="text" name="contact_type" value="<?php echo isset($contact_type) ? $contact_type : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
+                <br/>
+                <br/>
+            </p>
+            <p>
+                <input type="submit" name="knap" value="read" style="width:80px" <?php echo $buttonRead ?>>
+                <input type="submit" name="knap" value="update" style="width:80px" <?php echo $buttonUpdate ?>>
+                <input type="submit" name="knap" value="create" style="width:80px" <?php echo $buttonCreate ?>>
+                <input type="submit" name="knap" value="delete" style="width:80px" <?php echo $buttonDelete ?>>
+                <input type="submit" name="knap" value="clear" style="width:80px" <?php echo $buttonClear ?>>
+                <input type="submit" name="knap" value="execute" style="width:80px" <?php echo $buttonExecute ?> >
+                <input type="submit" name="knap" value="cancel" style="width:80px" <?php echo $buttonCancel ?> >
+            </p>
+
+        </form>
+
     </div>
+
+
+
+
+
+
+
+
     <script src="../javaScript/navbars.js"></script>
 </body>
 
