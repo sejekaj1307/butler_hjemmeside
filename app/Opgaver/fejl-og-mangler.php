@@ -175,6 +175,7 @@
                                 ?> 
                             <div class="button_container">
                                 <button type="submit" name="knap" value="re">Re</button>
+                                <button type="submit" name="knap" value="ar">Ar</button>
                                 <button type="submit" name="knap" value="de">De</button>
                             </div>
                         <?php 
