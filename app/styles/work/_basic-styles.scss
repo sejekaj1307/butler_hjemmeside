@@ -67,7 +67,7 @@
     }
     .employee_list_header, .machine_list_header, .external_list_header, .case_list_header, .task_list_header { //div rundt om ALLE headers
         border-bottom: 3px solid $th_border_bottom;
-        padding: 15px 0;
+        padding: 15px 0 0 0 ;
         font-weight: 600;
         .employee_mobile_headers, .case_mobile_headers { //Når der er flere headers i mobil versionen der skal vises
             display: flex;
