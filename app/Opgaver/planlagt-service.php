@@ -137,7 +137,7 @@
             <button class="add_new_link" type="submit" name="knap" value="cr" style="width:80px"><img src="../img/kryds.png" alt="plus">Tilføj ny planlagt service</button>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
-                $sql = "select * from tasks";
+                $sql = "select * from tasks_service";
                 $result = $conn->query($sql);
                 echo '<div class="task_list">';
                     echo '<div class="task_list_header">';
@@ -147,14 +147,19 @@
                         echo '<div class="task_all_headers">';
                             echo '<p class="task_prority_header">prioritet</p>';
                             echo '<p class="task_status_header">Status</p>';
-                            echo '<p class="task_deadline_header">Deadline</p>';
+                            echo '<p class="task_deadline_header">Sidste service</p>';
+                            echo '<p class="task_updated_initials_header">Deadline</p>';
                             echo '<p class="task_updated_initials_header">Seneste</p>';
-                            echo '<p class="task_comment_header">Bemærkning</p>';
+                            echo '<p class="task_status_header">Bemærkning</p>';
                             echo '<p class="button_container_header">Rediger</p>';
                         echo '</div>';
                     echo '</div>';
 
                     //if og while her 
+                    // Hvis machine = lastbiler - så print alle rows for lastbiler
+                    // Hvis machine = CPT - så print alle rows for CPT
+                    //meget manuelt, kan man gøre det smartere?
+
                     if($result->num_rows > 0)
                     {
                         while($row = $result->fetch_assoc())
@@ -166,9 +171,10 @@
                                 echo '<div class="task_dropdown_mobile">';
                                     echo '<p class="dark_dropdown_table task_prority">' . $row["priority"] . '</p>';
                                     echo '<p class="dark_dropdown_table task_status">' . $row["status"] . '</p>';
+                                    echo '<p class="dark_dropdown_table task_deadline">' . $row["last_service"] . '</p>';
                                     echo '<p class="dark_dropdown_table task_deadline">' . $row["deadline"] . '</p>';
                                     echo '<p class="light_dropdown_table task_updated_initials">' . $row["updated_initials"] . '</p>';
-                                    echo '<p class="dark_dropdown_table task_comment">' . $row["comment"] . '</p>';
+                                    echo '<p class="dark_dropdown_table task_prority">' . $row["comment"] . '</p>';
                                 echo '</div>';
                                 ?> 
                             <div class="button_container">
