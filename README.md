@@ -13,6 +13,12 @@ node_modules/.bin/cypress open
 CREATE TABLE `butler_db`.`employees` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `first_name` VARCHAR(50) NOT NULL , `last_name` VARCHAR(50) NOT NULL , `initials` VARCHAR(50) NOT NULL , `email` VARCHAR(50) NOT NULL , `email_private` VARCHAR(50) NOT NULL , `phone` VARCHAR(50) NOT NULL , `phone_private` VARCHAR(50) NOT NULL , `emergency_name` VARCHAR(50) NOT NULL , `emergency_phone` VARCHAR(50) NOT NULL , `picture` VARCHAR(50) NOT NULL , `colour` VARCHAR(50) NOT NULL , `admin_status` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ~~~~
 
+#### employee data
+~~~~sql
+INSERT INTO `employees` (`id`, `first_name`, `last_name`, `initials`, `email`, `email_private`, `phone`, `phone_private`, `emergency_name`, `emergency_phone`, `picture`, `colour`, `admin_status`) VALUES ('1', 'Steen', 'Ibsen', 'SI', 'steen@butlerboreteknik@gmail.com', 'victo@hotmail.dk', '40583800', '42361822', 'Lene Ibsen', '22351306', '', '', ''), ('2', 'Tom', 'Butler', 'TB', 'butlerboreteknik@gmail.com', 'butlerboreteknik@gmail.com', '61603800', '61603800', 'Helle Butler', '30132190', '', '', ''), ('3', 'Lea', 'Butler', 'LB', 'Lea.butlerboreteknik@gmail.com', '', '41133800', '60168697', 'Helle Butler', '30132190', '', '', ''), ('4', 'Brian', 'Larsen', 'BL', 'bl.butlerboreteknik@gmail.com', '', '42373800', '23309331', 'Kjeld Larsen', '21465361', '', '', ''), ('5', 'Jimmy', 'Sørensen', 'JS', 'jimmy@butlerboreteknik@gmail.com', '', '', '41429327', 'Majbritt', '40299929', '', '', ''), ('6', 'Peter', 'Bisgaard', 'PB', 'Pbbutlerboreteknik@gmail.com', '', '25380038', '', 'Katrine', '23487906', '', '', ''), ('7', 'Mads', 'Sperling', 'MS', 'Mas.butlerboreteknik@gmail.dom', 'mads4141@hotmail.dk', '22803800', '42414138', 'Iben Sperling', '22928341', '', '', ''), ('8', 'Bo', 'Guldberg', 'BG', 'Bo.butlerboreteknik@gmail.com', 'teamguldberg@hotmail.dk', '41183800', '40748492', 'Else Guldberg ', '25478492', '', '', ''), ('9', 'Mads', 'Hansen', 'MH', 'Mads.butlerboreteknik@gmail.com', '', '41603800', '22399329', 'Anna Johannesen', '30266729 ', '', '', ''), ('10', 'Brian', 'Lau Andersen', 'BA', 'brianlauandersen@icloud.com', '', '', '40635720', 'Camilla Nielsen', '40617227 ', '', '', '');
+~~~~
+
+
 #### machines
 ~~~~sql
 CREATE TABLE `butler_db`.`machines` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `name` VARCHAR(50) NOT NULL , `name_nordic` VARCHAR(50) NOT NULL , `link` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
