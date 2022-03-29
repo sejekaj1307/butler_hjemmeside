@@ -24,6 +24,11 @@ INSERT INTO `employees` (`id`, `first_name`, `last_name`, `initials`, `email`, `
 CREATE TABLE `butler_db`.`machines` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `name` VARCHAR(50) NOT NULL , `name_nordic` VARCHAR(50) NOT NULL , `link` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ~~~~
 
+#### machine data
+~~~~sql
+INSERT INTO `machines` (`id`, `name`, `name_nordic`, `link`) VALUES ('7', 'CPT - TRUCK', 'Sleipner', 'https://www.butlerboreteknik.dk/boremaskiner/cpt-track-truck.aspx'), ('6', 'FRASTE MULTIDRILL XL 170', 'Odin', 'https://www.butlerboreteknik.dk/boremaskiner/fraste-multidrill-xl-170.aspx'), ('4', 'FRASTE MULTIDRILL ML MAX', 'Loke', 'https://www.butlerboreteknik.dk/boremaskiner/fraste-multidrill-ml-max.aspx'), ('2', 'FRASTE MULTIDRILLE XL', 'Tyr', 'https://www.butlerboreteknik.dk/boremaskiner/fraste-multidrill-xl.aspx'), ('1', 'BUTLER DRILL 650-09', 'Gefion', 'https://www.butlerboreteknik.dk/boremaskiner/butler-drill-650-09.aspx'), ('8', 'COMMACCHIO GEO 305HT', 'Thor', 'https://www.butlerboreteknik.dk/boremaskiner/comacchio-geo-305ht.aspx'), ('3', 'WELCO DRILL WD 80', 'Balder', 'https://www.butlerboreteknik.dk/boremaskiner/welco-drill-wd-80.aspx'), ('5', 'HYDRA MICRO - RIG', 'Munin', 'https://www.butlerboreteknik.dk/boremaskiner/hydra-micro-rig.aspx'), ('9', 'SKORPIONEN', 'Hugin', ''), ('10', 'BORETÅRN BOLTET', 'Mimer', ''), ('11', 'GUMMIHJULSLØSSE M. BORETÅRN', 'Njord', 'https://www.butlerboreteknik.dk/boremaskiner/gummihjulslaesser-med-boretaarn.aspx '), ('12', 'BUTLER MINI DRILL 112', 'Mjølner', 'https://www.butlerboreteknik.dk/boremaskiner/butler-mini-drill-112.aspx '), ('13', '79\'EREN', 'Heimdal', '')
+~~~~
+
 
 #### externals
 ~~~~sql
