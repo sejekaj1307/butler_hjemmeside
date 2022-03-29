@@ -263,7 +263,7 @@
                         echo '<p class="external_name_header">Efternavn, fornavn</p>';
                         echo '<div class="external_all_headers">';
                             echo '<p class="external_phone_header">Telefon</p>';
-                            echo '<p class="external_phone_header">Mobil</p>';
+                            echo '<p class="external_phone_header">Adresse</p>';
                             echo '<p class="external_email_header">Email</p>';
                             echo '<p class="external_product_header">Produkt</p>';
                             echo '<p class="button_container_header">Rediger</p>';
@@ -281,7 +281,7 @@
                                 echo '</div>';
                                 echo '<div class="external_dropdown_mobile">';
                                     echo '<p class="dark_dropdown_table external_phone">' . $row["phone"] . '</p>';
-                                    echo '<p class="dark_dropdown_table external_phone">' . $row["phone_private"] . '</p>';
+                                    echo '<p class="dark_dropdown_table external_phone">' . $row["address"] . '</p>';
                                     echo '<p class="dark_dropdown_table external_email">' . $row["email"] . '</p>';
                                     echo '<p class="dark_dropdown_table external_product">' . $row["product"] . '</p>';
                                 echo '</div>';
@@ -316,7 +316,7 @@
                 phone : <input type="text" name="phone" value="<?php echo isset($phone) ? $phone : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
                 <br/>
                 <br/>
-                Mobil : <input type="text" name="phone_private" value="<?php echo isset($phone_private) ? $phone_private : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
+                Mobil : <input type="text" name="address" value="<?php echo isset($phone_private) ? $phone_private : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
                 <br/>
                 <br/>
                 Email : <input type="text" name="email" value="<?php echo isset($email) ? $email : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
