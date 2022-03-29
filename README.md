@@ -41,6 +41,12 @@ INSERT INTO `externals` (`id`, `first_name`, `last_name`, `email`, `phone`, `pho
 CREATE TABLE `butler_db`.`suppliers` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `first_name` VARCHAR(50) NOT NULL , `last_name` VARCHAR(50) NOT NULL , `email` VARCHAR(50) NOT NULL , `phone` VARCHAR(50) NOT NULL , `address` VARCHAR(50) NOT NULL , `product` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ~~~~
 
+#### suppliers data
+~~~~sql
+INSERT INTO `suppliers` (`id`, `first_name`, `last_name`, `email`, `phone`, `address`, `product`) VALUES ('1', 'Fornavn', 'Efternavn', 'emailAddresse@gmail.com', '12345678', 'A road', 'Noget første'), ('2', 'Fornavn', 'Efternavn', 'emailAddresse@gmail.com', '12345678', 'B road', 'Noget andet'), ('3', 'Fornavn', 'Efternavn', 'emailAddresse@gmail.com', '12345678', 'A road', 'Noget tredje'), ('4', 'Fornavn', 'Efternavn', 'emailAddresse@gmail.com', '12345678', 'A road', 'Noget fjerde'), ('5', 'Fornavn', 'Efternavn', 'emailAddresse@gmail.com', '12345678', 'B road', 'Noget femte')
+
+~~~~
+
 ### cases tabeller
 #### cases
 ~~~~sql
