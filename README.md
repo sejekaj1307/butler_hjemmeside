@@ -21,7 +21,7 @@ CREATE TABLE `butler_db`.`machines` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `na
 
 #### externals
 ~~~~sql
-CREATE TABLE `butler_db`.`external` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `first_name` VARCHAR(50) NOT NULL , `last_name` VARCHAR(50) NOT NULL , `email` VARCHAR(50) NOT NULL , `phone` VARCHAR(50) NOT NULL , `phone_private` VARCHAR(50) NOT NULL , `contact_type` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `butler_db`.`externals` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `first_name` VARCHAR(50) NOT NULL , `last_name` VARCHAR(50) NOT NULL , `email` VARCHAR(50) NOT NULL , `phone` VARCHAR(50) NOT NULL , `phone_private` VARCHAR(50) NOT NULL , `contact_type` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ~~~~
 
 
@@ -46,6 +46,17 @@ CREATE TABLE `butler_db`.`tasks` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `task_
 #### tasks_planned_service
 ~~~~sql
 CREATE TABLE `butler_db`.`tasks_service` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `task_title` VARCHAR(50) NOT NULL , `prority` VARCHAR(50) NOT NULL , `status` VARCHAR(50) NOT NULL , `deadline` DATETIME NOT NULL , `created_at` DATETIME NOT NULL , `created_initials` VARCHAR(50) NOT NULL , `updated_at` DATETIME NOT NULL , `updated_initials` VARCHAR(50) NOT NULL , `archived_at` DATETIME NOT NULL , `archived_initials` VARCHAR(50) NOT NULL , `last_service` DATETIME NOT NULL , `comment` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+~~~~
+
+
+#### daily_reports
+~~~~sql
+CREATE TABLE `butler_db`.`daily_reports` ( `id` INT NOT NULL AUTO_INCREMENT , `time_reg_field_id` INT NOT NULL , `time_reg_data` VARCHAR(255) NOT NULL , `user_id` INT NOT NULL , `date` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+~~~~
+
+#### time_reg_fields
+~~~~sql
+CREATE TABLE `butler_db`.`time_reg_fields` ( `id` INT NOT NULL AUTO_INCREMENT , `input_type` VARCHAR(255) NOT NULL , `input_lable` VARCHAR(255) NOT NULL , `job_type` VARCHAR(255) NOT NULL , `children` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ~~~~
 
 
