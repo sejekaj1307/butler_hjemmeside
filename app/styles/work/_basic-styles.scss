@@ -133,7 +133,7 @@
 /*Tablet - S */
 @media screen and(min-width: 900px) {
     body {
-        background-color: rgb(199, 236, 218);
+        // background-color: rgb(199, 236, 218);
     }    
     .site_container { //every site can be seen right of navbar
         margin-left: $nav_with-s;    
@@ -150,7 +150,7 @@
 /*Lille pc - M*/
 @media screen and(min-width: 1200px) {
     body {
-        background-color: rgb(152, 173, 231);
+        // background-color: rgb(152, 173, 231);
     }    
     .site_container { //every site can be seen right of navbar
         margin-left: $nav_with-l;    
@@ -298,7 +298,7 @@
 /*Stor pc - L*/
 @media screen and(min-width: 1600px) {
     body {
-        background-color: rgb(245, 195, 233);
+        // background-color: rgb(245, 195, 233);
     }    
 
     /*---------------------------

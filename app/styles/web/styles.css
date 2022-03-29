@@ -167,9 +167,6 @@
 ----------------------------------*/
 /*Tablet - S */
 @media screen and (min-width: 900px) {
-  body {
-    background-color: #c7ecda;
-  }
   .site_container {
     margin-left: 22vw;
   }
@@ -183,9 +180,6 @@
 
 /*Lille pc - M*/
 @media screen and (min-width: 1200px) {
-  body {
-    background-color: #98ade7;
-  }
   .site_container {
     margin-left: 16vw;
   }
@@ -341,9 +335,6 @@
 
 /*Stor pc - L*/
 @media screen and (min-width: 1600px) {
-  body {
-    background-color: #f5c3e9;
-  }
   /*---------------------------
             Employees
     ---------------------------*/
