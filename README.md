@@ -30,6 +30,11 @@ CREATE TABLE `butler_db`.`machines` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `na
 CREATE TABLE `butler_db`.`externals` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `first_name` VARCHAR(50) NOT NULL , `last_name` VARCHAR(50) NOT NULL , `email` VARCHAR(50) NOT NULL , `phone` VARCHAR(50) NOT NULL , `phone_private` VARCHAR(50) NOT NULL , `contact_type` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ~~~~
 
+#### externals data
+~~~~sql
+INSERT INTO `externals` (`id`, `first_name`, `last_name`, `email`, `phone`, `phone_private`, `contact_type`) VALUES ('1', 'Fornavn', 'Efternavn', 'emailAddresse@gmail.com', '12345678', '12345678', 'Noget første'), ('2', 'Fornavn', 'Efternavn', 'emailAddresse@gmail.com', '12345678', '12345678', 'Noget andet'), ('3', 'Fornavn', 'Efternavn', 'emailAddresse@gmail.com', '12345678', '12345678', 'Noget tredje'), ('4', 'Fornavn', 'Efternavn', 'emailAddresse@gmail.com', '12345678', '12345678', 'Noget fjerde'), ('5', 'Fornavn', 'Efternavn', 'emailAddresse@gmail.com', '12345678', '12345678', 'Noget femte');
+~~~~
+
 
 #### suppliers
 ~~~~sql
