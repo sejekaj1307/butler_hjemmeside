@@ -22,9 +22,7 @@
 }
 
 .add_new_link {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   cursor: pointer;
 }
 
@@ -219,6 +217,7 @@
       -ms-flex: 5;
           flex: 5;
   width: 60% !important;
+  height: 30px;
 }
 
 .pop_up_modal .pop-up-btn-container {
@@ -279,6 +278,11 @@
   .time_registration_navbar button, .in_house_time_navbar button {
     font-size: 18px;
     width: 175px;
+  }
+  .add_new_link {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
   /*---------------------------
             Employees 1200

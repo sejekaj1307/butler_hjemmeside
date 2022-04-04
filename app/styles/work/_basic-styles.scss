@@ -13,7 +13,7 @@
 }
 
 .add_new_link {
-    display: flex;
+    display: none;
     cursor: pointer;
     img {
         width: 16px;
@@ -121,7 +121,6 @@
 
 
 
-
 .pop_up_modal {
     position: absolute;
     padding: 30px 0;
@@ -152,6 +151,7 @@
         input {
             flex: 5;
             width: 60% !important;
+            height: 30px;
         }
     }
     
@@ -188,9 +188,6 @@
 
 /*Tablet - S */
 @media screen and(min-width: 900px) {
-    body {
-        // background-color: rgb(199, 236, 218);
-    }    
     .site_container { //every site can be seen right of navbar
         margin-left: $nav_with-s; 
     }
@@ -205,9 +202,6 @@
 
 /*Lille pc - M*/
 @media screen and(min-width: 1200px) {
-    body {
-        // background-color: rgb(152, 173, 231);
-    }    
     .site_container { //every site can be seen right of navbar
         margin-left: $nav_with-l;    
     }
@@ -222,6 +216,9 @@
             font-size: 18px;
             width: 175px;
         }
+    }
+    .add_new_link {
+        display: flex;
     }
 
 
@@ -353,10 +350,6 @@
 
 /*Stor pc - L*/
 @media screen and(min-width: 1600px) {
-    body {
-        // background-color: rgb(245, 195, 233);
-    }    
-
     /*---------------------------
             Employees
     ---------------------------*/

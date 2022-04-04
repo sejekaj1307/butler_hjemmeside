@@ -73,16 +73,7 @@
                         return false;
                     }
                 }
-                //Knapper på siden. Active eller disable. start værdier
-                $buttonExecute = "";
-                $buttonCancel = "";
-                $buttonClear = "";
-                $buttonCreate = "";
-                $buttonRead = "";
-                $buttonUpdate = "";
-                $buttonDelete = "";
-                $buttonClear = "";
-
+                //variables to show or hide pop-up modals
                 $display_edit_employee_pop_up = "none";
                 $display_delete_employee_pop_up = "none";
                 $display_create_employee_pop_up = "none";
@@ -92,30 +83,6 @@
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
-                    //read, koden køres hvis "read button" bliver requested 
-                    if($_REQUEST['knap'] == "read")
-                    {
-                        $id = $_REQUEST['id'];
-                        if(is_numeric($id) && is_numeric(0 + $id))
-                        {
-                            $sql = $conn->prepare( "select * from employees where id = ?");
-                            $sql->bind_param("i", $id); 
-                            $sql->execute();
-                            $result = $sql->get_result();
-                            if($result->num_rows > 0) 
-                            {
-                                $row = $result->fetch_assoc();
-                                $id = $row['id'];
-                                $first_name = $row['first_name'];
-                                $initials = $row['initials'];
-                                $phone = $row['phone'];
-                                $phone_private = $row['phone_private'];
-                                $email = $row['email'];
-                                $emergency_name = $row['emergency_name'];
-                                $display_edit_employee_pop_up = "flex";
-                            }
-                        }
-                    }
                     //create, køres hvis "Tilføj ny medarbejder" bliver requested
                     if($_REQUEST['knap'] == "Tilføj ny medarbejder")
                     {
@@ -139,12 +106,38 @@
                                 $sql->bind_param("issssss", $id, $first_name, $initials, $phone, $phone_private, $email, $emergency_name);
                                 $sql->execute();
                             }
-                        } //forkert input af id, klub id skal være heltal
+                        } 
+                    }
+                    //read, koden køres hvis "read button" bliver requested 
+                    if(str_contains($_REQUEST['knap'] , "read"))
+                    {
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[1];
+                        if(is_numeric($id) && is_numeric(0 + $id))
+                        {
+                            $sql = $conn->prepare( "select * from employees where id = ?");
+                            $sql->bind_param("i", $id); 
+                            $sql->execute();
+                            $result = $sql->get_result();
+                            if($result->num_rows > 0) 
+                            {
+                                $row = $result->fetch_assoc();
+                                $id = $row['id'];
+                                $first_name = $row['first_name'];
+                                $initials = $row['initials'];
+                                $phone = $row['phone'];
+                                $phone_private = $row['phone_private'];
+                                $email = $row['email'];
+                                $emergency_name = $row['emergency_name'];
+                                $display_edit_employee_pop_up = "flex";
+                            }
+                        }
                     }
                     //delete
-                    if($_REQUEST['knap'] == "delete")
+                    if(str_contains($_REQUEST['knap'] , "delete"))
                     {
-                        $id = $_REQUEST['id'];
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[1];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
                             if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
@@ -179,8 +172,6 @@
                     //Execute - confirm delete
                     if($_REQUEST['knap'] == "execute")
                     {
-                        //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede id forbliver det samme hvis siden genindlæses.
-                        //Vi skal have fat i bilid, men vi kan ikke længere bruge den tidligere variabel. Vi skal sikre at brugeren ikke har ændret tallet i mellemtiden
                         $id = $_SESSION["bilTilDelete"];
                         $sql = $conn->prepare("delete from employees where id = ?");
                         $sql->bind_param("i", $id);
@@ -205,16 +196,13 @@
                 }
             ?>
 
-
-
             <!-- SELVE TABELLEN -->
             <div class="profile_list">
-                <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny medarbejder" style="width:80px" <?php echo $buttonCancel ?> ></div>
+                <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny medarbejder"></div>
                 <?php 
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                     $sql = "select * from employees";
                     $result = $conn->query($sql);
-
                     echo '<div class="employee_list">';
                         echo '<div class="employee_list_header">';
                             echo '<div class="employee_mobile_headers">';
@@ -250,10 +238,8 @@
                                     echo '</div>';
                                     ?> 
                                 <div class="button_container">
-                                    <input type="submit" name="knap" value="read" style="width:80px" <?php echo $buttonRead ?>>
-                                    <input type="submit" name="knap" value="delete" style="width:80px" <?php echo $buttonDelete ?>>
-                                    <!-- <input type="submit" name="knap" value="re">
-                                    <button type="submit" name="knap" value="de">De</button> -->
+                                    <input type="submit" name="knap" value="read_<?php echo $row['id'];?>">
+                                    <input type="submit" name="knap" value="delete_<?php echo $row['id'];?>">
                                 </div>
                             <?php 
 
@@ -261,7 +247,7 @@
                             }   
                         }
                     echo '</div>';
-                ?>
+                            ?>
             </div>
 
 
@@ -276,15 +262,15 @@
             ----------------------------->
             <div class="pop_up_modal" style="display: <?php echo $display_edit_employee_pop_up ?>">
                 <h3>Opdater medarbejderprofil</h3>
-                <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name" value="<?php echo isset($first_name) ? $first_name : '' ?>" style="position: relative; left:15px; width:100px; height:22px"></div>
-                <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials" value="<?php echo isset($initials) ? $initials : '' ?>" style="position: relative; left:15px; width:100px; height:22px"></div>
-                <div class="pop-up-row"><p>phone : </p><input type="text" name="phone" value="<?php echo isset($phone) ? $phone : '' ?>" style="position: relative; left:15px; width:100px; height:22px"></div>
-                <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private" value="<?php echo isset($phone_private) ? $phone_private : '' ?>" style="position: relative; left:15px; width:100px; height:22px"></div>
-                <div class="pop-up-row"><p>Email : </p><input type="text" name="email" value="<?php echo isset($email) ? $email : '' ?>" style="position: relative; left:15px; width:100px; height:22px"></div>
-                <div class="pop-up-row"><p>Emergency : </p><input type="text" name="emergency_name" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>" style="position: relative; left:15px; width:100px; height:22px"></div>
+                <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials" value="<?php echo isset($initials) ? $initials : '' ?>"></div>
+                <div class="pop-up-row"><p>phone : </p><input type="text" name="phone" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
+                <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
+                <div class="pop-up-row"><p>Email : </p><input type="text" name="email" value="<?php echo isset($email) ? $email : '' ?>"></div>
+                <div class="pop-up-row"><p>Emergency : </p><input type="text" name="emergency_name" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel"  class="pop_up_cancel"<?php echo $buttonCancel ?> >
-                    <input type="submit" name="knap" value="update" class="pop_up_confirm"<?php echo $buttonUpdate ?>>
+                    <input type="submit" name="knap" value="cancel"  class="pop_up_cancel">
+                    <input type="submit" name="knap" value="update" class="pop_up_confirm">
                 </div>
             </div>
 
@@ -293,15 +279,16 @@
             ---------------------------->
             <div class="pop_up_modal" style="display: <?php echo $display_create_employee_pop_up ?>">
                 <h3>Tilføj ny medarbejder</h3>
-                <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name" value="<?php echo isset($first_name) ? $first_name : '' ?>" style="position: relative; left:15px; width:100px; height:22px"></div>
-                <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials" value="<?php echo isset($initials) ? $initials : '' ?>" style="position: relative; left:15px; width:100px; height:22px"></div>
-                <div class="pop-up-row"><p>phone : </p><input type="text" name="phone" value="<?php echo isset($phone) ? $phone : '' ?>" style="position: relative; left:15px; width:100px; height:22px"></div>
-                <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private" value="<?php echo isset($phone_private) ? $phone_private : '' ?>" style="position: relative; left:15px; width:100px; height:22px"></div>
-                <div class="pop-up-row"><p>Email : </p><input type="text" name="email" value="<?php echo isset($email) ? $email : '' ?>" style="position: relative; left:15px; width:100px; height:22px"></div>
-                <div class="pop-up-row"><p>Emergency : </p><input type="text" name="emergency_name" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>" style="position: relative; left:15px; width:100px; height:22px"></div>
+                id : <input type="text" name="id" value="<?php echo isset($id) ? $id : '' ?>">
+                <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials" value="<?php echo isset($initials) ? $initials : '' ?>"></div>
+                <div class="pop-up-row"><p>phone : </p><input type="text" name="phone" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
+                <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
+                <div class="pop-up-row"><p>Email : </p><input type="text" name="email" value="<?php echo isset($email) ? $email : '' ?>"></div>
+                <div class="pop-up-row"><p>Emergency : </p><input type="text" name="emergency_name" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel"<?php echo $buttonCancel ?> >
-                    <input type="submit" name="knap" value="create" class="pop_up_confirm"<?php echo $buttonCreate ?>>
+                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="create" class="pop_up_confirm">
                 </div>
             </div>
 
@@ -311,16 +298,11 @@
             <div class="pop_up_modal" style="display: <?php echo $display_delete_employee_pop_up ?>">
                 <h3>Slet medarbejder</h3>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel" <?php echo $buttonCancel ?> >
-                    <input type="submit" name="knap" value="execute" class="pop_up_confirm" <?php echo $buttonExecute ?> >
+                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="execute" class="pop_up_confirm">
                 </div>
             </div>
             
-            <p>
-                id : <input type="text" name="id" value="<?php echo isset($id) ? $id : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
-                <br/>
-                <br/>
-            </p>
         </form>
     </div>
 

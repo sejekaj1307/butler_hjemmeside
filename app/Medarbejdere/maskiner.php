@@ -71,50 +71,20 @@
                         return false;
                     }
                 }
-                //Knapper på siden. Active eller disable. start værdier
-                $buttonExecute = "disabled";
-                $buttonCancel = "disabled";
-                $buttonClear = "";
-                $buttonCreate = "";
-                $buttonRead = "";
-                $buttonUpdate = "";
-                $buttonDelete = "";
-                $buttonClear = "";
+                //variables to show or hide pop-up-modals
+                $display_edit_machine_pop_up = "none";
+                $display_delete_machine_pop_up = "none";
+                $display_create_machine_pop_up = "none";
             ?>
 
             <?php
             // CRUD, create, read, update, delete - og confirm og cancel knap til delete
             if($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                //read, koden køres hvis "read button" bliver requested 
-                if($_REQUEST['knap'] == "read")
+                //create, køres hvis "Tilføj ny medarbejder" bliver requested
+                if($_REQUEST['knap'] == "Tilføj ny maskine")
                 {
-                    $id = $_REQUEST['id'];
-                    if(is_numeric($id) && is_numeric(0 + $id))
-                    {
-                        $sql = $conn->prepare( "select * from machines where id = ?");
-                        $sql->bind_param("i", $id); 
-                        $sql->execute();
-                        $result = $sql->get_result();
-                        if($result->num_rows > 0) 
-                        {
-                            $row = $result->fetch_assoc();
-                            $id = $row['id'];
-                            $name = $row['name'];
-                            $name_nordic = $row['name_nordic'];
-                            $link = $row['link'];
-                        }
-                        else //Hvis ikke der returneres et resultat, hvis det indtastede id ikke findes
-                        {
-                            $fejltekst = "machines nummer $id findes ikke";
-                            $tekstfarve = "#ff0000";
-                        }
-                    } 
-                    else //Hvis brugeren ikke har indtastet en korrekt værdi (heltal)
-                    {
-                        $fejltekst = "id skal være heltal";
-                        $tekstfarve = "#ff0000";
-                    }
+                    $display_create_machine_pop_up = "flex";
                 }
                 //create, køres hvis "create button" bliver requested
                 if($_REQUEST['knap'] == "create")
@@ -130,47 +100,31 @@
                             $sql = $conn->prepare("insert into machines (id, name, name_nordic, link) values (?, ?, ?, ?)");
                             $sql->bind_param("isss", $id, $name, $name_nordic, $link);
                             $sql->execute();
-                            $fejltekst = "Create Ok";
-                            $tekstfarve = "#000000";
+                            $display_create_machine_pop_up = "none";
                         }
-                        else //hvis klub nummer allerede eksiterer i databasen
-                        {
-                            $fejltekst = "machines nummer $id findes allerede";
-                            $tekstfarve = "#ff0000";
-                        }
-                    } //forkert input af id, klub id skal være heltal
-                    else 
-                    {
-                        $fejltekst = "id skal være heltal";
-                        $tekstfarve = "#ff0000";
                     }
                 }
-                //delete
-                if($_REQUEST['knap'] == "delete")
+                //read, koden køres hvis "read button" bliver requested 
+                if(str_contains($_REQUEST['knap'] , "read"))
                 {
-                    $id = $_REQUEST['id'];
-                    if(is_numeric($id) && is_integer(0 + $id))
+                    $split = explode("_", $_REQUEST['knap']);
+                    $id = $split[1];
+                    if(is_numeric($id) && is_numeric(0 + $id))
                     {
-                        if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                        $sql = $conn->prepare( "select * from machines where id = ?");
+                        $sql->bind_param("i", $id); 
+                        $sql->execute();
+                        $result = $sql->get_result();
+                        if($result->num_rows > 0) 
                         {
-                            $_SESSION["bilTilDelete"] = $id;
-                            $buttonExecute = "";
-                            $buttonCancel = "";
-                            $buttonClear = "disabled";
-                            $buttonRead = "disabled";
-                            $buttonCreate = "disabled";
-                            $buttonUpdate = "disabled";
-                            $buttonDelete = "disabled";
-                            $buttonClear = "disabled";
-                            $fejltekst = "Tryk 'Execute' for at slette machines $id . tryk 'cancel' for at annullere";
-                            $tekstfarve = "#ff00ff";
+                            $row = $result->fetch_assoc();
+                            $id = $row['id'];
+                            $name = $row['name'];
+                            $name_nordic = $row['name_nordic'];
+                            $link = $row['link'];
+                            $display_edit_machine_pop_up = "flex";
                         }
-                    }
-                    else //hvis input af klub id er forkert
-                    {
-                        $fejltekst = "machines nummer $id findes ikke";
-                        $tekstfarve = "#ff0000";
-                    }
+                    } 
                 }
                 //update
                 if($_REQUEST['knap'] == "update") 
@@ -186,11 +140,21 @@
                             $sql = $conn->prepare("update machines set name = ?, name_nordic = ?, link = ? where id = ?");
                             $sql->bind_param("sssi", $name, $name_nordic, $link, $id);
                             $sql->execute();
+                            $display_edit_machine_pop_up = "none";
                         }
-                        else //forkert input af klub id
+                    }
+                }
+                //delete
+                if(str_contains($_REQUEST['knap'] , "delete"))
+                {
+                    $split = explode("_", $_REQUEST['knap']);
+                    $id = $split[1];
+                    if(is_numeric($id) && is_integer(0 + $id))
+                    {
+                        if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                         {
-                            $fejltekst = "machines nummer $id findes ikke";
-                            $tekstfarve = "#ff0000";
+                            $_SESSION["bilTilDelete"] = $id;
+                            $display_delete_machine_pop_up = "flex";
                         }
                     }
                 }
@@ -202,9 +166,7 @@
                     $sql = $conn->prepare("delete from machines where id = ?");
                     $sql->bind_param("i", $id);
                     $sql->execute();
-                    $fejltekst = "delete ok";
-                    $tekstfarve = "#000000";
-                    
+                    $display_delete_machine_pop_up = "none";
                 }
                 //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
                 if($_REQUEST['knap'] == "cancel")
@@ -215,35 +177,19 @@
                     $link = "";
                     $email = "";
                     $product = "";
-                    $fejltekst = "Delete cancelled";
-                    $tekstfarve = "#000000";
-                }
 
-                //clear
-                if($_REQUEST['knap'] == "clear")
-                {
-                    $id = "";
-                    $name = "";
-                    $name_nordic = "";
-                    $link = "";
-                    $email = "";
-                    $product= "";
-                    $fejltekst = "machines database";
-                    $tekstfarve = "#000000";
+                    $display_edit_machine_pop_up = "none";
+                    $display_delete_machine_pop_up = "none";
+                    $display_create_machine_pop_up = "none";
                 }
             }
-            else 
-            {
-                $fejltekst = "machines database";
-                $tekstfarve = "#000000";
-            }        
         ?>
 
 
 
         <!-- SELVE TABELLEN -->
         <div class="profile_list">
-            <button class="add_new_link"><img src="../img/kryds.png" alt="plus">Tilføj ny maskine</button>
+            <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny maskine"></div>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                $sql = "select * from machines";
@@ -278,8 +224,8 @@
                                 echo '</div>';
                                 ?> 
                                     <div class="button_container">
-                                        <button type="submit" name="knap" value="re">Re</button>
-                                        <button type="submit" name="knap" value="de">De</button>
+                                        <input type="submit" name="knap" value="read_<?php echo $row['id'];?>">
+                                        <input type="submit" name="knap" value="delete_<?php echo $row['id'];?>">
                                     </div>
                                 <?php 
                             echo '</div>';
@@ -298,28 +244,45 @@
                 $conn->close();
             ?>
 
-            <p>
-                id : <input type="text" name="id" value="<?php echo isset($id) ? $id : '' ?>" style="position: relative; left:15px; width:100px; height:22px"> <!--Isset i php tjekker om følgende har en værdi-->
-                <br/>
-                <br/>
-                Name : <input type="text" name="name" value="<?php echo isset($name) ? $name : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
-                <br/>
-                <br/>
-                Nordic_name : <input type="text" name="name_nordic" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
-                <br/>
-                <br/>
-                Link : <input type="text" name="link" value="<?php echo isset($link) ? $link : '' ?>" style="position: relative; left:15px; width:100px; height:22px">
-            </p>
-            <p>
-                <input type="submit" name="knap" value="read" style="width:80px" <?php echo $buttonRead ?>>
-                <input type="submit" name="knap" value="update" style="width:80px" <?php echo $buttonUpdate ?>>
-                <input type="submit" name="knap" value="create" style="width:80px" <?php echo $buttonCreate ?>>
-                <input type="submit" name="knap" value="delete" style="width:80px" <?php echo $buttonDelete ?>>
-                <input type="submit" name="knap" value="clear" style="width:80px" <?php echo $buttonClear ?>>
-                <input type="submit" name="knap" value="execute" style="width:80px" <?php echo $buttonExecute ?> >
-                <input type="submit" name="knap" value="cancel" style="width:80px" <?php echo $buttonCancel ?> >
-            </p>
+            <!----------------------------
+                    Edit profile pop-op
+            ----------------------------->
+            <div class="pop_up_modal" style="display: <?php echo $display_edit_machine_pop_up ?>">
+                <h3>Opdater medarbejderprofil</h3>
+                <div class="pop-up-row"><p>Navn : </p><input type="text" name="name" value="<?php echo isset($name) ? $name : '' ?>"></div>
+                <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
+                <div class="pop-up-row"><p>Link : </p><input type="text" name="link" value="<?php echo isset($link) ? $link : '' ?>"></div>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="cancel"  class="pop_up_cancel">
+                    <input type="submit" name="knap" value="update" class="pop_up_confirm">
+                </div>
+            </div>
 
+            <!---------------------------
+                Add new employee pop-up
+            ---------------------------->
+            <div class="pop_up_modal" style="display: <?php echo $display_create_machine_pop_up ?>">
+                <h3>Tilføj ny medarbejder</h3>
+                id : <input type="text" name="id" value="<?php echo isset($id) ? $id : '' ?>">
+                <div class="pop-up-row"><p>Navn : </p><input type="text" name="name" value="<?php echo isset($name) ? $name : '' ?>"></div>
+                <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
+                <div class="pop-up-row"><p>Link : </p><input type="text" name="link" value="<?php echo isset($link) ? $link : '' ?>"></div>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="create" class="pop_up_confirm">
+                </div>
+            </div>
+
+            <!------------------------
+                    delete pop up
+            ------------------------->
+            <div class="pop_up_modal" style="display: <?php echo $display_delete_machine_pop_up ?>">
+                <h3>Slet medarbejder</h3>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="execute" class="pop_up_confirm">
+                </div>
+            </div>
         </form>
 
     </div>
