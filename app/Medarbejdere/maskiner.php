@@ -75,9 +75,8 @@
                 $display_edit_machine_pop_up = "none";
                 $display_delete_machine_pop_up = "none";
                 $display_create_machine_pop_up = "none";
-            ?>
 
-            <?php
+
             // CRUD, create, read, update, delete - og confirm og cancel knap til delete
             if($_SERVER['REQUEST_METHOD'] === 'POST')
             {
@@ -194,10 +193,6 @@
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                $sql = "select * from machines";
                 $result = $conn->query($sql);
-
-                function tester() {
-                    echo '<script>console.log("Maja")</script>';
-                }
 
                 echo '<div class="machine_list">';
                     echo '<div class="machine_list_header">';

@@ -54,158 +54,259 @@
 
 
 
-    <!-- -----------------------------
-                Sager
-    ------------------------------ -->
-        <form action="arkiverede-sager.php" method="post">
-            <?php
+        <!-- -----------------------------
+                    Sager
+        ------------------------------ -->
+        <form action="fejl-og-mangler.php" method="post">
+            <?php 
+            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+                function findes($id, $c)
+                {
+                    $sql = $c->prepare("select * from tasks where id = ?");
+                    $sql->bind_param("i", $id);
+                    $sql->execute();
+                    $result = $sql->get_result();
+                    if($result->num_rows > 0)
+                    {
+                        return true;
+                    }
+                    else 
+                    {
+                        return false;
+                    }
+                }
+                //variables to show or hide pop-up-modals
+                $display_edit_task_pop_up = "none";
+                $display_delete_task_pop_up = "none";
+                $display_create_task_pop_up = "none";
+
+
                 //har vi en post? har serveren en request?
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
-                    //read
-                    if($_REQUEST['knap'] == "re")
-                    {
-                        // $bilid = $_REQUEST['bilid'];
-                        // if(is_numeric($bilid))
-                        // {
-                        //     $sql = $conn->prepare( "select * from bil where id = ?");
-                        //     $sql->bind_param("i", $bilid); //i står for integar
-                        //     $sql->execute();
-                        //     $result = $sql->get_result();
-                        //     $row = $result->fetch_assoc();
-                        //     $bilid = $row['id'];
-                        //     $model = $row['model'];
-                        //     $farve = $row['farve'];
-                        //     $aar = $row['aar'];
-                        // } 
-                        echo "Read";
-                    }
                     //create
-                    if($_REQUEST['knap'] == "cr")
+                    if($_REQUEST['knap'] == "Tilføj ny opgave")
                     {
-                        // $bilid = $_REQUEST['bilid'];
-                        // $model = $_REQUEST['model'];
-                        // $farve = $_REQUEST['farve'];
-                        // $aar = $_REQUEST['aar'];
-                        // if($model == "") $model = "ukendt";
-                        // if($farve == "") $farve = "ukendt";
-                        // if($aar == "") $aar = -1;
-                        // if(is_numeric($bilid))
-                        // {
-                        //     $sql = $conn->prepare("insert into bil (id, mode, farve, aar) values (?, ?, ?, ?)");
-                        //     $sql->bind_param("issi", $bilid, $model, $farve, $aar);
-                        //     $sql->execute();
-                        // }
-                        echo "Create";
+                        $display_create_task_pop_up = "flex";
                     }
-                    //delete
-                    if($_REQUEST['knap'] == "de")
+                    //create, køres hvis "create button" bliver requested
+                    if($_REQUEST['knap'] == "create")
                     {
-                        // $bilid = $_REQUEST['delete'];
-                        // if(is_numeric($bilid))
-                        // {
-                        //     $sql = $conn->prepare("delete from bil where id = ?");
-                        //     $sql->bins_param("i", $bilid);
-                        //     $sql->execute();
-                        // }
-                        echo "delete";
+                        $id = $_REQUEST['id'];
+                        $task_title = $_REQUEST['task_title'];
+                        $priority = $_REQUEST['priority'];
+                        $status = $_REQUEST['status'];
+                        $deadline = $_REQUEST['deadline'];
+                        $updated_initials = $_REQUEST['updated_initials'];
+                        $comment = $_REQUEST['comment'];
+                        if(is_numeric($id) && is_integer(0 + $id)) 
+                        {
+                            if(!findes($id, $conn)) //opret ny klub
+                            {
+                                $sql = $conn->prepare("insert into tasks (id, task_title, priority, status, deadline, updated_initials, comment) values (?, ?, ?, ?, ?, ?, ?)");
+                                $sql->bind_param("issssss", $id, $task_title, $priority, $status, $deadline, $updated_initials, $comment);
+                                $sql->execute();
+                                $display_create_task_pop_up = "none";
+                            }
+                        }
+                    }
+                    //read
+                    if(str_contains($_REQUEST['knap'] , "read"))
+                    {
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[1];
+                        if(is_numeric($id) && is_numeric(0 + $id))
+                        {
+                            $sql = $conn->prepare( "select * from tasks where id = ?");
+                            $sql->bind_param("i", $id); 
+                            $sql->execute();
+                            $result = $sql->get_result();
+                            if($result->num_rows > 0) 
+                            {
+                                $row = $result->fetch_assoc();
+                                $id = $row['id'];
+                                $task_title = $row['task_title'];
+                                $priority = $row['priority'];
+                                $status = $row['status'];
+                                $deadline = $row['deadline'];
+                                $updated_initials = $row['updated_initials'];
+                                $comment = $row['comment'];
+                                $display_edit_task_pop_up = "flex";
+                            }
+                        } 
                     }
                     //update
-                    if($_REQUEST['knap'] == "up")
+                    if($_REQUEST['knap'] == "update")
                     {
-                        // $bilid = $_REQUEST['bilid'];
-                        // $model = $_REQUEST['model'];
-                        // $farve = $_REQUEST['farve'];
-                        // $aar = $_REQUEST['aar'];
-                        // if($model == "") $model = "ukendt";
-                        // if($farve == "") $farve = "ukendt";
-                        // if($aar == "") $aar = -1;
-                        // if(is_numeric($bilid))
-                        // {
-                        //     $sql = $conn->prepare("update bil set model = ?, farve = ?, aar = ? where id = ?");
-                        //     $sql->bind_param("ssii", $model, $farve, $aar, $bilid);
-                        //     $sql->execute();
-                        // }
-                        echo "update";
+                        $id = $_REQUEST['id'];
+                        $task_title = $_REQUEST['task_title'];
+                        $priority = $_REQUEST['priority'];
+                        $status = $_REQUEST['status'];
+                        $deadline = $_REQUEST['deadline'];
+                        $updated_initials = $_REQUEST['updated_initials'];
+                        $comment = $_REQUEST['comment'];
+                        if(is_numeric($id) && is_integer(0 + $id))
+                        {
+                            if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                            {
+                                $sql = $conn->prepare("update tasks set task_title = ?, priority = ?, status = ?, deadline = ?, updated_initials = ?, comment = ? where id = ?");
+                                $sql->bind_param("ssssssi", $task_title, $priority, $status, $deadline, $updated_initials, $comment, $id);
+                                $sql->execute();
+                                $display_edit_task_pop_up = "none";
+                            }
+                        }
+                    }
+                    //delete
+                    if(str_contains($_REQUEST['knap'] , "delete"))
+                    {
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[1];
+                        if(is_numeric($id) && is_integer(0 + $id))
+                        {
+                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            {
+                                $_SESSION["bilTilDelete"] = $id;
+                                $display_delete_task_pop_up = "flex";
+                            }
+                        }
+                    }
+                    //Execute - confirm delete
+                    if($_REQUEST['knap'] == "execute")
+                    {
+                        //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede id forbliver det samme hvis siden genindlæses.
+                        $id = $_SESSION["bilTilDelete"];
+                        $sql = $conn->prepare("delete from tasks where id = ?");
+                        $sql->bind_param("i", $id);
+                        $sql->execute();
+                        $display_delete_task_pop_up = "none";
+                    }
+                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    if($_REQUEST['knap'] == "cancel")
+                    {
+                        $id = "";
+                        $task_title = "";
+                        $priority = "";
+                        $status = "";
+                        $deadline = "";
+                        $updated_initials = "";
+                        $comment = "";
+
+                        $display_edit_task_pop_up = "none";
+                        $display_delete_task_pop_up = "none";
+                        $display_create_task_pop_up = "none";
                     }
                 }
             ?>
-        <p>
-            <input type="submit" name="knap" value="up">
-        </p>
+            <p>
+                <input type="submit" name="knap" value="up">
+            </p>
 
 
-        <div class="task_list_page">
-            <button class="add_new_link" type="submit" name="knap" value="cr" style="width:80px"><img src="../img/kryds.png" alt="plus">Tilføj ny opgave</button>
-            <?php 
-                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
-                $sql = "select * from tasks";
-                $result = $conn->query($sql);
-                echo '<div class="task_list">';
-                    echo '<div class="task_list_header">';
-                        echo '<div class="task_mobile_headers">';
-                            echo '<p class="task_name_header">Opgave</p>';
-                        echo '</div>';
-                        echo '<div class="task_all_headers">';
-                            echo '<p class="task_prority_header">prioritet</p>';
-                            echo '<p class="task_status_header">Status</p>';
-                            echo '<p class="task_deadline_header">Deadline</p>';
-                            echo '<p class="task_updated_initials_header">Seneste</p>';
-                            echo '<p class="task_comment_header">Bemærkning</p>';
-                            echo '<p class="button_container_header">Rediger</p>';
-                        echo '</div>';
-                    echo '</div>';
-
-                    //if og while her 
-                    if($result->num_rows > 0)
-                    {
-                        while($row = $result->fetch_assoc())
-                        {
-                            echo '<div class="task_data_row">';
-                                echo '<div class="task_information"> ';
-                                    echo '<p class="task_name">' . $row["task_title"] . '</p>';
-                                echo '</div>';
-                                echo '<div class="task_dropdown_mobile">';
-                                    echo '<p class="dark_dropdown_table task_prority">' . $row["priority"] . '</p>';
-                                    echo '<p class="dark_dropdown_table task_status">' . $row["status"] . '</p>';
-                                    echo '<p class="dark_dropdown_table task_deadline">' . $row["deadline"] . '</p>';
-                                    echo '<p class="light_dropdown_table task_updated_initials">' . $row["updated_initials"] . '</p>';
-                                    echo '<p class="dark_dropdown_table task_comment">' . $row["comment"] . '</p>';
-                                echo '</div>';
-                                ?> 
-                            <div class="button_container">
-                                <button type="submit" name="knap" value="re">Re</button>
-                                <button type="submit" name="knap" value="ar">Ar</button>
-                                <button type="submit" name="knap" value="de">De</button>
-                            </div>
-                        <?php 
-
+            <div class="task_list_page">
+                <div class="add_new_link"><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny opgave"></div>
+                <?php 
+                    //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                    $sql = "select * from tasks";
+                    $result = $conn->query($sql);
+                    echo '<div class="task_list">';
+                        echo '<div class="task_list_header">';
+                            echo '<div class="task_mobile_headers">';
+                                echo '<p class="task_name_header">Opgave</p>';
                             echo '</div>';
-                        }   
-                    }
-                echo '</div>';
+                            echo '<div class="task_all_headers">';
+                                echo '<p class="task_prority_header">prioritet</p>';
+                                echo '<p class="task_status_header">Status</p>';
+                                echo '<p class="task_deadline_header">Deadline</p>';
+                                echo '<p class="task_updated_initials_header">Seneste</p>';
+                                echo '<p class="task_comment_header">Bemærkning</p>';
+                                echo '<p class="button_container_header">Rediger</p>';
+                            echo '</div>';
+                        echo '</div>';
+
+                        //if og while her 
+                        if($result->num_rows > 0)
+                        {
+                            while($row = $result->fetch_assoc())
+                            {
+                                echo '<div class="task_data_row">';
+                                    echo '<div class="task_information"> ';
+                                        echo '<p class="task_name">' . $row["task_title"] . '</p>';
+                                    echo '</div>';
+                                    echo '<div class="task_dropdown_mobile">';
+                                        echo '<p class="dark_dropdown_table task_prority">' . $row["priority"] . '</p>';
+                                        echo '<p class="dark_dropdown_table task_status">' . $row["status"] . '</p>';
+                                        echo '<p class="dark_dropdown_table task_deadline">' . $row["deadline"] . '</p>';
+                                        echo '<p class="light_dropdown_table task_updated_initials">' . $row["updated_initials"] . '</p>';
+                                        echo '<p class="dark_dropdown_table task_comment">' . $row["comment"] . '</p>';
+                                    echo '</div>';
+                                    ?> 
+                                <div class="button_container">
+                                    <input type="submit" name="knap" value="read_<?php echo $row['id'];?>">
+                                    <button type="submit" name="knap" value="re">Ar</button>
+                                    <input type="submit" name="knap" value="delete_<?php echo $row['id'];?>">
+                                </div>
+                            <?php 
+
+                                echo '</div>';
+                            }   
+                        }
+                    echo '</div>';
+                ?>
+            </div>
+
+        <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
+            <?php 
+            //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årsager
+                $conn->close();
             ?>
-        </div>
 
+            <!----------------------------
+                    Edit profile pop-op
+            ----------------------------->
+            <div class="pop_up_modal" style="display: <?php echo $display_edit_task_pop_up ?>">
+                <h3>Opdater opgave</h3>
+                <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
+                <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
+                <div class="pop-up-row"><p>status : </p><input type="text" name="status" value="<?php echo isset($status) ? $status : '' ?>"></div>
+                <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
+                <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_initials" value="<?php echo isset($updated_initials) ? $updated_initials : '' ?>"></div>
+                <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="cancel"  class="pop_up_cancel">
+                    <input type="submit" name="knap" value="update" class="pop_up_confirm">
+                </div>
+            </div>
 
+            <!---------------------------
+                Add new employee pop-up
+            ---------------------------->
+            <div class="pop_up_modal" style="display: <?php echo $display_create_task_pop_up ?>">
+                <h3>Tilføj ny opgave</h3>
+                id : <input type="text" name="id" value="<?php echo isset($id) ? $id : '' ?>">
+                <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
+                <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
+                <div class="pop-up-row"><p>status : </p><input type="text" name="status" value="<?php echo isset($status) ? $status : '' ?>"></div>
+                <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
+                <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_initials" value="<?php echo isset($updated_initials) ? $updated_initials : '' ?>"></div>
+                <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="create" class="pop_up_confirm">
+                </div>
+            </div>
 
+            <!------------------------
+                    delete pop up
+            ------------------------->
+            <div class="pop_up_modal" style="display: <?php echo $display_delete_task_pop_up ?>">
+                <h3>Slet opgave</h3>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="execute" class="pop_up_confirm">
+                </div>
+            </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </form>
 
 
 
@@ -213,7 +314,8 @@
 
 
     </div>
+
+
     <script src="../javaScript/navbars.js"></script>
 </body>
-
 </html>
