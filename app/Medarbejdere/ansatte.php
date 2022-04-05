@@ -77,6 +77,8 @@
                 $display_edit_employee_pop_up = "none";
                 $display_delete_employee_pop_up = "none";
                 $display_create_employee_pop_up = "none";
+
+
             ?>
 
             <?php
@@ -200,6 +202,10 @@
             <div class="profile_list">
                 <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny medarbejder"></div>
                 <?php 
+// FUNKTIONER
+                function open_close_employee_info() {
+                    echo "Hej";
+                }
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                     $sql = "select * from employees";
                     $result = $conn->query($sql);
@@ -225,18 +231,19 @@
                             {
                                 // $testercolor = "red";
                                 // style="border-left:4px solid $testercolor"
+                                //"' . $node. '"
                                 echo '<div class="employee_data_row" >';
-                                    echo '<div class="mobile_employee_information" onclick=open_close_employee_info()> ';
+                                    echo '<div class="mobile_employee_information" onclick="open_close_employee_info('. $row["id"] .', '. "'employee_dropdown_mobile'" .')"> ';
                                         echo '<p class="employee_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
                                         echo '<p class="employee_initials">' . $row["initials"] . '</p>';
                                     echo '</div>';
-                                    echo '<div class="employee_dropdown_mobile">';
+                                    echo '<div class="employee_dropdown_mobile" id="'. $row["id"] .'">';
                                         echo '<p class="dark_dropdown_table employee_phone">' . $row["phone"] . '</p>';
                                         echo '<p class="light_dropdown_table employee_phone">' . $row["phone_private"] . '</p>';
                                         echo '<p class="dark_dropdown_table employee_email">' . $row["email"] . '</p>';
                                         echo '<p class="light_dropdown_table employee_emergency">' . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</p>';
                                     echo '</div>';
-                                    ?> 
+                                ?>
                                 <div class="button_container">
                                     <input type="submit" name="knap" value="read_<?php echo $row['id'];?>">
                                     <input type="submit" name="knap" value="delete_<?php echo $row['id'];?>">
@@ -306,5 +313,6 @@
         </form>
     </div>
 
+    <script src="medarbejdere.js"></script>
 </body>
 </html>
