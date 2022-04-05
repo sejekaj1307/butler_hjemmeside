@@ -219,10 +219,10 @@
                         while($row = $result->fetch_assoc())
                         {
                             echo '<div class="external_data_row">';
-                                echo '<div class="mobile_external_information" onclick=open_close_employee_info()> ';
+                                echo '<div class="mobile_external_information" onclick="open_close_employee_info('. $row["id"] .', '. "'external_dropdown_mobile'" .')")> ';
                                     echo '<p class="external_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
                                 echo '</div>';
-                                echo '<div class="external_dropdown_mobile">';
+                                echo '<div class="external_dropdown_mobile" id="'. $row["id"] .'">';
                                     echo '<p class="dark_dropdown_table external_phone">' . $row["phone"] . '</p>';
                                     echo '<p class="light_dropdown_table external_phone">' . $row["phone_private"] . '</p>';
                                     echo '<p class="dark_dropdown_table external_email">' . $row["email"] . '</p>';
@@ -305,7 +305,7 @@
 
 
 
-
+    <script src="medarbejdere.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>
 

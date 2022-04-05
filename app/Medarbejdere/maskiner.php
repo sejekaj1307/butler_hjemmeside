@@ -215,10 +215,10 @@
                         while($row = $result->fetch_assoc())
                         {
                             echo '<div class="machine_data_row">';
-                                echo '<div class="machine_information" onclick=open_close_employee_info()> ';
+                                echo '<div class="machine_information" onclick="open_close_employee_info('. $row["id"] .', '. "'machine_dropdown_mobile'" .')">';
                                     echo '<p class="machine_name">' . $row["name"] . '</p>';
                                 echo '</div>';
-                                echo '<div class="machine_dropdown_mobile">';
+                                echo '<div class="machine_dropdown_mobile" id="'. $row["id"] .'">';
                                     echo '<p class="dark_dropdown_table machine_nordic_name">' . $row["name_nordic"] . '</p>';
                                     echo '<p class="light_dropdown_table machine_link">' . "<a href=" . $row['link'] . ">Link til BB hjemmeside</a>" . '</p>';
                                 echo '</div>';
@@ -288,7 +288,7 @@
     </div>
 
 
-
+    <script src="medarbejdere.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>
 
