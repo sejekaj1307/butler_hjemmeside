@@ -314,5 +314,6 @@
     </div>
 
     <script src="medarbejdere.js"></script>
+    <script src="../javaScript/navbars.js"></script>
 </body>
 </html>
