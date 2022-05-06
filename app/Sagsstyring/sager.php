@@ -14,7 +14,6 @@
 </head>
 
 <body>
-
     <!-- Navigationsbar -->
     <div class="navbar_container">
         <div class="navbar_top"><img src="../img/navbar-cross.png" alt="navbar cross" class="navbar_cross"></div>

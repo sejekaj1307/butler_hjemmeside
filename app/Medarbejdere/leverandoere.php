@@ -1,6 +1,7 @@
 <?php 
+    session_start();     
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
-    session_start(); 
+    
 ?>
 
 <!DOCTYPE html>
@@ -90,12 +91,12 @@
             //create, køres hvis "create button" bliver requested
             if($_REQUEST['knap'] == "create")
             {
-                $id = $_REQUEST['id'];
-                $first_name = $_REQUEST['first_name'];
-                $phone = $_REQUEST['phone'];
-                $address = $_REQUEST['address'];
-                $email = $_REQUEST['email'];
-                $product = $_REQUEST['product'];
+                $id = $_REQUEST['id_c'];
+                $first_name = $_REQUEST['first_name_c'];
+                $phone = $_REQUEST['phone_c'];
+                $address = $_REQUEST['address_c'];
+                $email = $_REQUEST['email_c'];
+                $product = $_REQUEST['product_c'];
                 if(is_numeric($id) && is_integer(0 + $id)) 
                 {
                     if(!findes($id, $conn)) //opret ny klub
@@ -131,6 +132,26 @@
                     }
                 }
             }
+            //update
+            if($_REQUEST['knap'] == "update") 
+            {
+                $id = $_REQUEST['id_u'];
+                $first_name = $_REQUEST['first_name_u'];
+                $phone = $_REQUEST['phone_u'];
+                $address = $_REQUEST['address_u'];
+                $email = $_REQUEST['email_u'];
+                $product = $_REQUEST['product_u'];
+                if(is_numeric($id) && is_integer(0 + $id))
+                {
+                    if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                    {
+                        $sql = $conn->prepare("update suppliers set first_name = ?, phone = ?, address = ?, email = ?, product = ? where id = ?");
+                        $sql->bind_param("sssssi", $first_name, $phone, $address, $email, $product, $id);
+                        $sql->execute();
+                        $display_edit_supplier_pop_up = "none";
+                    }
+                }
+            }
             //delete
             if(str_contains($_REQUEST['knap'] , "delete"))
             {
@@ -141,27 +162,7 @@
                     if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                     {
                         $_SESSION["bilTilDelete"] = $id;
-                        $display_delete_supplier_pop_up = "none";
-                    }
-                }
-            }
-            //update
-            if($_REQUEST['knap'] == "update") 
-            {
-                $id = $_REQUEST['id'];
-                $first_name = $_REQUEST['first_name'];
-                $phone = $_REQUEST['phone'];
-                $address = $_REQUEST['address'];
-                $email = $_REQUEST['email'];
-                $product = $_REQUEST['product'];
-                if(is_numeric($id) && is_integer(0 + $id))
-                {
-                    if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
-                    {
-                        $sql = $conn->prepare("update suppliers set first_name = ?, phone = ?, address = ?, email = ?, product = ? where id = ?");
-                        $sql->bind_param("sssssi", $first_name, $phone, $address, $email, $product, $id);
-                        $sql->execute();
-                        $display_edit_supplier_pop_up = "none";
+                        $display_delete_supplier_pop_up = "flex";
                     }
                 }
             }
@@ -254,11 +255,12 @@
             ----------------------------->
             <div class="pop_up_modal" style="display: <?php echo $display_edit_supplier_pop_up ?>">
                 <h3>Opdater ekstern</h3>
-                <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
-                <div class="pop-up-row"><p>phone : </p><input type="text" name="phone" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
-                <div class="pop-up-row"><p>Adresse : </p><input type="text" name="address" value="<?php echo isset($address) ? $address : '' ?>"></div>
-                <div class="pop-up-row"><p>Email : </p><input type="text" name="email" value="<?php echo isset($email) ? $email : '' ?>"></div>
-                <div class="pop-up-row"><p>Kontakt type : </p><input type="text" name="product" value="<?php echo isset($product) ? $product : '' ?>"></div>
+                id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
+                <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
+                <div class="pop-up-row"><p>Adresse : </p><input type="text" name="address_u" value="<?php echo isset($address) ? $address : '' ?>"></div>
+                <div class="pop-up-row"><p>Email : </p><input type="text" name="email_u" value="<?php echo isset($email) ? $email : '' ?>"></div>
+                <div class="pop-up-row"><p>Kontakt type : </p><input type="text" name="product_u" value="<?php echo isset($product) ? $product : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="cancel"  class="pop_up_cancel" >
                     <input type="submit" name="knap" value="update" class="pop_up_confirm">
@@ -270,12 +272,12 @@
             ---------------------------->
             <div class="pop_up_modal" style="display: <?php echo $display_create_supplier_pop_up ?>">
                 <h3>Tilføj ny ekstern</h3>
-                id : <input type="text" name="id" value="<?php echo isset($id) ? $id : '' ?>">
-                <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
-                <div class="pop-up-row"><p>phone : </p><input type="text" name="phone" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
-                <div class="pop-up-row"><p>Adresse : </p><input type="text" name="address" value="<?php echo isset($address) ? $address : '' ?>"></div>
-                <div class="pop-up-row"><p>Email : </p><input type="text" name="email" value="<?php echo isset($email) ? $email : '' ?>"></div>
-                <div class="pop-up-row"><p>Kontakt type : </p><input type="text" name="product" value="<?php echo isset($product) ? $product : '' ?>"></div>
+                id : <input type="text" name="id_c" value="<?php echo isset($id) ? $id : '' ?>">
+                <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_c" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
+                <div class="pop-up-row"><p>Adresse : </p><input type="text" name="address_c" value="<?php echo isset($address) ? $address : '' ?>"></div>
+                <div class="pop-up-row"><p>Email : </p><input type="text" name="email_c" value="<?php echo isset($email) ? $email : '' ?>"></div>
+                <div class="pop-up-row"><p>Kontakt type : </p><input type="text" name="product_c" value="<?php echo isset($product) ? $product : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="cancel"  class="pop_up_cancel" >
                     <input type="submit" name="knap" value="create" class="pop_up_confirm">

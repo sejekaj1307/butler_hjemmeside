@@ -131,6 +131,7 @@
                                 $phone_private = $row['phone_private'];
                                 $email = $row['email'];
                                 $emergency_name = $row['emergency_name'];
+
                                 $display_edit_employee_pop_up = "flex";
                             }
                         }
@@ -146,7 +147,6 @@
                         $email = $_REQUEST['email_u'];
                         $emergency_name = $_REQUEST['emergency_name_u'];
 
-                        // $display_edit_employee_pop_up = "none";
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
                             if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
@@ -266,7 +266,7 @@
             <div class="pop_up_modal" style="display: <?php echo $display_edit_employee_pop_up ?>">
                 <h3>Opdater medarbejderprofil</h3>
                 id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
-                <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                <div class="pop-up-row"><p>Navn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
                 <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials_u" value="<?php echo isset($initials) ? $initials : '' ?>"></div>
                 <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
                 <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private_u" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
