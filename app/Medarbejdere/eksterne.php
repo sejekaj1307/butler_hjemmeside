@@ -85,7 +85,7 @@
                 $display_create_external_pop_up = "flex";
             }
             //create, køres hvis "create button" bliver requested
-            if($_REQUEST['knap'] == "create")
+            if($_REQUEST['knap'] == "Opret ny")
             {
                 $id = $_REQUEST['id_c'];
                 $first_name = $_REQUEST['first_name_c'];
@@ -129,7 +129,7 @@
                 }
             }
             //update
-            if($_REQUEST['knap'] == "update") 
+            if($_REQUEST['knap'] == "Opdater") 
             {
                 $id = $_REQUEST['id_u'];
                 $first_name = $_REQUEST['first_name_u'];
@@ -163,7 +163,7 @@
                 }
             }
             //Execute - confirm delete
-            if($_REQUEST['knap'] == "execute")
+            if($_REQUEST['knap'] == "Slet")
             {
                 //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede id forbliver det samme hvis siden genindlæses.
                 //Vi skal have fat i bilid, men vi kan ikke længere bruge den tidligere variabel. Vi skal sikre at brugeren ikke har ændret tallet i mellemtiden
@@ -174,7 +174,7 @@
                 $display_delete_external_pop_up = "none";                
             }
             //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
-            if($_REQUEST['knap'] == "cancel")
+            if($_REQUEST['knap'] == "Annuller")
             {
                 $id = "";
                 $first_name = "";
@@ -261,8 +261,8 @@
             <div class="pop-up-row"><p>Email : </p><input type="text" name="email_u" value="<?php echo isset($email) ? $email : '' ?>"></div>
             <div class="pop-up-row"><p>Kontakt type : </p><input type="text" name="contact_type_u" value="<?php echo isset($contact_type) ? $contact_type : '' ?>"></div>
             <div class="pop-up-btn-container">
-                <input type="submit" name="knap" value="cancel"  class="pop_up_cancel" >
-                <input type="submit" name="knap" value="update" class="pop_up_confirm">
+                <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel" >
+                <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
             </div>
         </div>
 
@@ -278,8 +278,8 @@
             <div class="pop-up-row"><p>Email : </p><input type="text" name="email_c" value="<?php echo isset($email) ? $email : '' ?>"></div>
             <div class="pop-up-row"><p>Kontakt type : </p><input type="text" name="contact_type_c" value="<?php echo isset($contact_type) ? $contact_type : '' ?>"></div>
             <div class="pop-up-btn-container">
-                <input type="submit" name="knap" value="cancel"  class="pop_up_cancel" >
-                <input type="submit" name="knap" value="create" class="pop_up_confirm">
+                <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel" >
+                <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
             </div>
         </div>
 
@@ -289,8 +289,8 @@
             <div class="pop_up_modal" style="display: <?php echo $display_delete_external_pop_up ?>">
                 <h3>Slet ekstern</h3>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel"  >
-                    <input type="submit" name="knap" value="execute" class="pop_up_confirm"  >
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel"  >
+                    <input type="submit" name="knap" value="Slet" class="pop_up_confirm"  >
                 </div>
             </div>
         </form>
