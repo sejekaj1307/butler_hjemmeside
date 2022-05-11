@@ -87,7 +87,7 @@
                     $display_create_machine_pop_up = "flex";
                 }
                 //create, køres hvis "create button" bliver requested
-                if($_REQUEST['knap'] == "create")
+                if($_REQUEST['knap'] == "Opret ny")
                 {
                     $id = $_REQUEST['id_c'];
                     $name = $_REQUEST['name_c'];
@@ -127,7 +127,7 @@
                     } 
                 }
                 //update
-                if($_REQUEST['knap'] == "update") 
+                if($_REQUEST['knap'] == "Opdater") 
                 {
                     $id = $_REQUEST['id_u'];
                     $name = $_REQUEST['name_u'];
@@ -158,7 +158,7 @@
                     }
                 }
                 //Execute - confirm delete
-                if($_REQUEST['knap'] == "execute")
+                if($_REQUEST['knap'] == "Slet")
                 {
                     //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede id forbliver det samme hvis siden genindlæses.
                     $id = $_SESSION["maskineTilDelete"];
@@ -168,7 +168,7 @@
                     $display_delete_machine_pop_up = "none";
                 }
                 //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
-                if($_REQUEST['knap'] == "cancel")
+                if($_REQUEST['knap'] == "Annuller")
                 {
                     $id = "";
                     $name = "";
@@ -249,8 +249,8 @@
                 <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_u" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
                 <div class="pop-up-row"><p>Link : </p><input type="text" name="link_u" value="<?php echo isset($link) ? $link : '' ?>"></div>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel"  class="pop_up_cancel">
-                    <input type="submit" name="knap" value="update" class="pop_up_confirm">
+                    <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
                 </div>
             </div>
 
@@ -264,8 +264,8 @@
                 <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_c" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
                 <div class="pop-up-row"><p>Link : </p><input type="text" name="link_c" value="<?php echo isset($link) ? $link : '' ?>"></div>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="create" class="pop_up_confirm">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
                 </div>
             </div>
 
@@ -275,8 +275,8 @@
             <div class="pop_up_modal" style="display: <?php echo $display_delete_machine_pop_up ?>">
                 <h3>Slet medarbejder</h3>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="execute" class="pop_up_confirm">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
                 </div>
             </div>
         </form>
