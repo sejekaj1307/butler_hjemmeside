@@ -16,23 +16,20 @@
 <body>
 
     <!-- Navigationsbar -->
+    <!-- Navigationsbar -->
     <div class="navbar_container">
         <div class="navbar_top"><img src="../img/navbar-cross.png" alt="navbar cross" class="navbar_cross"></div>
         <div class="navbar_mid"></div>
         <ul class="navbar_ul">
-            <div>
-                <li><a href="../Profil/profil.php">Profil</a></li>
-                <li><a href="../Medarbejdere/ansatte.php">Medarbejder</a></li>
-                <li><a href="../Kalender/kalender-maskiner.php">Kalender</a></li>
-                <li><a href="../Sagsstyring/sager.php" class="active-main-site">Sagsstyring</a></li>
-                <li><a href="../Tidsregistrering/tidsregistrering.php">Tidsregistrering</a></li>
-                <li><a href="../Opgaver/fejl-og-mangler.php">Opgaver</a></li>
-                <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
-            </div>
-            <div class="log_out_container">
-                <li><a href="../index.php">Log ud</a></li>
-            </div>
+            <li><a href="../Profil/profil.php">Profil</a></li>
+            <li><a href="../Medarbejdere/ansatte.php">Medarbejder</a></li>
+            <li><a href="../Kalender/kalender-maskiner.php">Kalender</a></li>
+            <li><a href="../Sagsstyring/sager.php" class="active-main-site">Sagsstyring</a></li>
+            <li><a href="../Tidsregistrering/tidsregistrering.php">Tidsregistrering</a></li>
+            <li><a href="../Opgaver/fejl-og-mangler.php">Opgaver</a></li>
+            <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
         </ul>
+        <div class="log_out_container"><a href="../index.php">Log ud</a></div>
     </div>
 
     <!-- Masthead -->
@@ -64,81 +61,12 @@
             //har vi en post? har serveren en request?
             if($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                //read
-                if($_REQUEST['knap'] == "re")
-                {
-                    // $bilid = $_REQUEST['bilid'];
-                    // if(is_numeric($bilid))
-                    // {
-                    //     $sql = $conn->prepare( "select * from bil where id = ?");
-                    //     $sql->bind_param("i", $bilid); //i står for integar
-                    //     $sql->execute();
-                    //     $result = $sql->get_result();
-                    //     $row = $result->fetch_assoc();
-                    //     $bilid = $row['id'];
-                    //     $model = $row['model'];
-                    //     $farve = $row['farve'];
-                    //     $aar = $row['aar'];
-                    // } 
-                    echo "Read";
-                }
-                //create
-                if($_REQUEST['knap'] == "cr")
-                {
-                    // $bilid = $_REQUEST['bilid'];
-                    // $model = $_REQUEST['model'];
-                    // $farve = $_REQUEST['farve'];
-                    // $aar = $_REQUEST['aar'];
-                    // if($model == "") $model = "ukendt";
-                    // if($farve == "") $farve = "ukendt";
-                    // if($aar == "") $aar = -1;
-                    // if(is_numeric($bilid))
-                    // {
-                    //     $sql = $conn->prepare("insert into bil (id, mode, farve, aar) values (?, ?, ?, ?)");
-                    //     $sql->bind_param("issi", $bilid, $model, $farve, $aar);
-                    //     $sql->execute();
-                    // }
-                    echo "Create";
-                }
-                //delete
-                if($_REQUEST['knap'] == "de")
-                {
-                    // $bilid = $_REQUEST['delete'];
-                    // if(is_numeric($bilid))
-                    // {
-                    //     $sql = $conn->prepare("delete from bil where id = ?");
-                    //     $sql->bins_param("i", $bilid);
-                    //     $sql->execute();
-                    // }
-                    echo "delete";
-                }
-                //update
-                if($_REQUEST['knap'] == "up")
-                {
-                    // $bilid = $_REQUEST['bilid'];
-                    // $model = $_REQUEST['model'];
-                    // $farve = $_REQUEST['farve'];
-                    // $aar = $_REQUEST['aar'];
-                    // if($model == "") $model = "ukendt";
-                    // if($farve == "") $farve = "ukendt";
-                    // if($aar == "") $aar = -1;
-                    // if(is_numeric($bilid))
-                    // {
-                    //     $sql = $conn->prepare("update bil set model = ?, farve = ?, aar = ? where id = ?");
-                    //     $sql->bind_param("ssii", $model, $farve, $aar, $bilid);
-                    //     $sql->execute();
-                    // }
-                    echo "update";
-                }
+                
             }
         ?>
-    <p>
-        <input type="submit" name="knap" value="up">
-    </p>
 
 
         <div class="case_list_page">
-            <button class="add_new_link" type="submit" name="knap" value="cr" style="width:80px"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                 $sql = "select * from cases";
@@ -176,8 +104,7 @@
                                 echo '</div>';
                                 ?> 
                             <div class="button_container">
-                                <button type="submit" name="knap" value="re">Re</button>
-                                <button type="submit" name="knap" value="de">De</button>
+                                <button type="submit" name="knap" value="re">UA</button>
                             </div>
                         <?php 
 
