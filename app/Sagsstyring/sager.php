@@ -1,4 +1,7 @@
 <?php 
+    //session start
+    session_start(); 
+    //Forbindelse til database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
 ?>
 
@@ -53,84 +56,149 @@
 ------------------------------ -->
     <form action="sager.php" method="post">
         <?php
-            //har vi en post? har serveren en request?
-            if($_SERVER['REQUEST_METHOD'] === 'POST')
+            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+            function findes($id, $c)
             {
-                //read
-                if($_REQUEST['knap'] == "re")
+                $sql = $c->prepare("select * from cases where id = ?");
+                $sql->bind_param("i", $id);
+                $sql->execute();
+                $result = $sql->get_result();
+                if($result->num_rows > 0)
                 {
-                    // $bilid = $_REQUEST['bilid'];
-                    // if(is_numeric($bilid))
-                    // {
-                    //     $sql = $conn->prepare( "select * from bil where id = ?");
-                    //     $sql->bind_param("i", $bilid); //i står for integar
-                    //     $sql->execute();
-                    //     $result = $sql->get_result();
-                    //     $row = $result->fetch_assoc();
-                    //     $bilid = $row['id'];
-                    //     $model = $row['model'];
-                    //     $farve = $row['farve'];
-                    //     $aar = $row['aar'];
-                    // } 
-                    echo "Read";
+                    return true;
                 }
-                //create
-                if($_REQUEST['knap'] == "cr")
+                else 
                 {
-                    // $bilid = $_REQUEST['bilid'];
-                    // $model = $_REQUEST['model'];
-                    // $farve = $_REQUEST['farve'];
-                    // $aar = $_REQUEST['aar'];
-                    // if($model == "") $model = "ukendt";
-                    // if($farve == "") $farve = "ukendt";
-                    // if($aar == "") $aar = -1;
-                    // if(is_numeric($bilid))
-                    // {
-                    //     $sql = $conn->prepare("insert into bil (id, mode, farve, aar) values (?, ?, ?, ?)");
-                    //     $sql->bind_param("issi", $bilid, $model, $farve, $aar);
-                    //     $sql->execute();
-                    // }
-                    echo "Create";
-                }
-                //delete
-                if($_REQUEST['knap'] == "de")
-                {
-                    // $bilid = $_REQUEST['delete'];
-                    // if(is_numeric($bilid))
-                    // {
-                    //     $sql = $conn->prepare("delete from bil where id = ?");
-                    //     $sql->bins_param("i", $bilid);
-                    //     $sql->execute();
-                    // }
-                    echo "delete";
-                }
-                //update
-                if($_REQUEST['knap'] == "up")
-                {
-                    // $bilid = $_REQUEST['bilid'];
-                    // $model = $_REQUEST['model'];
-                    // $farve = $_REQUEST['farve'];
-                    // $aar = $_REQUEST['aar'];
-                    // if($model == "") $model = "ukendt";
-                    // if($farve == "") $farve = "ukendt";
-                    // if($aar == "") $aar = -1;
-                    // if(is_numeric($bilid))
-                    // {
-                    //     $sql = $conn->prepare("update bil set model = ?, farve = ?, aar = ? where id = ?");
-                    //     $sql->bind_param("ssii", $model, $farve, $aar, $bilid);
-                    //     $sql->execute();
-                    // }
-                    echo "update";
+                    return false;
                 }
             }
+            //variables to show or hide pop-up modals
+            $display_edit_case_pop_up = "none";
+            $display_delete_case_pop_up = "none";
+            $display_create_case_pop_up = "none";
+
+
         ?>
-        <p>
-            <input type="submit" name="knap" value="up">
-        </p>
+            <?php
+                // CRUD, create, read, update, delete - og confirm og cancel knap til delete
+                if($_SERVER['REQUEST_METHOD'] === 'POST')
+                {
+                    //create, køres hvis "Tilføj ny medarbejder" bliver requested
+                    if($_REQUEST['knap'] == "Opret ny sag")
+                    {
+                        $display_create_case_pop_up = "flex";
+                    }
+                    //create, køres hvis "create button" bliver requested
+                    if($_REQUEST['knap'] == "create")
+                    {
+                        $id = $_REQUEST['id_c'];
+                        $case_nr = $_REQUEST['case_nr_c'];
+                        $case_responsible = $_REQUEST['case_responsible_c'];
+                        $status = $_REQUEST['status_c'];
+                        $location = $_REQUEST['location_c'];
+                        $est_start_date = $_REQUEST['est_start_date_c'];
+                        $est_end_date = $_REQUEST['est_end_date_c'];
+                        if(is_numeric($id) && is_integer(0 + $id)) 
+                        {
+                            if(!findes($id, $conn)) //opret ny klub
+                            {
+                                $sql = $conn->prepare("insert into cases (id, case_nr, case_responsible, status, location, est_start_date, est_end_date) values (?, ?, ?, ?, ?, ?, ?)");
+                                $sql->bind_param("issssss", $id, $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date);
+                                $sql->execute();
+                            }
+                        } 
+                    }
+                    //read, koden køres hvis "read button" bliver requested 
+                    if(str_contains($_REQUEST['knap'] , "read"))
+                    {
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[1];
+                        if(is_numeric($id) && is_numeric(0 + $id))
+                        {
+                            $sql = $conn->prepare( "select * from cases where id = ?");
+                            $sql->bind_param("i", $id); 
+                            $sql->execute();
+                            $result = $sql->get_result();
+                            if($result->num_rows > 0) 
+                            {
+                                $row = $result->fetch_assoc();
+                                $id = $row['id'];
+                                $case_nr = $row['case_nr'];
+                                $case_responsible = $row['case_responsible'];
+                                $status = $row['status'];
+                                $location = $row['location'];
+                                // $est_start_date = $row['est_start_date'];
+                                // $est_end_date = $row['est_end_date'];
+
+                                $display_edit_case_pop_up = "flex";
+                            }
+                        }
+                    }
+                    //update
+                    if($_REQUEST['knap'] == "Opdater") 
+                    {
+                        $id = $_REQUEST['id_u'];
+                        $case_nr = $_REQUEST['case_nr_u'];
+                        $case_responsible = $_REQUEST['case_responsible_u'];
+                        $status = $_REQUEST['status_u'];
+                        $location = $_REQUEST['location_u'];
+                        // $est_start_date = $_REQUEST['est_start_date_u'];
+                        // $est_end_date = $_REQUEST['est_end_date_u'];
+
+                        if(is_numeric($id) && is_integer(0 + $id))
+                        {
+                            if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                            {
+                                $sql = $conn->prepare("update cases set case_nr = ?, case_responsible = ?, status = ?, location = ? where id = ?");
+                                $sql->bind_param("ssssi", $case_nr, $case_responsible, $status, $location, $id);
+                                $sql->execute();    
+                            }
+                        }
+                    }
+                    //delete
+                    if(str_contains($_REQUEST['knap'] , "delete"))
+                    {
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[1];
+                        if(is_numeric($id) && is_integer(0 + $id))
+                        {
+                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            {
+                                $_SESSION["bilTilDelete"] = $id;
+                                $display_delete_case_pop_up = "flex";
+                            }
+                        }
+                    }
+                    //Execute - confirm delete
+                    if($_REQUEST['knap'] == "Slet")
+                    {
+                        $id = $_SESSION["bilTilDelete"];
+                        $sql = $conn->prepare("delete from cases where id = ?");
+                        $sql->bind_param("i", $id);
+                        $sql->execute();
+                        $display_delete_case_pop_up = "none";
+                        
+                    }
+                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    if($_REQUEST['knap'] == "Annuller")
+                    {
+                        $id = "";
+                        $case_nr = "";
+                        $case_responsible = "";
+                        $status = "";
+                        $location = "";
+                        $est_start_date = "";
+                        $est_end_date = "";
+                        $display_delete_case_pop_up = "none";
+                        $display_create_case_pop_up = "none";
+                        $display_edit_case_pop_up = "none";
+                    }
+                }
+            ?>
 
 
         <div class="case_list_page">
-            <button class="add_new_link" type="submit" name="knap" value="cr" style="width:80px"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
+            <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny sag"></div>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                 $sql = "select * from cases";
@@ -169,8 +237,8 @@
                                 echo '</div>';
                                 ?> 
                             <div class="button_container">
-                                <button type="submit" name="knap" value="re">Re</button>
-                                <button type="submit" name="knap" value="de">De</button>
+                                <input type="submit" name="knap" value="read_<?php echo $row['id'];?>">
+                                <input type="submit" name="knap" value="delete_<?php echo $row['id'];?>">
                             </div>
                         <?php 
 
@@ -184,28 +252,56 @@
         <?php 
         //Man skal huske at slukke for forbindelsen. Det er ikke så vigtigt i små programmer, men vi gør det for en god ordens skyld
             $conn->close();
-        
         ?>
 
+        <!----------------------------
+                Edit profile pop-op
+        ----------------------------->
+        <div class="pop_up_modal" style="display: <?php echo $display_edit_case_pop_up ?>">
+            <h3>Opdater sag</h3>
+            id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
+            <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_u" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
+            <div class="pop-up-row"><p>Ansvarlig : </p><input type="text" name="case_responsible_u" value="<?php echo isset($case_responsible) ? $case_responsible : '' ?>"></div>
+            <div class="pop-up-row"><p>Status : </p><input type="text" name="status_u" value="<?php echo isset($status) ? $status : '' ?>"></div>
+            <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
+            <div class="pop-up-row"><p>Startdato : </p><input type="text" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
+            <div class="pop-up-row"><p>Deadline : </p><input type="text" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
+            <div class="pop-up-btn-container">
+                <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+            </div>
+        </div>
 
+        <!---------------------------
+            Add new case pop-up
+        ---------------------------->
+        <div class="pop_up_modal" style="display: <?php echo $display_create_case_pop_up ?>">
+            <h3>Opret ny sag</h3>
+            id : <input type="text" name="id_c" value="<?php echo isset($id) ? $id : '' ?>">
+            <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_c" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
+            <div class="pop-up-row"><p>Ansvarlig : </p><input type="text" name="case_responsible_c" value="<?php echo isset($case_responsible) ? $case_responsible : '' ?>"></div>
+            <div class="pop-up-row"><p>Status : </p><input type="text" name="status_c" value="<?php echo isset($status) ? $status : '' ?>"></div>
+            <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
+            <div class="pop-up-row"><p>Startdato : </p><input type="text" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
+            <div class="pop-up-row"><p>Deadline : </p><input type="text" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
+            <div class="pop-up-btn-container">
+                <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+            </div>
+        </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <!------------------------
+                delete pop up
+        ------------------------->
+        <div class="pop_up_modal" style="display: <?php echo $display_delete_case_pop_up ?>">
+            <h3>Slet sag</h3>
+            <div class="pop-up-btn-container">
+                <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
+                <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+            </div>
+        </div>
+        
+    </form>
 
 
 

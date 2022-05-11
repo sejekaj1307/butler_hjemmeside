@@ -1,9 +1,9 @@
-<!-- Start session -->
-<?php session_start(); ?>
-<!-- Forbindelse til database -->
-    <?php 
-        $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
-    ?>
+<?php 
+    //session start
+    session_start(); 
+    //Forbindelse til database
+    $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -225,9 +225,6 @@
                         {
                             while($row = $result->fetch_assoc())
                             {
-                                // $testercolor = "red";
-                                // style="border-left:4px solid $testercolor"
-                                //"' . $node. '"
                                 echo '<div class="employee_data_row" >';
                                     echo '<div class="mobile_employee_information" onclick="open_close_employee_info('. $row["id"] .', '. "'employee_dropdown_mobile'" .')"> ';
                                         echo '<p class="employee_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
