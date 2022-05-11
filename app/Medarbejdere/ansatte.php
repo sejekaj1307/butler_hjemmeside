@@ -91,7 +91,7 @@
                         $display_create_employee_pop_up = "flex";
                     }
                     //create, køres hvis "create button" bliver requested
-                    if($_REQUEST['knap'] == "create")
+                    if($_REQUEST['knap'] == "Opret ny")
                     {
                         $id = $_REQUEST['id_c'];
                         $first_name = $_REQUEST['first_name_c'];
@@ -137,7 +137,7 @@
                         }
                     }
                     //update
-                    if($_REQUEST['knap'] == "update") 
+                    if($_REQUEST['knap'] == "Opdater") 
                     {
                         $id = $_REQUEST['id_u'];
                         $first_name = $_REQUEST['first_name_u'];
@@ -158,7 +158,7 @@
                         }
                     }
                     //delete
-                    if(str_contains($_REQUEST['knap'] , "delete"))
+                    if(str_contains($_REQUEST['knap'] , "slet"))
                     {
                         $split = explode("_", $_REQUEST['knap']);
                         $id = $split[1];
@@ -172,7 +172,7 @@
                         }
                     }
                     //Execute - confirm delete
-                    if($_REQUEST['knap'] == "execute")
+                    if($_REQUEST['knap'] == "Slet")
                     {
                         $id = $_SESSION["bilTilDelete"];
                         $sql = $conn->prepare("delete from employees where id = ?");
@@ -182,7 +182,7 @@
                         
                     }
                     //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
-                    if($_REQUEST['knap'] == "cancel")
+                    if($_REQUEST['knap'] == "Annuller")
                     {
                         $id = "";
                         $first_name = "";
@@ -239,7 +239,7 @@
                                 ?>
                                 <div class="button_container">
                                     <input type="submit" name="knap" value="read_<?php echo $row['id'];?>">
-                                    <input type="submit" name="knap" value="delete_<?php echo $row['id'];?>">
+                                    <input type="submit" name="knap" value="slet_<?php echo $row['id'];?>">
                                 </div>
                             <?php 
 
@@ -270,8 +270,8 @@
                 <div class="pop-up-row"><p>Email : </p><input type="text" name="email_u" value="<?php echo isset($email) ? $email : '' ?>"></div>
                 <div class="pop-up-row"><p>Emergency : </p><input type="text" name="emergency_name_u" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="update" class="pop_up_confirm">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
                 </div>
             </div>
 
@@ -288,8 +288,8 @@
                 <div class="pop-up-row"><p>Email : </p><input type="text" name="email_c" value="<?php echo isset($email) ? $email : '' ?>"></div>
                 <div class="pop-up-row"><p>Emergency : </p><input type="text" name="emergency_name_c" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="create" class="pop_up_confirm">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
                 </div>
             </div>
 
@@ -299,8 +299,8 @@
             <div class="pop_up_modal" style="display: <?php echo $display_delete_employee_pop_up ?>">
                 <h3>Slet medarbejder</h3>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="execute" class="pop_up_confirm">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
                 </div>
             </div>
             
