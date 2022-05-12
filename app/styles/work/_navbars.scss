@@ -171,6 +171,7 @@
     .navbar_container {
         width: $nav_with-s;
         display: block;
+        position: fixed;
         height: 100vh;
         .navbar_top {
             height: $logged-in-height-s;

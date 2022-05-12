@@ -722,6 +722,7 @@
   .navbar_container {
     width: 22vw;
     display: block;
+    position: fixed;
     height: 100vh;
   }
   .navbar_container .navbar_top {
