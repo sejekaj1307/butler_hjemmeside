@@ -202,6 +202,8 @@
             <div class="profile_list">
                 <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny medarbejder"></div>
                 <?php 
+
+
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                     $sql = "select * from employees";
                     $result = $conn->query($sql);
@@ -226,7 +228,7 @@
                             while($row = $result->fetch_assoc())
                             {
                                 echo '<div class="employee_data_row" >';
-                                    echo '<div class="mobile_employee_information" onclick="open_close_employee_info('. $row["id"] .', '. "'employee_dropdown_mobile'" .')"> ';
+                                    echo '<div class="mobile_employee_information" onclick="open_close_employee_info('. $row["id"] .', '. "'employee_dropdown_mobile'" .') " style="border-left: 5px solid' . $row['colour'] . '">  ';
                                         echo '<p class="employee_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
                                         echo '<p class="employee_initials">' . $row["initials"] . '</p>';
                                     echo '</div>';

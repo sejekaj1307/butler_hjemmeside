@@ -92,7 +92,7 @@
                         $display_create_task_pop_up = "flex";
                     }
                     //create, køres hvis "create button" bliver requested
-                    if($_REQUEST['knap'] == "create")
+                    if($_REQUEST['knap'] == "Opret ny")
                     {
                         $id = $_REQUEST['id_c'];
                         $task_title = $_REQUEST['task_title_c'];
@@ -138,7 +138,7 @@
                         } 
                     }
                     //update
-                    if($_REQUEST['knap'] == "update")
+                    if($_REQUEST['knap'] == "Opdater")
                     {
                         $id = $_REQUEST['id_u'];
                         $task_title = $_REQUEST['task_title_u'];
@@ -173,7 +173,7 @@
                         }
                     }
                     //Execute - confirm delete
-                    if($_REQUEST['knap'] == "execute")
+                    if($_REQUEST['knap'] == "Slet")
                     {
                         //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede id forbliver det samme hvis siden genindlæses.
                         $id = $_SESSION["bilTilDelete"];
@@ -183,7 +183,7 @@
                         $display_delete_task_pop_up = "none";
                     }
                     //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
-                    if($_REQUEST['knap'] == "cancel")
+                    if($_REQUEST['knap'] == "Annuller")
                     {
                         $id = "";
                         $task_title = "";
@@ -272,8 +272,8 @@
                 <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_initials_u" value="<?php echo isset($updated_initials) ? $updated_initials : '' ?>"></div>
                 <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel"  class="pop_up_cancel">
-                    <input type="submit" name="knap" value="update" class="pop_up_confirm">
+                    <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
                 </div>
             </div>
 
@@ -290,8 +290,8 @@
                 <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_initials_c" value="<?php echo isset($updated_initials) ? $updated_initials : '' ?>"></div>
                 <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="create" class="pop_up_confirm">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
                 </div>
             </div>
 
@@ -301,8 +301,8 @@
             <div class="pop_up_modal" style="display: <?php echo $display_delete_task_pop_up ?>">
                 <h3>Slet opgave</h3>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="cancel" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="execute" class="pop_up_confirm">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
                 </div>
             </div>
 

@@ -219,12 +219,13 @@
                         echo '</div>';
                     echo '</div>';
 
+                    $statusColor = '#345643';
                     //if og while her 
                     if($result->num_rows > 0)
                     {
                         while($row = $result->fetch_assoc())
                         {
-                            echo '<div class="case_data_row">';
+                            echo '<div class="case_data_row" style="border-left: 5px solid' . $statusColor . '">';
                                 echo '<div class="case_information"> ';
                                     echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
                                     echo '<p class="dark_dropdown_table case_responsible">' . $row["case_responsible"] . '</p>';
