@@ -8,7 +8,6 @@
 
 .time_registration, .profile_list, .calender_container, .task_list_page, .archived_case_list_page, .case_list_page, .in_house_time {
     width: $page-content-width;
-    border: 1px solid #878787;
     margin: 50px auto;
 }
 
@@ -90,6 +89,8 @@
         }
     }
     .employee_data_row, .external_data_row, .machine_data_row, .case_data_row, .task_data_row {
+            border-left: 1px solid #bdbdbd;
+            border-right: 1px solid #bdbdbd;
         .mobile_employee_information, .mobile_external_information, .machine_information, .case_information, .task_information { //Den øverste bar, som kan ses af data, f.eks. Ibsen, Steen - Si
             display: flex;
             border-bottom: 2px solid $tr_border_bottom;
@@ -194,7 +195,6 @@
     }
     .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time  {
         width: $page-content-width-s;
-        border: 1px solid #878787;
         margin-left: $space-from-navbar-s;
         margin-top: 50px;
     }
@@ -208,7 +208,6 @@
     }
     .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time  {
         width: $page-content-width-l;
-        border: 1px solid #878787;
         margin-left: $space-from-navbar-m;
         margin-top: 50px;
     }
