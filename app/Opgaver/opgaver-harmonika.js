@@ -6,6 +6,7 @@ function open_close_tasks_service(id, drop_down_classname) {
     } else {
         tasks_service_dropdown_mobile[id-1].style.display = "none";
     }
+
 }
 
 // mobile_employee_information.addEventListener("click", open_close_employee_info)

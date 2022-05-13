@@ -213,7 +213,7 @@
                                 echo '<p class="employee_name_header">Medarbejder</p>';
                                 echo '<p class="employee_initials_header">Initialer</p>';
                             echo '</div>';
-                            echo '<div class="machines_all_headers">';
+                            echo '<div class="employee_all_headers">';
                                 echo '<p class="employee_phone_header">Arbejds-tlf</p>';
                                 echo '<p class="employee_phone_header">Mobil</p>';
                                 echo '<p class="employee_email_header">Email</p>';
