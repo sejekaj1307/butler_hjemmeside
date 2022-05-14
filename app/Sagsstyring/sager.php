@@ -75,6 +75,7 @@
             //variables to show or hide pop-up modals
             $display_edit_case_pop_up = "none";
             $display_delete_case_pop_up = "none";
+            $display_archive_case_pop_up = "none";
             $display_create_case_pop_up = "none";
 
 
@@ -89,21 +90,23 @@
                         $display_create_case_pop_up = "flex";
                     }
                     //create, køres hvis "create button" bliver requested
-                    if($_REQUEST['knap'] == "create")
+                    if($_REQUEST['knap'] == "Opret")
                     {
                         $id = $_REQUEST['id_c'];
                         $case_nr = $_REQUEST['case_nr_c'];
                         $case_responsible = $_REQUEST['case_responsible_c'];
-                        $status = $_REQUEST['status_c'];
+                        $status = 'Oprettet';
                         $location = $_REQUEST['location_c'];
                         $est_start_date = $_REQUEST['est_start_date_c'];
                         $est_end_date = $_REQUEST['est_end_date_c'];
+                        $date_now = new DateTime();
+                        $date_now_formatted = $date_now->format('Y-m-d H:i:s');
                         if(is_numeric($id) && is_integer(0 + $id)) 
                         {
                             if(!findes($id, $conn)) //opret ny klub
                             {
-                                $sql = $conn->prepare("insert into cases (id, case_nr, case_responsible, status, location, est_start_date, est_end_date) values (?, ?, ?, ?, ?, ?, ?)");
-                                $sql->bind_param("issssss", $id, $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date);
+                                $sql = $conn->prepare("insert into cases (id, case_nr, case_responsible, status, location, est_start_date, est_end_date, created_at) values (?, ?, ?, ?, ?, ?, ?, ?)");
+                                $sql->bind_param("isssssss", $id, $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date, $date_now_formatted);
                                 $sql->execute();
                             }
                         } 
@@ -193,6 +196,33 @@
                         $display_create_case_pop_up = "none";
                         $display_edit_case_pop_up = "none";
                     }
+
+                    //Archive
+                    if(str_contains($_REQUEST['knap'] , "arc"))
+                    {
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[1];
+                        if(is_numeric($id) && is_integer(0 + $id))
+                        {
+                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            {
+                                $_SESSION["bilTilDelete"] = $id;
+                                $display_archive_case_pop_up = "flex";
+                            }
+                        }
+                    }
+                    //Execute - confirm archive
+                    if($_REQUEST['knap'] == "Arkiver")
+                    {
+                        $date_now = new DateTime();
+                        $date_now_formatted = $date_now->format('Y-m-d H:i:s');
+                        $id = $_SESSION["bilTilDelete"];
+                        $sql = $conn->prepare("update cases set archived_at = ? where id = ?");
+                        $sql->bind_param("si", $date_now_formatted, $id);
+                        $sql->execute();
+                        $display_archive_case_pop_up = "none";
+                        
+                    }
                 }
             ?>
 
@@ -201,7 +231,7 @@
             <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny sag"></div>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
-                $sql = "select * from cases";
+                $sql = "select * from cases where archived_at = ''";
                 $result = $conn->query($sql);
 
                 echo '<div class="case_list">';
@@ -233,12 +263,13 @@
                                 echo '</div>';
                                 echo '<div class="case_dropdown_mobile">';
                                     echo '<p class="dark_dropdown_table case_location">' . $row["location"] . '</p>';
-                                    echo '<p class="light_dropdown_table case_est_start">' . $row["est_start_date"] . '</p>';
-                                    echo '<p class="dark_dropdown_table case_deadline">' . $row["est_end_date"] . '</p>';
+                                    echo '<p class="light_dropdown_table case_est_start">' . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
+                                    echo '<p class="dark_dropdown_table case_deadline">' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
                                 echo '</div>';
                                 ?> 
                             <div class="button_container">
                                 <input type="submit" name="knap" value="read_<?php echo $row['id'];?>">
+                                <input type="submit" name="knap" value="arc_<?php echo $row['id'];?>">
                                 <input type="submit" name="knap" value="delete_<?php echo $row['id'];?>">
                             </div>
                         <?php 
@@ -283,14 +314,24 @@
             <div class="pop-up-row"><p>Ansvarlig : </p><input type="text" name="case_responsible_c" value="<?php echo isset($case_responsible) ? $case_responsible : '' ?>"></div>
             <div class="pop-up-row"><p>Status : </p><input type="text" name="status_c" value="<?php echo isset($status) ? $status : '' ?>"></div>
             <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
-            <div class="pop-up-row"><p>Startdato : </p><input type="text" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
-            <div class="pop-up-row"><p>Deadline : </p><input type="text" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
+            <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
+            <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
             <div class="pop-up-btn-container">
                 <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+                <input type="submit" name="knap" value="Opret" class="pop_up_confirm">
             </div>
         </div>
 
+        <!------------------------
+                archive pop up
+        ------------------------->
+        <div class="pop_up_modal" style="display: <?php echo $display_archive_case_pop_up ?>">
+            <h3>Arkiver sag</h3>
+            <div class="pop-up-btn-container">
+                <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
+                <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
+            </div>
+        </div>
         <!------------------------
                 delete pop up
         ------------------------->

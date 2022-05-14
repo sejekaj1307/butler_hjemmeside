@@ -82,73 +82,73 @@
 
             <?php
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
-                // if($_SERVER['REQUEST_METHOD'] === 'POST')
-                // {
+                if($_SERVER['REQUEST_METHOD'] === 'POST')
+                {
                     
-                //     //read, koden køres hvis "read button" bliver requested 
-                //     if(str_contains($_REQUEST['knap'] , "read"))
-                //     {
-                //         $split = explode("_", $_REQUEST['knap']);
-                //         $id = $split[1];
-                //         if(is_numeric($id) && is_numeric(0 + $id))
-                //         {
-                //             $sql = $conn->prepare( "select * from tasks_service where id = ?");
-                //             $sql->bind_param("i", $id); 
-                //             $sql->execute();
-                //             $result = $sql->get_result();
-                //             if($result->num_rows > 0) 
-                //             {
-                //                 $row = $result->fetch_assoc();
-                //                 $id = $row['id'];
-                //                 $first_name = $row['first_name'];
-                //                 $initials = $row['initials'];
-                //                 $phone = $row['phone'];
-                //                 $phone_private = $row['phone_private'];
-                //                 $email = $row['email'];
-                //                 $emergency_name = $row['emergency_name'];
+                    //read, koden køres hvis "read button" bliver requested 
+                    if(str_contains($_REQUEST['knap'] , "read"))
+                    {
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[1];
+                        if(is_numeric($id) && is_numeric(0 + $id))
+                        {
+                            $sql = $conn->prepare( "select * from tasks_service where id = ?");
+                            $sql->bind_param("i", $id); 
+                            $sql->execute();
+                            $result = $sql->get_result();
+                            if($result->num_rows > 0) 
+                            {
+                                $row = $result->fetch_assoc();
+                                $id = $row['id'];
+                                $first_name = $row['first_name'];
+                                $initials = $row['initials'];
+                                $phone = $row['phone'];
+                                $phone_private = $row['phone_private'];
+                                $email = $row['email'];
+                                $emergency_name = $row['emergency_name'];
 
-                //                 $display_none_archive_pop_up = "flex";
-                //             }
-                //         }
-                //     }
-                //     // Skal man kunne slette dem?
-                //     // //delete
-                //     // if(str_contains($_REQUEST['knap'] , "slet"))
-                //     // {
-                //     //     $split = explode("_", $_REQUEST['knap']);
-                //     //     $id = $split[1];
-                //     //     if(is_numeric($id) && is_integer(0 + $id))
-                //     //     {
-                //     //         if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
-                //     //         {
-                //     //             $_SESSION["bilTilDelete"] = $id;
-                //     //             $display_delete_tasks_service_pop_up = "flex";
-                //     //         }
-                //     //     }
-                //     // }
-                //     //Execute - confirm delete
-                //     // if($_REQUEST['knap'] == "Slet")
-                //     // {
-                //     //     $id = $_SESSION["bilTilDelete"];
-                //     //     $sql = $conn->prepare("delete from tasks_service where id = ?");
-                //     //     $sql->bind_param("i", $id);
-                //     //     $sql->execute();
-                //     //     $display_delete_tasks_service_pop_up = "none";
+                                $display_none_archive_pop_up = "flex";
+                            }
+                        }
+                    }
+                    // Skal man kunne slette dem?
+                    //delete
+                    if(str_contains($_REQUEST['knap'] , "slet"))
+                    {
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[1];
+                        if(is_numeric($id) && is_integer(0 + $id))
+                        {
+                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            {
+                                $_SESSION["bilTilDelete"] = $id;
+                                $display_delete_tasks_service_pop_up = "flex";
+                            }
+                        }
+                    }
+                    // Execute - confirm delete
+                    if($_REQUEST['knap'] == "Slet")
+                    {
+                        $id = $_SESSION["bilTilDelete"];
+                        $sql = $conn->prepare("delete from tasks_service where id = ?");
+                        $sql->bind_param("i", $id);
+                        $sql->execute();
+                        $display_delete_tasks_service_pop_up = "none";
                         
-                //     // }
-                //     //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
-                //     if($_REQUEST['knap'] == "Annuller")
-                //     {
-                //         $id = "";
-                //         $first_name = "";
-                //         $initials = "";
-                //         $phone = "";
-                //         $phone_private = "";
-                //         $email = "";
-                //         $emergency_name = "";
-                //         $display_none_archive_pop_up = "none";
-                //     }
-                // }
+                    }
+                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    if($_REQUEST['knap'] == "Annuller")
+                    {
+                        $id = "";
+                        $first_name = "";
+                        $initials = "";
+                        $phone = "";
+                        $phone_private = "";
+                        $email = "";
+                        $emergency_name = "";
+                        $display_none_archive_pop_up = "none";
+                    }
+                }
             ?>
 
             <!-- SELVE TABELLEN -->
@@ -158,7 +158,8 @@
 
 
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
-                    
+                    $sql = "select * from tasks_service";
+                    $result = $conn->query($sql);
                     echo '<div class="tasks_service_list">';
                         echo '<div class="tasks_service_header">';
                             echo '<div class="tasks_service_mobile_headers">';
@@ -173,38 +174,41 @@
                                 echo '<p class="button_container_header">Rediger</p>';
                             echo '</div>';
                         echo '</div>';
-                        $sql = "select * from tasks_service where task_header = 'Bil 1'";
-                        $result = $conn->query($sql);
-                        //if og while her 
+                        //if og while her
+                        $seen_task_headers=array();
+                        //
                         if($result->num_rows > 0)
                         {
                             while($row = $result->fetch_assoc()) {
-                                echo '<div class="tasks_service_data_row" >';
-                                    echo '<div class="tasks_service_information" onclick="open_close_tasks_service('. $row["id"] .', '. "'tasks_service_dropdown_mobile'" .') " >  ';
-                                        echo '<p class="tasks_service_name">Bil 1</p>';
-                                    echo '</div>';
+                                if(!in_array($row['task_header'], $seen_task_headers)){
+                                    array_push($seen_task_headers, $row['task_header']); 
+                                    echo '<div class="tasks_service_data_row" >';
+                                        echo '<div class="tasks_service_information" onclick="open_close_tasks_service('. array_search($row["task_header"], $seen_task_headers) .', '. "'tasks_service_dropdown_mobile'" .') " >  ';
+                                            echo '<p class="tasks_service_name">' . $row['task_header'] . '</p>';
+                                        echo '</div>';
+                                    echo '</div>';         
+                                }
+                                                        
+                                echo '<div class="tasks_service_dropdown_mobile" id="'. array_search($row["task_header"], $seen_task_headers) .'">';
+                                    echo "<div>";
+                                        echo '<p class="tasks_service_name">' . $row["task_title"] . '</p>';
+                                        echo '<p class="light_dropdown_table tasks_service_phone">' . $row["priority"] . '</p>';
+                                        echo '<p class=" tasks_service_email">' . $row["status"] . '</p>';
+                                    echo "</div>";
                                 
-
-                                echo '</div>';
-                            
-                                echo '<div class="tasks_service_dropdown_mobile" id="'. $row["id"] .'">';
-                                        echo "<div>";
-                                            echo '<p class="tasks_service_name">' . $row["task_title"] . '</p>';
-                                            echo '<p class="light_dropdown_table tasks_service_phone">' . $row["priority"] . '</p>';
-                                            echo '<p class=" tasks_service_email">' . $row["status"] . '</p>';
-                                        echo "</div>";
+                                    echo '<div class="button_container">';
+                                        echo '<input type="submit" name="knap" value="read_' . $row['id'] . '">';
+                                        echo '<input type="submit" name="knap" value="slet_' . $row['id'] . '">';
+                                    echo '</div>';
+                                echo '</div>'; 
                             }
-                                echo '</div>';   
+                                  
                         }
-                        
-                   
                     echo '</div>';
                             ?>
+                            
             </div>
-                                <!-- <div class="button_container">
-                                    <input type="submit" name="knap" value="read_<?php echo $row['id'];?>">
-                                    <input type="submit" name="knap" value="slet_<?php echo $row['id'];?>">
-                                </div> -->
+                                
 
 
             <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->

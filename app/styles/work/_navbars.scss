@@ -1,7 +1,7 @@
 /*---------------------------
             Navbar
 ---------------------------*/
-.navbar_container {
+    .navbar_container {
         width: 100%;
         position: absolute;
         background-color: $main-nav;
@@ -13,6 +13,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        border-bottom: 5px solid #2076C1;
         .navbar_cross {
             width: 20px;
             margin-right: 40px;
@@ -22,8 +23,6 @@
 
     .navbar_mid {
         height: $nav_sec_height;
-        background-color: $logo-nav;
-        border-bottom: 5px solid $logo-border-bottom-nav;
     }
 
     .navbar_ul {
@@ -89,6 +88,12 @@
         background-color: #fff;
         border-left: 2vw solid $sec-navbar-dropdwon-border;
         padding-left: $space-from-navbar;
+        font-size: 18px;
+        div {
+            .employee_icon {
+            width: 13px;
+        }
+        }
         .navbar_bars {
             background-image: url(../../img/navbar-bars.png);
             width: 20px;
@@ -177,6 +182,7 @@
             height: $logged-in-height-s;
         }
         .navbar_ul {
+        margin-top: 20%;
             li {
                 a {
                     justify-content: left;
@@ -207,6 +213,8 @@
             height: $logged-in-height-s;
             padding-left: $space-from-navbar-s;
             border-left: none;
+
+        border-bottom: 5px solid #2076C1;
         }    
         .sec-navbar-mobile-header {
             display: none;

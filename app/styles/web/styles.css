@@ -503,6 +503,7 @@
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  border-bottom: 5px solid #2076C1;
 }
 
 .navbar_container .navbar_top .navbar_cross {
@@ -513,8 +514,6 @@
 
 .navbar_container .navbar_mid {
   height: 6vh;
-  background-color: #31417C;
-  border-bottom: 5px solid #3D569C;
 }
 
 .navbar_container .navbar_ul {
@@ -618,6 +617,11 @@
   background-color: #fff;
   border-left: 2vw solid #87AFFF;
   padding-left: 30px;
+  font-size: 18px;
+}
+
+.sec-navbar-mobile .logged_in div .employee_icon {
+  width: 13px;
 }
 
 .sec-navbar-mobile .logged_in .navbar_bars {
@@ -730,6 +734,9 @@
   .navbar_container .navbar_top {
     height: 5vh;
   }
+  .navbar_container .navbar_ul {
+    margin-top: 20%;
+  }
   .navbar_container .navbar_ul li a {
     -webkit-box-pack: left;
         -ms-flex-pack: left;
@@ -755,6 +762,7 @@
     height: 5vh;
     padding-left: 50px;
     border-left: none;
+    border-bottom: 5px solid #2076C1;
   }
   .sec-navbar-mobile .sec-navbar-mobile-header {
     display: none;
