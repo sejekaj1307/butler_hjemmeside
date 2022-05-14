@@ -43,9 +43,6 @@
             </h2>
             <ul class="sec_navbar_ul_dropdown">
                 <li><a href="../Lagerstyring/lade.php" class="active_site_dropdown">Lade lager</a></li>
-                <li><a href="../Lagerstyring/blaa-container.php">Blå container lager</a></li>
-                <li><a href="../Lagerstyring/andet.php">Andet lager</a>
-                </li>
             </ul>
         </div>
 
