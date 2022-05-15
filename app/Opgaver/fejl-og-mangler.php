@@ -37,7 +37,7 @@
         <!-- Masthead -->
         <div class="sec-navbar-mobile">
             <div class="logged_in">
-                Efternavn, Fornavn
+                <div class="navbar_top"><img src="../img/navbar-cross.png" alt="navbar cross" class="navbar_cross"></div>
                 <div class="navbar_bars"></div>
             </div>
             <h2 class="sec-navbar-mobile-header">Fejl og mangler <div class="arrow_container"><img
