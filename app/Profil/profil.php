@@ -17,11 +17,6 @@
         // $email = $row['email'];
         // $playerAvatar = $row['avatar'];
     }
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +52,7 @@
         <!-- Masthead -->
         <div class="sec-navbar-mobile">
             <div class="logged_in">
-                Efternavn, Fornavn
+                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> Efternavn, Fornavn</div>
                 <div class="navbar_bars"></div>
             </div>
             <h2 class="sec-navbar-mobile-header">Profil <div class="arrow_container"><img src="../img/arrow.png"

@@ -71,7 +71,6 @@
     }
 }
 
-
 /*---------------------------
           Masthead
 ---------------------------*/
@@ -79,7 +78,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: $light-sec-nav;
     .logged_in {
         height: $logged-in-height;
         display: flex;
@@ -89,6 +87,9 @@
         border-left: 2vw solid $sec-navbar-dropdwon-border;
         padding-left: $space-from-navbar;
         font-size: 18px;
+        position: fixed;    
+        width: 100% !important;
+        z-index: 99;
         div {
             .employee_icon {
             width: 13px;
@@ -114,6 +115,7 @@
         height: $logged-in-height;     
         border-left: 2vw solid $sec-navbar-dropdwon-border;
         padding-left: $space-from-navbar;
+        margin-top: $logged-in-height;
         .arrow_container {
             height: 100%;
             width: 60px;
@@ -213,12 +215,10 @@
             height: $logged-in-height-s;
             padding-left: $space-from-navbar-s;
             border-left: none;
-
-        border-bottom: 5px solid #2076C1;
+            border-bottom: 5px solid #2076C1;
         }    
         .sec-navbar-mobile-header {
             display: none;
-            position: fixed;
         }
         .sec_navbar_ul_dropdown {
             display: flex;
@@ -233,6 +233,7 @@
             padding-left: $space-from-navbar-s;
             align-items: flex-end;
             height: $nav_sec_height-s !important;
+            margin-top: $logged-in-height-s;
             li {
                 list-style-type: none;
                 a {

@@ -1,6 +1,10 @@
 <?php 
+    //session start
+    session_start(); 
+    //Forbindelse til database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +39,7 @@
         <!-- Masthead -->
         <div class="sec-navbar-mobile">
             <div class="logged_in">
-                Efternavn, Fornavn
+                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> Efternavn, Fornavn</div>
                 <div class="navbar_bars"></div>
             </div>
             <h2 class="sec-navbar-mobile-header">Lade lager <div class="arrow_container"><img src="../img/arrow.png"
@@ -47,7 +51,199 @@
         </div>
 
 
+    
+
+        <!-- FORM emploeyee list with CRUD PHP and pop-up modals  -->
+        <form action="lade.php" method="post">
+            <?php 
+            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+                function findes($id, $c)
+                {
+                    $sql = $c->prepare("select * from storage where id = ?");
+                    $sql->bind_param("i", $id);
+                    $sql->execute();
+                    $result = $sql->get_result();
+                    if($result->num_rows > 0)
+                    {
+                        return true;
+                    }
+                    else 
+                    {
+                        return false;
+                    }
+                }
+                //variables to show or hide pop-up modals
+                $display_none_archive_pop_up = "none";
+
+
+            ?>
+
+            <?php
+                // CRUD, create, read, update, delete - og confirm og cancel knap til delete
+                if($_SERVER['REQUEST_METHOD'] === 'POST')
+                {
+                    
+                    //read, koden køres hvis "read button" bliver requested 
+                    if(str_contains($_REQUEST['knap'] , "read"))
+                    {
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[1];
+                        if(is_numeric($id) && is_numeric(0 + $id))
+                        {
+                            $sql = $conn->prepare( "select * from storage where id = ?");
+                            $sql->bind_param("i", $id); 
+                            $sql->execute();
+                            $result = $sql->get_result();
+                            if($result->num_rows > 0) 
+                            {
+                                $row = $result->fetch_assoc();
+                                $id = $row['id'];
+                                $element = $row['element'];
+                                $element_location = $row['element_location'];
+                                $quantity = $row['quantity'];
+                                $min_quantity = $row['min_quantity'];
+                                $status = $row['status'];
+                                $created_by = $row['created_by'];
+                                $updated_by = $row['updated_by'];
+                                $comment = $row['comment'];
+
+                                $display_none_archive_pop_up = "flex";
+                            }
+                        }
+                    }
+                    // Skal man kunne slette dem?
+                    //delete
+                    if(str_contains($_REQUEST['knap'] , "slet"))
+                    {
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[1];
+                        if(is_numeric($id) && is_integer(0 + $id))
+                        {
+                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            {
+                                $_SESSION["bilTilDelete"] = $id;
+                                $display_delete_storage_pop_up = "flex";
+                            }
+                        }
+                    }
+                    // Execute - confirm delete
+                    if($_REQUEST['knap'] == "Slet")
+                    {
+                        $id = $_SESSION["bilTilDelete"];
+                        $sql = $conn->prepare("delete from storage where id = ?");
+                        $sql->bind_param("i", $id);
+                        $sql->execute();
+                        $display_delete_storage_pop_up = "none";
+                        
+                    }
+                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    if($_REQUEST['knap'] == "Annuller")
+                    {
+                        $id = "";
+                        $first_name = "";
+                        $initials = "";
+                        $phone = "";
+                        $phone_private = "";
+                        $email = "";
+                        $emergency_name = "";
+                        $display_none_archive_pop_up = "none";
+                    }
+                }
+            ?>
+
+            <!-- SELVE TABELLEN -->
+            <div class="profile_list">
+                <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny medarbejder"></div>
+                <?php 
+
+
+                    //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                    $sql = "select * from storage";
+                    $result = $conn->query($sql);
+                    echo '<div class="tasks_service_list">';
+                        echo '<div class="tasks_service_header">';
+                            echo '<div class="tasks_service_mobile_headers">';
+                                echo '<p class="tasks_service_name_header">Medarbejder</p>';
+                                echo '<p class="tasks_service_initials_header">Initialer</p>';
+                            echo '</div>';
+                            echo '<div class=".tasks_service_all_headers">';
+                                echo '<p class="tasks_service_phone_header">Arbejds-tlf</p>';
+                                echo '<p class="tasks_service_phone_header">Mobil</p>';
+                                echo '<p class="tasks_service_email_header">Email</p>';
+                                echo '<p class="tasks_service_emergency_header">Kontaktperson</p>';
+                                echo '<p class="button_container_header">Rediger</p>';
+                            echo '</div>';
+                        echo '</div>';
+                        //if og while her
+                        $seen_element_location=array();
+                        //
+                        if($result->num_rows > 0)
+                        {
+                            while($row = $result->fetch_assoc()) {
+                                if(!in_array($row['element_location'], $seen_element_location)){
+                                    array_push($seen_element_location, $row['element_location']); 
+                                    echo '<div class="tasks_service_data_row" >';
+                                        echo '<div class="tasks_service_information" onclick="open_close_tasks_service('. array_search($row["element_location"], $seen_element_location) .', '. "'tasks_service_dropdown_mobile'" .') " >  ';
+                                            echo '<p class="tasks_service_name">' . $row['element_location'] . '</p>';
+                                        echo '</div>';
+                                    echo '</div>';         
+                                }
+                                                        
+                                echo '<div class="tasks_service_dropdown_mobile" id="'. array_search($row["element_location"], $seen_element_location) .'">';
+                                    echo "<div>";
+                                        echo '<p class="tasks_service_name">' . $row["element"] . '</p>';
+                                        echo '<p class="light_dropdown_table tasks_service_phone">' . $row["quantity"] . '</p>';
+                                        echo '<p class=" tasks_service_email">' . $row["status"] . '</p>';
+                                    echo "</div>";
+                                
+                                    echo '<div class="button_container">';
+                                        echo '<input type="submit" name="knap" value="read_' . $row['id'] . '">';
+                                        echo '<input type="submit" name="knap" value="slet_' . $row['id'] . '">';
+                                    echo '</div>';
+                                echo '</div>'; 
+                            }
+                                  
+                        }
+                    echo '</div>';
+                            ?>
+                            
+            </div>
+                                
+
+
+            <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
+            <?php 
+            //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årsager
+                $conn->close();
+            ?>
+            <!----------------------------
+                    Edit profile pop-op
+            ----------------------------->
+            <div class="pop_up_modal" style="display: <?php echo $display_none_archive_pop_up ?>">
+                <h3>Opdater medarbejderprofil</h3>
+                id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
+
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+                </div>
+            </div>
+
+            <!------------------------
+                    delete pop up
+            ------------------------->
+            <!-- <div class="pop_up_modal" style="display: <?php echo $display_delete_storage_pop_up ?>">
+                <h3>Slet medarbejder</h3>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+                </div>
+            </div> -->
+            
+        </form>
     </div>
+
+    <script src="lager-harmonika.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>
 

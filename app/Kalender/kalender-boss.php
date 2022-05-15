@@ -35,7 +35,7 @@
         <!-- Masthead -->
         <div class="sec-navbar-mobile">
             <div class="logged_in">
-                Efternavn, Fornavn
+                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> Efternavn, Fornavn</div>
                 <div class="navbar_bars"></div>
             </div>
             <h2 class="sec-navbar-mobile-header">Chef kalender<div class="arrow_container"><img src="../img/arrow.png"
