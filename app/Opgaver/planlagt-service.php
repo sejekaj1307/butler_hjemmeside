@@ -40,7 +40,7 @@
                 <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> Efternavn, Fornavn</div>
                 <div class="navbar_bars"></div>
             </div>
-            <h2 class="sec-navbar-mobile-header">Fejl og mangler <div class="arrow_container"><img
+            <h2 class="sec-navbar-mobile-header">Planlagt service<div class="arrow_container"><img
                         src="../img/arrow.png" alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
@@ -160,17 +160,18 @@
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                     $sql = "select * from tasks_service";
                     $result = $conn->query($sql);
-                    echo '<div class="tasks_service_list">';
-                        echo '<div class="tasks_service_header">';
+                    echo '<div class="tasks_service_harmonica">';
+                        echo '<div class="tasks_service_headers">';
                             echo '<div class="tasks_service_mobile_headers">';
-                                echo '<p class="tasks_service_name_header">Medarbejder</p>';
-                                echo '<p class="tasks_service_initials_header">Initialer</p>';
+                                echo '<p class="tasks_service_name_header">Opgave</p>';
                             echo '</div>';
-                            echo '<div class=".tasks_service_all_headers">';
-                                echo '<p class="tasks_service_phone_header">Arbejds-tlf</p>';
-                                echo '<p class="tasks_service_phone_header">Mobil</p>';
-                                echo '<p class="tasks_service_email_header">Email</p>';
-                                echo '<p class="tasks_service_emergency_header">Kontaktperson</p>';
+                            echo '<div class="tasks_service_all_headers">';
+                                echo '<p class="tasks_service_priority_header">Prioritet</p>';
+                                echo '<p class="tasks_service_status_header">Status</p>';
+                                echo '<p class="tasks_service_last_service_header">Sidste service</p>';
+                                echo '<p class="tasks_service_deadline_header">Deadline</p>';
+                                echo '<p class="tasks_service_updated_initials_header">Seneste</p>';
+                                echo '<p class="tasks_service_comment_header">Bemærkning</p>';
                                 echo '<p class="button_container_header">Rediger</p>';
                             echo '</div>';
                         echo '</div>';
@@ -183,17 +184,20 @@
                                 if(!in_array($row['task_header'], $seen_task_headers)){
                                     array_push($seen_task_headers, $row['task_header']); 
                                     echo '<div class="tasks_service_data_row" >';
-                                        echo '<div class="tasks_service_information" onclick="open_close_tasks_service('. array_search($row["task_header"], $seen_task_headers) .', '. "'tasks_service_dropdown_mobile'" .') " >  ';
-                                            echo '<p class="tasks_service_name">' . $row['task_header'] . '</p>';
+                                        echo '<div class="tasks_service_information" onclick="open_close_tasks_service('. array_search($row["task_header"], $seen_task_headers) .', '. "'tasks_service_data_row_all_info'" .') " >  ';
+                                            echo '<p class="tasks_service_task_header">' . $row['task_header'] . '</p>';
                                         echo '</div>';
                                     echo '</div>';         
                                 }
-                                                        
-                                echo '<div class="tasks_service_dropdown_mobile" id="'. array_search($row["task_header"], $seen_task_headers) .'">';
+                                echo '<div class="tasks_service_data_row_all_info" id="'. array_search($row["task_header"], $seen_task_headers) .'">';
                                     echo "<div>";
-                                        echo '<p class="tasks_service_name">' . $row["task_title"] . '</p>';
-                                        echo '<p class="light_dropdown_table tasks_service_phone">' . $row["priority"] . '</p>';
-                                        echo '<p class=" tasks_service_email">' . $row["status"] . '</p>';
+                                        echo '<p class="tasks_service_title">' .  $row["task_title"] . '</p>';
+                                        echo '<p class="tasks_service_priority">' . '<span class="dropdown_inline_headers">Prioritet </span>' . $row["priority"] . '</p>';
+                                        echo '<p class="tasks_service_status">' . '<span class="dropdown_inline_headers">Status </span>' . $row["status"] . '</p>';
+                                        echo '<p class="tasks_service_last_service">' . '<span class="dropdown_inline_headers">Sidste service </span>' . $row["last_service"] . '</p>';
+                                        echo '<p class="tasks_service_deadline">' . '<span class="dropdown_inline_headers">Deadline </span>' . $row["deadline"] . '</p>';
+                                        echo '<p class="tasks_service_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
+                                        echo '<p class="tasks_service_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
                                     echo "</div>";
                                 
                                     echo '<div class="button_container">';

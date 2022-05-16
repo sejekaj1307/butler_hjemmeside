@@ -60,12 +60,12 @@
 /*-------------------------------
         Employee lists
 -------------------------------*/
-.employee_list, .external_list, .machine_list, .case_list, .task_list, .tasks_service_list { //Aller yderste der har alt
+.employee_list, .external_list, .machine_list, .case_list, .task_list { //Aller yderste der har alt
     flex-direction: column;
     p {
         padding: 10px 0 10px 15px;
     }
-    .employee_list_header, .machine_list_header, .external_list_header, .case_list_header, .task_list_header, .tasks_service_header { //div rundt om ALLE headers
+    .employee_list_header, .machine_list_header, .external_list_header, .case_list_header, .task_list_header { //div rundt om ALLE headers
         border-bottom: 3px solid $th_border_bottom;
         padding: 5px 0;
         font-weight: 600;
@@ -77,7 +77,7 @@
                 width: 80%;
             }
         }
-        .employee_all_headers, .machines_all_headers, .external_all_headers, .case_all_headers, .task_all_headers, .tasks_service_all_headers { //div rundt om navn- og initialer-header kun på ansatte siden
+        .employee_all_headers, .machines_all_headers, .external_all_headers, .case_all_headers, .task_all_headers { //div rundt om navn- og initialer-header kun på ansatte siden
             display: flex;
             flex-direction: row;
             display: none;                 
@@ -88,18 +88,18 @@
             width: 30%;
         }
     }
-    .employee_data_row, .external_data_row, .machine_data_row, .case_data_row, .task_data_row, .tasks_service_data_row {
+    .employee_data_row, .external_data_row, .machine_data_row, .case_data_row, .task_data_row {
             border-left: 1px solid $light-sec-nav;
             border-right: 1px solid $light-sec-nav;
-        .mobile_employee_information, .mobile_external_information, .machine_information, .case_information, .task_information, .tasks_service_information { //Den øverste bar, som kan ses af data, f.eks. Ibsen, Steen - Si
+        .mobile_employee_information, .mobile_external_information, .machine_information, .case_information, .task_information { //Den øverste bar, som kan ses af data, f.eks. Ibsen, Steen - Si
             display: flex;
             border-bottom: 2px solid $tr_border_bottom;
             cursor: pointer;    
-            .employee_name, .external_name, .machine_name, .tasks_service_name {
+            .employee_name, .external_name, .machine_name {
                 width: 80%;
             }
         }
-        .employee_dropdown_mobile, .machine_dropdown_mobile, .external_dropdown_mobile, .case_dropdown_mobile, .task_dropdown_mobile, .tasks_service_dropdown_mobile {
+        .employee_dropdown_mobile, .machine_dropdown_mobile, .external_dropdown_mobile, .case_dropdown_mobile, .task_dropdown_mobile {
             flex-direction: column;
             display: none;
             .dark_dropdown_table {
@@ -122,9 +122,6 @@
 /*----------------------------------
         Employees lists STOP
 ----------------------------------*/
-
-
-
 .pop_up_modal {
     position: absolute;
     padding: 30px 0;
@@ -183,6 +180,72 @@
         }
     }
 }
+
+
+/*----------------------------------
+        Harmonica lists
+----------------------------------*/
+.tasks_service_harmonica {
+    .tasks_service_headers {
+        border-bottom: 3px solid $th_border_bottom;
+        padding: 5px 0;
+        font-weight: 600;
+        margin-top: 30px !important;
+        border: 1px solid $th_border_bottom;
+        .tasks_service_mobile_headers {
+            .tasks_service_name_header {
+                font-size: 20px;
+                padding: 10px 5px;
+            }
+        }
+        .tasks_service_all_headers {
+            display: none;
+            .tasks_service_priority_header {}
+            .tasks_service_status_header {}
+            .tasks_service_last_service_header {}
+            .tasks_service_deadline_header {}
+            .tasks_service_updated_initials_header {}
+            .tasks_service_comment_header {}
+            .button_container_header {}
+        }
+    }
+    .tasks_service_data_row {
+        .tasks_service_information {
+            background-color: $harmonica_header_background;
+            border: 1px solid $tr_border_bottom;
+            border-bottom: 2px solid $tr_border_bottom;
+            padding: 10px 5px;
+            .tasks_service_task_header {}
+        }
+    }
+    .tasks_service_data_row_all_info {
+        border: 1px solid $tr_border_bottom;
+        border-bottom: 2px solid $tr_border_bottom;
+        padding: 10px 5px;
+        .tasks_service_title, .tasks_service_priority, .tasks_service_status, .tasks_service_last_service, .tasks_service_deadline, .tasks_service_updated_initials, .tasks_service_comment {
+            display: flex;
+            padding: 5px;
+        }
+        .dropdown_inline_headers {
+            font-weight: 600;
+            display: flex;
+            width: 35%;
+        }
+        .tasks_service_title {
+            font-size: 22px;
+        }
+        .tasks_service_priority {}
+        .tasks_service_status {}
+        .tasks_service_last_service {}
+        .tasks_service_deadline {}
+        .tasks_service_updated_initials {}
+        .tasks_service_comment {}
+    }
+}
+
+
+
+
 
 
 
