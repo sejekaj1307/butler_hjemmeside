@@ -190,7 +190,7 @@
                                     echo '</div>';         
                                 }
                                 echo '<div class="tasks_service_data_row_all_info" id="'. array_search($row["task_header"], $seen_task_headers) .'">';
-                                    echo "<div>";
+                                    echo '<div class="data_row_info">';
                                         echo '<p class="tasks_service_title">' .  $row["task_title"] . '</p>';
                                         echo '<p class="tasks_service_priority">' . '<span class="dropdown_inline_headers">Prioritet </span>' . $row["priority"] . '</p>';
                                         echo '<p class="tasks_service_status">' . '<span class="dropdown_inline_headers">Status </span>' . $row["status"] . '</p>';

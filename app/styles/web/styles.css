@@ -288,14 +288,14 @@
 .tasks_service_harmonica .tasks_service_data_row_all_info {
   border: 1px solid #AEBFF6;
   border-bottom: 2px solid #AEBFF6;
-  padding: 10px 5px;
+  padding: 10px 0;
 }
 
 .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_title, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_priority, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_status, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_last_service, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_deadline, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_updated_initials, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_comment {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 5px;
+  padding: 5px 10px;
 }
 
 .tasks_service_harmonica .tasks_service_data_row_all_info .dropdown_inline_headers {
@@ -308,6 +308,7 @@
 
 .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_title {
   font-size: 22px;
+  padding: 5px 5px 10px 10px;
 }
 
 /*Tablet - S */
@@ -479,6 +480,75 @@
   .task_comment_header, .task_comment {
     width: 15vw;
   }
+  /*----------------------------------
+        Harmonica lists 1200
+    ----------------------------------*/
+  .tasks_service_harmonica .tasks_service_headers {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 15px 5px;
+  }
+  .tasks_service_harmonica .tasks_service_headers .tasks_service_all_headers, .tasks_service_harmonica .tasks_service_headers .tasks_service_name_header {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    font-size: 17px !important;
+  }
+  .tasks_service_harmonica .tasks_service_name_header {
+    padding: 0 !important;
+    width: 13.5vw;
+  }
+  .tasks_service_harmonica .tasks_service_title {
+    font-size: 17px;
+    padding: 0;
+    width: 13.5vw;
+  }
+  .tasks_service_harmonica .tasks_service_priority_header, .tasks_service_harmonica .tasks_service_priority {
+    width: 5vw;
+  }
+  .tasks_service_harmonica .tasks_service_status_header, .tasks_service_harmonica .tasks_service_status {
+    width: 7vw;
+  }
+  .tasks_service_harmonica .tasks_service_last_service_header, .tasks_service_harmonica .tasks_service_deadline_header, .tasks_service_harmonica .tasks_service_last_service, .tasks_service_harmonica .tasks_service_deadline {
+    width: 9vw;
+  }
+  .tasks_service_harmonica .tasks_service_updated_initials_header, .tasks_service_harmonica .tasks_service_updated_initials {
+    width: 6vw;
+  }
+  .tasks_service_harmonica .tasks_service_comment_header, .tasks_service_harmonica .tasks_service_comment {
+    width: 14vw;
+  }
+  .tasks_service_harmonica .button_container_header {
+    width: 7vw;
+  }
+  .tasks_service_harmonica .button_container {
+    width: 7vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .tasks_service_harmonica .tasks_service_data_row_all_info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 5px;
+  }
+  .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_title, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_priority, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_status, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_last_service, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_deadline, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_updated_initials, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_comment {
+    font-size: 16px;
+    padding: 0;
+  }
+  .tasks_service_harmonica .tasks_service_data_row_all_info .dropdown_inline_headers {
+    display: none;
+  }
 }
 
 /*Stor pc - L*/
@@ -524,6 +594,27 @@
     ------------------------------------*/
   .case_location_header, .case_location {
     width: 19vw !important;
+  }
+  /*----------------------------------
+        Harmonica lists 1600
+    ----------------------------------*/
+  .tasks_service_harmonica .tasks_service_name_header {
+    width: 14.5vw;
+  }
+  .tasks_service_harmonica .tasks_service_title {
+    width: 14.5vw;
+  }
+  .tasks_service_harmonica .tasks_service_comment_header, .tasks_service_harmonica .tasks_service_comment {
+    width: 16vw;
+  }
+  .tasks_service_harmonica .button_container_header {
+    width: 5vw;
+  }
+  .tasks_service_harmonica .button_container {
+    width: 5vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
 }
 
