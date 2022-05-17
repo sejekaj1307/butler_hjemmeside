@@ -261,7 +261,7 @@
 /*----------------------------------
         Harmonica lists
 ----------------------------------*/
-.tasks_service_harmonica .tasks_service_headers {
+.tasks_service_harmonica .tasks_service_headers, .tasks_service_harmonica .pl_service_headers, .pl_service_harmonica .tasks_service_headers, .pl_service_harmonica .pl_service_headers {
   border-bottom: 3px solid #5068CB;
   padding: 5px 0;
   font-weight: 600;
@@ -269,36 +269,44 @@
   border: 1px solid #5068CB;
 }
 
-.tasks_service_harmonica .tasks_service_headers .tasks_service_mobile_headers .tasks_service_name_header {
+.tasks_service_harmonica .tasks_service_headers .tasks_service_mobile_headers .tasks_service_name_header, .tasks_service_harmonica .tasks_service_headers .tasks_service_mobile_headers .pl_service_name_header, .tasks_service_harmonica .tasks_service_headers .pl_service_mobile_headers .tasks_service_name_header, .tasks_service_harmonica .tasks_service_headers .pl_service_mobile_headers .pl_service_name_header, .tasks_service_harmonica .pl_service_headers .tasks_service_mobile_headers .tasks_service_name_header, .tasks_service_harmonica .pl_service_headers .tasks_service_mobile_headers .pl_service_name_header, .tasks_service_harmonica .pl_service_headers .pl_service_mobile_headers .tasks_service_name_header, .tasks_service_harmonica .pl_service_headers .pl_service_mobile_headers .pl_service_name_header, .pl_service_harmonica .tasks_service_headers .tasks_service_mobile_headers .tasks_service_name_header, .pl_service_harmonica .tasks_service_headers .tasks_service_mobile_headers .pl_service_name_header, .pl_service_harmonica .tasks_service_headers .pl_service_mobile_headers .tasks_service_name_header, .pl_service_harmonica .tasks_service_headers .pl_service_mobile_headers .pl_service_name_header, .pl_service_harmonica .pl_service_headers .tasks_service_mobile_headers .tasks_service_name_header, .pl_service_harmonica .pl_service_headers .tasks_service_mobile_headers .pl_service_name_header, .pl_service_harmonica .pl_service_headers .pl_service_mobile_headers .tasks_service_name_header, .pl_service_harmonica .pl_service_headers .pl_service_mobile_headers .pl_service_name_header {
   font-size: 20px;
   padding: 10px 5px;
 }
 
-.tasks_service_harmonica .tasks_service_headers .tasks_service_all_headers {
+.tasks_service_harmonica .tasks_service_headers .tasks_service_all_headers, .tasks_service_harmonica .tasks_service_headers .pl_service_all_headers, .tasks_service_harmonica .pl_service_headers .tasks_service_all_headers, .tasks_service_harmonica .pl_service_headers .pl_service_all_headers, .pl_service_harmonica .tasks_service_headers .tasks_service_all_headers, .pl_service_harmonica .tasks_service_headers .pl_service_all_headers, .pl_service_harmonica .pl_service_headers .tasks_service_all_headers, .pl_service_harmonica .pl_service_headers .pl_service_all_headers {
   display: none;
 }
 
-.tasks_service_harmonica .tasks_service_data_row .tasks_service_information {
+.tasks_service_harmonica .tasks_service_data_row .tasks_service_information, .tasks_service_harmonica .tasks_service_data_row .pl_service_information, .tasks_service_harmonica .pl_service_data_row .tasks_service_information, .tasks_service_harmonica .pl_service_data_row .pl_service_information, .pl_service_harmonica .tasks_service_data_row .tasks_service_information, .pl_service_harmonica .tasks_service_data_row .pl_service_information, .pl_service_harmonica .pl_service_data_row .tasks_service_information, .pl_service_harmonica .pl_service_data_row .pl_service_information {
   background-color: #EEF2FD;
   border: 1px solid #AEBFF6;
   border-bottom: 2px solid #AEBFF6;
   padding: 10px 5px;
 }
 
-.tasks_service_harmonica .tasks_service_data_row_all_info {
+.tasks_service_harmonica .tasks_service_data_row_all_info, .tasks_service_harmonica .pl_service_data_row_all_info, .pl_service_harmonica .tasks_service_data_row_all_info, .pl_service_harmonica .pl_service_data_row_all_info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: none;
   border: 1px solid #AEBFF6;
   border-bottom: 2px solid #AEBFF6;
   padding: 10px 0;
 }
 
-.tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_title, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_priority, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_status, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_last_service, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_deadline, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_updated_initials, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_comment {
+.tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_title, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_priority, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_status, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_last_service, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_deadline, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_updated_initials, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_comment, .tasks_service_harmonica .pl_service_data_row_all_info .tasks_service_title, .tasks_service_harmonica .pl_service_data_row_all_info .tasks_service_priority, .tasks_service_harmonica .pl_service_data_row_all_info .tasks_service_status, .tasks_service_harmonica .pl_service_data_row_all_info .tasks_service_last_service, .tasks_service_harmonica .pl_service_data_row_all_info .tasks_service_deadline, .tasks_service_harmonica .pl_service_data_row_all_info .tasks_service_updated_initials, .tasks_service_harmonica .pl_service_data_row_all_info .tasks_service_comment, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_title, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_priority, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_status, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_last_service, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_deadline, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_updated_initials, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_comment, .pl_service_harmonica .pl_service_data_row_all_info .tasks_service_title, .pl_service_harmonica .pl_service_data_row_all_info .tasks_service_priority, .pl_service_harmonica .pl_service_data_row_all_info .tasks_service_status, .pl_service_harmonica .pl_service_data_row_all_info .tasks_service_last_service, .pl_service_harmonica .pl_service_data_row_all_info .tasks_service_deadline, .pl_service_harmonica .pl_service_data_row_all_info .tasks_service_updated_initials, .pl_service_harmonica .pl_service_data_row_all_info .tasks_service_comment {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   padding: 5px 10px;
 }
 
-.tasks_service_harmonica .tasks_service_data_row_all_info .dropdown_inline_headers {
+.tasks_service_harmonica .tasks_service_data_row_all_info .dropdown_inline_headers, .tasks_service_harmonica .pl_service_data_row_all_info .dropdown_inline_headers, .pl_service_harmonica .tasks_service_data_row_all_info .dropdown_inline_headers, .pl_service_harmonica .pl_service_data_row_all_info .dropdown_inline_headers {
   font-weight: 600;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -306,9 +314,37 @@
   width: 35%;
 }
 
-.tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_title {
+.tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_title, .tasks_service_harmonica .pl_service_data_row_all_info .tasks_service_title, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_title, .pl_service_harmonica .pl_service_data_row_all_info .tasks_service_title {
   font-size: 22px;
   padding: 5px 5px 10px 10px;
+}
+
+.tasks_service_harmonica .pl_service_all_headers, .tasks_service_harmonica .pl_service_all, .pl_service_harmonica .pl_service_all_headers, .pl_service_harmonica .pl_service_all {
+  border: 1px solid red;
+}
+
+.tasks_service_harmonica .pl_service_quantity_header, .tasks_service_harmonica .pl_service_quantity, .pl_service_harmonica .pl_service_quantity_header, .pl_service_harmonica .pl_service_quantity {
+  border: 1px solid red;
+}
+
+.tasks_service_harmonica .pl_service_status_header, .tasks_service_harmonica .pl_service_status, .pl_service_harmonica .pl_service_status_header, .pl_service_harmonica .pl_service_status {
+  border: 1px solid red;
+}
+
+.tasks_service_harmonica .pl_service_created_by_header, .tasks_service_harmonica .pl_service_created_by, .pl_service_harmonica .pl_service_created_by_header, .pl_service_harmonica .pl_service_created_by {
+  border: 1px solid red;
+}
+
+.tasks_service_harmonica .pl_service_updated_by_header, .tasks_service_harmonica .pl_service_updated_by, .pl_service_harmonica .pl_service_updated_by_header, .pl_service_harmonica .pl_service_updated_by {
+  border: 1px solid red;
+}
+
+.tasks_service_harmonica .pl_service_comment_header, .tasks_service_harmonica .pl_service_comment, .pl_service_harmonica .pl_service_comment_header, .pl_service_harmonica .pl_service_comment {
+  border: 1px solid red;
+}
+
+.tasks_service_harmonica .button_container_header, .tasks_service_harmonica .button_container, .pl_service_harmonica .button_container_header, .pl_service_harmonica .button_container {
+  border: 1px solid red;
 }
 
 /*Tablet - S */
@@ -532,9 +568,10 @@
             justify-content: space-between;
   }
   .tasks_service_harmonica .tasks_service_data_row_all_info {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
   }
   .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info {
     display: -webkit-box;

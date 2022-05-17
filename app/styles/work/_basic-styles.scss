@@ -185,32 +185,35 @@
 /*----------------------------------
         Harmonica lists
 ----------------------------------*/
-.tasks_service_harmonica {
-    .tasks_service_headers {
+.tasks_service_harmonica, .pl_service_harmonica{
+    .tasks_service_headers, .pl_service_headers {
         border-bottom: 3px solid $th_border_bottom;
         padding: 5px 0;
         font-weight: 600;
         margin-top: 30px !important;
         border: 1px solid $th_border_bottom;
-        .tasks_service_mobile_headers {
-            .tasks_service_name_header {
+        .tasks_service_mobile_headers, .pl_service_mobile_headers {
+            .tasks_service_name_header, .pl_service_name_header {
                 font-size: 20px;
                 padding: 10px 5px;
             }
         }
-        .tasks_service_all_headers {
+        .tasks_service_all_headers, .pl_service_all_headers {
             display: none;
         }
     }
-    .tasks_service_data_row {
-        .tasks_service_information {
+    .tasks_service_data_row, .pl_service_data_row {
+        .tasks_service_information, .pl_service_information {
             background-color: $harmonica_header_background;
             border: 1px solid $tr_border_bottom;
             border-bottom: 2px solid $tr_border_bottom;
             padding: 10px 5px;
         }
     }
-    .tasks_service_data_row_all_info {
+    .tasks_service_data_row_all_info, .pl_service_data_row_all_info {
+        display: flex;
+        flex-direction: column;
+        display: none;
         border: 1px solid $tr_border_bottom;
         border-bottom: 2px solid $tr_border_bottom;
         padding: 10px 0;
@@ -228,6 +231,41 @@
             padding: 5px 5px 10px 10px;
         }
     }
+
+
+    .pl_service_all_headers, .pl_service_all {
+        border: 1px solid red;
+    }
+    .pl_service_quantity_header, .pl_service_quantity {
+        border: 1px solid red;
+    }
+    .pl_service_status_header, .pl_service_status {
+        border: 1px solid red;
+    }
+    .pl_service_created_by_header, .pl_service_created_by {
+        border: 1px solid red;
+    }
+    .pl_service_updated_by_header, .pl_service_updated_by {
+        border: 1px solid red;
+    }
+    .pl_service_comment_header, .pl_service_comment {
+        border: 1px solid red;
+    }
+    .button_container_header, .button_container {
+        border: 1px solid red;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
@@ -446,7 +484,7 @@
         }
             
         .tasks_service_data_row_all_info {
-            display: flex;
+            flex-direction: row;
             .data_row_info {
                 display: flex;
                 padding: 5px;
