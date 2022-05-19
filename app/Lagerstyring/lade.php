@@ -73,7 +73,9 @@
                     }
                 }
                 //variables to show or hide pop-up modals
-                $display_none_archive_pop_up = "none";
+                $display_edit_storage_pop_up = "none";
+                $display_create_element_pop_up = "none";
+                $display_delete_storage_pop_up = "none";
 
 
             ?>
@@ -82,7 +84,25 @@
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
-                    
+                    //create, køres hvis "Tilføj ny medarbejder" bliver requested
+                    if($_REQUEST['knap'] == "Opret nyt element")
+                    {
+                        $display_create_element_pop_up = "flex";
+                    }
+                    //create, køres hvis "create button" bliver requested
+                    if($_REQUEST['knap'] == "Opret")
+                    {
+                        $location = $_REQUEST['location_c'];
+                        $element = $_REQUEST['element_c'];
+                        $quantity = $_REQUEST['quantity_c'];
+                        $min_quantity = $_REQUEST['min_quantity_c'];
+                        $comment = $_REQUEST['comment_c'];
+                        
+                        $sql = $conn->prepare("insert into storage (element_location, element, quantity, min_quantity, comment) values (?, ?, ?, ?, ?)");
+                        $sql->bind_param("sssss", $location, $element, $quantity, $min_quantity, $comment);
+                        $sql->execute();
+                        
+                    }
                     //read, koden køres hvis "read button" bliver requested 
                     if(str_contains($_REQUEST['knap'] , "read"))
                     {
@@ -98,16 +118,40 @@
                             {
                                 $row = $result->fetch_assoc();
                                 $id = $row['id'];
+                                $_SESSION["bilTilUpdate"] = $id;
                                 $element = $row['element'];
+                                $status = $row['status'];
                                 $element_location = $row['element_location'];
                                 $quantity = $row['quantity'];
                                 $min_quantity = $row['min_quantity'];
-                                $status = $row['status'];
                                 $created_by = $row['created_by'];
                                 $updated_by = $row['updated_by'];
                                 $comment = $row['comment'];
 
-                                $display_none_archive_pop_up = "flex";
+                                $display_edit_storage_pop_up = "flex";
+                            }
+                        }
+                    }
+                    //update
+                    if($_REQUEST['knap'] == "Opdater") 
+                    {
+                        $id = $_SESSION["bilTilUpdate"];
+                        $element = $_REQUEST['element_u'];
+                        $element_location = $_REQUEST['element_location_u'];
+                        $quantity = $_REQUEST['quantity_u'];
+                        $min_quantity = $_REQUEST['min_quantity_u'];
+                        // $created_by = $_REQUEST['created_by_u'];
+                        // $updated_by = $_REQUEST['updated_by_u'];
+                        $comment = $_REQUEST['comment_u'];
+
+
+                        if(is_numeric($id) && is_integer(0 + $id))
+                        {
+                            if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                            {
+                                $sql = $conn->prepare("update storage set element = ?, element_location = ?, quantity = ?, min_quantity = ? where id = ?");
+                                $sql->bind_param("ssssi", $element, $element_location, $quantity, $min_quantity, $id);
+                                $sql->execute();    
                             }
                         }
                     }
@@ -153,17 +197,15 @@
 
             <!-- SELVE TABELLEN -->
             <div class="profile_list">
-                <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny medarbejder"></div>
+                <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret nyt element"></div>
                 <?php 
-
-
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
-                    $sql = "select * from storage";
+                    $sql = "select * from storage order by element_location asc";
                     $result = $conn->query($sql);
                     echo '<div class="pl_service_harmonica">';
                         echo '<div class="pl_service_headers">';
                             echo '<div class="pl_service_mobile_headers">';
-                                echo '<p class="pl_service_element_headers">Medarbejder</p>';
+                                echo '<p class="pl_service_element_headers">Element</p>';
                             echo '</div>';
                             echo '<div class="pl_service_all_headers">';
                                 echo '<p class="pl_service_quantity_header">Antal</p>';
@@ -219,13 +261,32 @@
             //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årsager
                 $conn->close();
             ?>
-            <!----------------------------
-                    Edit profile pop-op
-            ----------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_none_archive_pop_up ?>">
-                <h3>Opdater medarbejderprofil</h3>
-                id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
+            <!--------------------------------------
+                    Create new storage pop-op
+            --------------------------------------->
+            <div class="pop_up_modal" style="display: <?php echo $display_create_element_pop_up ?>">
+                <h3>Opret nyt element</h3>
+                <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
+                <div class="pop-up-row"><p>Element : </p><input type="text" name="element_c" value="<?php echo isset($element) ? $element : '' ?>"></div>
+                <div class="pop-up-row"><p>Antal : </p><input type="text" name="quantity_c" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
+                <div class="pop-up-row"><p>min. antal : </p><input type="text" name="min_quantity_c" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
+                <div class="pop-up-row"><p>Bemærkning : </p><input type="date" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Opret" class="pop_up_confirm">
+                </div>
+            </div>
 
+            <!----------------------------
+                    Edit storage pop-op
+            ----------------------------->
+            <div class="pop_up_modal" style="display: <?php echo $display_edit_storage_pop_up ?>">
+                <h3>Opdater element</h3>
+                <div class="pop-up-row"><p>Lokation : </p><input type="text" name="element_location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
+                <div class="pop-up-row"><p>Element : </p><input type="text" name="element_u" value="<?php echo isset($element) ? $element : '' ?>"></div>
+                <div class="pop-up-row"><p>Antal : </p><input type="text" name="quantity_u" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
+                <div class="pop-up-row"><p>min. antal : </p><input type="text" name="min_quantity_u" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
+                <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
@@ -235,13 +296,13 @@
             <!------------------------
                     delete pop up
             ------------------------->
-            <!-- <div class="pop_up_modal" style="display: <?php echo $display_delete_storage_pop_up ?>">
-                <h3>Slet medarbejder</h3>
+            <div class="pop_up_modal" style="display: <?php echo $display_delete_storage_pop_up ?>">
+                <h3>Slet element</h3>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
                 </div>
-            </div> -->
+            </div>
             
         </form>
     </div>

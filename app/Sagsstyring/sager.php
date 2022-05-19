@@ -125,8 +125,6 @@
                                 $case_responsible = $row['case_responsible'];
                                 $status = $row['status'];
                                 $location = $row['location'];
-                                // $est_start_date = $row['est_start_date'];
-                                // $est_end_date = $row['est_end_date'];
 
                                 $display_edit_case_pop_up = "flex";
                             }
@@ -140,8 +138,6 @@
                         $case_responsible = $_REQUEST['case_responsible_u'];
                         $status = $_REQUEST['status_u'];
                         $location = $_REQUEST['location_u'];
-                        // $est_start_date = $_REQUEST['est_start_date_u'];
-                        // $est_end_date = $_REQUEST['est_end_date_u'];
 
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
@@ -281,6 +277,23 @@
             $conn->close();
         ?>
 
+        <!---------------------------
+            Add new case pop-up
+        ---------------------------->
+        <div class="pop_up_modal" style="display: <?php echo $display_create_case_pop_up ?>">
+            <h3>Opret ny sag</h3>
+            <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_c" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
+            <div class="pop-up-row"><p>Ansvarlig : </p><input type="text" name="case_responsible_c" value="<?php echo isset($case_responsible) ? $case_responsible : '' ?>"></div>
+            <div class="pop-up-row"><p>Status : </p><input type="text" name="status_c" value="<?php echo isset($status) ? $status : '' ?>"></div>
+            <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
+            <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
+            <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
+            <div class="pop-up-btn-container">
+                <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                <input type="submit" name="knap" value="Opret" class="pop_up_confirm">
+            </div>
+        </div>
+
         <!----------------------------
                 Edit profile pop-op
         ----------------------------->
@@ -299,22 +312,6 @@
             </div>
         </div>
 
-        <!---------------------------
-            Add new case pop-up
-        ---------------------------->
-        <div class="pop_up_modal" style="display: <?php echo $display_create_case_pop_up ?>">
-            <h3>Opret ny sag</h3>
-            <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_c" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
-            <div class="pop-up-row"><p>Ansvarlig : </p><input type="text" name="case_responsible_c" value="<?php echo isset($case_responsible) ? $case_responsible : '' ?>"></div>
-            <div class="pop-up-row"><p>Status : </p><input type="text" name="status_c" value="<?php echo isset($status) ? $status : '' ?>"></div>
-            <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
-            <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
-            <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
-            <div class="pop-up-btn-container">
-                <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                <input type="submit" name="knap" value="Opret" class="pop_up_confirm">
-            </div>
-        </div>
 
         <!------------------------
                 archive pop up
