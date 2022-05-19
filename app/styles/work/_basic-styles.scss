@@ -216,7 +216,7 @@
     .tasks_service_data_row_all_info, .planned_service_data_row_all_info {
         display: flex;
         flex-direction: column;
-        // display: none;
+        display: none;
         border: 1px solid $tr_border_bottom;
         border-bottom: 2px solid $tr_border_bottom;
         padding: 10px 0;
@@ -235,9 +235,12 @@
             font-size: 22px;
             padding: 5px 5px 10px 10px;
         }
-    }
-
-    
+        .button_container {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+        }
+    }    
 }
 
 
