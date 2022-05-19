@@ -35,7 +35,7 @@
     <!-- Navigationsbar -->
     <div class="navbar_container">
         <div class="navbar_top"><img src="../img/navbar-cross.png" alt="navbar cross" class="navbar_cross"></div>
-        <div class="navbar_mid"></div>
+        <div class="navbar_mid"><img src="../img/DayTask_logo.png" alt="DayTask logo" class="day_task_logo"></div>
         <ul class="navbar_ul">
             <li><a href="../Profil/profil.php" class="active-main-site">Profil</a></li>
             <li><a href="../Medarbejdere/ansatte.php">Medarbejder</a></li>
