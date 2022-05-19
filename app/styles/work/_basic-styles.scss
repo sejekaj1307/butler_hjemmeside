@@ -318,8 +318,9 @@
         }
             .button_container, .button_container_header { //button container, crud, read and delete
                 display: flex;
-                width: 5vw !important;
+                width: 6.5vw !important;
                 justify-content: space-between;
+                border: 1px solid red;
             }
     }
     /*------------------------------------------
@@ -333,13 +334,13 @@
         width: 5vw !important;
     }
     .employee_phone, .employee_phone_header {
-        width: 7.5vw !important;
+        width: 7vw !important;
     }
     .employee_email, .employee_email_header{
         width: 21vw;
     }
     .employee_emergency, .employee_emergency_header {
-        width: 13.5vw !important;
+        width: 13vw !important;
     }
     /*------------------------------------------
         Externals and suppliers width 1200
@@ -352,7 +353,7 @@
         width: 8vw !important;
     }
     .external_email, .external_email_header{
-        width: 22vw !important;
+        width: 20vw !important;
     }
     .external_product, .external_product_header {
         width: 13vw !important;
@@ -365,7 +366,7 @@
         padding-left: 15px !important;
     }
     .machine_nordic_name_header, .machine_nordic_name {
-        width: 32.5vw !important;
+        width: 30.5vw !important;
     }
     .machine_link_header, .machine_link {
         width: 16vw !important;
@@ -384,7 +385,7 @@
         width: 18vw !important;
     }
     .case_est_start_header, .case_est_start, .case_deadline_header, .case_deadline, .case_archived_at_header, .case_archived_at {
-        width: 11vw !important;
+        width: 10vw !important;
     }
     /*------------------------------------
             Task width 1200
@@ -394,10 +395,10 @@
         padding-left: 15px !important;
     }
     .task_prority_header, .task_prority, .task_status_header, .task_status, .task_deadline_header, .task_deadline, .task_updated_initials_header, .task_updated_initials {
-        width: 8vw;
+        width: 7.5vw;
     }
     .task_comment_header, .task_comment {
-        width: 15vw;
+        width: 14vw;
     }
 
 

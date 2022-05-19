@@ -92,7 +92,6 @@
                     //create, køres hvis "create button" bliver requested
                     if($_REQUEST['knap'] == "Opret")
                     {
-                        $id = $_REQUEST['id_c'];
                         $case_nr = $_REQUEST['case_nr_c'];
                         $case_responsible = $_REQUEST['case_responsible_c'];
                         $status = 'Oprettet';
@@ -101,15 +100,11 @@
                         $est_end_date = $_REQUEST['est_end_date_c'];
                         $date_now = new DateTime();
                         $date_now_formatted = $date_now->format('Y-m-d H:i:s');
-                        if(is_numeric($id) && is_integer(0 + $id)) 
-                        {
-                            if(!findes($id, $conn)) //opret ny klub
-                            {
-                                $sql = $conn->prepare("insert into cases (id, case_nr, case_responsible, status, location, est_start_date, est_end_date, created_at) values (?, ?, ?, ?, ?, ?, ?, ?)");
-                                $sql->bind_param("isssssss", $id, $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date, $date_now_formatted);
-                                $sql->execute();
-                            }
-                        } 
+                        
+                        $sql = $conn->prepare("insert into cases (case_nr, case_responsible, status, location, est_start_date, est_end_date, created_at) values (?, ?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("sssssss", $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date, $date_now_formatted);
+                        $sql->execute();
+                        
                     }
                     //read, koden køres hvis "read button" bliver requested 
                     if(str_contains($_REQUEST['knap'] , "read"))
@@ -309,7 +304,6 @@
         ---------------------------->
         <div class="pop_up_modal" style="display: <?php echo $display_create_case_pop_up ?>">
             <h3>Opret ny sag</h3>
-            id : <input type="text" name="id_c" value="<?php echo isset($id) ? $id : '' ?>">
             <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_c" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
             <div class="pop-up-row"><p>Ansvarlig : </p><input type="text" name="case_responsible_c" value="<?php echo isset($case_responsible) ? $case_responsible : '' ?>"></div>
             <div class="pop-up-row"><p>Status : </p><input type="text" name="status_c" value="<?php echo isset($status) ? $status : '' ?>"></div>
