@@ -76,6 +76,8 @@
                 }
                 //variables to show or hide pop-up modals
                 $display_none_archive_pop_up = "none";
+                $display_edit_task_service_pop_up = "none";
+                $display_create_task_service_pop_up = "none";
 
 
             ?>
@@ -84,7 +86,28 @@
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
-                    
+                    //create
+                    if($_REQUEST['knap'] == "Tilføj nyt element")
+                    {
+                        $display_create_task_service_pop_up = "flex";
+                    }
+                    //create, køres hvis "create button" bliver requested
+                    if($_REQUEST['knap'] == "Opret ny")
+                    {
+                        $task_title = $_REQUEST['task_title'];
+                        $priority = $_REQUEST['priority'];
+                        $status = $_REQUEST['status'];
+                        $last_service = $_REQUEST['last_service'];
+                        $deadline = $_REQUEST['deadline'];
+                        $updated_initials = $_REQUEST['updated_initials'];
+                        $comment = $_REQUEST['comment'];
+                        
+                        $sql = $conn->prepare("insert into tasks (task_title, priority, status, last_service, deadline, updated_initials, comment) values (?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("ssssss", $task_title, $priority, $status, $last_service, $deadline, $updated_initials, $comment);
+                        $sql->execute();
+                        $display_create_task_service_pop_up = "none";
+                        
+                    }
                     //read, koden køres hvis "read button" bliver requested 
                     if(str_contains($_REQUEST['knap'] , "read"))
                     {
@@ -105,10 +128,10 @@
                                 $status = $row['status'];
                                 $last_service = $row['last_service'];
                                 $deadline = $row['deadline'];
-                                $updated_by = $row['updated_by'];
+                                $updated_initials = $row['updated_initials'];
                                 $comment = $row['comment'];
 
-                                $display_none_archive_pop_up = "flex";
+                                $display_edit_task_service_pop_up = "flex";
                             }
                         }
                     }
@@ -121,16 +144,16 @@
                         $status = $_REQUEST['status'];
                         $last_service = $_REQUEST['last_service'];
                         $deadline = $_REQUEST['deadline'];
-                        $updated_by = $_REQUEST['updated_by'];
+                        $updated_initials = $_REQUEST['updated_initials'];
                         $comment = $_REQUEST['comment'];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
                             if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                             {
-                                $sql = $conn->prepare("update tasks set task_title = ?, priority = ?, status = ?, last_service = ?, deadline = ?, updated_by = ?, comment = ? where id = ?");
-                                $sql->bind_param("sssssssi", $task_title, $priority, $status, $last_service, $deadline, $updated_by, $comment, $id);
+                                $sql = $conn->prepare("update tasks set task_title = ?, priority = ?, status = ?, last_service = ?, deadline = ?, updated_initials = ?, comment = ? where id = ?");
+                                $sql->bind_param("sssssssi", $task_title, $priority, $status, $last_service, $deadline, $updated_initials, $comment, $id);
                                 $sql->execute();
-                                $display_edit_task_pop_up = "none";
+                                $display_edit_task_service_pop_up = "none";
                             }
                         }
                     }
@@ -176,7 +199,7 @@
 
             <!-- SELVE TABELLEN -->
             <div class="profile_list">
-                <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny medarbejder"></div>
+                <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj nyt element"></div>
                 <?php 
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                     $sql = "select * from tasks_service";
@@ -253,14 +276,14 @@
             <!-------------------------------------
                     Edit task_service pop-op    
             -------------------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_edit_task_pop_up ?>">
+            <div class="pop_up_modal" style="display: <?php echo $display_edit_task_service_pop_up ?>">
                 <h3>Opdater element</h3>
                 <div class="pop-up-row"><p>Element : </p><input type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                 <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority_u" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
                 <div class="pop-up-row"><p>Status : </p><input type="text" name="status_u" value="<?php echo isset($status) ? $status : '' ?>"></div>
                 <div class="pop-up-row"><p>Seneste service : </p><input type="text" name="last_service_u" value="<?php echo isset($last_service) ? $last_service : '' ?>"></div>
                 <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_by_u" value="<?php echo isset($updated_by) ? $updated_by : '' ?>"></div>
+                <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_initials_u" value="<?php echo isset($updated_initials) ? $updated_initials : '' ?>"></div>
                 <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
@@ -271,14 +294,14 @@
             <!-----------------------------------
                 Add new task_service pop-up
             ------------------------------------>
-            <div class="pop_up_modal" style="display: <?php echo $display_create_task_pop_up ?>">
+            <div class="pop_up_modal" style="display: <?php echo $display_create_task_service_pop_up ?>">
                 <h3>Tilføj nyt element</h3>
                 <div class="pop-up-row"><p>Element : </p><input type="text" name="task_title_c" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                 <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority_c" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
                 <div class="pop-up-row"><p>Status : </p><input type="text" name="status_c" value="<?php echo isset($status) ? $status : '' ?>"></div>
                 <div class="pop-up-row"><p>Seneste service : </p><input type="text" name="last_service_c" value="<?php echo isset($last_service) ? $last_service : '' ?>"></div>
                 <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_by_c" value="<?php echo isset($updated_by) ? $updated_by : '' ?>"></div>
+                <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_initials_c" value="<?php echo isset($updated_initials) ? $updated_initials : '' ?>"></div>
                 <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
