@@ -257,15 +257,13 @@
                                     echo '<p class="light_dropdown_table case_est_start">' . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
                                     echo '<p class="dark_dropdown_table case_deadline">' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
                                 echo '</div>';
-                                ?> 
-                            <div class="button_container">
-                                <input type="submit" name="knap" value="read_<?php echo $row['id'];?>">
-                                <input type="submit" name="knap" value="arc_<?php echo $row['id'];?>">
-                                <input type="submit" name="knap" value="delete_<?php echo $row['id'];?>">
-                            </div>
-                        <?php 
-
-                            echo '</div>';
+                                
+                                echo '<div class="button_container">';
+                                    echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
+                                    echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
+                                    echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
+                                echo '</div>';
+                            echo '</div>'; 
                         }   
                     }
                 echo '</div>';

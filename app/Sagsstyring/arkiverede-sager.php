@@ -160,13 +160,11 @@
                                     echo '<p class="case_est_start">' . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
                                     echo '<p class="case_deadline">' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
                                 echo '</div>';
-                                ?> 
-                            <div class="button_container">
-                                <input type="submit" name="knap" value="activate_<?php echo $row['id'];?>">
-                            </div>
-                        <?php 
-
-                            echo '</div>';
+                                
+                                echo '<div class="button_container">';
+                                    echo '<button type="submit" name="knap" value="activate_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
+                                echo '</div>';
+                            echo '</div>'; 
                         }   
                     }
                 echo '</div>';

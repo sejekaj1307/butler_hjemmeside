@@ -155,8 +155,6 @@
             <div class="profile_list">
                 <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny medarbejder"></div>
                 <?php 
-
-
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                     $sql = "select * from tasks_service";
                     $result = $conn->query($sql);
@@ -201,8 +199,9 @@
                                     echo "</div>";
                                 
                                     echo '<div class="button_container">';
-                                        echo '<input type="submit" name="knap" value="read_' . $row['id'] . '">';
-                                        echo '<input type="submit" name="knap" value="slet_' . $row['id'] . '">';
+                                        echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
+                                        echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
+                                        echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
                                     echo '</div>';
                                 echo '</div>'; 
                             }
@@ -212,7 +211,7 @@
                             ?>
                             
             </div>
-                                
+
 
 
             <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
