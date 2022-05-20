@@ -240,9 +240,8 @@
                                     echo '</div>';
                                 ?>
                                 <div class="button_container">
-                                    <!-- <input type="submit" name="knap" value="read_<?php echo $row['id'];?>"> -->
                                     <button type="submit" name="knap" value="read_<?php echo $row['id'];?>"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"></button>
-                                    <input type="submit" name="knap" value="slet_<?php echo $row['id'];?>">
+                                    <button type="submit" name="knap" value="slet_<?php echo $row['id'];?>"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"></button>
                                 </div>
                             <?php 
 

@@ -236,9 +236,9 @@
                                     echo '</div>';
                                     ?> 
                                 <div class="button_container">
-                                    <input type="submit" name="knap" value="read_<?php echo $row['id'];?>">
-                                    <button type="submit" name="knap" value="re">Ar</button>
-                                    <input type="submit" name="knap" value="delete_<?php echo $row['id'];?>">
+                                    <button type="submit" name="knap" value="read_<?php echo $row['id'];?>"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"></button>
+                                    <button type="submit" name="knap" value="archive_<?php echo $row['id'];?>"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"></button>
+                                    <button type="submit" name="knap" value="delete_<?php echo $row['id'];?>"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"></button>
                                 </div>
                             <?php 
 

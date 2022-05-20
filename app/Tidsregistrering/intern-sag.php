@@ -1,4 +1,5 @@
 <?php 
+    session_start(); 
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
 ?>
 
