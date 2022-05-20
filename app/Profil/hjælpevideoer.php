@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/web/styles.css">
-    <title>Medarbejder profil</title>
+    <title>Hjælpevideoer</title>
 </head>
 
 <body>
@@ -35,7 +35,7 @@
         <!-- Masthead -->
         <div class="sec-navbar-mobile">
             <div class="logged_in">
-                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> Efternavn, Fornavn</div>
+                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"><?php echo $_SESSION['logged_in_user_global']['last_name'] . ', ' . $_SESSION['logged_in_user_global']['first_name'];?> </div>
                 <div class="navbar_bars"></div>
             </div>
             <h2 class="sec-navbar-mobile-header">Medarbejder profil<div class="arrow_container"><img
@@ -44,7 +44,7 @@
             <ul class="sec_navbar_ul_dropdown">
                 <li><a href="../Profil/profil.php">Profil</a>
                 <li><a href="../Profil/notifikationer.php">Notifikationer</a>
-                <li><a href="../Profil/profil-medarbejder.php" class="active_site_dropdown">Medarbejder profil</a></li>
+                <li><a href="../Profil/profil-medarbejder.php" class="active_site_dropdown">Hjælpevideoer</a></li>
                 </li>
             </ul>
         </div>

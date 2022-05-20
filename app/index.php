@@ -43,8 +43,8 @@
                             if($passwordInput == $password) 
                             {
                                 // echo "<script> window.location.href = 'Medarbejdere/ansatte.php'; </script>"; //HEADER
-                                $_session['email'] = $playernameGlobal;
-                                echo "<script> window.location.href = 'Profil/profil.php?playername=$useremail'; </script>"; //HEADER
+                                $_SESSION['logged_in_user_global'] = array("email"=>$useremail, "first_name"=>$row['first_name'], "last_name"=>$row['last_name'], "initials"=>$row['initials']);
+                                echo "<script> window.location.href = 'Tidsregistrering/tidsregistrering.php'; </script>"; //HEADER
                                 
                             }
                             else { 

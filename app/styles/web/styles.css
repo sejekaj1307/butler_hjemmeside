@@ -337,6 +337,10 @@
   padding: 10px 20px;
 }
 
+.edit_icons {
+  width: 15px;
+}
+
 /*Tablet - S */
 @media screen and (min-width: 900px) {
   .site_container {

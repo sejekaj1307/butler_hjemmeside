@@ -37,7 +37,7 @@
         <!-- Masthead -->
         <div class="sec-navbar-mobile">
             <div class="logged_in">
-                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> Efternavn, Fornavn</div>
+                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"><?php echo $_SESSION['logged_in_user_global']['last_name'] . ', ' . $_SESSION['logged_in_user_global']['first_name'];?></div>
                 <div class="navbar_bars"></div>
             </div>
             <h2 class="sec-navbar-mobile-header">Fejl og mangler <div class="arrow_container"><img
@@ -94,23 +94,18 @@
                     //create, køres hvis "create button" bliver requested
                     if($_REQUEST['knap'] == "Opret ny")
                     {
-                        $id = $_REQUEST['id_c'];
                         $task_title = $_REQUEST['task_title_c'];
                         $priority = $_REQUEST['priority_c'];
                         $status = $_REQUEST['status_c'];
                         $deadline = $_REQUEST['deadline_c'];
-                        $updated_initials = $_REQUEST['updated_initials_c'];
+                        $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                         $comment = $_REQUEST['comment_c'];
-                        if(is_numeric($id) && is_integer(0 + $id)) 
-                        {
-                            if(!findes($id, $conn)) //opret ny klub
-                            {
-                                $sql = $conn->prepare("insert into tasks (id, task_title, priority, status, deadline, updated_initials, comment) values (?, ?, ?, ?, ?, ?, ?)");
-                                $sql->bind_param("issssss", $id, $task_title, $priority, $status, $deadline, $updated_initials, $comment);
-                                $sql->execute();
-                                $display_create_task_pop_up = "none";
-                            }
-                        }
+                        
+                        $sql = $conn->prepare("insert into tasks (task_title, priority, status, deadline, updated_initials, comment) values (?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("ssssss", $task_title, $priority, $status, $deadline, $updated_initials, $comment);
+                        $sql->execute();
+                        $display_create_task_pop_up = "none";
+                        
                     }
                     //read
                     if(str_contains($_REQUEST['knap'] , "read"))
@@ -127,11 +122,12 @@
                             {
                                 $row = $result->fetch_assoc();
                                 $id = $row['id'];
+                                $_SESSION["selected_task"] = $id;
                                 $task_title = $row['task_title'];
                                 $priority = $row['priority'];
                                 $status = $row['status'];
                                 $deadline = $row['deadline'];
-                                $updated_initials = $row['updated_initials'];
+                                $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                                 $comment = $row['comment'];
                                 $display_edit_task_pop_up = "flex";
                             }
@@ -140,12 +136,12 @@
                     //update
                     if($_REQUEST['knap'] == "Opdater")
                     {
-                        $id = $_REQUEST['id_u'];
+                        $id = $_SESSION["selected_task"];
                         $task_title = $_REQUEST['task_title_u'];
                         $priority = $_REQUEST['priority_u'];
                         $status = $_REQUEST['status_u'];
                         $deadline = $_REQUEST['deadline_u'];
-                        $updated_initials = $_REQUEST['updated_initials_u'];
+                        $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                         $comment = $_REQUEST['comment_u'];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
@@ -167,7 +163,7 @@
                         {
                             if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                             {
-                                $_SESSION["bilTilDelete"] = $id;
+                                $_SESSION["selected_task"] = $id;
                                 $display_delete_task_pop_up = "flex";
                             }
                         }
@@ -176,7 +172,7 @@
                     if($_REQUEST['knap'] == "Slet")
                     {
                         //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede id forbliver det samme hvis siden genindlæses.
-                        $id = $_SESSION["bilTilDelete"];
+                        $id = $_SESSION["selected_task"];
                         $sql = $conn->prepare("delete from tasks where id = ?");
                         $sql->bind_param("i", $id);
                         $sql->execute();
@@ -264,12 +260,10 @@
             ----------------------------->
             <div class="pop_up_modal" style="display: <?php echo $display_edit_task_pop_up ?>">
                 <h3>Opdater opgave</h3>
-                id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
                 <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                 <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority_u" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
                 <div class="pop-up-row"><p>status : </p><input type="text" name="status_u" value="<?php echo isset($status) ? $status : '' ?>"></div>
                 <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_initials_u" value="<?php echo isset($updated_initials) ? $updated_initials : '' ?>"></div>
                 <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
@@ -282,12 +276,10 @@
             ---------------------------->
             <div class="pop_up_modal" style="display: <?php echo $display_create_task_pop_up ?>">
                 <h3>Tilføj ny opgave</h3>
-                id : <input type="text" name="id_c" value="<?php echo isset($id) ? $id : '' ?>">
                 <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_c" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                 <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority_c" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
                 <div class="pop-up-row"><p>status : </p><input type="text" name="status_c" value="<?php echo isset($status) ? $status : '' ?>"></div>
                 <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_initials_c" value="<?php echo isset($updated_initials) ? $updated_initials : '' ?>"></div>
                 <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">

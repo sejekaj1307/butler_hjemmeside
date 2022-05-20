@@ -1,21 +1,26 @@
 <?php 
-    // session_start();
-
-
+    session_start();
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");  
-    // $_session['email'] = $playernameGlobal;
-    // $playernameGlobal = $_GET["email"]; ///http request på sidens url
 
-    //logged in data from playername
+    //Fetch user data from global user email
     $sql = $conn->prepare( "select * from employees where email = ?");
-    $sql->bind_param("s", $playernameGlobal); 
+    $sql->bind_param("s", $_SESSION['logged_in_user_global']['email']); 
     $sql->execute();
     $result = $sql->get_result();
     if($result->num_rows > 0) 
     {
         $row = $result->fetch_assoc();
-        // $email = $row['email'];
-        // $playerAvatar = $row['avatar'];
+        $email = $row['email'];
+        $first_name = $row['first_name'];
+        $last_name = $row['last_name'];
+        $initials = $row['initials'];
+        $email_private = $row['email_private'];
+        $phone = $row['email_private'];
+        $phone_private = $row['email_private'];
+        $emergency_name = $row['email_private'];
+        $emergency_phone = $row['email_private'];
+        $picture = $row['email_private'];
+        $colour = $row['email_private'];
     }
 ?>
 
@@ -52,7 +57,7 @@
         <!-- Masthead -->
         <div class="sec-navbar-mobile">
             <div class="logged_in">
-                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> Efternavn, Fornavn</div>
+                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"><?php echo $_SESSION['logged_in_user_global']['last_name'] . ', ' . $_SESSION['logged_in_user_global']['first_name'];?> </div>
                 <div class="navbar_bars"></div>
             </div>
             <h2 class="sec-navbar-mobile-header">Profil <div class="arrow_container"><img src="../img/arrow.png"
@@ -61,7 +66,7 @@
             <ul class="sec_navbar_ul_dropdown">
                 <li><a href="../Profil/profil.php" class="active_site_dropdown">Profil</a>
                 <li><a href="../Profil/notifikationer.php">Notifikationer</a>
-                <li><a href="../Profil/profil-medarbejder.php">Medarbejder profil</a></li>
+                <li><a href="../Profil/profil-medarbejder.php">Hjælpevideoer</a></li>
                 </li>
             </ul>
         </div>
