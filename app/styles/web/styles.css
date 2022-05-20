@@ -273,7 +273,7 @@
   border: 1px solid #5068CB;
 }
 
-.tasks_service_harmonica .tasks_service_headers .tasks_service_mobile_headers .tasks_service_name_header, .tasks_service_harmonica .tasks_service_headers .tasks_service_mobile_headers .pl_service_element_headers, .tasks_service_harmonica .tasks_service_headers .pl_service_mobile_headers .tasks_service_name_header, .tasks_service_harmonica .tasks_service_headers .pl_service_mobile_headers .pl_service_element_headers, .tasks_service_harmonica .pl_service_headers .tasks_service_mobile_headers .tasks_service_name_header, .tasks_service_harmonica .pl_service_headers .tasks_service_mobile_headers .pl_service_element_headers, .tasks_service_harmonica .pl_service_headers .pl_service_mobile_headers .tasks_service_name_header, .tasks_service_harmonica .pl_service_headers .pl_service_mobile_headers .pl_service_element_headers, .pl_service_harmonica .tasks_service_headers .tasks_service_mobile_headers .tasks_service_name_header, .pl_service_harmonica .tasks_service_headers .tasks_service_mobile_headers .pl_service_element_headers, .pl_service_harmonica .tasks_service_headers .pl_service_mobile_headers .tasks_service_name_header, .pl_service_harmonica .tasks_service_headers .pl_service_mobile_headers .pl_service_element_headers, .pl_service_harmonica .pl_service_headers .tasks_service_mobile_headers .tasks_service_name_header, .pl_service_harmonica .pl_service_headers .tasks_service_mobile_headers .pl_service_element_headers, .pl_service_harmonica .pl_service_headers .pl_service_mobile_headers .tasks_service_name_header, .pl_service_harmonica .pl_service_headers .pl_service_mobile_headers .pl_service_element_headers {
+.tasks_service_harmonica .tasks_service_headers .tasks_service_name_header, .tasks_service_harmonica .tasks_service_headers .pl_service_element_headers, .tasks_service_harmonica .pl_service_headers .tasks_service_name_header, .tasks_service_harmonica .pl_service_headers .pl_service_element_headers, .pl_service_harmonica .tasks_service_headers .tasks_service_name_header, .pl_service_harmonica .tasks_service_headers .pl_service_element_headers, .pl_service_harmonica .pl_service_headers .tasks_service_name_header, .pl_service_harmonica .pl_service_headers .pl_service_element_headers {
   font-size: 20px;
   padding: 10px 5px;
 }
@@ -286,7 +286,7 @@
   background-color: #EEF2FD;
   border: 1px solid #AEBFF6;
   border-bottom: 2px solid #AEBFF6;
-  padding: 10px 5px;
+  padding: 10px 0 10px 15px;
 }
 
 .tasks_service_harmonica .tasks_service_data_row_all_info, .tasks_service_harmonica .planned_service_data_row_all_info, .pl_service_harmonica .tasks_service_data_row_all_info, .pl_service_harmonica .planned_service_data_row_all_info {
@@ -311,7 +311,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 5px 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0 10px 15px;
 }
 
 .tasks_service_harmonica .tasks_service_data_row_all_info .dropdown_inline_headers, .tasks_service_harmonica .planned_service_data_row_all_info .dropdown_inline_headers, .pl_service_harmonica .tasks_service_data_row_all_info .dropdown_inline_headers, .pl_service_harmonica .planned_service_data_row_all_info .dropdown_inline_headers {
@@ -327,7 +330,7 @@
   padding: 5px 5px 10px 10px;
 }
 
-.tasks_service_harmonica .tasks_service_data_row_all_info .button_container, .tasks_service_harmonica .planned_service_data_row_all_info .button_container, .pl_service_harmonica .tasks_service_data_row_all_info .button_container, .pl_service_harmonica .planned_service_data_row_all_info .button_container {
+.tasks_service_harmonica .button_container, .tasks_service_harmonica .button_container_header, .pl_service_harmonica .button_container, .pl_service_harmonica .button_container_header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -337,7 +340,13 @@
   padding: 10px 20px;
 }
 
-.edit_icons {
+.tasks_service_harmonica .button_container button, .tasks_service_harmonica .button_container_header button, .pl_service_harmonica .button_container button, .pl_service_harmonica .button_container_header button {
+  margin-right: 25px;
+  background: none;
+  border: none;
+}
+
+.tasks_service_harmonica .button_container button .edit_icons, .tasks_service_harmonica .button_container_header button .edit_icons, .pl_service_harmonica .button_container button .edit_icons, .pl_service_harmonica .button_container_header button .edit_icons {
   width: 15px;
 }
 
@@ -428,10 +437,18 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 6.5vw !important;
+    width: 6vw !important;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    padding-right: 10px;
+  }
+  .employee_list .button_container button, .employee_list .button_container_header button, .external_list .button_container button, .external_list .button_container_header button, .machine_list .button_container button, .machine_list .button_container_header button, .case_list .button_container button, .case_list .button_container_header button, .task_list .button_container button, .task_list .button_container_header button {
+    background: none;
+    border: none;
+  }
+  .employee_list .button_container button .edit_icons, .employee_list .button_container_header button .edit_icons, .external_list .button_container button .edit_icons, .external_list .button_container_header button .edit_icons, .machine_list .button_container button .edit_icons, .machine_list .button_container_header button .edit_icons, .case_list .button_container button .edit_icons, .case_list .button_container_header button .edit_icons, .task_list .button_container button .edit_icons, .task_list .button_container_header button .edit_icons {
+    width: 15px;
   }
   /*------------------------------------------
                 employee width 1200
@@ -444,13 +461,13 @@
     width: 5vw !important;
   }
   .employee_phone, .employee_phone_header {
-    width: 6vw !important;
+    width: 7vw !important;
   }
   .employee_email, .employee_email_header {
     width: 21vw;
   }
   .employee_emergency, .employee_emergency_header {
-    width: 13vw !important;
+    width: 14vw !important;
   }
   /*------------------------------------------
         Externals and suppliers width 1200
@@ -460,7 +477,7 @@
     padding-left: 15px !important;
   }
   .external_phone, .external_phone_header {
-    width: 8vw !important;
+    width: 8.2vw !important;
   }
   .external_email, .external_email_header {
     width: 20vw !important;
@@ -471,12 +488,12 @@
   /*------------------------------------
             Machines width 1200
     ------------------------------------*/
-  .machine_name_header, .machine_name {
+  .machine_name_header, .machine_name, .machine_link_header, .machine_link {
     width: 17.5vw !important;
     padding-left: 15px !important;
   }
   .machine_nordic_name_header, .machine_nordic_name {
-    width: 30.5vw !important;
+    width: 30vw !important;
   }
   .machine_link_header, .machine_link {
     width: 16vw !important;
@@ -504,8 +521,11 @@
     width: 20vw !important;
     padding-left: 15px !important;
   }
-  .task_prority_header, .task_prority, .task_status_header, .task_status, .task_deadline_header, .task_deadline, .task_updated_initials_header, .task_updated_initials {
+  .task_prority_header, .task_prority, .task_status_header, .task_status, .task_updated_initials_header, .task_updated_initials {
     width: 7.5vw;
+  }
+  .task_deadline_header, .task_deadline {
+    width: 8vw;
   }
   .task_comment_header, .task_comment {
     width: 14vw;
@@ -517,7 +537,7 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    padding: 15px 5px;
+    padding: 15px 0;
   }
   .tasks_service_harmonica .tasks_service_headers .tasks_service_all_headers, .tasks_service_harmonica .tasks_service_headers .tasks_service_name_header, .tasks_service_harmonica .tasks_service_headers .pl_service_all_headers, .tasks_service_harmonica .tasks_service_headers .pl_service_element_headers, .tasks_service_harmonica .pl_service_headers .tasks_service_all_headers, .tasks_service_harmonica .pl_service_headers .tasks_service_name_header, .tasks_service_harmonica .pl_service_headers .pl_service_all_headers, .tasks_service_harmonica .pl_service_headers .pl_service_element_headers, .pl_service_harmonica .tasks_service_headers .tasks_service_all_headers, .pl_service_harmonica .tasks_service_headers .tasks_service_name_header, .pl_service_harmonica .tasks_service_headers .pl_service_all_headers, .pl_service_harmonica .tasks_service_headers .pl_service_element_headers, .pl_service_harmonica .pl_service_headers .tasks_service_all_headers, .pl_service_harmonica .pl_service_headers .tasks_service_name_header, .pl_service_harmonica .pl_service_headers .pl_service_all_headers, .pl_service_harmonica .pl_service_headers .pl_service_element_headers {
     display: -webkit-box !important;
@@ -527,39 +547,25 @@
   }
   .tasks_service_harmonica .tasks_service_name_header, .tasks_service_harmonica .pl_service_element_headers, .pl_service_harmonica .tasks_service_name_header, .pl_service_harmonica .pl_service_element_headers {
     padding: 0 !important;
-    width: 13.5vw;
+    border-left: 5px solid #fff;
   }
-  .tasks_service_harmonica .tasks_service_title, .tasks_service_harmonica .pl_service_element, .pl_service_harmonica .tasks_service_title, .pl_service_harmonica .pl_service_element {
+  .tasks_service_harmonica .tasks_service_title, .tasks_service_harmonica .pl_service_element, .tasks_service_harmonica .tasks_service_name_header, .tasks_service_harmonica .pl_service_element_headers, .pl_service_harmonica .tasks_service_title, .pl_service_harmonica .pl_service_element, .pl_service_harmonica .tasks_service_name_header, .pl_service_harmonica .pl_service_element_headers {
     font-size: 17px;
     padding: 0;
-    width: 13.5vw;
+    width: 14.5vw !important;
+    padding-left: 10px !important;
   }
-  .tasks_service_harmonica .tasks_service_priority_header, .tasks_service_harmonica .tasks_service_priority, .pl_service_harmonica .tasks_service_priority_header, .pl_service_harmonica .tasks_service_priority {
-    width: 5vw;
+  .tasks_service_harmonica .tasks_service_priority_header, .tasks_service_harmonica .tasks_service_priority, .tasks_service_harmonica .tasks_service_updated_initials_header, .tasks_service_harmonica .tasks_service_updated_initials, .pl_service_harmonica .tasks_service_priority_header, .pl_service_harmonica .tasks_service_priority, .pl_service_harmonica .tasks_service_updated_initials_header, .pl_service_harmonica .tasks_service_updated_initials {
+    width: 6vw;
   }
   .tasks_service_harmonica .tasks_service_status_header, .tasks_service_harmonica .tasks_service_status, .pl_service_harmonica .tasks_service_status_header, .pl_service_harmonica .tasks_service_status {
-    width: 7vw;
+    width: 7.5vw;
   }
   .tasks_service_harmonica .tasks_service_last_service_header, .tasks_service_harmonica .tasks_service_deadline_header, .tasks_service_harmonica .tasks_service_last_service, .tasks_service_harmonica .tasks_service_deadline, .pl_service_harmonica .tasks_service_last_service_header, .pl_service_harmonica .tasks_service_deadline_header, .pl_service_harmonica .tasks_service_last_service, .pl_service_harmonica .tasks_service_deadline {
-    width: 9vw;
-  }
-  .tasks_service_harmonica .tasks_service_updated_initials_header, .tasks_service_harmonica .tasks_service_updated_initials, .pl_service_harmonica .tasks_service_updated_initials_header, .pl_service_harmonica .tasks_service_updated_initials {
-    width: 6vw;
+    width: 8vw;
   }
   .tasks_service_harmonica .tasks_service_comment_header, .tasks_service_harmonica .tasks_service_comment, .pl_service_harmonica .tasks_service_comment_header, .pl_service_harmonica .tasks_service_comment {
     width: 14vw;
-  }
-  .tasks_service_harmonica .button_container_header, .pl_service_harmonica .button_container_header {
-    width: 7vw;
-  }
-  .tasks_service_harmonica .button_container, .pl_service_harmonica .button_container {
-    width: 7vw;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
   }
   .tasks_service_harmonica .tasks_service_data_row_all_info, .tasks_service_harmonica .planned_service_data_row_all_info, .pl_service_harmonica .tasks_service_data_row_all_info, .pl_service_harmonica .planned_service_data_row_all_info {
     -webkit-box-orient: horizontal;
@@ -571,7 +577,6 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    padding: 5px;
   }
   .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_title, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_priority, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_status, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_last_service, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_deadline, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_updated_initials, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_comment,
   .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_element, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_quantity, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_status, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_created_by, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_updated_by, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_comment, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_title, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_priority, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_status, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_last_service, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_deadline, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_updated_initials, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_comment,
@@ -587,23 +592,25 @@
   .tasks_service_harmonica .pl_service_all_headers, .tasks_service_harmonica .pl_service_all, .pl_service_harmonica .pl_service_all_headers, .pl_service_harmonica .pl_service_all {
     padding: 0;
   }
-  .tasks_service_harmonica .pl_service_quantity_header, .tasks_service_harmonica .pl_service_quantity, .pl_service_harmonica .pl_service_quantity_header, .pl_service_harmonica .pl_service_quantity {
-    width: 7vw;
-  }
-  .tasks_service_harmonica .pl_service_status_header, .tasks_service_harmonica .pl_service_status, .pl_service_harmonica .pl_service_status_header, .pl_service_harmonica .pl_service_status {
-    width: 10vw;
+  .tasks_service_harmonica .pl_service_quantity_header, .tasks_service_harmonica .pl_service_quantity, .tasks_service_harmonica .pl_service_status_header, .tasks_service_harmonica .pl_service_status, .tasks_service_harmonica .pl_service_updated_by_header, .tasks_service_harmonica .pl_service_updated_by, .pl_service_harmonica .pl_service_quantity_header, .pl_service_harmonica .pl_service_quantity, .pl_service_harmonica .pl_service_status_header, .pl_service_harmonica .pl_service_status, .pl_service_harmonica .pl_service_updated_by_header, .pl_service_harmonica .pl_service_updated_by {
+    width: 7.5vw;
   }
   .tasks_service_harmonica .pl_service_created_by_header, .tasks_service_harmonica .pl_service_created_by, .pl_service_harmonica .pl_service_created_by_header, .pl_service_harmonica .pl_service_created_by {
     width: 10vw;
   }
-  .tasks_service_harmonica .pl_service_updated_by_header, .tasks_service_harmonica .pl_service_updated_by, .pl_service_harmonica .pl_service_updated_by_header, .pl_service_harmonica .pl_service_updated_by {
-    width: 7.5vw;
-  }
   .tasks_service_harmonica .pl_service_comment_header, .tasks_service_harmonica .pl_service_comment, .pl_service_harmonica .pl_service_comment_header, .pl_service_harmonica .pl_service_comment {
-    width: 16.5vw;
+    width: 18vw !important;
   }
-  .tasks_service_harmonica .button_container_header, .tasks_service_harmonica .button_container, .pl_service_harmonica .button_container_header, .pl_service_harmonica .button_container {
-    width: 5vw;
+  .tasks_service_harmonica .button_container, .tasks_service_harmonica .button_container_header, .pl_service_harmonica .button_container, .pl_service_harmonica .button_container_header {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 0;
+    width: 5vw !important;
+    padding-right: 10px;
+  }
+  .tasks_service_harmonica .button_container button, .tasks_service_harmonica .button_container_header button, .pl_service_harmonica .button_container button, .pl_service_harmonica .button_container_header button {
+    margin: 0;
   }
 }
 
@@ -616,34 +623,31 @@
     width: 5vw !important;
   }
   .employee_list .employee_phone, .employee_list .employee_phone_header {
-    width: 7.5vw !important;
+    width: 8vw !important;
   }
   .employee_list .employee_email, .employee_list .employee_email_header {
     width: 19vw !important;
   }
   .employee_list .employee_emergency, .employee_list .employee_emergency_header {
-    width: 14vw !important;
-  }
-  .button_container {
-    width: 3vw;
+    width: 15vw !important;
   }
   /*------------------------------------------
-        Externals and suppliers width 1200
+        Externals and suppliers width 1600
     ------------------------------------------*/
   .external_name_header, .external_name {
     width: 15vw !important;
   }
   .external_phone, .external_phone_header {
-    width: 9.5vw !important;
+    width: 9vw !important;
   }
   .external_email, .external_email_header {
     width: 19vw !important;
   }
   /*------------------------------------
-            Machines width 1200
+            Machines width 1600
     ------------------------------------*/
   .machine_nordic_name_header, .machine_nordic_name {
-    width: 32vw !important;
+    width: 30.5vw !important;
   }
   /*------------------------------------
             cases width 1200
@@ -663,17 +667,8 @@
   .tasks_service_harmonica .tasks_service_comment_header, .tasks_service_harmonica .tasks_service_comment, .pl_service_harmonica .tasks_service_comment_header, .pl_service_harmonica .tasks_service_comment {
     width: 16vw;
   }
-  .tasks_service_harmonica .button_container_header, .pl_service_harmonica .button_container_header {
-    width: 5vw;
-  }
-  .tasks_service_harmonica .button_container, .pl_service_harmonica .button_container {
-    width: 5vw;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
   .tasks_service_harmonica .pl_service_comment_header, .tasks_service_harmonica .pl_service_comment, .pl_service_harmonica .pl_service_comment_header, .pl_service_harmonica .pl_service_comment {
-    width: 18vw;
+    width: 18.5vw !important;
   }
 }
 
@@ -691,6 +686,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  display: none;
 }
 
 .navbar_container .navbar_top {

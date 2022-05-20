@@ -113,7 +113,7 @@
                     }
                     // Skal man kunne slette dem?
                     //delete
-                    if(str_contains($_REQUEST['knap'] , "slet"))
+                    if(str_contains($_REQUEST['knap'] , "delete"))
                     {
                         $split = explode("_", $_REQUEST['knap']);
                         $id = $split[1];
@@ -187,7 +187,16 @@
                                         echo '</div>';
                                     echo '</div>';         
                                 }
-                                echo '<div class="tasks_service_data_row_all_info" id="'. array_search($row["task_header"], $seen_task_headers) .'">';
+                                //statuscolor
+                                if($row['status'] == "Ikke startet") {
+                                    $status_color = "#FFA2A2";
+                                } else if ($row['status'] == "Startet") {
+                                    $status_color = "#FFFC9E";
+                                }
+                                else {
+                                    $status_color = "#BBFFB9";
+                                }
+                                echo '<div class="tasks_service_data_row_all_info" id="'. array_search($row["task_header"], $seen_task_headers) .'" style="border-left: 5px solid ' . $status_color . '">';
                                     echo '<div class="data_row_info">';
                                         echo '<p class="tasks_service_title">' .  $row["task_title"] . '</p>';
                                         echo '<p class="tasks_service_priority">' . '<span class="dropdown_inline_headers">Prioritet </span>' . $row["priority"] . '</p>';
@@ -200,7 +209,6 @@
                                 
                                     echo '<div class="button_container">';
                                         echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
-                                        echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
                                         echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
                                     echo '</div>';
                                 echo '</div>'; 
@@ -224,7 +232,7 @@
             ----------------------------->
             <div class="pop_up_modal" style="display: <?php echo $display_none_archive_pop_up ?>">
                 <h3>Opdater medarbejderprofil</h3>
-                id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
+    
 
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">

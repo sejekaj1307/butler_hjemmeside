@@ -224,24 +224,23 @@
                             while($row = $result->fetch_assoc()) {
                                 if(!in_array($row['element_location'], $seen_element_location)){
                                     array_push($seen_element_location, $row['element_location']); 
-
-                                    if($row['quantity'] == 0) {
-                                        $status = "Tom";
-                                        $status_color = "#FFA2A2";
-                                    } else if ($row['quantity'] < $row['min_quantity']) {
-                                        $status = "lav";
-                                        $status_color = "#FFFC9E";
-                                    }
-                                    else {
-                                        $status = "Fuld";
-                                        $status_color = "#BBFFB9";
-                                    }
-
                                     echo '<div class="pl_service_data_row" >';
                                         echo '<div class="pl_service_information" onclick="open_close_tasks_service('. array_search($row["element_location"], $seen_element_location) .', '. "'planned_service_data_row_all_info'" .')" >  ';
                                             echo '<p class="pl_service_task_header">' . $row['element_location'] . '</p>';
                                         echo '</div>';
                                     echo '</div>';         
+                                }
+
+                                if($row['quantity'] == 0) {
+                                    $status = "Tom";
+                                    $status_color = "#FFA2A2";
+                                } else if ($row['quantity'] < $row['min_quantity']) {
+                                    $status = "lav";
+                                    $status_color = "#FFFC9E";
+                                }
+                                else {
+                                    $status = "Fuld";
+                                    $status_color = "#BBFFB9";
                                 }
                                                         
                                 echo '<div class="planned_service_data_row_all_info" id="'. array_search($row["element_location"], $seen_element_location) .'" style="border-left: 5px solid ' . $status_color . '" >';
