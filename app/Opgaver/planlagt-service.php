@@ -100,14 +100,37 @@
                             {
                                 $row = $result->fetch_assoc();
                                 $id = $row['id'];
-                                $first_name = $row['first_name'];
-                                $initials = $row['initials'];
-                                $phone = $row['phone'];
-                                $phone_private = $row['phone_private'];
-                                $email = $row['email'];
-                                $emergency_name = $row['emergency_name'];
+                                $task_title = $row['task_title'];
+                                $priority = $row['priority'];
+                                $status = $row['status'];
+                                $last_service = $row['last_service'];
+                                $deadline = $row['deadline'];
+                                $updated_by = $row['updated_by'];
+                                $comment = $row['comment'];
 
                                 $display_none_archive_pop_up = "flex";
+                            }
+                        }
+                    }
+                    //update
+                    if($_REQUEST['knap'] == "Opdater")
+                    {
+                        $id = $_SESSION["selected_task"];
+                        $task_title = $_REQUEST['task_title'];
+                        $priority = $_REQUEST['priority'];
+                        $status = $_REQUEST['status'];
+                        $last_service = $_REQUEST['last_service'];
+                        $deadline = $_REQUEST['deadline'];
+                        $updated_by = $_REQUEST['updated_by'];
+                        $comment = $_REQUEST['comment'];
+                        if(is_numeric($id) && is_integer(0 + $id))
+                        {
+                            if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                            {
+                                $sql = $conn->prepare("update tasks set task_title = ?, priority = ?, status = ?, last_service = ?, deadline = ?, updated_by = ?, comment = ? where id = ?");
+                                $sql->bind_param("sssssssi", $task_title, $priority, $status, $last_service, $deadline, $updated_by, $comment, $id);
+                                $sql->execute();
+                                $display_edit_task_pop_up = "none";
                             }
                         }
                     }
@@ -227,19 +250,41 @@
             //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årsager
                 $conn->close();
             ?>
-            <!----------------------------
-                    Edit profile pop-op
-            ----------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_none_archive_pop_up ?>">
-                <h3>Opdater medarbejderprofil</h3>
-    
-
+            <!-------------------------------------
+                    Edit task_service pop-op    
+            -------------------------------------->
+            <div class="pop_up_modal" style="display: <?php echo $display_edit_task_pop_up ?>">
+                <h3>Opdater element</h3>
+                <div class="pop-up-row"><p>Element : </p><input type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
+                <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority_u" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
+                <div class="pop-up-row"><p>Status : </p><input type="text" name="status_u" value="<?php echo isset($status) ? $status : '' ?>"></div>
+                <div class="pop-up-row"><p>Seneste service : </p><input type="text" name="last_service_u" value="<?php echo isset($last_service) ? $last_service : '' ?>"></div>
+                <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
+                <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_by_u" value="<?php echo isset($updated_by) ? $updated_by : '' ?>"></div>
+                <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
                     <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
                 </div>
             </div>
 
+            <!-----------------------------------
+                Add new task_service pop-up
+            ------------------------------------>
+            <div class="pop_up_modal" style="display: <?php echo $display_create_task_pop_up ?>">
+                <h3>Tilføj nyt element</h3>
+                <div class="pop-up-row"><p>Element : </p><input type="text" name="task_title_c" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
+                <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority_c" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
+                <div class="pop-up-row"><p>Status : </p><input type="text" name="status_c" value="<?php echo isset($status) ? $status : '' ?>"></div>
+                <div class="pop-up-row"><p>Seneste service : </p><input type="text" name="last_service_c" value="<?php echo isset($last_service) ? $last_service : '' ?>"></div>
+                <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
+                <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_by_c" value="<?php echo isset($updated_by) ? $updated_by : '' ?>"></div>
+                <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
+                </div>
+            </div>
             <!------------------------
                     delete pop up
             ------------------------->
