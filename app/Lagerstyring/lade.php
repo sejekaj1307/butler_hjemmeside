@@ -99,7 +99,7 @@
                         $comment = $_REQUEST['comment_c'];
                         
                         $sql = $conn->prepare("insert into storage (element_location, element, quantity, min_quantity, comment) values (?, ?, ?, ?, ?)");
-                        $sql->bind_param("sssss", $location, $element, $quantity, $min_quantity, $comment);
+                        $sql->bind_param("ssiis", $location, $element, $quantity, $min_quantity, $comment);
                         $sql->execute();
                         
                     }
@@ -150,7 +150,7 @@
                             if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                             {
                                 $sql = $conn->prepare("update storage set element = ?, element_location = ?, quantity = ?, min_quantity = ? where id = ?");
-                                $sql->bind_param("ssssi", $element, $element_location, $quantity, $min_quantity, $id);
+                                $sql->bind_param("ssiii", $element, $element_location, $quantity, $min_quantity, $id);
                                 $sql->execute();    
                             }
                         }
@@ -224,18 +224,31 @@
                             while($row = $result->fetch_assoc()) {
                                 if(!in_array($row['element_location'], $seen_element_location)){
                                     array_push($seen_element_location, $row['element_location']); 
+
+                                    if($row['quantity'] == 0) {
+                                        $status = "Tom";
+                                        $status_color = "#FFA2A2";
+                                    } else if ($row['quantity'] < $row['min_quantity']) {
+                                        $status = "lav";
+                                        $status_color = "#FFFC9E";
+                                    }
+                                    else {
+                                        $status = "Fuld";
+                                        $status_color = "#BBFFB9";
+                                    }
+
                                     echo '<div class="pl_service_data_row" >';
-                                        echo '<div class="pl_service_information" onclick="open_close_tasks_service('. array_search($row["element_location"], $seen_element_location) .', '. "'planned_service_data_row_all_info'" .') " >  ';
+                                        echo '<div class="pl_service_information" onclick="open_close_tasks_service('. array_search($row["element_location"], $seen_element_location) .', '. "'planned_service_data_row_all_info'" .')" >  ';
                                             echo '<p class="pl_service_task_header">' . $row['element_location'] . '</p>';
                                         echo '</div>';
                                     echo '</div>';         
                                 }
                                                         
-                                echo '<div class="planned_service_data_row_all_info" id="'. array_search($row["element_location"], $seen_element_location) .'">';
+                                echo '<div class="planned_service_data_row_all_info" id="'. array_search($row["element_location"], $seen_element_location) .'" style="border-left: 5px solid ' . $status_color . '" >';
                                     echo '<div class="data_row_info">';
                                         echo '<p class="pl_service_element">' . $row["element"] . '</p>';
                                         echo '<p class="pl_service_quantity">' . '<span class="dropdown_inline_headers">Antal </span>' . $row["quantity"] . '</p>';
-                                        echo '<p class="pl_service_status">' . '<span class="dropdown_inline_headers"Status </span>' . $row["status"] . '</p>';
+                                        echo '<p class="pl_service_status">' . '<span class="dropdown_inline_headers">Status </span>' . $status . '</p>';
                                         echo '<p class=" pl_service_created_by">' . '<span class="dropdown_inline_headers">Oprettet af </span>' . $row["created_by"] . '</p>';
                                         echo '<p class=" pl_service_updated_by">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_by"] . '</p>';
                                         echo '<p class=" pl_service_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
@@ -268,8 +281,8 @@
                 <h3>Opret nyt element</h3>
                 <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
                 <div class="pop-up-row"><p>Element : </p><input type="text" name="element_c" value="<?php echo isset($element) ? $element : '' ?>"></div>
-                <div class="pop-up-row"><p>Antal : </p><input type="text" name="quantity_c" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
-                <div class="pop-up-row"><p>min. antal : </p><input type="text" name="min_quantity_c" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
+                <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_c" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
+                <div class="pop-up-row"><p>min. antal : </p><input type="number" name="min_quantity_c" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
                 <div class="pop-up-row"><p>Bemærkning : </p><input type="date" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
@@ -284,8 +297,8 @@
                 <h3>Opdater element</h3>
                 <div class="pop-up-row"><p>Lokation : </p><input type="text" name="element_location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
                 <div class="pop-up-row"><p>Element : </p><input type="text" name="element_u" value="<?php echo isset($element) ? $element : '' ?>"></div>
-                <div class="pop-up-row"><p>Antal : </p><input type="text" name="quantity_u" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
-                <div class="pop-up-row"><p>min. antal : </p><input type="text" name="min_quantity_u" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
+                <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_u" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
+                <div class="pop-up-row"><p>min. antal : </p><input type="number" name="min_quantity_u" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
                 <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">

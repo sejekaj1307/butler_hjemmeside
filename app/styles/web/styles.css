@@ -171,6 +171,10 @@
   display: none;
 }
 
+.employee_list .employee_name_header, .external_list .employee_name_header, .machine_list .employee_name_header, .case_list .employee_name_header, .task_list .employee_name_header {
+  border-left: 5px solid #fff;
+}
+
 /*----------------------------------
         Employees lists STOP
 ----------------------------------*/
@@ -424,7 +428,6 @@
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    border: 1px solid red;
   }
   /*------------------------------------------
                 employee width 1200
@@ -437,7 +440,7 @@
     width: 5vw !important;
   }
   .employee_phone, .employee_phone_header {
-    width: 7vw !important;
+    width: 6vw !important;
   }
   .employee_email, .employee_email_header {
     width: 21vw;
@@ -606,7 +609,7 @@
             Employees
     ---------------------------*/
   .employee_list .employee_initials, .employee_list .employee_initials_header {
-    width: 8vw !important;
+    width: 5vw !important;
   }
   .employee_list .employee_phone, .employee_list .employee_phone_header {
     width: 7.5vw !important;

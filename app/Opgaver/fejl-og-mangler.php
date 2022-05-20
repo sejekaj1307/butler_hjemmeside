@@ -205,7 +205,7 @@
                 <div class="add_new_link"><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny opgave"></div>
                 <?php 
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
-                    $sql = "select * from tasks";
+                    $sql = "select * from tasks where archived_at = ''";
                     $result = $conn->query($sql);
                     echo '<div class="task_list">';
                         echo '<div class="task_list_header">';

@@ -224,9 +224,9 @@
                                 echo '</div>';
                                 echo '<div class="external_dropdown_mobile" id="'. $row["id"] .'">';
                                     echo '<p class="dark_dropdown_table external_phone">' . $row["phone"] . '</p>';
-                                    echo '<p class="dark_dropdown_table external_phone">' . $row["address"] . '</p>';
+                                    echo '<p class="light_dropdown_table external_phone">' . $row["address"] . '</p>';
                                     echo '<p class="dark_dropdown_table external_email">' . $row["email"] . '</p>';
-                                    echo '<p class="dark_dropdown_table external_product">' . $row["product"] . '</p>';
+                                    echo '<p class="light_dropdown_table external_product">' . $row["product"] . '</p>';
                                 echo '</div>';
                                 ?> 
                                     <div class="button_container">
