@@ -37,7 +37,7 @@
     <div class="site_container">
         <div class="sec-navbar-mobile">
             <div class="logged_in">
-                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"><?php echo $_SESSION['logged_in_user_global']['last_name'] . ', ' . $_SESSION['logged_in_user_global']['first_name'];?> </div>
+                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> <?php echo $_SESSION['logged_in_user_global']['last_name'] . ', ' . $_SESSION['logged_in_user_global']['first_name'];?> </div>
                 <div class="navbar_bars"></div>
             </div>
             <h2 class="sec-navbar-mobile-header">Sager liste<div class="arrow_container"><img src="../img/arrow.png"
