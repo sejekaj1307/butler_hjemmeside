@@ -86,7 +86,7 @@
                     {
                         $split = explode("_", $_REQUEST['knap']);
                         $id = $split[1];
-                        $_SESSION["bilTilDelete"] = $id;
+                        $_SESSION["selected_case"] = $id;
                         $display_activate_case_pop_up = "flex";                        
                     }
                     //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
@@ -104,12 +104,12 @@
                     //Archive
                     if($_REQUEST['knap'] == "Arkiver")
                     {
-                        $id = $_SESSION["bilTilDelete"];
+                        $id = $_SESSION["selected_case"];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
                             if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                             {
-                                $id = $_SESSION["bilTilDelete"];
+                                $id = $_SESSION["selected_case"];
                                 $sql = $conn->prepare("update cases set archived_at = '' where id = ?");
                                 $sql->bind_param("i", $id);
                                 $sql->execute();
