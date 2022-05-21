@@ -1,0 +1,177 @@
+/*----------------------------------
+        Harmonica lists
+----------------------------------*/
+.tasks_service_harmonica, .pl_service_harmonica{
+    .tasks_service_headers, .pl_service_headers {
+        border-bottom: 3px solid $th_border_bottom;
+        padding: 5px 0;
+        font-weight: 600;
+        margin-top: 30px !important;
+        border: 1px solid $th_border_bottom;
+        .tasks_service_name_header, .pl_service_element_headers {
+            font-size: 20px;
+            padding: 10px 5px;
+        }
+        .tasks_service_all_headers, .pl_service_all_headers {
+            display: none;
+        }
+    }
+    .tasks_service_data_row, .pl_service_data_row {
+        .tasks_service_information, .pl_service_information {
+            background-color: $harmonica_header_background;
+            border: 1px solid $tr_border_bottom;
+            border-bottom: 2px solid $tr_border_bottom;
+            padding: 10px 0 10px 15px;
+        }
+    }
+    .tasks_service_data_row_all_info, .planned_service_data_row_all_info {
+        display: flex;
+        flex-direction: column;
+        display: none;
+        border: 1px solid $tr_border_bottom;
+        border-bottom: 2px solid $tr_border_bottom;
+        padding: 10px 0;
+        .tasks_service_title, .tasks_service_priority, .tasks_service_status, .tasks_service_last_service, .tasks_service_deadline, .tasks_service_updated_initials, .tasks_service_comment, 
+        .pl_service_element, .pl_service_all, .pl_service_quantity, .pl_service_status, .pl_service_created_by, .pl_service_updated_by, .pl_service_comment
+        {
+            display: flex;
+            align-items: center;
+            padding: 10px 0 10px 15px;
+        }
+        .dropdown_inline_headers {
+            font-weight: 600;
+            display: flex;
+            width: 35% !important;
+        }
+        .tasks_service_title, .pl_service_element {
+            font-size: 22px;
+            padding: 5px 5px 10px 10px;
+        }
+    }    
+        .button_container, .button_container_header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            button {
+                margin-right: 25px;
+                background: none;
+                border: none;
+                .edit_icons {
+                    width: 15px;
+                }
+            }
+            
+        }
+}
+
+
+
+/*Tablet - S */
+@media screen and(min-width: 900px) {
+
+}
+
+
+/*Lille pc - M*/
+@media screen and(min-width: 1200px) {
+    /*----------------------------------
+        Harmonica lists 1200
+    ----------------------------------*/
+    .tasks_service_harmonica, .pl_service_harmonica {
+        .tasks_service_headers, .pl_service_headers {
+            display: flex;
+            padding: 15px 0;       
+            .tasks_service_all_headers, .tasks_service_name_header, .pl_service_all_headers, .pl_service_element_headers {
+                display: flex !important;
+                font-size: 17px !important;
+            }
+        }
+
+        .tasks_service_name_header, .pl_service_element_headers {
+            padding: 0 !important;
+            border-left: 5px solid #fff;
+        }
+        .tasks_service_title, .pl_service_element, .tasks_service_name_header, .pl_service_element_headers {
+            font-size: 17px;
+            padding: 0;
+            width: 14.5vw !important;
+            padding-left: 10px !important;
+        }
+        .tasks_service_priority_header, .tasks_service_priority, .tasks_service_updated_initials_header, .tasks_service_updated_initials {
+            width: 6vw;
+        }
+        .tasks_service_status_header, .tasks_service_status {
+            width: 7.5vw;
+        }
+        .tasks_service_last_service_header,.tasks_service_deadline_header, .tasks_service_last_service, .tasks_service_deadline {
+            width: 8vw;
+        }
+        .tasks_service_comment_header, .tasks_service_comment {
+            width: 14vw;
+        }            
+        .tasks_service_data_row_all_info, .planned_service_data_row_all_info {
+            flex-direction: row;
+            .data_row_info {
+                display: flex;
+                .tasks_service_title, .tasks_service_priority, .tasks_service_status, .tasks_service_last_service, .tasks_service_deadline, .tasks_service_updated_initials, .tasks_service_comment, 
+                .pl_service_element, .pl_service_quantity, .pl_service_status, .pl_service_created_by, .pl_service_updated_by, .pl_service_comment {
+                    font-size: 16px;  
+                    padding: 0;
+                }
+            }
+            .dropdown_inline_headers {
+                display: none;
+            }    
+        }
+        .pl_service_all_headers, .pl_service_all {
+            padding: 0;
+        }
+        .pl_service_quantity_header, .pl_service_quantity, .pl_service_status_header, .pl_service_status, .pl_service_updated_by_header, .pl_service_updated_by {
+            width: 7.5vw;
+        }
+        .pl_service_created_by_header, .pl_service_created_by {
+            width: 10vw;
+        }
+        .pl_service_comment_header, .pl_service_comment {
+            width: 18vw !important;
+        }
+        .button_container, .button_container_header {
+            justify-content: space-between;
+            padding: 0;
+            width: 5vw !important;
+            padding-right: 10px;
+            button {
+                margin: 0;
+            }
+        }
+    }
+
+
+
+}
+
+
+/*Stor pc - L*/
+@media screen and(min-width: 1600px) {
+    /*----------------------------------
+        Harmonica lists 1600
+    ----------------------------------*/
+    .tasks_service_harmonica, .pl_service_harmonica {
+        .tasks_service_name_header {
+            width: 14.5vw;
+        }
+        .tasks_service_title {
+            width: 14.5vw;
+        }
+        .tasks_service_comment_header, .tasks_service_comment {
+            width: 16vw;
+        }
+        .pl_service_comment_header, .pl_service_comment {
+            width: 18.5vw !important;
+
+        }
+    }
+    
+}
+
+
