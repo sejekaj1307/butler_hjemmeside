@@ -129,7 +129,7 @@
                                 $status = $row['status'];
                                 $last_service = $row['last_service'];
                                 $deadline = $row['deadline'];
-                                $updated_initials = $row['updated_initials'];
+                                $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                                 $comment = $row['comment'];
 
                                 $display_edit_task_service_pop_up = "flex";
@@ -140,18 +140,18 @@
                     if($_REQUEST['knap'] == "Opdater")
                     {
                         $id = $_SESSION["selected_task"];
-                        $task_title = $_REQUEST['task_title'];
-                        $priority = $_REQUEST['priority'];
-                        $status = $_REQUEST['status'];
-                        $last_service = $_REQUEST['last_service'];
-                        $deadline = $_REQUEST['deadline'];
-                        $updated_initials = $_REQUEST['updated_initials'];
-                        $comment = $_REQUEST['comment'];
+                        $task_title = $_REQUEST['task_title_u'];
+                        $priority = $_REQUEST['priority_u'];
+                        $status = $_REQUEST['status_u'];
+                        $last_service = $_REQUEST['last_service_u'];
+                        $deadline = $_REQUEST['deadline_u'];
+                        $updated_initials = $_SESSION['logged_in_user_global']['initials'];
+                        $comment = $_REQUEST['comment_u'];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
                             if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                             {
-                                $sql = $conn->prepare("update tasks set task_title = ?, priority = ?, status = ?, last_service = ?, deadline = ?, updated_initials = ?, comment = ? where id = ?");
+                                $sql = $conn->prepare("update tasks_service set task_title = ?, priority = ?, status = ?, last_service = ?, deadline = ?, updated_initials = ?, comment = ? where id = ?");
                                 $sql->bind_param("sssssssi", $task_title, $priority, $status, $last_service, $deadline, $updated_initials, $comment, $id);
                                 $sql->execute();
                                 $display_edit_task_service_pop_up = "none";

@@ -25,27 +25,28 @@
             <li><a href="../Profil/profil.php">Profil</a></li>
             <li><a href="../Medarbejdere/ansatte.php">Medarbejder</a></li>
             <li><a href="../Kalender/kalender-maskiner.php">Kalender</a></li>
-            <li><a href="../Sagsstyring/sager.php" class="active-main-site">Sagsstyring</a></li>
+            <li><a href="../Sagsstyring/sager.php">Sagsstyring</a></li>
             <li><a href="../Tidsregistrering/tidsregistrering.php">Tidsregistrering</a></li>
-            <li><a href="../Opgaver/fejl-og-mangler.php">Opgaver</a></li>
+            <li><a href="../Opgaver/fejl-og-mangler.php" class="active-main-site">Opgaver</a></li>
             <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
         </ul>
         <div class="log_out_container"><a href="../index.php">Log ud</a></div>
     </div>
 
-    <!-- Masthead -->
     <div class="site_container">
+        <!-- Masthead -->
         <div class="sec-navbar-mobile">
             <div class="logged_in">
-                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> <?php echo $_SESSION['logged_in_user_global']['last_name'] . ', ' . $_SESSION['logged_in_user_global']['first_name'];?> </div>
+                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> <?php echo $_SESSION['logged_in_user_global']['last_name'] . ', ' . $_SESSION['logged_in_user_global']['first_name'];?></div>
                 <div class="navbar_bars"></div>
             </div>
-            <h2 class="sec-navbar-mobile-header">Sager liste<div class="arrow_container"><img src="../img/arrow.png"
-                        alt="arrow" class="sec_nav_dropdown_arrow"></div>
+            <h2 class="sec-navbar-mobile-header">Fejl og mangler <div class="arrow_container"><img
+                        src="../img/arrow.png" alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Sagsstyring/sager.php">Sager liste</a></li>
-                <li><a href="../Sagsstyring/arkiverede-sager.php" class="active_site_dropdown">Arkiverede sager</a>
+                <li><a href="../Opgaver/fejl-og-mangler.php">Fejl og mangler</a></li>
+                <li><a href="../Opgaver/planlagt-service.php">Planlagt service</a></li>
+                <li><a href="../Opgaver/arkiverede-opgaver.php" class="active_site_dropdown">Arkiverede opgaver</a>
                 </li>
             </ul>
         </div>

@@ -118,14 +118,14 @@
                             {
                                 $row = $result->fetch_assoc();
                                 $id = $row['id'];
-                                $_SESSION["bilTilUpdate"] = $id;
+                                $_SESSION["selected_element"] = $id;
                                 $element = $row['element'];
                                 $status = $row['status'];
                                 $element_location = $row['element_location'];
                                 $quantity = $row['quantity'];
                                 $min_quantity = $row['min_quantity'];
-                                $created_by = $row['created_by'];
-                                $updated_by = $row['updated_by'];
+                                $created_initials = $row['created_initials'];
+                                $updated_initials = $row['updated_initials'];
                                 $comment = $row['comment'];
 
                                 $display_edit_storage_pop_up = "flex";
@@ -135,13 +135,13 @@
                     //update
                     if($_REQUEST['knap'] == "Opdater") 
                     {
-                        $id = $_SESSION["bilTilUpdate"];
+                        $id = $_SESSION["selected_element"];
                         $element = $_REQUEST['element_u'];
                         $element_location = $_REQUEST['element_location_u'];
                         $quantity = $_REQUEST['quantity_u'];
                         $min_quantity = $_REQUEST['min_quantity_u'];
-                        // $created_by = $_REQUEST['created_by_u'];
-                        // $updated_by = $_REQUEST['updated_by_u'];
+                        // $created_initials = $_REQUEST['created_by'];
+                        $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                         $comment = $_REQUEST['comment_u'];
 
 
@@ -149,8 +149,8 @@
                         {
                             if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                             {
-                                $sql = $conn->prepare("update storage set element = ?, element_location = ?, quantity = ?, min_quantity = ? where id = ?");
-                                $sql->bind_param("ssiii", $element, $element_location, $quantity, $min_quantity, $id);
+                                $sql = $conn->prepare("update storage set element = ?, element_location = ?, quantity = ?, min_quantity = ?, updated_initials = ? where id = ?");
+                                $sql->bind_param("ssiisi", $element, $element_location, $quantity, $min_quantity, $updated_initials, $id);
                                 $sql->execute();    
                             }
                         }
@@ -248,8 +248,8 @@
                                         echo '<p class="pl_service_element">' . $row["element"] . '</p>';
                                         echo '<p class="pl_service_quantity">' . '<span class="dropdown_inline_headers">Antal </span>' . $row["quantity"] . '</p>';
                                         echo '<p class="pl_service_status">' . '<span class="dropdown_inline_headers">Status </span>' . $status . '</p>';
-                                        echo '<p class=" pl_service_created_by">' . '<span class="dropdown_inline_headers">Oprettet af </span>' . $row["created_by"] . '</p>';
-                                        echo '<p class=" pl_service_updated_by">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_by"] . '</p>';
+                                        echo '<p class=" pl_service_created_by">' . '<span class="dropdown_inline_headers">Oprettet af </span>' . $row["created_initials"] . '</p>';
+                                        echo '<p class=" pl_service_updated_by">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
                                         echo '<p class=" pl_service_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
                                     echo "</div>";
                                 
