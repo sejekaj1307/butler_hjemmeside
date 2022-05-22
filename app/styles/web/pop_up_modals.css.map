@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../work/pop_up_modals.scss"
+    ],
+    "names": [],
+    "file": "pop_up_modals.css"
+}

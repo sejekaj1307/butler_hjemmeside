@@ -203,36 +203,88 @@
   }
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+.pop_up_modal {
+  position: absolute;
+  padding: 30px 0;
+  width: 27vw;
+  min-width: 400px;
+  top: 20vh;
+  left: 40vw;
+  z-index: 99;
+  background-color: #fff;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 2.5px solid #149DB9;
+  border-top: 2.5px solid #149DB9;
+  -webkit-box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.time_registration, .profile_list, .calender_container, .task_list_page, .archived_case_list_page, .case_list_page, .in_house_time {
-  width: 90vw;
-  margin: 50px auto;
+.pop_up_modal h3 {
+  margin: 20px 0 30px 0;
+  font-size: 23px;
 }
 
-.add_new_link {
-  display: none;
-  cursor: pointer;
+.pop_up_modal .pop-up-row {
+  margin: 15px 0;
+  width: 63%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.add_new_link img {
-  width: 16px;
-  margin-right: 5px;
+.pop_up_modal .pop-up-row p {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  text-align: end;
 }
 
-.add_new_link input {
+.pop_up_modal .pop-up-row input {
+  -webkit-box-flex: 5;
+      -ms-flex: 5;
+          flex: 5;
+  width: 60% !important;
+  height: 30px;
+}
+
+.pop_up_modal .pop-up-btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 70%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 40px 0 20px 0;
+}
+
+.pop_up_modal .pop-up-btn-container .pop_up_cancel, .pop_up_modal .pop-up-btn-container .pop_up_confirm {
+  width: 7vw;
+  min-width: 90px;
+  height: 35px;
   border: none;
-  background: none;
-  color: #149DB9;
-  font-size: 18px;
-  width: -webkit-fit-content !important;
-  width: -moz-fit-content !important;
-  width: fit-content !important;
+  -webkit-box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  color: #fff;
   cursor: pointer;
+}
+
+.pop_up_modal .pop-up-btn-container .pop_up_cancel {
+  background-color: #EB7979;
+}
+
+.pop_up_modal .pop-up-btn-container .pop_up_confirm {
+  background-color: #149DB9;
 }
 
 /*---------------------------------
@@ -369,115 +421,30 @@
   border-left: 5px solid #fff;
 }
 
-/*----------------------------------
-        Employees lists STOP
-----------------------------------*/
-.pop_up_modal {
-  position: absolute;
-  padding: 30px 0;
-  width: 27vw;
-  min-width: 400px;
-  top: 20vh;
-  left: 40vw;
-  z-index: 99;
-  background-color: #fff;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-bottom: 2.5px solid #149DB9;
-  border-top: 2.5px solid #149DB9;
-  -webkit-box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
-          box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.pop_up_modal h3 {
-  margin: 20px 0 30px 0;
-  font-size: 23px;
-}
-
-.pop_up_modal .pop-up-row {
-  margin: 15px 0;
-  width: 63%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.pop_up_modal .pop-up-row p {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-  text-align: end;
-}
-
-.pop_up_modal .pop-up-row input {
-  -webkit-box-flex: 5;
-      -ms-flex: 5;
-          flex: 5;
-  width: 60% !important;
-  height: 30px;
-}
-
-.pop_up_modal .pop-up-btn-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 70%;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin: 40px 0 20px 0;
-}
-
-.pop_up_modal .pop-up-btn-container .pop_up_cancel, .pop_up_modal .pop-up-btn-container .pop_up_confirm {
-  width: 7vw;
-  min-width: 90px;
-  height: 35px;
-  border: none;
-  -webkit-box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
-          box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  color: #fff;
+.add_new_link {
+  display: none;
   cursor: pointer;
 }
 
-.pop_up_modal .pop-up-btn-container .pop_up_cancel {
-  background-color: #EB7979;
+.add_new_link img {
+  width: 16px;
+  margin-right: 5px;
 }
 
-.pop_up_modal .pop-up-btn-container .pop_up_confirm {
-  background-color: #149DB9;
+.add_new_link input {
+  border: none;
+  background: none;
+  color: #149DB9;
+  font-size: 18px;
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  cursor: pointer;
 }
 
 /*Tablet - S */
-@media screen and (min-width: 900px) {
-  .site_container {
-    margin-left: 22vw;
-  }
-  .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time {
-    width: 68vw;
-    margin-left: 50px;
-    margin-top: 50px;
-  }
-}
-
 /*Lille pc - M*/
 @media screen and (min-width: 1200px) {
-  .site_container {
-    margin-left: 16vw;
-  }
-  .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time {
-    width: 72vw;
-    margin-left: 100px;
-    margin-top: 50px;
-  }
   .time_registration_navbar button, .in_house_time_navbar button {
     font-size: 18px;
     width: 175px;
@@ -681,6 +648,42 @@
   }
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.time_registration, .profile_list, .calender_container, .task_list_page, .archived_case_list_page, .case_list_page, .in_house_time {
+  width: 90vw;
+  margin: 50px auto;
+}
+
+/*Tablet - S */
+@media screen and (min-width: 900px) {
+  .site_container {
+    margin-left: 22vw;
+  }
+  .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time {
+    width: 68vw;
+    margin-left: 50px;
+    margin-top: 50px;
+  }
+}
+
+/*Lille pc - M*/
+@media screen and (min-width: 1200px) {
+  .site_container {
+    margin-left: 16vw;
+  }
+  .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time {
+    width: 72vw;
+    margin-left: 100px;
+    margin-top: 50px;
+  }
+}
+
+/*Stor pc - L*/
 /*---------------------------
             Navbar
 ---------------------------*/
