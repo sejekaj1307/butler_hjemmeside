@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/stylesheet.css">
+    <link rel="stylesheet" href="styles/web/styles.css">
     <title>web app</title>
 </head>
 
@@ -70,12 +70,17 @@
         <!------------------------------
                 Actual login form
         ------------------------------->
-        <input type="text" name="email" placeholder="Player name" value="<?php echo isset($username) ? $username : '' ?>">
-        <input type="password" name="password" placeholder="Password" value="<?php echo isset($passwordInput) ? $passwordInput : '' ?>">
-        <div class="loginErrorMessage"></div>
+        <div class="login_container">
+            <h2 class="login_header">Login</h2>
+            <input class="login_inputs" type="text" name="email" placeholder="Email addresse" value="<?php echo isset($username) ? $username : '' ?>">
+            <input class="login_inputs" type="password" name="password" placeholder="Password" value="<?php echo isset($passwordInput) ? $passwordInput : '' ?>">
+            <p>Glemt password? <a href="#">Klik her</a></p>
+            <div class="loginErrorMessage"></div>
+            
 
-        <span style="color: <?php echo $tekstfarve ?>"><?php echo $fejltekst ?> </span>
-        <input class="loginForm__buttonLogin" type="submit" name="knap" value="login" >
+            <span style="color: <?php echo $tekstfarve ?>"><?php echo $fejltekst ?> </span>
+            <input class="login_btn" type="submit" name="knap" value="login" >
+        </div>
     </form>
 
 

@@ -2,10 +2,49 @@
         Login page
 ---------------------------------*/
 
+body {
+        background-image: url(../../img/index-background.jpeg);
+        background-repeat: no-repeat;
+        background-size:fixed;
 
+}
 
-
-
+.login_container {
+        background-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 5px 5px 20px rgb(68, 68, 68);
+        width: 80vw;
+        margin: 20% auto;
+        display: flex;
+        flex-direction: column;
+        padding: 50px 20px;
+        align-items: center;
+        justify-content: center;
+        .login_header {
+                font-size: 30px;
+                color: #202020;
+                padding: 20px 0;
+        }
+        .login_inputs {
+                padding: 5px;
+                width: 60%;
+                margin: 7px;
+                font-size: 20px;
+        }
+        .login_btn {
+                width: 60%;
+                border-radius: 5px;
+                box-shadow: 5px 5px 20px rgb(68, 68, 68);
+                color: #fff;
+                font-size: 20px;
+                padding: 10px;
+                border: none;
+                margin: 40px 0;
+                background-color: $button_color_green;
+                :hover {
+                        cursor: pointer;
+                }
+        }
+}
 
 /*Tablet - S */
 @media screen and(min-width: 900px) {
@@ -15,14 +54,21 @@
 
 /*Lille pc - M*/
 @media screen and(min-width: 1200px) {
-    
+        
+        .login_container {
+                width: 50vw;
+                margin: 15% auto;
+        }
 
 }
 
 
 /*Stor pc - L*/
 @media screen and(min-width: 1600px) {
-    
+        .login_container {
+                max-width: 35vw;
+                margin: 10% auto;
+        }
     
 }
 
