@@ -254,22 +254,6 @@
                 $conn->close();
             ?>
 
-            <!----------------------------
-                    Edit profile pop-op
-            ----------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_edit_task_pop_up ?>">
-                <h3>Opdater opgave</h3>
-                <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
-                <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority_u" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
-                <div class="pop-up-row"><p>status : </p><input type="text" name="status_u" value="<?php echo isset($status) ? $status : '' ?>"></div>
-                <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
-                </div>
-            </div>
-
             <!---------------------------
                 Add new employee pop-up
             ---------------------------->
@@ -283,6 +267,32 @@
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
+                </div>
+            </div>
+
+            
+            <!----------------------------
+                    Edit profile pop-op
+            ----------------------------->
+            <div class="pop_up_modal" style="display: <?php echo $display_edit_task_pop_up ?>">
+                <h3>Opdater opgave</h3>
+                <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
+                <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority_u" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
+                <div class="pop-up-row">
+                    <p>status : </p>
+                    <select name="status_u">
+                        <option <?php echo $status == "Ikke startet" ? 'selected' : '' ?> value="Ikke startet">Ikke startet</option>
+                        <option <?php echo $status == "Startet" ? 'selected' : '' ?> value="Startet">Startet</option>
+                        <option <?php echo $status == "Venter" ? 'selected' : '' ?> value="Venter">Venter</option>
+                        <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
+                    </select>
+                </div>
+
+                <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
+                <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
                 </div>
             </div>
 
