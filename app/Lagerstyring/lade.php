@@ -165,7 +165,7 @@
                         {
                             if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                             {
-                                $_SESSION["bilTilDelete"] = $id;
+                                $_SESSION["selected_element"] = $id;
                                 $display_delete_storage_pop_up = "flex";
                             }
                         }
@@ -173,7 +173,7 @@
                     // Execute - confirm delete
                     if($_REQUEST['knap'] == "Slet")
                     {
-                        $id = $_SESSION["bilTilDelete"];
+                        $id = $_SESSION["selected_element"];
                         $sql = $conn->prepare("delete from storage where id = ?");
                         $sql->bind_param("i", $id);
                         $sql->execute();
