@@ -44,7 +44,6 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  display: none;
   border: 1px solid #AEBFF6;
   border-bottom: 2px solid #AEBFF6;
   padding: 10px 0;
@@ -653,7 +652,7 @@
 /*---------------------------------
         Login page
 ---------------------------------*/
-body {
+.login_page {
   background-image: url(../../img/index-background.jpeg);
   background-repeat: no-repeat;
   background-size: fixed;

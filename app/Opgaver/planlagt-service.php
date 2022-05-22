@@ -3,6 +3,7 @@
     session_start(); 
     //Forbindelse til database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+    $priority = ""; //This variable has to be defined for the html to work correctly. It is for "Create new" priority drop-down menu.   
 ?>
 
 <!DOCTYPE html>
@@ -124,6 +125,7 @@
                             {
                                 $row = $result->fetch_assoc();
                                 $id = $row['id'];
+                                $_SESSION["selected_task"] = $id;
                                 $task_title = $row['task_title'];
                                 $priority = $row['priority'];
                                 $status = $row['status'];
@@ -148,7 +150,7 @@
                         $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                         $comment = $_REQUEST['comment_u'];
                         if(is_numeric($id) && is_integer(0 + $id))
-                        {
+                        { 
                             if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                             {
                                 $sql = $conn->prepare("update tasks_service set task_title = ?, priority = ?, status = ?, last_service = ?, deadline = ?, updated_initials = ?, comment = ? where id = ?");
@@ -168,7 +170,7 @@
                         {
                             if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                             {
-                                $_SESSION["bilTilDelete"] = $id;
+                                $_SESSION["selected_task"] = $id;
                                 $display_delete_tasks_service_pop_up = "flex";
                             }
                         }
@@ -176,7 +178,7 @@
                     // Execute - confirm delete
                     if($_REQUEST['knap'] == "Slet")
                     {
-                        $id = $_SESSION["bilTilDelete"];
+                        $id = $_SESSION["selected_task"];
                         $sql = $conn->prepare("delete from tasks_service where id = ?");
                         $sql->bind_param("i", $id);
                         $sql->execute();
@@ -248,8 +250,8 @@
                                         echo '<p class="tasks_service_title">' .  $row["task_title"] . '</p>';
                                         echo '<p class="tasks_service_priority">' . '<span class="dropdown_inline_headers">Prioritet </span>' . $row["priority"] . '</p>';
                                         echo '<p class="tasks_service_status">' . '<span class="dropdown_inline_headers">Status </span>' . $row["status"] . '</p>';
-                                        echo '<p class="tasks_service_last_service">' . '<span class="dropdown_inline_headers">Sidste service </span>' . $row["last_service"] . '</p>';
-                                        echo '<p class="tasks_service_deadline">' . '<span class="dropdown_inline_headers">Deadline </span>' . $row["deadline"] . '</p>';
+                                        echo '<p class="tasks_service_last_service">' . '<span class="dropdown_inline_headers">Sidste service </span>' . date_format(new DateTime($row["last_service"]), 'd-m-y') . '</p>';
+                                        echo '<p class="tasks_service_deadline">' . '<span class="dropdown_inline_headers">Deadline </span>' . date_format(new DateTime($row["deadline"]), 'd-m-y') . '</p>';
                                         echo '<p class="tasks_service_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
                                         echo '<p class="tasks_service_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
                                     echo "</div>";
@@ -290,7 +292,7 @@
                         <option <?php echo $priority == "Høj" ? 'selected' : '' ?> value="Høj">Høj</option>
                     </select>
                 </div> 
-                <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
+                <div class="pop-up-row"><p>Deadline : </p><input type="date" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
                 <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
@@ -320,9 +322,8 @@
                         <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
                     </select>
                 </div> 
-                <div class="pop-up-row"><p>Seneste service : </p><input type="text" name="last_service_u" value="<?php echo isset($last_service) ? $last_service : '' ?>"></div>
-                <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                <div class="pop-up-row"><p>Seneste : </p><input type="text" name="updated_initials_u" value="<?php echo isset($updated_initials) ? $updated_initials : '' ?>"></div>
+                <div class="pop-up-row"><p>Seneste service : </p><input type="date" name="last_service_u" value="<?php echo isset($last_service) ? $last_service : '' ?>"></div>
+                <div class="pop-up-row"><p>Deadline : </p><input type="date" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
                 <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
@@ -333,7 +334,7 @@
                     delete pop up
             ------------------------->
             <div class="pop_up_modal" style="display: <?php echo $display_delete_tasks_service_pop_up ?>">
-                <h3>Slet medarbejder</h3>
+                <h3>Slet opgave</h3>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Slet" class="pop_up_confirm">

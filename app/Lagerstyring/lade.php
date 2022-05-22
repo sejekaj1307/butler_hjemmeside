@@ -3,6 +3,8 @@
     session_start(); 
     //Forbindelse til database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+
+    include("element-location-options.php");
 ?>
 
 
@@ -140,7 +142,6 @@
                         $element_location = $_REQUEST['element_location_u'];
                         $quantity = $_REQUEST['quantity_u'];
                         $min_quantity = $_REQUEST['min_quantity_u'];
-                        // $created_initials = $_REQUEST['created_by'];
                         $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                         $comment = $_REQUEST['comment_u'];
 
@@ -278,7 +279,16 @@
             --------------------------------------->
             <div class="pop_up_modal" style="display: <?php echo $display_create_element_pop_up ?>">
                 <h3>Opret nyt element</h3>
-                <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
+                <div class="pop-up-row">
+                    <p>Lokation : </p>
+                    <select name="element_location_c">
+                        <?php
+                            foreach($element_location_options as $element_location_option){
+                                echo "<option " . ($element_location == $element_location_option ? 'selected' : '') . "value=" . $element_location_option . ">" . $element_location_option . "</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
                 <div class="pop-up-row"><p>Element : </p><input type="text" name="element_c" value="<?php echo isset($element) ? $element : '' ?>"></div>
                 <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_c" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
                 <div class="pop-up-row"><p>min. antal : </p><input type="number" name="min_quantity_c" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
@@ -294,7 +304,16 @@
             ----------------------------->
             <div class="pop_up_modal" style="display: <?php echo $display_edit_storage_pop_up ?>">
                 <h3>Opdater element</h3>
-                <div class="pop-up-row"><p>Lokation : </p><input type="text" name="element_location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
+                <div class="pop-up-row">
+                    <p>Lokation : </p>
+                    <select name="element_location_u">
+                        <?php
+                            foreach($element_location_options as $element_location_option){
+                                echo "<option " . ($element_location == $element_location_option ? 'selected' : '') . "value=" . $element_location_option . ">" . $element_location_option . "</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
                 <div class="pop-up-row"><p>Element : </p><input type="text" name="element_u" value="<?php echo isset($element) ? $element : '' ?>"></div>
                 <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_u" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
                 <div class="pop-up-row"><p>min. antal : </p><input type="number" name="min_quantity_u" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>

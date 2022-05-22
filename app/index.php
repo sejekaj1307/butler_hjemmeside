@@ -14,7 +14,7 @@
     <title>web app</title>
 </head>
 
-<body>
+<body class="login_page">
 
     <!------------------------------
             Login form
