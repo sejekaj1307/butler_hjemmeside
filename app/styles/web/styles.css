@@ -372,10 +372,6 @@
   display: none;
 }
 
-.employee_list .case_mobile_headers p, .employee_list .case_information p, .external_list .case_mobile_headers p, .external_list .case_information p, .machine_list .case_mobile_headers p, .machine_list .case_information p, .case_list .case_mobile_headers p, .case_list .case_information p, .task_list .case_mobile_headers p, .task_list .case_information p {
-  width: 30%;
-}
-
 .employee_list .employee_data_row, .employee_list .external_data_row, .employee_list .machine_data_row, .employee_list .case_data_row, .employee_list .task_data_row, .external_list .employee_data_row, .external_list .external_data_row, .external_list .machine_data_row, .external_list .case_data_row, .external_list .task_data_row, .machine_list .employee_data_row, .machine_list .external_data_row, .machine_list .machine_data_row, .machine_list .case_data_row, .machine_list .task_data_row, .case_list .employee_data_row, .case_list .external_data_row, .case_list .machine_data_row, .case_list .case_data_row, .case_list .task_data_row, .task_list .employee_data_row, .task_list .external_data_row, .task_list .machine_data_row, .task_list .case_data_row, .task_list .task_data_row {
   border-left: 1px solid #B2C7F9;
   border-right: 1px solid #B2C7F9;
@@ -521,7 +517,7 @@
     border: none;
   }
   .employee_list .button_container button .edit_icons, .employee_list .button_container_header button .edit_icons, .external_list .button_container button .edit_icons, .external_list .button_container_header button .edit_icons, .machine_list .button_container button .edit_icons, .machine_list .button_container_header button .edit_icons, .case_list .button_container button .edit_icons, .case_list .button_container_header button .edit_icons, .task_list .button_container button .edit_icons, .task_list .button_container_header button .edit_icons {
-    width: 15px;
+    width: 20px;
   }
   /*------------------------------------------
                 employee width 1200
@@ -590,12 +586,18 @@
   /*------------------------------------
             Task width 1200
     ------------------------------------*/
+  .task_name_header {
+    border-left: 5px solid #fff !important;
+  }
   .task_name_header, .task_name {
     width: 20vw !important;
     padding-left: 15px !important;
   }
   .task_prority_header, .task_prority, .task_status_header, .task_status, .task_updated_initials_header, .task_updated_initials {
     width: 7.5vw;
+  }
+  .task_archived_at, .task_archived_at_header, .task_archived_initials, .task_archived_initials_header {
+    width: 12vw;
   }
   .task_deadline_header, .task_deadline {
     width: 8vw;

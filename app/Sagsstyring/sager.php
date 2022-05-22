@@ -133,7 +133,7 @@
                     //update
                     if($_REQUEST['knap'] == "Opdater") 
                     {
-                        $id = $_REQUEST['id_u'];
+                        $id = $_SESSION["selected_task"];
                         $case_nr = $_REQUEST['case_nr_u'];
                         $case_responsible = $_REQUEST['case_responsible_u'];
                         $status = $_REQUEST['status_u'];
@@ -240,13 +240,25 @@
                         echo '</div>';
                     echo '</div>';
 
-                    $statusColor = '#345643';
                     //if og while her 
                     if($result->num_rows > 0)
                     {
                         while($row = $result->fetch_assoc())
                         {
-                            echo '<div class="case_data_row" style="border-left: 5px solid' . $statusColor . '">';
+                            //statuscolor
+                            if($row['status'] == "Oprettet") {
+                                $status_color = "#FFA2A2";
+                            } else if ($row['status'] == "Beskrevet") {
+                                $status_color = "#FFFC9E";
+                            }
+                            else if ($row['status'] == "Aktiv") {
+                                $status_color = "#BBFFB9";
+                            } else {
+                                $status_color = "#DBB8FF";
+                            }
+
+
+                            echo '<div class="case_data_row" style="border-left: 5px solid' . $status_color . '">';
                                 echo '<div class="case_information"> ';
                                     echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
                                     echo '<p class="dark_dropdown_table case_responsible">' . $row["case_responsible"] . '</p>';
@@ -259,9 +271,9 @@
                                 echo '</div>';
                                 
                                 echo '<div class="button_container">';
-                                    echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
-                                    echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
-                                    echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
+                                    echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
+                                    echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/archive.png" alt="Employee icon" class="edit_icons"<button>';
+                                    echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
                                 echo '</div>';
                             echo '</div>'; 
                         }   
@@ -282,7 +294,6 @@
             <h3>Opret ny sag</h3>
             <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_c" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
             <div class="pop-up-row"><p>Ansvarlig : </p><input type="text" name="case_responsible_c" value="<?php echo isset($case_responsible) ? $case_responsible : '' ?>"></div>
-            <div class="pop-up-row"><p>Status : </p><input type="text" name="status_c" value="<?php echo isset($status) ? $status : '' ?>"></div>
             <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
             <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
             <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
@@ -297,10 +308,17 @@
         ----------------------------->
         <div class="pop_up_modal" style="display: <?php echo $display_edit_case_pop_up ?>">
             <h3>Opdater sag</h3>
-            id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
             <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_u" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
             <div class="pop-up-row"><p>Ansvarlig : </p><input type="text" name="case_responsible_u" value="<?php echo isset($case_responsible) ? $case_responsible : '' ?>"></div>
-            <div class="pop-up-row"><p>Status : </p><input type="text" name="status_u" value="<?php echo isset($status) ? $status : '' ?>"></div>
+            <div class="pop-up-row">
+                    <p>Status : </p>
+                    <select name="status_u">
+                        <option <?php echo $status == "Oprettet" ? 'selected' : '' ?> value="Oprettet">Oprettet</option>
+                        <option <?php echo $status == "Beskrevet" ? 'selected' : '' ?> value="Beskrevet">Beskrevet</option>
+                        <option <?php echo $status == "Aktiv" ? 'selected' : '' ?> value="Aktiv">Aktiv</option>
+                        <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
+                    </select>
+                </div>
             <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
             <div class="pop-up-row"><p>Startdato : </p><input type="text" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
             <div class="pop-up-row"><p>Deadline : </p><input type="text" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>

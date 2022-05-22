@@ -223,22 +223,33 @@
                         {
                             while($row = $result->fetch_assoc())
                             {
-                                echo '<div class="task_data_row">';
+                                //statuscolor
+                                if($row['status'] == "Ikke startet") {
+                                    $status_color = "#FFA2A2";
+                                } else if ($row['status'] == "Startet") {
+                                    $status_color = "#FFFC9E";
+                                }
+                                else if ($row['status'] == "Venter") {
+                                    $status_color = "#BBFFB9";
+                                } else {
+                                    $status_color = "#DBB8FF";
+                                }
+                                echo '<div class="task_data_row" " style="border-left: 5px solid ' . $status_color . '">';
                                     echo '<div class="task_information"> ';
                                         echo '<p class="task_name">' . $row["task_title"] . '</p>';
                                     echo '</div>';
                                     echo '<div class="task_dropdown_mobile">';
-                                        echo '<p class="dark_dropdown_table task_prority">' . $row["priority"] . '</p>';
-                                        echo '<p class="dark_dropdown_table task_status">' . $row["status"] . '</p>';
-                                        echo '<p class="dark_dropdown_table task_deadline">' . $row["deadline"] . '</p>';
-                                        echo '<p class="light_dropdown_table task_updated_initials">' . $row["updated_initials"] . '</p>';
-                                        echo '<p class="dark_dropdown_table task_comment">' . $row["comment"] . '</p>';
+                                        echo '<p class="task_prority">' . $row["priority"] . '</p>';
+                                        echo '<p class="task_status">' . $row["status"] . '</p>';
+                                        echo '<p class="task_deadline">' . $row["deadline"] . '</p>';
+                                        echo '<p class="task_updated_initials">' . $row["updated_initials"] . '</p>';
+                                        echo '<p class="task_comment">' . $row["comment"] . '</p>';
                                     echo '</div>';
 
                                     echo '<div class="button_container">';
-                                        echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
-                                        echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
-                                        echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/person-login.png" alt="Employee icon" class="edit_icons"<button>';
+                                        echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
+                                        echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/archive.png" alt="Employee icon" class="edit_icons"<button>';
+                                        echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
                                     echo '</div>';
                                 echo '</div>'; 
 
@@ -279,7 +290,7 @@
                 <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                 <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority_u" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
                 <div class="pop-up-row">
-                    <p>status : </p>
+                    <p>Status : </p>
                     <select name="status_u">
                         <option <?php echo $status == "Ikke startet" ? 'selected' : '' ?> value="Ikke startet">Ikke startet</option>
                         <option <?php echo $status == "Startet" ? 'selected' : '' ?> value="Startet">Startet</option>
@@ -287,7 +298,6 @@
                         <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
                     </select>
                 </div>
-
                 <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
                 <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">

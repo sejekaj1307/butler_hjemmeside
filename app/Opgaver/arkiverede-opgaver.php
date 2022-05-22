@@ -130,35 +130,45 @@
                 $sql = "select * from tasks where archived_at != ''";
                 $result = $conn->query($sql);
 
-                echo '<div class="case_list">';
-                    echo '<div class="case_list_header">';
-                        echo '<div class="case_mobile_headers">';
-                            echo '<p class="case_nr_header">Opgave.</p>';
-                            echo '<p class="case_responsible_header">Arkiveret</p>';
+                echo '<div class="task_list">';
+                    echo '<div class="task_list_header">';
+                        echo '<div class="task_mobile_headers">';
+                            echo '<p class="task_name_header">Opgave</p>';
                         echo '</div>';
-                        echo '<div class="case_all_headers">';
-                            echo '<p class="case_status_header">Arkiveret af</p>';
-                            echo '<p class="case_location_header">Seneste</p>';
-                            echo '<p class="case_est_start_header">Bemærkninger</p>';
+                        echo '<div class="task_all_headers">';
+                            echo '<p class="task_archived_at_header">Arkiveret</p>';
+                            echo '<p class="task_archived_initials_header">Arkiveret af</p>';
+                            echo '<p class="task_updated_initials_header">Seneste</p>';
+                            echo '<p class="task_comment_header">Bemærkninger</p>';
                             echo '<p class="button_container_header">Rediger</p>';
                         echo '</div>';
                     echo '</div>';
 
-                    $statusColor = '#345643';
                     //if og while her 
                     if($result->num_rows > 0)
                     {
                         while($row = $result->fetch_assoc())
                         {
-                            echo '<div class="case_data_row" style="border-left: 5px solid' . $statusColor . '">';
-                                echo '<div class="case_information"> ';
-                                    echo '<p class="case_nr">' . $row["task_title"] . '</p>';
-                                    echo '<p class="dark_dropdown_table case_responsible">' . $row["archived_at"] . '</p>';
-                                    echo '<p class="light_dropdown_table case_status">' . $row["archived_initials"] . '</p>';
+                            //statuscolor
+                            if($row['status'] == "Ikke startet") {
+                                $status_color = "#FFA2A2";
+                            } else if ($row['status'] == "Startet") {
+                                $status_color = "#FFFC9E";
+                            }
+                            else if ($row['status'] == "Venter") {
+                                $status_color = "#BBFFB9";
+                            } else {
+                                $status_color = "#DBB8FF";
+                            }
+                            echo '<div class="task_data_row" style="border-left: 5px solid' . $status_color . '">';
+                                echo '<div class="task_information"> ';
+                                    echo '<p class="task_name">' . $row["task_title"] . '</p>';
                                 echo '</div>';
-                                echo '<div class="case_dropdown_mobile">';
-                                    echo '<p class="dark_dropdown_table case_location">' . $row["updated_initials"] . '</p>';
-                                    echo '<p class="dark_dropdown_table case_location">' . $row["comment"] . '</p>';
+                                echo '<div class="task_dropdown_mobile">';
+                                    echo '<p class="task_archived_at">' . $row["archived_at"] . '</p>';
+                                    echo '<p class="task_archived_initials">' . $row["archived_initials"] . '</p>';
+                                    echo '<p class="task_updated_initials">' . $row["updated_initials"] . '</p>';
+                                    echo '<p class="task_comment">' . $row["comment"] . '</p>';
                                 echo '</div>';
                                 
                                 echo '<div class="button_container">';
@@ -168,6 +178,7 @@
                         }   
                     }
                 echo '</div>';
+
             ?>
         </div>
 

@@ -149,7 +149,18 @@
                     {
                         while($row = $result->fetch_assoc())
                         {
-                            echo '<div class="case_data_row" style="border-left: 5px solid' . $statusColor . '">';
+                            //statuscolor
+                            if($row['status'] == "Oprettet") {
+                                $status_color = "#FFA2A2";
+                            } else if ($row['status'] == "Beskrevet") {
+                                $status_color = "#FFFC9E";
+                            }
+                            else if ($row['status'] == "Aktiv") {
+                                $status_color = "#BBFFB9";
+                            } else {
+                                $status_color = "#DBB8FF";
+                            }
+                            echo '<div class="case_data_row" style="border-left: 5px solid' . $status_color . '">';
                                 echo '<div class="case_information"> ';
                                     echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
                                     echo '<p class="dark_dropdown_table case_responsible">' . $row["case_responsible"] . '</p>';
