@@ -149,8 +149,8 @@
                         {
                             if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                             {
-                                $sql = $conn->prepare("update storage set element = ?, element_location = ?, quantity = ?, min_quantity = ?, updated_initials = ? where id = ?");
-                                $sql->bind_param("ssiisi", $element, $element_location, $quantity, $min_quantity, $updated_initials, $id);
+                                $sql = $conn->prepare("update storage set element = ?, element_location = ?, quantity = ?, min_quantity = ?, updated_initials = ?, comment = ? where id = ?");
+                                $sql->bind_param("ssiissi", $element, $element_location, $quantity, $min_quantity, $updated_initials, $comment, $id);
                                 $sql->execute();    
                             }
                         }
