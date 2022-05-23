@@ -704,9 +704,7 @@
   border: none;
   margin: 40px 0;
   background-color: #149DB9;
-  cursor: pointer !important;
-  cursor: -webkit-grab;
-  cursor: grab;
+  cursor: pointer;
 }
 
 /*Tablet - S */
