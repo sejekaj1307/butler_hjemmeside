@@ -133,9 +133,9 @@
                         echo '<div class="case_mobile_headers">';
                             echo '<p class="case_nr_header">Sagsnr.</p>';
                             echo '<p class="case_responsible_header">Ansvarlig</p>';
-                            echo '<p class="case_status_header">Status</p>';
                         echo '</div>';
                         echo '<div class="case_all_headers">';
+                            echo '<p class="case_status_header">Status</p>';
                             echo '<p class="case_location_header">Sagsoversigt</p>';
                             echo '<p class="case_est_start_header">Opstart</p>';
                             echo '<p class="case_deadline_header">Deadline</p>';
@@ -161,20 +161,20 @@
                                 $status_color = "#DBB8FF";
                             }
                             echo '<div class="case_data_row" style="border-left: 5px solid' . $status_color . '">';
-                                echo '<div class="case_information"> ';
+                                echo '<div class="case_information">';
                                     echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
                                     echo '<p class="dark_dropdown_table case_responsible">' . $row["case_responsible"] . '</p>';
-                                    echo '<p class="light_dropdown_table case_status">' . $row["status"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="case_dropdown_mobile">';
+                                    echo '<p class="light_dropdown_table case_status">' . $row["status"] . '</p>';
                                     echo '<p class="dark_dropdown_table case_location">' . $row["location"] . '</p>';
                                     echo '<p class="case_est_start">' . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
                                     echo '<p class="case_deadline">' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
+                                    echo '<div class="button_container">';
+                                        echo '<button type="submit" name="knap" value="activate_' . $row['id'] . '"><img src="../img/activate.png" alt="Employee icon" class="edit_icons"<button>';
+                                    echo '</div>';
                                 echo '</div>';
                                 
-                                echo '<div class="button_container">';
-                                    echo '<button type="submit" name="knap" value="activate_' . $row['id'] . '"><img src="../img/activate.png" alt="Employee icon" class="edit_icons"<button>';
-                                echo '</div>';
                             echo '</div>'; 
                         }   
                     }

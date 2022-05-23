@@ -230,9 +230,9 @@
                         echo '<div class="case_mobile_headers">';
                             echo '<p class="case_nr_header">Sagsnr.</p>';
                             echo '<p class="case_responsible_header">Ansvarlig</p>';
-                            echo '<p class="case_status_header">Status</p>';
                         echo '</div>';
                         echo '<div class="case_all_headers">';
+                            echo '<p class="case_status_header">Status</p>';
                             echo '<p class="case_location_header">Sagsoversigt</p>';
                             echo '<p class="case_est_start_header">Opstart</p>';
                             echo '<p class="case_deadline_header">Deadline</p>';
@@ -258,22 +258,21 @@
                             }
 
 
-                            echo '<div class="case_data_row" style="border-left: 5px solid' . $status_color . '">';
+                            echo '<div class="case_data_row" style="border-left: 5px solid' . $status_color . '" onclick="open_close_case_info('. $row["id"] .', '. "'case_dropdown_mobile'" .')")>';
                                 echo '<div class="case_information"> ';
                                     echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
                                     echo '<p class="dark_dropdown_table case_responsible">' . $row["case_responsible"] . '</p>';
-                                    echo '<p class="light_dropdown_table case_status">' . $row["status"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="case_dropdown_mobile">';
+                                    echo '<p class="light_dropdown_table case_status">' . $row["status"] . '</p>';
                                     echo '<p class="dark_dropdown_table case_location">' . $row["location"] . '</p>';
                                     echo '<p class="light_dropdown_table case_est_start">' . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
                                     echo '<p class="dark_dropdown_table case_deadline">' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
-                                echo '</div>';
-                                
-                                echo '<div class="button_container">';
-                                    echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
-                                    echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/archive.png" alt="Employee icon" class="edit_icons"<button>';
-                                    echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
+                                    echo '<div class="button_container">';
+                                        echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
+                                        echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/archive.png" alt="Employee icon" class="edit_icons"<button>';
+                                        echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
+                                    echo '</div>';
                                 echo '</div>';
                             echo '</div>'; 
                         }   
@@ -354,6 +353,7 @@
 
 
     </div>
+    <script src="open_close_tasks_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>
 
