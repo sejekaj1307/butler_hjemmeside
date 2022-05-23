@@ -12,7 +12,7 @@
 /*----------------------------------
         Harmonica lists
 ----------------------------------*/
-.tasks_service_harmonica .tasks_service_headers, .tasks_service_harmonica .pl_service_headers, .pl_service_harmonica .tasks_service_headers, .pl_service_harmonica .pl_service_headers {
+.harmonica_harmonica .harmonica_headers, .harmonica_harmonica .harmonica_headers, .harmonica_harmonica .harmonica_headers, .harmonica_harmonica .harmonica_headers {
   border-bottom: 3px solid #5068CB;
   padding: 5px 0;
   font-weight: 600;
@@ -20,23 +20,23 @@
   border: 1px solid #5068CB;
 }
 
-.tasks_service_harmonica .tasks_service_headers .tasks_service_name_header, .tasks_service_harmonica .tasks_service_headers .pl_service_element_headers, .tasks_service_harmonica .pl_service_headers .tasks_service_name_header, .tasks_service_harmonica .pl_service_headers .pl_service_element_headers, .pl_service_harmonica .tasks_service_headers .tasks_service_name_header, .pl_service_harmonica .tasks_service_headers .pl_service_element_headers, .pl_service_harmonica .pl_service_headers .tasks_service_name_header, .pl_service_harmonica .pl_service_headers .pl_service_element_headers {
+.harmonica_harmonica .harmonica_headers .harmonica_name_header, .harmonica_harmonica .harmonica_headers .harmonica_element_headers, .harmonica_harmonica .harmonica_headers .harmonica_name_header, .harmonica_harmonica .harmonica_headers .harmonica_element_headers, .harmonica_harmonica .harmonica_headers .harmonica_name_header, .harmonica_harmonica .harmonica_headers .harmonica_element_headers, .harmonica_harmonica .harmonica_headers .harmonica_name_header, .harmonica_harmonica .harmonica_headers .harmonica_element_headers {
   font-size: 20px;
   padding: 10px 5px;
 }
 
-.tasks_service_harmonica .tasks_service_headers .tasks_service_all_headers, .tasks_service_harmonica .tasks_service_headers .pl_service_all_headers, .tasks_service_harmonica .pl_service_headers .tasks_service_all_headers, .tasks_service_harmonica .pl_service_headers .pl_service_all_headers, .pl_service_harmonica .tasks_service_headers .tasks_service_all_headers, .pl_service_harmonica .tasks_service_headers .pl_service_all_headers, .pl_service_harmonica .pl_service_headers .tasks_service_all_headers, .pl_service_harmonica .pl_service_headers .pl_service_all_headers {
+.harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_all_headers {
   display: none;
 }
 
-.tasks_service_harmonica .tasks_service_data_row .tasks_service_information, .tasks_service_harmonica .tasks_service_data_row .pl_service_information, .tasks_service_harmonica .pl_service_data_row .tasks_service_information, .tasks_service_harmonica .pl_service_data_row .pl_service_information, .pl_service_harmonica .tasks_service_data_row .tasks_service_information, .pl_service_harmonica .tasks_service_data_row .pl_service_information, .pl_service_harmonica .pl_service_data_row .tasks_service_information, .pl_service_harmonica .pl_service_data_row .pl_service_information {
+.harmonica_harmonica .harmonica_data_row .harmonica_information, .harmonica_harmonica .harmonica_data_row .harmonica_information, .harmonica_harmonica .harmonica_data_row .harmonica_information, .harmonica_harmonica .harmonica_data_row .harmonica_information, .harmonica_harmonica .harmonica_data_row .harmonica_information, .harmonica_harmonica .harmonica_data_row .harmonica_information, .harmonica_harmonica .harmonica_data_row .harmonica_information, .harmonica_harmonica .harmonica_data_row .harmonica_information {
   background-color: #EEF2FD;
   border: 1px solid #AEBFF6;
   border-bottom: 2px solid #AEBFF6;
   padding: 10px 0 10px 15px;
 }
 
-.tasks_service_harmonica .tasks_service_data_row_all_info, .tasks_service_harmonica .planned_service_data_row_all_info, .pl_service_harmonica .tasks_service_data_row_all_info, .pl_service_harmonica .planned_service_data_row_all_info {
+.harmonica_harmonica .harmonica_data_row_all_info, .harmonica_harmonica .planned_service_data_row_all_info, .harmonica_harmonica .harmonica_data_row_all_info, .harmonica_harmonica .planned_service_data_row_all_info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -44,17 +44,16 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  display: none;
   border: 1px solid #AEBFF6;
   border-bottom: 2px solid #AEBFF6;
   padding: 10px 0;
 }
 
-.tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_title, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_priority, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_status, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_last_service, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_deadline, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_updated_initials, .tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_comment,
-.tasks_service_harmonica .tasks_service_data_row_all_info .pl_service_element, .tasks_service_harmonica .tasks_service_data_row_all_info .pl_service_all, .tasks_service_harmonica .tasks_service_data_row_all_info .pl_service_quantity, .tasks_service_harmonica .tasks_service_data_row_all_info .pl_service_status, .tasks_service_harmonica .tasks_service_data_row_all_info .pl_service_created_by, .tasks_service_harmonica .tasks_service_data_row_all_info .pl_service_updated_by, .tasks_service_harmonica .tasks_service_data_row_all_info .pl_service_comment, .tasks_service_harmonica .planned_service_data_row_all_info .tasks_service_title, .tasks_service_harmonica .planned_service_data_row_all_info .tasks_service_priority, .tasks_service_harmonica .planned_service_data_row_all_info .tasks_service_status, .tasks_service_harmonica .planned_service_data_row_all_info .tasks_service_last_service, .tasks_service_harmonica .planned_service_data_row_all_info .tasks_service_deadline, .tasks_service_harmonica .planned_service_data_row_all_info .tasks_service_updated_initials, .tasks_service_harmonica .planned_service_data_row_all_info .tasks_service_comment,
-.tasks_service_harmonica .planned_service_data_row_all_info .pl_service_element, .tasks_service_harmonica .planned_service_data_row_all_info .pl_service_all, .tasks_service_harmonica .planned_service_data_row_all_info .pl_service_quantity, .tasks_service_harmonica .planned_service_data_row_all_info .pl_service_status, .tasks_service_harmonica .planned_service_data_row_all_info .pl_service_created_by, .tasks_service_harmonica .planned_service_data_row_all_info .pl_service_updated_by, .tasks_service_harmonica .planned_service_data_row_all_info .pl_service_comment, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_title, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_priority, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_status, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_last_service, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_deadline, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_updated_initials, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_comment,
-.pl_service_harmonica .tasks_service_data_row_all_info .pl_service_element, .pl_service_harmonica .tasks_service_data_row_all_info .pl_service_all, .pl_service_harmonica .tasks_service_data_row_all_info .pl_service_quantity, .pl_service_harmonica .tasks_service_data_row_all_info .pl_service_status, .pl_service_harmonica .tasks_service_data_row_all_info .pl_service_created_by, .pl_service_harmonica .tasks_service_data_row_all_info .pl_service_updated_by, .pl_service_harmonica .tasks_service_data_row_all_info .pl_service_comment, .pl_service_harmonica .planned_service_data_row_all_info .tasks_service_title, .pl_service_harmonica .planned_service_data_row_all_info .tasks_service_priority, .pl_service_harmonica .planned_service_data_row_all_info .tasks_service_status, .pl_service_harmonica .planned_service_data_row_all_info .tasks_service_last_service, .pl_service_harmonica .planned_service_data_row_all_info .tasks_service_deadline, .pl_service_harmonica .planned_service_data_row_all_info .tasks_service_updated_initials, .pl_service_harmonica .planned_service_data_row_all_info .tasks_service_comment,
-.pl_service_harmonica .planned_service_data_row_all_info .pl_service_element, .pl_service_harmonica .planned_service_data_row_all_info .pl_service_all, .pl_service_harmonica .planned_service_data_row_all_info .pl_service_quantity, .pl_service_harmonica .planned_service_data_row_all_info .pl_service_status, .pl_service_harmonica .planned_service_data_row_all_info .pl_service_created_by, .pl_service_harmonica .planned_service_data_row_all_info .pl_service_updated_by, .pl_service_harmonica .planned_service_data_row_all_info .pl_service_comment {
+.harmonica_harmonica .harmonica_data_row_all_info .harmonica_title, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_priority, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_status, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_last_service, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_deadline, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_updated_initials, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_comment,
+.harmonica_harmonica .harmonica_data_row_all_info .harmonica_element, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_all, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_quantity, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_status, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_created_by, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_updated_by, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_comment, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_title, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_priority, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_status, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_last_service, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_deadline, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_updated_initials, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_comment,
+.harmonica_harmonica .planned_service_data_row_all_info .harmonica_element, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_all, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_quantity, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_status, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_created_by, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_updated_by, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_comment, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_title, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_priority, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_status, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_last_service, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_deadline, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_updated_initials, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_comment,
+.harmonica_harmonica .harmonica_data_row_all_info .harmonica_element, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_all, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_quantity, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_status, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_created_by, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_updated_by, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_comment, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_title, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_priority, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_status, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_last_service, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_deadline, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_updated_initials, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_comment,
+.harmonica_harmonica .planned_service_data_row_all_info .harmonica_element, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_all, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_quantity, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_status, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_created_by, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_updated_by, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_comment {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -64,7 +63,7 @@
   padding: 10px 0 10px 15px;
 }
 
-.tasks_service_harmonica .tasks_service_data_row_all_info .dropdown_inline_headers, .tasks_service_harmonica .planned_service_data_row_all_info .dropdown_inline_headers, .pl_service_harmonica .tasks_service_data_row_all_info .dropdown_inline_headers, .pl_service_harmonica .planned_service_data_row_all_info .dropdown_inline_headers {
+.harmonica_harmonica .harmonica_data_row_all_info .dropdown_inline_headers, .harmonica_harmonica .planned_service_data_row_all_info .dropdown_inline_headers, .harmonica_harmonica .harmonica_data_row_all_info .dropdown_inline_headers, .harmonica_harmonica .planned_service_data_row_all_info .dropdown_inline_headers {
   font-weight: 600;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -72,12 +71,12 @@
   width: 35% !important;
 }
 
-.tasks_service_harmonica .tasks_service_data_row_all_info .tasks_service_title, .tasks_service_harmonica .tasks_service_data_row_all_info .pl_service_element, .tasks_service_harmonica .planned_service_data_row_all_info .tasks_service_title, .tasks_service_harmonica .planned_service_data_row_all_info .pl_service_element, .pl_service_harmonica .tasks_service_data_row_all_info .tasks_service_title, .pl_service_harmonica .tasks_service_data_row_all_info .pl_service_element, .pl_service_harmonica .planned_service_data_row_all_info .tasks_service_title, .pl_service_harmonica .planned_service_data_row_all_info .pl_service_element {
+.harmonica_harmonica .harmonica_data_row_all_info .harmonica_title, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_element, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_title, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_element, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_title, .harmonica_harmonica .harmonica_data_row_all_info .harmonica_element, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_title, .harmonica_harmonica .planned_service_data_row_all_info .harmonica_element {
   font-size: 22px;
   padding: 5px 5px 10px 10px;
 }
 
-.tasks_service_harmonica .button_container, .tasks_service_harmonica .button_container_header, .pl_service_harmonica .button_container, .pl_service_harmonica .button_container_header {
+.harmonica_harmonica .button_container, .harmonica_harmonica .button_container_header, .harmonica_harmonica .button_container, .harmonica_harmonica .button_container_header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -87,13 +86,13 @@
   padding: 10px 20px;
 }
 
-.tasks_service_harmonica .button_container button, .tasks_service_harmonica .button_container_header button, .pl_service_harmonica .button_container button, .pl_service_harmonica .button_container_header button {
+.harmonica_harmonica .button_container button, .harmonica_harmonica .button_container_header button, .harmonica_harmonica .button_container button, .harmonica_harmonica .button_container_header button {
   margin-right: 25px;
   background: none;
   border: none;
 }
 
-.tasks_service_harmonica .button_container button .edit_icons, .tasks_service_harmonica .button_container_header button .edit_icons, .pl_service_harmonica .button_container button .edit_icons, .pl_service_harmonica .button_container_header button .edit_icons {
+.harmonica_harmonica .button_container button .edit_icons, .harmonica_harmonica .button_container_header button .edit_icons, .harmonica_harmonica .button_container button .edit_icons, .harmonica_harmonica .button_container_header button .edit_icons {
   width: 15px;
 }
 
@@ -103,75 +102,75 @@
   /*----------------------------------
         Harmonica lists 1200
     ----------------------------------*/
-  .tasks_service_harmonica .tasks_service_headers, .tasks_service_harmonica .pl_service_headers, .pl_service_harmonica .tasks_service_headers, .pl_service_harmonica .pl_service_headers {
+  .harmonica_harmonica .harmonica_headers, .harmonica_harmonica .harmonica_headers, .harmonica_harmonica .harmonica_headers, .harmonica_harmonica .harmonica_headers {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     padding: 15px 0;
   }
-  .tasks_service_harmonica .tasks_service_headers .tasks_service_all_headers, .tasks_service_harmonica .tasks_service_headers .tasks_service_name_header, .tasks_service_harmonica .tasks_service_headers .pl_service_all_headers, .tasks_service_harmonica .tasks_service_headers .pl_service_element_headers, .tasks_service_harmonica .pl_service_headers .tasks_service_all_headers, .tasks_service_harmonica .pl_service_headers .tasks_service_name_header, .tasks_service_harmonica .pl_service_headers .pl_service_all_headers, .tasks_service_harmonica .pl_service_headers .pl_service_element_headers, .pl_service_harmonica .tasks_service_headers .tasks_service_all_headers, .pl_service_harmonica .tasks_service_headers .tasks_service_name_header, .pl_service_harmonica .tasks_service_headers .pl_service_all_headers, .pl_service_harmonica .tasks_service_headers .pl_service_element_headers, .pl_service_harmonica .pl_service_headers .tasks_service_all_headers, .pl_service_harmonica .pl_service_headers .tasks_service_name_header, .pl_service_harmonica .pl_service_headers .pl_service_all_headers, .pl_service_harmonica .pl_service_headers .pl_service_element_headers {
+  .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_name_header, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_element_headers, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_name_header, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_element_headers, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_name_header, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_element_headers, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_name_header, .harmonica_harmonica .harmonica_headers .harmonica_all_headers, .harmonica_harmonica .harmonica_headers .harmonica_element_headers {
     display: -webkit-box !important;
     display: -ms-flexbox !important;
     display: flex !important;
     font-size: 17px !important;
   }
-  .tasks_service_harmonica .tasks_service_name_header, .tasks_service_harmonica .pl_service_element_headers, .pl_service_harmonica .tasks_service_name_header, .pl_service_harmonica .pl_service_element_headers {
+  .harmonica_harmonica .harmonica_name_header, .harmonica_harmonica .harmonica_element_headers, .harmonica_harmonica .harmonica_name_header, .harmonica_harmonica .harmonica_element_headers {
     padding: 0 !important;
     border-left: 5px solid #fff;
   }
-  .tasks_service_harmonica .tasks_service_title, .tasks_service_harmonica .pl_service_element, .tasks_service_harmonica .tasks_service_name_header, .tasks_service_harmonica .pl_service_element_headers, .pl_service_harmonica .tasks_service_title, .pl_service_harmonica .pl_service_element, .pl_service_harmonica .tasks_service_name_header, .pl_service_harmonica .pl_service_element_headers {
+  .harmonica_harmonica .harmonica_title, .harmonica_harmonica .harmonica_element, .harmonica_harmonica .harmonica_name_header, .harmonica_harmonica .harmonica_element_headers, .harmonica_harmonica .harmonica_title, .harmonica_harmonica .harmonica_element, .harmonica_harmonica .harmonica_name_header, .harmonica_harmonica .harmonica_element_headers {
     font-size: 17px;
     padding: 0;
     width: 14.5vw !important;
     padding-left: 10px !important;
   }
-  .tasks_service_harmonica .tasks_service_priority_header, .tasks_service_harmonica .tasks_service_priority, .tasks_service_harmonica .tasks_service_updated_initials_header, .tasks_service_harmonica .tasks_service_updated_initials, .pl_service_harmonica .tasks_service_priority_header, .pl_service_harmonica .tasks_service_priority, .pl_service_harmonica .tasks_service_updated_initials_header, .pl_service_harmonica .tasks_service_updated_initials {
+  .harmonica_harmonica .harmonica_priority_header, .harmonica_harmonica .harmonica_priority, .harmonica_harmonica .harmonica_updated_initials_header, .harmonica_harmonica .harmonica_updated_initials, .harmonica_harmonica .harmonica_priority_header, .harmonica_harmonica .harmonica_priority, .harmonica_harmonica .harmonica_updated_initials_header, .harmonica_harmonica .harmonica_updated_initials {
     width: 6vw;
   }
-  .tasks_service_harmonica .tasks_service_status_header, .tasks_service_harmonica .tasks_service_status, .pl_service_harmonica .tasks_service_status_header, .pl_service_harmonica .tasks_service_status {
+  .harmonica_harmonica .harmonica_status_header, .harmonica_harmonica .harmonica_status, .harmonica_harmonica .harmonica_status_header, .harmonica_harmonica .harmonica_status {
     width: 7.5vw;
   }
-  .tasks_service_harmonica .tasks_service_last_service_header, .tasks_service_harmonica .tasks_service_deadline_header, .tasks_service_harmonica .tasks_service_last_service, .tasks_service_harmonica .tasks_service_deadline, .pl_service_harmonica .tasks_service_last_service_header, .pl_service_harmonica .tasks_service_deadline_header, .pl_service_harmonica .tasks_service_last_service, .pl_service_harmonica .tasks_service_deadline {
+  .harmonica_harmonica .harmonica_last_service_header, .harmonica_harmonica .harmonica_deadline_header, .harmonica_harmonica .harmonica_last_service, .harmonica_harmonica .harmonica_deadline, .harmonica_harmonica .harmonica_last_service_header, .harmonica_harmonica .harmonica_deadline_header, .harmonica_harmonica .harmonica_last_service, .harmonica_harmonica .harmonica_deadline {
     width: 8vw;
   }
-  .tasks_service_harmonica .tasks_service_comment_header, .tasks_service_harmonica .tasks_service_comment, .pl_service_harmonica .tasks_service_comment_header, .pl_service_harmonica .tasks_service_comment {
+  .harmonica_harmonica .harmonica_comment_header, .harmonica_harmonica .harmonica_comment, .harmonica_harmonica .harmonica_comment_header, .harmonica_harmonica .harmonica_comment {
     width: 14vw;
   }
-  .tasks_service_harmonica .tasks_service_data_row_all_info, .tasks_service_harmonica .planned_service_data_row_all_info, .pl_service_harmonica .tasks_service_data_row_all_info, .pl_service_harmonica .planned_service_data_row_all_info {
+  .harmonica_harmonica .harmonica_data_row_all_info, .harmonica_harmonica .planned_service_data_row_all_info, .harmonica_harmonica .harmonica_data_row_all_info, .harmonica_harmonica .planned_service_data_row_all_info {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
   }
-  .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info {
+  .harmonica_harmonica .harmonica_data_row_all_info .data_row_info, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
   }
-  .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_title, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_priority, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_status, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_last_service, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_deadline, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_updated_initials, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_comment,
-  .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_element, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_quantity, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_status, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_created_by, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_updated_by, .tasks_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_comment, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_title, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_priority, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_status, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_last_service, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_deadline, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_updated_initials, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_comment,
-  .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .pl_service_element, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .pl_service_quantity, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .pl_service_status, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .pl_service_created_by, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .pl_service_updated_by, .tasks_service_harmonica .planned_service_data_row_all_info .data_row_info .pl_service_comment, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_title, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_priority, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_status, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_last_service, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_deadline, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_updated_initials, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .tasks_service_comment,
-  .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_element, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_quantity, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_status, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_created_by, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_updated_by, .pl_service_harmonica .tasks_service_data_row_all_info .data_row_info .pl_service_comment, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_title, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_priority, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_status, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_last_service, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_deadline, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_updated_initials, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .tasks_service_comment,
-  .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .pl_service_element, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .pl_service_quantity, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .pl_service_status, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .pl_service_created_by, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .pl_service_updated_by, .pl_service_harmonica .planned_service_data_row_all_info .data_row_info .pl_service_comment {
+  .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_title, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_priority, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_status, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_last_service, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_deadline, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_updated_initials, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_comment,
+  .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_element, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_quantity, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_status, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_created_by, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_updated_by, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_comment, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_title, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_priority, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_status, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_last_service, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_deadline, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_updated_initials, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_comment,
+  .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_element, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_quantity, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_status, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_created_by, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_updated_by, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_comment, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_title, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_priority, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_status, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_last_service, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_deadline, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_updated_initials, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_comment,
+  .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_element, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_quantity, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_status, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_created_by, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_updated_by, .harmonica_harmonica .harmonica_data_row_all_info .data_row_info .harmonica_comment, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_title, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_priority, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_status, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_last_service, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_deadline, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_updated_initials, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_comment,
+  .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_element, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_quantity, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_status, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_created_by, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_updated_by, .harmonica_harmonica .planned_service_data_row_all_info .data_row_info .harmonica_comment {
     font-size: 16px;
     padding: 0;
   }
-  .tasks_service_harmonica .tasks_service_data_row_all_info .dropdown_inline_headers, .tasks_service_harmonica .planned_service_data_row_all_info .dropdown_inline_headers, .pl_service_harmonica .tasks_service_data_row_all_info .dropdown_inline_headers, .pl_service_harmonica .planned_service_data_row_all_info .dropdown_inline_headers {
+  .harmonica_harmonica .harmonica_data_row_all_info .dropdown_inline_headers, .harmonica_harmonica .planned_service_data_row_all_info .dropdown_inline_headers, .harmonica_harmonica .harmonica_data_row_all_info .dropdown_inline_headers, .harmonica_harmonica .planned_service_data_row_all_info .dropdown_inline_headers {
     display: none;
   }
-  .tasks_service_harmonica .pl_service_all_headers, .tasks_service_harmonica .pl_service_all, .pl_service_harmonica .pl_service_all_headers, .pl_service_harmonica .pl_service_all {
+  .harmonica_harmonica .harmonica_all_headers, .harmonica_harmonica .harmonica_all, .harmonica_harmonica .harmonica_all_headers, .harmonica_harmonica .harmonica_all {
     padding: 0;
   }
-  .tasks_service_harmonica .pl_service_quantity_header, .tasks_service_harmonica .pl_service_quantity, .tasks_service_harmonica .pl_service_status_header, .tasks_service_harmonica .pl_service_status, .tasks_service_harmonica .pl_service_updated_by_header, .tasks_service_harmonica .pl_service_updated_by, .pl_service_harmonica .pl_service_quantity_header, .pl_service_harmonica .pl_service_quantity, .pl_service_harmonica .pl_service_status_header, .pl_service_harmonica .pl_service_status, .pl_service_harmonica .pl_service_updated_by_header, .pl_service_harmonica .pl_service_updated_by {
+  .harmonica_harmonica .harmonica_quantity_header, .harmonica_harmonica .harmonica_quantity, .harmonica_harmonica .harmonica_status_header, .harmonica_harmonica .harmonica_status, .harmonica_harmonica .harmonica_updated_by_header, .harmonica_harmonica .harmonica_updated_by, .harmonica_harmonica .harmonica_quantity_header, .harmonica_harmonica .harmonica_quantity, .harmonica_harmonica .harmonica_status_header, .harmonica_harmonica .harmonica_status, .harmonica_harmonica .harmonica_updated_by_header, .harmonica_harmonica .harmonica_updated_by {
     width: 7.5vw;
   }
-  .tasks_service_harmonica .pl_service_created_by_header, .tasks_service_harmonica .pl_service_created_by, .pl_service_harmonica .pl_service_created_by_header, .pl_service_harmonica .pl_service_created_by {
+  .harmonica_harmonica .harmonica_created_by_header, .harmonica_harmonica .harmonica_created_by, .harmonica_harmonica .harmonica_created_by_header, .harmonica_harmonica .harmonica_created_by {
     width: 10vw;
   }
-  .tasks_service_harmonica .pl_service_comment_header, .tasks_service_harmonica .pl_service_comment, .pl_service_harmonica .pl_service_comment_header, .pl_service_harmonica .pl_service_comment {
+  .harmonica_harmonica .harmonica_comment_header, .harmonica_harmonica .harmonica_comment, .harmonica_harmonica .harmonica_comment_header, .harmonica_harmonica .harmonica_comment {
     width: 18vw !important;
   }
-  .tasks_service_harmonica .button_container, .tasks_service_harmonica .button_container_header, .pl_service_harmonica .button_container, .pl_service_harmonica .button_container_header {
+  .harmonica_harmonica .button_container, .harmonica_harmonica .button_container_header, .harmonica_harmonica .button_container, .harmonica_harmonica .button_container_header {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
@@ -179,7 +178,7 @@
     width: 5vw !important;
     padding-right: 10px;
   }
-  .tasks_service_harmonica .button_container button, .tasks_service_harmonica .button_container_header button, .pl_service_harmonica .button_container button, .pl_service_harmonica .button_container_header button {
+  .harmonica_harmonica .button_container button, .harmonica_harmonica .button_container_header button, .harmonica_harmonica .button_container button, .harmonica_harmonica .button_container_header button {
     margin: 0;
   }
 }
@@ -189,16 +188,16 @@
   /*----------------------------------
         Harmonica lists 1600
     ----------------------------------*/
-  .tasks_service_harmonica .tasks_service_name_header, .pl_service_harmonica .tasks_service_name_header {
+  .harmonica_harmonica .harmonica_name_header, .harmonica_harmonica .harmonica_name_header {
     width: 14.5vw;
   }
-  .tasks_service_harmonica .tasks_service_title, .pl_service_harmonica .tasks_service_title {
+  .harmonica_harmonica .harmonica_title, .harmonica_harmonica .harmonica_title {
     width: 14.5vw;
   }
-  .tasks_service_harmonica .tasks_service_comment_header, .tasks_service_harmonica .tasks_service_comment, .pl_service_harmonica .tasks_service_comment_header, .pl_service_harmonica .tasks_service_comment {
+  .harmonica_harmonica .harmonica_comment_header, .harmonica_harmonica .harmonica_comment, .harmonica_harmonica .harmonica_comment_header, .harmonica_harmonica .harmonica_comment {
     width: 16vw;
   }
-  .tasks_service_harmonica .pl_service_comment_header, .tasks_service_harmonica .pl_service_comment, .pl_service_harmonica .pl_service_comment_header, .pl_service_harmonica .pl_service_comment {
+  .harmonica_harmonica .harmonica_comment_header, .harmonica_harmonica .harmonica_comment, .harmonica_harmonica .harmonica_comment_header, .harmonica_harmonica .harmonica_comment {
     width: 18.5vw !important;
   }
 }

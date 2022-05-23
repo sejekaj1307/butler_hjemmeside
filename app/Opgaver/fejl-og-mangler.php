@@ -236,7 +236,7 @@
                                 echo '<p class="task_name_header">Opgave</p>';
                             echo '</div>';
                             echo '<div class="task_all_headers">';
-                                echo '<p class="task_prority_header">prioritet</p>';
+                                echo '<p class="task_prority_header">Prioritet</p>';
                                 echo '<p class="task_status_header">Status</p>';
                                 echo '<p class="task_deadline_header">Deadline</p>';
                                 echo '<p class="task_updated_initials_header">Seneste</p>';
@@ -298,9 +298,9 @@
                 <h3>Tilføj ny opgave</h3>
                 <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_c" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                 <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority_c" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
-                <div class="pop-up-row"><p>status : </p><input type="text" name="status_c" value="<?php echo isset($status) ? $status : '' ?>"></div>
+                <div class="pop-up-row"><p>Status : </p><input type="text" name="status_c" value="<?php echo isset($status) ? $status : '' ?>"></div>
                 <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
@@ -325,7 +325,7 @@
                     </select>
                 </div>
                 <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
                     <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
@@ -346,7 +346,7 @@
                     archive pop up
             ------------------------->
             <div class="pop_up_modal" style="display: <?php echo $display_tasks_service_case_pop_up ?>">
-                <h3>Arkiver sag</h3>
+                <h3>Arkiver opgave</h3>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">

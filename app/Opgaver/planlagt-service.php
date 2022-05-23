@@ -79,7 +79,7 @@
                 $display_none_archive_pop_up = "none";
                 $display_edit_task_service_pop_up = "none";
                 $display_create_task_service_pop_up = "none";
-                $display_delete_tasks_service_pop_up = "none";
+                $display_delete_harmonica_pop_up = "none";
 
             ?>
 
@@ -171,7 +171,7 @@
                             if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                             {
                                 $_SESSION["selected_task"] = $id;
-                                $display_delete_tasks_service_pop_up = "flex";
+                                $display_delete_harmonica_pop_up = "flex";
                             }
                         }
                     }
@@ -182,7 +182,7 @@
                         $sql = $conn->prepare("delete from tasks_service where id = ?");
                         $sql->bind_param("i", $id);
                         $sql->execute();
-                        $display_delete_tasks_service_pop_up = "none";
+                        $display_delete_harmonica_pop_up = "none";
                         
                     }
                     //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
@@ -207,18 +207,18 @@
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                     $sql = "select * from tasks_service order by task_header asc";
                     $result = $conn->query($sql);
-                    echo '<div class="tasks_service_harmonica">';
-                        echo '<div class="tasks_service_headers">';
-                            echo '<div class="tasks_service_mobile_headers">';
-                                echo '<p class="tasks_service_name_header">Opgave</p>';
+                    echo '<div class="harmonica_harmonica">';
+                        echo '<div class="harmonica_headers">';
+                            echo '<div class="harmonica_mobile_headers">';
+                                echo '<p class="harmonica_name_header">Opgave</p>';
                             echo '</div>';
-                            echo '<div class="tasks_service_all_headers">';
-                                echo '<p class="tasks_service_priority_header">Prioritet</p>';
-                                echo '<p class="tasks_service_status_header">Status</p>';
-                                echo '<p class="tasks_service_last_service_header">Sidste service</p>';
-                                echo '<p class="tasks_service_deadline_header">Deadline</p>';
-                                echo '<p class="tasks_service_updated_initials_header">Seneste</p>';
-                                echo '<p class="tasks_service_comment_header">Bemærkning</p>';
+                            echo '<div class="harmonica_all_headers">';
+                                echo '<p class="harmonica_priority_header">Prioritet</p>';
+                                echo '<p class="harmonica_status_header">Status</p>';
+                                echo '<p class="harmonica_last_service_header">Sidste service</p>';
+                                echo '<p class="harmonica_deadline_header">Deadline</p>';
+                                echo '<p class="harmonica_updated_initials_header">Seneste</p>';
+                                echo '<p class="harmonica_comment_header">Bemærkning</p>';
                                 echo '<p class="button_container_header">Rediger</p>';
                             echo '</div>';
                         echo '</div>';
@@ -230,9 +230,9 @@
                             while($row = $result->fetch_assoc()) {
                                 if(!in_array($row['task_header'], $seen_task_headers)){
                                     array_push($seen_task_headers, $row['task_header']); 
-                                    echo '<div class="tasks_service_data_row" >';
-                                        echo '<div class="tasks_service_information" onclick="open_close_tasks_service('. array_search($row["task_header"], $seen_task_headers) .', '. "'tasks_service_data_row_all_info'" .') " >  ';
-                                            echo '<p class="tasks_service_task_header">' . $row['task_header'] . '</p>';
+                                    echo '<div class="harmonica_data_row" >';
+                                        echo '<div class="harmonica_information" onclick="open_close_harmonica1('. array_search($row["task_header"], $seen_task_headers) .', '. "'harmonica_data_row_all_info'" .') " >  ';
+                                            echo '<p class="harmonica_task_header">' . $row['task_header'] . '</p>';
                                         echo '</div>';
                                     echo '</div>';         
                                 }
@@ -245,15 +245,15 @@
                                 else {
                                     $status_color = "#BBFFB9";
                                 }
-                                echo '<div class="tasks_service_data_row_all_info" id="'. array_search($row["task_header"], $seen_task_headers) .'" style="border-left: 5px solid ' . $status_color . '">';
+                                echo '<div class="harmonica_data_row_all_info" id="'. array_search($row["task_header"], $seen_task_headers) .'" style="border-left: 5px solid ' . $status_color . '">';
                                     echo '<div class="data_row_info">';
-                                        echo '<p class="tasks_service_title">' .  $row["task_title"] . '</p>';
-                                        echo '<p class="tasks_service_priority">' . '<span class="dropdown_inline_headers">Prioritet </span>' . $row["priority"] . '</p>';
-                                        echo '<p class="tasks_service_status">' . '<span class="dropdown_inline_headers">Status </span>' . $row["status"] . '</p>';
-                                        echo '<p class="tasks_service_last_service">' . '<span class="dropdown_inline_headers">Sidste service </span>' . date_format(new DateTime($row["last_service"]), 'd-m-y') . '</p>';
-                                        echo '<p class="tasks_service_deadline">' . '<span class="dropdown_inline_headers">Deadline </span>' . date_format(new DateTime($row["deadline"]), 'd-m-y') . '</p>';
-                                        echo '<p class="tasks_service_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
-                                        echo '<p class="tasks_service_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
+                                        echo '<p class="harmonica_title">' .  $row["task_title"] . '</p>';
+                                        echo '<p class="harmonica_priority">' . '<span class="dropdown_inline_headers">Prioritet </span>' . $row["priority"] . '</p>';
+                                        echo '<p class="harmonica_status">' . '<span class="dropdown_inline_headers">Status </span>' . $row["status"] . '</p>';
+                                        echo '<p class="harmonica_last_service">' . '<span class="dropdown_inline_headers">Sidste service </span>' . date_format(new DateTime($row["last_service"]), 'd-m-y') . '</p>';
+                                        echo '<p class="harmonica_deadline">' . '<span class="dropdown_inline_headers">Deadline </span>' . date_format(new DateTime($row["deadline"]), 'd-m-y') . '</p>';
+                                        echo '<p class="harmonica_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
+                                        echo '<p class="harmonica_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
                                     echo "</div>";
                                 
                                     echo '<div class="button_container">';
@@ -293,7 +293,7 @@
                     </select>
                 </div> 
                 <div class="pop-up-row"><p>Deadline : </p><input type="date" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
@@ -324,7 +324,7 @@
                 </div> 
                 <div class="pop-up-row"><p>Seneste service : </p><input type="date" name="last_service_u" value="<?php echo isset($last_service) ? $last_service : '' ?>"></div>
                 <div class="pop-up-row"><p>Deadline : </p><input type="date" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                <div class="pop-up-row"><p>Kommentar : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
                     <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
@@ -333,7 +333,7 @@
             <!------------------------
                     delete pop up
             ------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_delete_tasks_service_pop_up ?>">
+            <div class="pop_up_modal" style="display: <?php echo $display_delete_harmonica_pop_up ?>">
                 <h3>Slet opgave</h3>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">

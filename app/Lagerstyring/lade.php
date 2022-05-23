@@ -199,17 +199,16 @@
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                     $sql = "select * from storage order by element_location asc";
                     $result = $conn->query($sql);
-                    echo '<div class="pl_service_harmonica">';
-                        echo '<div class="pl_service_headers">';
-                            echo '<div class="pl_service_mobile_headers">';
-                                echo '<p class="pl_service_element_headers">Element</p>';
+                    echo '<div class="harmonica_harmonica">';
+                        echo '<div class="harmonica_headers">';
+                            echo '<div class="harmonica_mobile_headers">';
+                                echo '<p class="harmonica_element_headers">Element</p>';
                             echo '</div>';
-                            echo '<div class="pl_service_all_headers">';
-                                echo '<p class="pl_service_quantity_header">Antal</p>';
-                                echo '<p class="pl_service_status_header">Status</p>';
-                                echo '<p class="pl_service_created_by_header">Oprettet af</p>';
-                                echo '<p class="pl_service_updated_by_header">Seneste</p>';
-                                echo '<p class="pl_service_comment_header">Bemærkning</p>';
+                            echo '<div class="harmonica_all_headers">';
+                                echo '<p class="harmonica_quantity_header">Antal</p>';
+                                echo '<p class="harmonica_status_header">Status</p>';
+                                echo '<p class="harmonica_updated_by_header">Seneste</p>';
+                                echo '<p class="harmonica_comment_header">Bemærkning</p>';
                                 echo '<p class="button_container_header">Rediger</p>';
                             echo '</div>';
                         echo '</div>';
@@ -221,9 +220,9 @@
                             while($row = $result->fetch_assoc()) {
                                 if(!in_array($row['element_location'], $seen_element_location)){
                                     array_push($seen_element_location, $row['element_location']); 
-                                    echo '<div class="pl_service_data_row" >';
-                                        echo '<div class="pl_service_information" onclick="open_close_tasks_service('. array_search($row["element_location"], $seen_element_location) .', '. "'planned_service_data_row_all_info'" .')" >  ';
-                                            echo '<p class="pl_service_task_header">' . $row['element_location'] . '</p>';
+                                    echo '<div class="harmonica_data_row" >';
+                                        echo '<div class="harmonica_information" onclick="open_close_harmonica('. array_search($row["element_location"], $seen_element_location) .', '. "'harmonica_data_row_all_info'" .')" >  ';
+                                            echo '<p class="harmonica_task_header">' . $row['element_location'] . '</p>';
                                         echo '</div>';
                                     echo '</div>';         
                                 }
@@ -240,14 +239,13 @@
                                     $status_color = "#BBFFB9";
                                 }
                                                         
-                                echo '<div class="planned_service_data_row_all_info" id="'. array_search($row["element_location"], $seen_element_location) .'" style="border-left: 5px solid ' . $status_color . '" >';
+                                echo '<div class="harmonica_data_row_all_info" id="'. array_search($row["element_location"], $seen_element_location) .'" style="border-left: 5px solid ' . $status_color . '" >';
                                     echo '<div class="data_row_info">';
-                                        echo '<p class="pl_service_element">' . $row["element"] . '</p>';
-                                        echo '<p class="pl_service_quantity">' . '<span class="dropdown_inline_headers">Antal </span>' . $row["quantity"] . '</p>';
-                                        echo '<p class="pl_service_status">' . '<span class="dropdown_inline_headers">Status </span>' . $status . '</p>';
-                                        echo '<p class=" pl_service_created_by">' . '<span class="dropdown_inline_headers">Oprettet af </span>' . $row["created_initials"] . '</p>';
-                                        echo '<p class=" pl_service_updated_by">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
-                                        echo '<p class=" pl_service_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
+                                        echo '<p class="harmonica_element">' . $row["element"] . '</p>';
+                                        echo '<p class="harmonica_quantity">' . '<span class="dropdown_inline_headers">Antal </span>' . $row["quantity"] . '</p>';
+                                        echo '<p class="harmonica_status">' . '<span class="dropdown_inline_headers">Status </span>' . $status . '</p>';
+                                        echo '<p class=" harmonica_updated_by">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
+                                        echo '<p class=" harmonica_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
                                     echo "</div>";
                                 
                                     echo '<div class="button_container">';
@@ -287,7 +285,7 @@
                 </div>
                 <div class="pop-up-row"><p>Element : </p><input type="text" name="element_c" value="<?php echo isset($element) ? $element : '' ?>"></div>
                 <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_c" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
-                <div class="pop-up-row"><p>min. antal : </p><input type="number" name="min_quantity_c" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
+                <div class="pop-up-row"><p>Min. antal : </p><input type="number" name="min_quantity_c" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
                 <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
@@ -312,7 +310,7 @@
                 </div>
                 <div class="pop-up-row"><p>Element : </p><input type="text" name="element_u" value="<?php echo isset($element) ? $element : '' ?>"></div>
                 <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_u" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
-                <div class="pop-up-row"><p>min. antal : </p><input type="number" name="min_quantity_u" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
+                <div class="pop-up-row"><p>Min. antal : </p><input type="number" name="min_quantity_u" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
                 <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">

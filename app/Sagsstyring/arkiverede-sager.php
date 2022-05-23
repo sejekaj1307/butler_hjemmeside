@@ -190,7 +190,7 @@
                 archive pop up
         ------------------------->
         <div class="pop_up_modal" style="display: <?php echo $display_activate_case_pop_up ?>">
-            <h3>Gør sagen aktiv igen</h3>
+            <h3>Gør sagen aktiv igen?</h3>
             <div class="pop-up-btn-container">
                 <?php echo $id;?>
                 <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
