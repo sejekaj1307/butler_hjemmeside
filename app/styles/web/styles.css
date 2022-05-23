@@ -44,6 +44,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  display: none;
   border: 1px solid #AEBFF6;
   border-bottom: 2px solid #AEBFF6;
   padding: 10px 0;
@@ -218,10 +219,10 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-bottom: 2.5px solid #149DB9;
+  border-bottom: 3px solid #149DB9;
   border-top: 2.5px solid #149DB9;
-  -webkit-box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
-          box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .pop_up_modal h3 {
@@ -247,7 +248,7 @@
   text-align: end;
 }
 
-.pop_up_modal .pop-up-row input {
+.pop_up_modal .pop-up-row input, .pop_up_modal .pop-up-row select {
   -webkit-box-flex: 5;
       -ms-flex: 5;
           flex: 5;
@@ -286,6 +287,15 @@
   background-color: #149DB9;
 }
 
+/*Tablet - S */
+/*Lille pc - M*/
+@media screen and (min-width: 1200px) {
+  .pop_up_modal {
+    width: 35vw;
+  }
+}
+
+/*Stor pc - L*/
 /*---------------------------------
     Time registration navbar
 ---------------------------------*/

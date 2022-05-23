@@ -81,6 +81,7 @@
                 $display_edit_task_pop_up = "none";
                 $display_delete_task_pop_up = "none";
                 $display_create_task_pop_up = "none";
+                $display_tasks_service_case_pop_up = "none";
 
 
                 //har vi en post? har serveren en request?
@@ -193,6 +194,32 @@
                         $display_delete_task_pop_up = "none";
                         $display_create_task_pop_up = "none";
                     }
+                    //Archive
+                    if(str_contains($_REQUEST['knap'] , "arc"))
+                    {
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[1];
+                        if(is_numeric($id) && is_integer(0 + $id))
+                        {
+                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            {
+                                $_SESSION["selected_task"] = $id;
+                                $display_tasks_service_case_pop_up = "flex";
+                            }
+                        }
+                    }
+                    //Execute - confirm archive
+                    if($_REQUEST['knap'] == "Arkiver")
+                    {
+                        $date_now = new DateTime();
+                        $date_now_formatted = $date_now->format('Y-m-d H:i:s');
+                        $id = $_SESSION["selected_task"];
+                        $sql = $conn->prepare("update tasks set archived_at = ? where id = ?");
+                        $sql->bind_param("si", $date_now_formatted, $id);
+                        $sql->execute();
+                        $display_tasks_service_case_pop_up = "none";
+                        
+                    }
                 }
             ?>
 
@@ -252,7 +279,6 @@
                                         echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
                                     echo '</div>';
                                 echo '</div>'; 
-
                             }   
                         }
                     echo '</div>';
@@ -314,6 +340,16 @@
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+                </div>
+            </div>
+            <!------------------------
+                    archive pop up
+            ------------------------->
+            <div class="pop_up_modal" style="display: <?php echo $display_tasks_service_case_pop_up ?>">
+                <h3>Arkiver sag</h3>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
                 </div>
             </div>
 

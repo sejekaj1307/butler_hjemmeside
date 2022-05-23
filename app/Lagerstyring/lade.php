@@ -99,7 +99,6 @@
                         $quantity = $_REQUEST['quantity_c'];
                         $min_quantity = $_REQUEST['min_quantity_c'];
                         $comment = $_REQUEST['comment_c'];
-                        
                         $sql = $conn->prepare("insert into storage (element_location, element, quantity, min_quantity, comment) values (?, ?, ?, ?, ?)");
                         $sql->bind_param("ssiis", $location, $element, $quantity, $min_quantity, $comment);
                         $sql->execute();
@@ -126,7 +125,6 @@
                                 $element_location = $row['element_location'];
                                 $quantity = $row['quantity'];
                                 $min_quantity = $row['min_quantity'];
-                                $created_initials = $row['created_initials'];
                                 $updated_initials = $row['updated_initials'];
                                 $comment = $row['comment'];
 
@@ -144,8 +142,6 @@
                         $min_quantity = $_REQUEST['min_quantity_u'];
                         $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                         $comment = $_REQUEST['comment_u'];
-
-
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
                             if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
@@ -292,7 +288,7 @@
                 <div class="pop-up-row"><p>Element : </p><input type="text" name="element_c" value="<?php echo isset($element) ? $element : '' ?>"></div>
                 <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_c" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
                 <div class="pop-up-row"><p>min. antal : </p><input type="number" name="min_quantity_c" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
-                <div class="pop-up-row"><p>Bemærkning : </p><input type="date" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Opret" class="pop_up_confirm">

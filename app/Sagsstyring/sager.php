@@ -328,17 +328,6 @@
             </div>
         </div>
 
-
-        <!------------------------
-                archive pop up
-        ------------------------->
-        <div class="pop_up_modal" style="display: <?php echo $display_archive_case_pop_up ?>">
-            <h3>Arkiver sag</h3>
-            <div class="pop-up-btn-container">
-                <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
-                <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
-            </div>
-        </div>
         <!------------------------
                 delete pop up
         ------------------------->
@@ -347,6 +336,16 @@
             <div class="pop-up-btn-container">
                 <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
                 <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+            </div>
+        </div>
+        <!------------------------
+                archive pop up
+        ------------------------->
+        <div class="pop_up_modal" style="display: <?php echo $display_archive_case_pop_up ?>">
+            <h3>Arkiver sag</h3>
+            <div class="pop-up-btn-container">
+                <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
+                <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
             </div>
         </div>
         

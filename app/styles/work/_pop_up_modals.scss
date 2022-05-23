@@ -9,9 +9,9 @@
     background-color: #fff;
     flex-direction: column;
     align-items: center;
-    border-bottom: 2.5px solid $button_color_green;
+    border-bottom: 3px solid $button_color_green;
     border-top: 2.5px solid $button_color_green;
-    box-shadow: 5px 10px 20px rgba($color: #000000, $alpha: 0.2);
+    box-shadow: 5px 10px 20px rgba($color: #000000, $alpha: 0.3);
     h3 {
         margin: 20px 0 30px 0;
         font-size: 23px;
@@ -25,7 +25,7 @@
             flex: 2;
             text-align: end;
         }
-        input {
+        input, select {
             flex: 5;
             width: 60% !important;
             height: 30px;
@@ -56,3 +56,24 @@
         }
     }
 }
+
+/*Tablet - S */
+@media screen and(min-width: 900px) {
+}
+
+
+/*Lille pc - M*/
+@media screen and(min-width: 1200px) {
+    .pop_up_modal {
+        width: 35vw;
+    }
+
+}
+
+
+/*Stor pc - L*/
+@media screen and(min-width: 1600px) {
+    
+}
+
+
