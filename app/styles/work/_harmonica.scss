@@ -10,7 +10,7 @@
         border: 1px solid $th_border_bottom;
         .harmonica_name_header, .harmonica_element_headers {
             font-size: 20px;
-            padding: 10px 5px;
+            padding: 10px 15px;
         }
         .harmonica_all_headers, .harmonica_all_headers {
             display: none;
@@ -27,7 +27,7 @@
     .harmonica_data_row_all_info, .planned_service_data_row_all_info {
         display: flex;
         flex-direction: column;
-        display: none;
+        // display: none;
         border: 1px solid $tr_border_bottom;
         border-bottom: 2px solid $tr_border_bottom;
         padding: 10px 0;
@@ -63,7 +63,6 @@
             
         }
 }
-
 
 
 /*Tablet - S */
@@ -127,7 +126,7 @@
             padding: 0;
         }
         .harmonica_quantity_header, .harmonica_quantity, .harmonica_status_header, .harmonica_status, .harmonica_updated_by_header, .harmonica_updated_by {
-            width: 7.5vw;
+            width: 11vw;
         }
         .harmonica_created_by_header, .harmonica_created_by {
             width: 10vw;

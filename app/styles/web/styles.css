@@ -22,7 +22,7 @@
 
 .harmonica_container .harmonica_headers .harmonica_name_header, .harmonica_container .harmonica_headers .harmonica_element_headers, .harmonica_container .harmonica_headers .harmonica_name_header, .harmonica_container .harmonica_headers .harmonica_element_headers {
   font-size: 20px;
-  padding: 10px 5px;
+  padding: 10px 15px;
 }
 
 .harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_all_headers {
@@ -44,7 +44,6 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  display: none;
   border: 1px solid #AEBFF6;
   border-bottom: 2px solid #AEBFF6;
   padding: 10px 0;
@@ -159,7 +158,7 @@
     padding: 0;
   }
   .harmonica_container .harmonica_quantity_header, .harmonica_container .harmonica_quantity, .harmonica_container .harmonica_status_header, .harmonica_container .harmonica_status, .harmonica_container .harmonica_updated_by_header, .harmonica_container .harmonica_updated_by {
-    width: 7.5vw;
+    width: 11vw;
   }
   .harmonica_container .harmonica_created_by_header, .harmonica_container .harmonica_created_by {
     width: 10vw;
@@ -420,6 +419,13 @@
 
 .employee_list .employee_name_header, .external_list .employee_name_header, .machine_list .employee_name_header, .case_list .employee_name_header, .task_list .employee_name_header {
   border-left: 5px solid #fff;
+}
+
+/*-------------------------------
+        Mobile width cases
+-------------------------------*/
+.case_nr_header, .case_nr {
+  width: 50% !important;
 }
 
 .add_new_link {
