@@ -657,7 +657,7 @@
             cases width 1200
     ------------------------------------*/
   .case_location_header, .case_location {
-    width: 19vw !important;
+    width: 18.5vw !important;
   }
 }
 
