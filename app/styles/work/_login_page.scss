@@ -22,7 +22,7 @@
         .login_header {
                 font-size: 30px;
                 color: #202020;
-                padding: 20px 0;
+                padding: 30px 0;
         }
         .login_inputs {
                 padding: 5px;
@@ -40,15 +40,21 @@
                 border: none;
                 margin: 40px 0;
                 background-color: $button_color_green;
+                        cursor: pointer !important;
+                        cursor:grab;
                 :hover {
-                        cursor: pointer;
+                        // cursor: pointer;
                 }
         }
 }
 
 /*Tablet - S */
 @media screen and(min-width: 900px) {
-    
+ .login_container {
+        .login_header {
+                font-size: 40px;
+        }
+ }   
 }
 
 

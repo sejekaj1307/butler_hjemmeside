@@ -26,7 +26,7 @@
             {
                 //Login, if login button is pressed
                 //Request to database, to see if playername and password match and exists in database
-                if($_REQUEST['knap'] == "login") //$_REQUEST — HTTP Request variables, $_request samler data efter en form er submitted. Det er et associative array som indeholder metoderne $_post, $_get og $_cookie. Så i array ligger "knap" som er et input field længere nede, med navnet "knap", hvis den knap er lig "login" køres if sætningen
+                if($_REQUEST['knap'] == "Login") //$_REQUEST — HTTP Request variables, $_request samler data efter en form er submitted. Det er et associative array som indeholder metoderne $_post, $_get og $_cookie. Så i array ligger "knap" som er et input field længere nede, med navnet "knap", hvis den knap er lig "login" køres if sætningen
                 {
                     $useremail = $_REQUEST['email']; 
                     $passwordInput = $_REQUEST['password']; 
@@ -79,7 +79,7 @@
             
 
             <span style="color: <?php echo $tekstfarve ?>"><?php echo $fejltekst ?> </span>
-            <input class="login_btn" type="submit" name="knap" value="login" >
+            <input class="login_btn" type="submit" name="knap" value="Login" >
         </div>
     </form>
 

@@ -1,3 +1,6 @@
+<!-- ---------------------------------
+    Element locations i storage
+---------------------------------- -->
 <?php 
     $element_location_options = array(
         "Skab 1", 

@@ -683,7 +683,7 @@
 .login_container .login_header {
   font-size: 30px;
   color: #202020;
-  padding: 20px 0;
+  padding: 30px 0;
 }
 
 .login_container .login_inputs {
@@ -704,13 +704,18 @@
   border: none;
   margin: 40px 0;
   background-color: #149DB9;
-}
-
-.login_container .login_btn :hover {
-  cursor: pointer;
+  cursor: pointer !important;
+  cursor: -webkit-grab;
+  cursor: grab;
 }
 
 /*Tablet - S */
+@media screen and (min-width: 900px) {
+  .login_container .login_header {
+    font-size: 40px;
+  }
+}
+
 /*Lille pc - M*/
 @media screen and (min-width: 1200px) {
   .login_container {
