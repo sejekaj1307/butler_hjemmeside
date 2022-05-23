@@ -225,10 +225,11 @@
                         //if og while her 
                         if($result->num_rows > 0)
                         {
+                            $list_order_id = 1;
                             while($row = $result->fetch_assoc())
                             {
                                 echo '<div class="employee_data_row" >';
-                                    echo '<div class="mobile_employee_information" onclick="open_close_employee_info('. $row["id"] .', '. "'employee_dropdown_mobile'" .') " style="border-left: 5px solid' . $row['colour'] . '">  ';
+                                    echo '<div class="mobile_employee_information" onclick="open_close_lists_mobile('. $list_order_id .', '. "'employee_dropdown_mobile'" .') " style="border-left: 5px solid' . $row['colour'] . '">  ';
                                         echo '<p class="employee_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
                                         echo '<p class="employee_initials">' . $row["initials"] . '</p>';
                                     echo '</div>';
@@ -244,7 +245,7 @@
                                         echo '<button type="submit" name="knap" value="slet_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
                                     echo '</div>';
                                 echo '</div>'; 
-
+                                $list_order_id += 1;
                             }   
                         }
                     echo '</div>';
@@ -308,7 +309,7 @@
         </form>
     </div>
 
-    <script src="medarbejdere.js"></script>
+    <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>
 </html>

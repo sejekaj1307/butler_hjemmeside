@@ -248,6 +248,7 @@
                         //if og while her 
                         if($result->num_rows > 0)
                         {
+                            $list_order_id = 1;
                             while($row = $result->fetch_assoc())
                             {
                                 //statuscolor
@@ -261,7 +262,7 @@
                                 } else {
                                     $status_color = "#DBB8FF";
                                 }
-                                echo '<div class="task_data_row" " style="border-left: 5px solid ' . $status_color . '">';
+                                echo '<div class="task_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'task_dropdown_mobile'" .') " style="border-left: 5px solid ' . $status_color . '">';
                                     echo '<div class="task_information"> ';
                                         echo '<p class="task_name">' . $row["task_title"] . '</p>';
                                     echo '</div>';
@@ -279,6 +280,7 @@
                                         echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
                                     echo '</div>';
                                 echo '</div>'; 
+                                $list_order_id += 1;
                             }   
                         }
                     echo '</div>';
@@ -362,7 +364,7 @@
 
     </div>
 
-
+    <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>
 </html>

@@ -147,6 +147,7 @@
                     //if og while her 
                     if($result->num_rows > 0)
                     {
+                        $list_order_id = 1;
                         while($row = $result->fetch_assoc())
                         {
                             //statuscolor
@@ -160,7 +161,7 @@
                             } else {
                                 $status_color = "#DBB8FF";
                             }
-                            echo '<div class="case_data_row" style="border-left: 5px solid' . $status_color . '">';
+                            echo '<div class="case_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'case_dropdown_mobile'" .') " style="border-left: 5px solid' . $status_color . '">';
                                 echo '<div class="case_information">';
                                     echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
                                     echo '<p class="dark_dropdown_table case_responsible">' . $row["case_responsible"] . '</p>';
@@ -176,6 +177,7 @@
                                 echo '</div>';
                                 
                             echo '</div>'; 
+                            $list_order_id += 1;
                         }   
                     }
                 echo '</div>';
@@ -203,6 +205,7 @@
 
 
     </div>
+    <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>
 

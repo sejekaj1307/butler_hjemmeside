@@ -214,11 +214,11 @@
                             echo '</div>';
                             echo '<div class="harmonica_all_headers">';
                                 echo '<p class="harmonica_priority_header">Prioritet</p>';
-                                echo '<p class="harmonica_status_header">Status</p>';
-                                echo '<p class="harmonica_last_service_header">Sidste service</p>';
-                                echo '<p class="harmonica_deadline_header">Deadline</p>';
+                                echo '<p class="tasks_service_harmonica_status_header">Status</p>';
+                                echo '<p class="tasks_service_harmonica_last_service_header">Sidste service</p>';
+                                echo '<p class="tasks_service_harmonica_deadline_header">Deadline</p>';
                                 echo '<p class="harmonica_updated_initials_header">Seneste</p>';
-                                echo '<p class="harmonica_comment_header">Bemærkning</p>';
+                                echo '<p class="tasks_service_harmonica_comment_header">Bemærkning</p>';
                                 echo '<p class="button_container_header">Rediger</p>';
                             echo '</div>';
                         echo '</div>';
@@ -231,7 +231,7 @@
                                 if(!in_array($row['task_header'], $seen_task_headers)){
                                     array_push($seen_task_headers, $row['task_header']); 
                                     echo '<div class="harmonica_data_row" >';
-                                        echo '<div class="harmonica_information" onclick="open_close_harmonica1('. array_search($row["task_header"], $seen_task_headers) .', '. "'harmonica_data_row_all_info'" .') " >  ';
+                                        echo '<div class="harmonica_information" onclick="harmonica_open_close('. array_search($row["task_header"], $seen_task_headers) .', '. "'harmonica_data_row_all_info'" .') " >  ';
                                             echo '<p class="harmonica_task_header">' . $row['task_header'] . '</p>';
                                         echo '</div>';
                                     echo '</div>';         
@@ -249,11 +249,11 @@
                                     echo '<div class="data_row_info">';
                                         echo '<p class="harmonica_title">' .  $row["task_title"] . '</p>';
                                         echo '<p class="harmonica_priority">' . '<span class="dropdown_inline_headers">Prioritet </span>' . $row["priority"] . '</p>';
-                                        echo '<p class="harmonica_status">' . '<span class="dropdown_inline_headers">Status </span>' . $row["status"] . '</p>';
-                                        echo '<p class="harmonica_last_service">' . '<span class="dropdown_inline_headers">Sidste service </span>' . date_format(new DateTime($row["last_service"]), 'd-m-y') . '</p>';
-                                        echo '<p class="harmonica_deadline">' . '<span class="dropdown_inline_headers">Deadline </span>' . date_format(new DateTime($row["deadline"]), 'd-m-y') . '</p>';
+                                        echo '<p class="tasks_service_harmonica_status">' . '<span class="dropdown_inline_headers">Status </span>' . $row["status"] . '</p>';
+                                        echo '<p class="tasks_service_harmonica_last_service">' . '<span class="dropdown_inline_headers">Sidste service </span>' . date_format(new DateTime($row["last_service"]), 'd-m-y') . '</p>';
+                                        echo '<p class="tasks_service_harmonica_deadline">' . '<span class="dropdown_inline_headers">Deadline </span>' . date_format(new DateTime($row["deadline"]), 'd-m-y') . '</p>';
                                         echo '<p class="harmonica_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
-                                        echo '<p class="harmonica_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
+                                        echo '<p class="tasks_service_harmonica_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
                                     echo "</div>";
                                 
                                     echo '<div class="button_container">';
@@ -344,7 +344,7 @@
         </form>
     </div>
 
-    <script src="opgaver-harmonika.js"></script>
+    <script src="../javaScript/harmonica_open_close.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>
 </html>

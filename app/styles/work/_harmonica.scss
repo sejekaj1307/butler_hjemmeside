@@ -58,6 +58,7 @@
                 border: none;
                 .edit_icons {
                     width: 15px;
+                    cursor: pointer;
                 }
             }
             
@@ -128,6 +129,12 @@
         .harmonica_quantity_header, .harmonica_quantity, .harmonica_status_header, .harmonica_status, .harmonica_updated_by_header, .harmonica_updated_by {
             width: 11vw;
         }
+        .tasks_service_harmonica_status_header, .tasks_service_harmonica_status, .tasks_service_harmonica_last_service_header, .tasks_service_harmonica_last_service, .tasks_service_harmonica_deadline_header, .tasks_service_harmonica_deadline {
+            width: 8vw;
+        }
+        .tasks_service_harmonica_comment, .tasks_service_harmonica_comment_header {
+            width: 14vw;
+        }
         .harmonica_created_by_header, .harmonica_created_by {
             width: 10vw;
         }
@@ -167,10 +174,11 @@
         }
         .harmonica_comment_header, .harmonica_comment {
             width: 18.5vw !important;
-
         }
     }
-    
+    .tasks_service_harmonica_comment, .tasks_service_harmonica_comment_header {
+        width: 16.2vw !important;
+    }
 }
 
 

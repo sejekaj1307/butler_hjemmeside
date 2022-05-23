@@ -92,6 +92,7 @@
 
 .harmonica_container .button_container button .edit_icons, .harmonica_container .button_container_header button .edit_icons {
   width: 15px;
+  cursor: pointer;
 }
 
 /*Tablet - S */
@@ -160,6 +161,12 @@
   .harmonica_container .harmonica_quantity_header, .harmonica_container .harmonica_quantity, .harmonica_container .harmonica_status_header, .harmonica_container .harmonica_status, .harmonica_container .harmonica_updated_by_header, .harmonica_container .harmonica_updated_by {
     width: 11vw;
   }
+  .harmonica_container .tasks_service_harmonica_status_header, .harmonica_container .tasks_service_harmonica_status, .harmonica_container .tasks_service_harmonica_last_service_header, .harmonica_container .tasks_service_harmonica_last_service, .harmonica_container .tasks_service_harmonica_deadline_header, .harmonica_container .tasks_service_harmonica_deadline {
+    width: 8vw;
+  }
+  .harmonica_container .tasks_service_harmonica_comment, .harmonica_container .tasks_service_harmonica_comment_header {
+    width: 14vw;
+  }
   .harmonica_container .harmonica_created_by_header, .harmonica_container .harmonica_created_by {
     width: 10vw;
   }
@@ -195,6 +202,9 @@
   }
   .harmonica_contiainer .harmonica_comment_header, .harmonica_contiainer .harmonica_comment {
     width: 18.5vw !important;
+  }
+  .tasks_service_harmonica_comment, .tasks_service_harmonica_comment_header {
+    width: 16.2vw !important;
   }
 }
 
@@ -430,12 +440,12 @@
 
 .add_new_link {
   display: none;
-  cursor: pointer;
 }
 
 .add_new_link img {
   width: 16px;
   margin-right: 5px;
+  cursor: pointer;
 }
 
 .add_new_link input {
@@ -529,6 +539,7 @@
   }
   .employee_list .button_container button .edit_icons, .employee_list .button_container_header button .edit_icons, .external_list .button_container button .edit_icons, .external_list .button_container_header button .edit_icons, .machine_list .button_container button .edit_icons, .machine_list .button_container_header button .edit_icons, .case_list .button_container button .edit_icons, .case_list .button_container_header button .edit_icons, .task_list .button_container button .edit_icons, .task_list .button_container_header button .edit_icons {
     width: 20px;
+    cursor: pointer;
   }
   /*------------------------------------------
                 employee width 1200

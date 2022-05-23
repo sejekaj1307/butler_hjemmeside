@@ -207,10 +207,11 @@
                     //if og while her 
                     if($result->num_rows > 0)
                     {
+                        $list_order_id = 1;
                         while($row = $result->fetch_assoc())
                         {
                             echo '<div class="machine_data_row">';
-                                echo '<div class="machine_information" onclick="open_close_employee_info('. $row["id"] .', '. "'machine_dropdown_mobile'" .')">';
+                                echo '<div class="machine_information" onclick="open_close_lists_mobile('. $list_order_id .', '. "'machine_dropdown_mobile'" .')">';
                                     echo '<p class="machine_name">' . $row["name"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="machine_dropdown_mobile" id="'. $row["id"] .'">';
@@ -223,6 +224,7 @@
                                     echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
                                 echo '</div>';
                             echo '</div>'; 
+                            $list_order_id += 1;
                         }   
                     }
                 echo '</div>';
@@ -283,7 +285,7 @@
     </div>
 
 
-    <script src="medarbejdere.js"></script>
+    <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>
 

@@ -95,10 +95,10 @@
 
 .add_new_link {
     display: none;
-    cursor: pointer;
     img {
         width: 16px;
         margin-right: 5px;
+        cursor: pointer;
     }
     input {
         border: none;
@@ -176,6 +176,7 @@
                 border: none;
                 .edit_icons {
                     width: 20px;
+                    cursor: pointer;
                 }
             }
         }

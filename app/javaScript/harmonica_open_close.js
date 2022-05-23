@@ -1,5 +1,5 @@
 
-function open_close_harmonica1(id, drop_down_classname) {
+function harmonica_open_close(id, drop_down_classname) {
     let harmonica_data_row_all_info = document.querySelectorAll("." + drop_down_classname)
 
     for(let i = 0; i < harmonica_data_row_all_info.length; i++){
