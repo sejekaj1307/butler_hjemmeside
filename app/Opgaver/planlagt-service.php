@@ -207,7 +207,7 @@
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                     $sql = "select * from tasks_service order by task_header asc";
                     $result = $conn->query($sql);
-                    echo '<div class="harmonica_harmonica">';
+                    echo '<div class="harmonica_container">';
                         echo '<div class="harmonica_headers">';
                             echo '<div class="harmonica_mobile_headers">';
                                 echo '<p class="harmonica_name_header">Opgave</p>';

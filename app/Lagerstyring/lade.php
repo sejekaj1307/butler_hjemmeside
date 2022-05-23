@@ -199,7 +199,7 @@
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                     $sql = "select * from storage order by element_location asc";
                     $result = $conn->query($sql);
-                    echo '<div class="harmonica_harmonica">';
+                    echo '<div class="harmonica_container">';
                         echo '<div class="harmonica_headers">';
                             echo '<div class="harmonica_mobile_headers">';
                                 echo '<p class="harmonica_element_headers">Element</p>';
@@ -244,8 +244,8 @@
                                         echo '<p class="harmonica_element">' . $row["element"] . '</p>';
                                         echo '<p class="harmonica_quantity">' . '<span class="dropdown_inline_headers">Antal </span>' . $row["quantity"] . '</p>';
                                         echo '<p class="harmonica_status">' . '<span class="dropdown_inline_headers">Status </span>' . $status . '</p>';
-                                        echo '<p class=" harmonica_updated_by">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
-                                        echo '<p class=" harmonica_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
+                                        echo '<p class="harmonica_updated_by">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
+                                        echo '<p class="harmonica_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
                                     echo "</div>";
                                 
                                     echo '<div class="button_container">';

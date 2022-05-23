@@ -1,7 +1,7 @@
 /*----------------------------------
         Harmonica lists
 ----------------------------------*/
-.harmonica_harmonica, .harmonica_harmonica{
+.harmonica_container{
     .harmonica_headers, .harmonica_headers {
         border-bottom: 3px solid $th_border_bottom;
         padding: 5px 0;
@@ -77,7 +77,7 @@
     /*----------------------------------
         Harmonica lists 1200
     ----------------------------------*/
-    .harmonica_harmonica, .harmonica_harmonica {
+    .harmonica_container {
         .harmonica_headers, .harmonica_headers {
             display: flex;
             padding: 15px 0;       
@@ -156,7 +156,7 @@
     /*----------------------------------
         Harmonica lists 1600
     ----------------------------------*/
-    .harmonica_harmonica, .harmonica_harmonica {
+    .harmonica_contiainer {
         .harmonica_name_header {
             width: 14.5vw;
         }
