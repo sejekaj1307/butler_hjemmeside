@@ -131,6 +131,12 @@
                 $result = $conn->query($sql);
 
                 echo '<div class="task_list">';
+                    echo '<div class="list_color_guide_container">';
+                            echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Ikke startet</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color orange"></div><p class="color_description">Startet</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color yellow"></div><p class="color_description">Venter</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color green"></div><p class="color_description">Fuldført</p></div>';
+                        echo '</div>';
                     echo '<div class="task_list_header">';
                         echo '<div class="task_mobile_headers">';
                             echo '<p class="task_name_header">Opgave</p>';

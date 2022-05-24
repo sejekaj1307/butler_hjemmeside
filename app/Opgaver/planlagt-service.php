@@ -208,6 +208,12 @@
                     $sql = "select * from tasks_service order by task_header asc";
                     $result = $conn->query($sql);
                     echo '<div class="harmonica_container">';
+                        echo '<div class="list_color_guide_container">';
+                            echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Ikke startet</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color orange"></div><p class="color_description">Startet</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color yellow"></div><p class="color_description">Venter</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color green"></div><p class="color_description">Fuldført</p></div>';
+                        echo '</div>';
                         echo '<div class="harmonica_headers">';
                             echo '<div class="harmonica_mobile_headers">';
                                 echo '<p class="harmonica_name_header">Opgave</p>';
@@ -240,9 +246,9 @@
                                 if($row['status'] == "Ikke startet") {
                                     $status_color = "#FFA2A2";
                                 } else if ($row['status'] == "Startet") {
-                                    $status_color = "#FFFC9E";
-                                }else if ($row['status'] == "Venter") {
                                     $status_color = "#FFD391";
+                                }else if ($row['status'] == "Venter") {
+                                    $status_color = "#FFFC9E";
                                 } else {
                                     $status_color = "#BBFFB9";
                                 }
@@ -320,6 +326,7 @@
                     <select name="status_u">
                         <option <?php echo $status == "Ikke startet" ? 'selected' : '' ?> value="Ikke startet">Ikke startet</option>
                         <option <?php echo $status == "Startet" ? 'selected' : '' ?> value="Startet">Startet</option>
+                        <option <?php echo $status == "Venter" ? 'selected' : '' ?> value="Venter">Venter</option>
                         <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
                     </select>
                 </div> 

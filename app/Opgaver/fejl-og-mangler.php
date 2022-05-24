@@ -212,7 +212,7 @@
                     if($_REQUEST['knap'] == "Arkiver")
                     {
                         $date_now = new DateTime();
-                        $date_now_formatted = $date_now->format('Y-m-d H:i:s');
+                        $date_now_formatted = $date_now->format('Y-m-d');
                         $id = $_SESSION["selected_task"];
                         $sql = $conn->prepare("update tasks set archived_at = ? where id = ?");
                         $sql->bind_param("si", $date_now_formatted, $id);
@@ -231,6 +231,12 @@
                     $sql = "select * from tasks where archived_at = ''";
                     $result = $conn->query($sql);
                     echo '<div class="task_list">';
+                        echo '<div class="list_color_guide_container">';
+                            echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Ikke startet</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color orange"></div><p class="color_description">Startet</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color yellow"></div><p class="color_description">Venter</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color green"></div><p class="color_description">Fuldført</p></div>';
+                        echo '</div>';
                         echo '<div class="task_list_header">';
                             echo '<div class="task_mobile_headers">';
                                 echo '<p class="task_name_header">Opgave</p>';
@@ -255,9 +261,9 @@
                             if($row['status'] == "Ikke startet") {
                                 $status_color = "#FFA2A2";
                             } else if ($row['status'] == "Startet") {
-                                $status_color = "#FFFC9E";
-                            }else if ($row['status'] == "Venter") {
                                 $status_color = "#FFD391";
+                            }else if ($row['status'] == "Venter") {
+                                $status_color = "#FFFC9E";
                             } else {
                                 $status_color = "#BBFFB9";
                             }

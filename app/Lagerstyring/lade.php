@@ -200,6 +200,11 @@
                     $sql = "select * from storage order by element_location asc";
                     $result = $conn->query($sql);
                     echo '<div class="harmonica_container">';
+                        echo '<div class="list_color_guide_container">';
+                            echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Tom</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color yellow"></div><p class="color_description">Lav</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color green"></div><p class="color_description">Fuld</p></div>';
+                        echo '</div>';
                         echo '<div class="harmonica_headers">';
                             echo '<div class="harmonica_mobile_headers">';
                                 echo '<p class="harmonica_element_headers">Element</p>';

@@ -129,6 +129,12 @@
                 $result = $conn->query($sql);
 
                 echo '<div class="case_list">';
+                    echo '<div class="list_color_guide_container">';
+                        echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Oprettet af leder</p></div>';
+                        echo '<div class="list_color_guide_element"><div class="color orange"></div><p class="color_description">Beskrevet yderligere</p></div>';
+                        echo '<div class="list_color_guide_element"><div class="color yellow"></div><p class="color_description">Aktiv og arbejdes på</p></div>';
+                        echo '<div class="list_color_guide_element"><div class="color green"></div><p class="color_description">Fuldført og afventer godkendelse</p></div>';
+                    echo '</div>';
                     echo '<div class="case_list_header">';
                         echo '<div class="case_mobile_headers">';
                             echo '<p class="case_nr_header">Sagsnr.</p>';

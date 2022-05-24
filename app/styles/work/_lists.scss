@@ -58,7 +58,8 @@
             border-right: 1px solid $light-sec-nav;
         .mobile_employee_information, .mobile_external_information, .machine_information, .case_information, .task_information { //Den øverste bar, som kan ses af data, f.eks. Ibsen, Steen - Si
             display: flex;
-            border-bottom: 2px solid $tr_border_bottom;
+            border-bottom: 1.5px solid $tr_border_bottom;
+            border-top: 1.5px solid $tr_border_bottom;
             cursor: pointer;    
             .employee_name, .external_name, .machine_name {
                 width: 80%;
@@ -67,12 +68,6 @@
         .employee_dropdown_mobile, .machine_dropdown_mobile, .external_dropdown_mobile, .case_dropdown_mobile, .task_dropdown_mobile {
             flex-direction: column;
             display: none;
-            .dark_dropdown_table {
-                background-color: $dark_dropdown_background;        
-            }
-            .light_dropdown_table {
-                background-color: $light_dropdown_background;
-            }
             :last-child {
                 border-bottom: 2px solid $time_registration_navbar_border;
             }
@@ -151,6 +146,7 @@
             display: flex;
             cursor: auto !important;
             border-bottom: none !important;
+            border-top: none !important;
         }
         .employee_data_row, .external_data_row, .machine_data_row, .case_data_row, .task_data_row { //En hel række af data, al data per id
             display: flex;
@@ -158,9 +154,6 @@
             .employee_dropdown_mobile, .external_dropdown_mobile, .machine_dropdown_mobile, .case_dropdown_mobile, .task_dropdown_mobile {
                 display: flex;
                 flex-direction: row;
-                .light_dropdown_table, .dark_dropdown_table{
-                    background-color: $no_colour; 
-                }
                 :last-child {
                     border-bottom: none !important;
                 }
