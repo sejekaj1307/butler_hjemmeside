@@ -241,8 +241,9 @@
                                     $status_color = "#FFA2A2";
                                 } else if ($row['status'] == "Startet") {
                                     $status_color = "#FFFC9E";
-                                }
-                                else {
+                                }else if ($row['status'] == "Venter") {
+                                    $status_color = "#FFD391";
+                                } else {
                                     $status_color = "#BBFFB9";
                                 }
                                 echo '<div class="harmonica_data_row_all_info" id="'. array_search($row["task_header"], $seen_task_headers) .'" style="border-left: 5px solid ' . $status_color . '">';

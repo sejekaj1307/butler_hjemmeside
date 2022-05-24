@@ -155,11 +155,10 @@
                                 $status_color = "#FFA2A2";
                             } else if ($row['status'] == "Startet") {
                                 $status_color = "#FFFC9E";
-                            }
-                            else if ($row['status'] == "Venter") {
-                                $status_color = "#BBFFB9";
+                            }else if ($row['status'] == "Venter") {
+                                $status_color = "#FFD391";
                             } else {
-                                $status_color = "#DBB8FF";
+                                $status_color = "#BBFFB9";
                             }
                             echo '<div class="task_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'task_dropdown_mobile'" .') " style="border-left: 5px solid' . $status_color . '">';
                                 echo '<div class="task_information"> ';

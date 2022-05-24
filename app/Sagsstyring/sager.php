@@ -253,9 +253,9 @@
                                 $status_color = "#FFFC9E";
                             }
                             else if ($row['status'] == "Aktiv") {
-                                $status_color = "#BBFFB9";
+                                $status_color = "#FFD391";
                             } else {
-                                $status_color = "#DBB8FF";
+                                $status_color = "#BBFFB9";
                             }
 
 

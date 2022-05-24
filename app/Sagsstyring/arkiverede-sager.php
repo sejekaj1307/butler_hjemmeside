@@ -157,9 +157,9 @@
                                 $status_color = "#FFFC9E";
                             }
                             else if ($row['status'] == "Aktiv") {
-                                $status_color = "#BBFFB9";
+                                $status_color = "#FFD391";
                             } else {
-                                $status_color = "#DBB8FF";
+                                $status_color = "#BBFFB9";
                             }
                             echo '<div class="case_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'case_dropdown_mobile'" .') " style="border-left: 5px solid' . $status_color . '">';
                                 echo '<div class="case_information">';
