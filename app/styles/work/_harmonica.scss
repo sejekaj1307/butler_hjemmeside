@@ -27,12 +27,12 @@
     .harmonica_data_row_all_info, .planned_service_data_row_all_info {
         display: flex;
         flex-direction: column;
-        // display: none;
+        display: none;
         border: 1px solid $tr_border_bottom;
         border-bottom: 2px solid $tr_border_bottom;
         padding: 10px 0;
         .harmonica_title, .harmonica_priority, .harmonica_status, .harmonica_last_service, .harmonica_deadline, .harmonica_updated_initials, .harmonica_comment, 
-        .harmonica_element, .harmonica_all, .harmonica_quantity, .harmonica_status, .harmonica_created_by, .harmonica_updated_by, .harmonica_comment
+        .harmonica_element, .harmonica_all, .harmonica_quantity, .tasks_service_harmonica_status, .tasks_service_harmonica_last_service, .tasks_service_harmonica_deadline, .tasks_service_harmonica_comment
         {
             display: flex;
             align-items: center;

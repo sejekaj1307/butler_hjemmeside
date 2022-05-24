@@ -212,7 +212,7 @@
                             echo '<div class="harmonica_all_headers">';
                                 echo '<p class="harmonica_quantity_header">Antal</p>';
                                 echo '<p class="harmonica_status_header">Status</p>';
-                                echo '<p class="harmonica_updated_by_header">Seneste</p>';
+                                echo '<p class="harmonica_updated_initials_header">Seneste</p>';
                                 echo '<p class="harmonica_comment_header">Bemærkning</p>';
                                 echo '<p class="button_container_header">Rediger</p>';
                             echo '</div>';
@@ -249,7 +249,7 @@
                                         echo '<p class="harmonica_element">' . $row["element"] . '</p>';
                                         echo '<p class="harmonica_quantity">' . '<span class="dropdown_inline_headers">Antal </span>' . $row["quantity"] . '</p>';
                                         echo '<p class="harmonica_status">' . '<span class="dropdown_inline_headers">Status </span>' . $status . '</p>';
-                                        echo '<p class="harmonica_updated_by">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
+                                        echo '<p class="harmonica_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
                                         echo '<p class="harmonica_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
                                     echo "</div>";
                                 
