@@ -59,19 +59,48 @@
             </ul>
         </div>
 
+
+        <!------------------------------
+                content on page
+        ------------------------------->
         <div class="profile_list">
-        <div class="video_guides_container">
-            <div class="video_guides">
-                <iframe width="420" height="315"
-                    src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                </iframe>
+            
+            <!-- Video 1-->
+            <div class="video_guides_container">
                 <div class="video_text">
                     <h2>Opret ny aftale guide</h2>
-                    <p>I denne video kan du få hjælp til, hvordan du skal oprette en ny aftale i kalenderen. Dette gælder både for medarbejdere og chefer. Du lærer også hvordan du kan redigere og slette dine allerede eksisterende aftaler.</p>
+                    <p>I denne video kan du få hjælp til, hvordan du skal oprette en ny aftale i kalenderen.</p>
+                    <p>Dette gælder både for medarbejdere og chefer. Du lærer også hvordan du kan redigere og slette dine allerede eksisterende aftaler.</p>
+                </div>
+                <div class="iframe_container_parent">
+                    <div class="iframe_container"><iframe class="video" src="https://www.youtube.com/embed/7zT-t-diLNs" allowfullscreen></iframe></div>
                 </div>
             </div>
-        </div>
-</div>
+            
+            <!-- Video 2-->
+            <div class="video_guides_container">
+                <div class="video_text">
+                    <h2>Opret nyt skab guide</h2>
+                    <p>I denne video kan du få hjælp til, hvordan du skal oprette et nyt skab og sætte indhold i skabet.</p>
+                    <p>Du lærer også hvordan du registrerer, hvis du Bruger noget indhold fra et allerede eksisterende skab, eller hvis du vil fylde op og registrere dette. </p>
+                </div>
+                <div class="iframe_container_parent">
+                    <div class="iframe_container"><iframe class="video" src="https://www.youtube.com/embed/7zT-t-diLNs" allowfullscreen></iframe></div>
+                </div>
+            </div>
+            
+            <!-- Video 3-->
+            <div class="video_guides_container">
+                <div class="video_text">
+                    <h2>Opret ny aftale guide</h2>
+                    <p>I denne video kan du få hjælp til, hvordan du skal oprette en ny aftale i kalenderen.</p>
+                    <p>Dette gælder både for medarbejdere og chefer. Du lærer også hvordan du kan redigere og slette dine allerede eksisterende aftaler.</p>
+                </div>
+                <div class="iframe_container_parent">
+                    <div class="iframe_container"><iframe class="video" src="https://www.youtube.com/embed/7zT-t-diLNs" allowfullscreen></iframe></div>
+                </div>
+            </div>
+    </div>
 
 
 
