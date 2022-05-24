@@ -4,7 +4,7 @@
     //Forbindelse til database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
 
-    include("element-location-options.php");
+    include("../Data/data.php");
 ?>
 
 

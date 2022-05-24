@@ -52,7 +52,19 @@
             </ul>
         </div>
 
-
+        <div class="profile_list">
+        <div class="video_guides_container">
+            <div class="video_guides">
+                <iframe width="420" height="315"
+                    src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                </iframe>
+                <div class="video_text">
+                    <h2>Opret ny aftale guide</h2>
+                    <p>I denne video kan du få hjælp til, hvordan du skal oprette en ny aftale i kalenderen. Dette gælder både for medarbejdere og chefer. Du lærer også hvordan du kan redigere og slette dine allerede eksisterende aftaler.</p>
+                </div>
+            </div>
+        </div>
+</div>
 
 
 

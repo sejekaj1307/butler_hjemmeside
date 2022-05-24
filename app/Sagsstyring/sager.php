@@ -1,8 +1,14 @@
 <?php 
     //session start
     session_start(); 
+
+    //If the user is trying go around the log in process, redirect the user back to the index.php 
+    if($_SESSION['logged_in_user_global']['last_name'] == ""){
+        echo "<script> window.location.href = '../index.php'; </script>";
+    }
     //Forbindelse til database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+    include("../Data/data.php");
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +36,7 @@
             <li><a href="../Opgaver/fejl-og-mangler.php">Opgaver</a></li>
             <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
         </ul>
-        <div class="log_out_container"><a href="../index.php">Log ud</a></div>
+        <div class="log_out_container"><a href="../Data/log_out.php">Log ud</a></div>
     </div>
 
     <!-- Masthead -->
@@ -101,8 +107,8 @@
                         $date_now = new DateTime();
                         $date_now_formatted = $date_now->format('Y-m-d H:i:s');
                         
-                        $sql = $conn->prepare("insert into cases (case_nr, case_responsible, status, location, est_start_date, est_end_date, created_at) values (?, ?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param("sssssss", $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date, $date_now_formatted);
+                        $sql = $conn->prepare("insert into cases (case_nr, case_responsible, status, location, est_start_date, est_end_date) values (?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("ssssss", $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date);
                         $sql->execute();
                         
                     }
@@ -121,6 +127,7 @@
                             {
                                 $row = $result->fetch_assoc();
                                 $id = $row['id'];
+                                $_SESSION["selected_task"] = $id;
                                 $case_nr = $row['case_nr'];
                                 $case_responsible = $row['case_responsible'];
                                 $status = $row['status'];
@@ -299,7 +306,16 @@
         <div class="pop_up_modal" style="display: <?php echo $display_create_case_pop_up ?>">
             <h3>Opret ny sag</h3>
             <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_c" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
-            <div class="pop-up-row"><p>Ansvarlig : </p><input type="text" name="case_responsible_c" value="<?php echo isset($case_responsible) ? $case_responsible : '' ?>"></div>
+            <div class="pop-up-row">
+                <p>Ansvarlig : </p>
+                <select name="case_responsible_c">
+                    <?php
+                        foreach($case_responsible_initials_list as $case_responsible_initials){
+                            echo "<option " . ($case_responsible == $case_responsible_initials ? 'selected' : '') . "value=" . $case_responsible_initials . ">" . $case_responsible_initials . "</option>";
+                        }
+                    ?>
+                </select>
+            </div>
             <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
             <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
             <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
@@ -315,7 +331,16 @@
         <div class="pop_up_modal" style="display: <?php echo $display_edit_case_pop_up ?>">
             <h3>Opdater sag</h3>
             <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_u" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
-            <div class="pop-up-row"><p>Ansvarlig : </p><input type="text" name="case_responsible_u" value="<?php echo isset($case_responsible) ? $case_responsible : '' ?>"></div>
+            <div class="pop-up-row">
+                <p>Ansvarlig : </p>
+                <select name="case_responsible_u">
+                    <?php
+                        foreach($case_responsible_initials_list as $case_responsible_initials){
+                            echo "<option " . ($case_responsible == $case_responsible_initials ? 'selected' : '') . " value=" . $case_responsible_initials . ">" . $case_responsible_initials . "</option>";
+                        }
+                    ?>
+                </select>
+            </div>
             <div class="pop-up-row">
                     <p>Status : </p>
                     <select name="status_u">
