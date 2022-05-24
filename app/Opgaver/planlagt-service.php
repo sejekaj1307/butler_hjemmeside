@@ -1,8 +1,15 @@
 <?php 
-    //session start
+    //session start - storage information in session
     session_start(); 
-    //Forbindelse til database
+
+    //connection to database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+
+    //If the user is trying go around the log in process, redirect the user back to the index.php 
+    if($_SESSION['logged_in_user_global']['last_name'] == ""){
+        echo "<script> window.location.href = '../index.php'; </script>";
+    }
+
     $priority = ""; //This variable has to be defined for the html to work correctly. It is for "Create new" priority drop-down menu.   
 ?>
 
