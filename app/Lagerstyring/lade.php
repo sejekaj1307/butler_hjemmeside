@@ -40,7 +40,7 @@
             <li><a href="../Opgaver/fejl-og-mangler.php">Opgaver</a></li>
             <li><a href="../Lagerstyring/lade.php" class="active-main-site">Lager styring</a></li>
         </ul>
-        <div class="log_out_container"><a href="../index.php">Log ud</a></div>
+        <div class="log_out_container"><a href="../Data/log_out.php">Log ud</a></div>
     </div>
 
     <div class="site_container">

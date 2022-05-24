@@ -37,7 +37,7 @@
             <li><a href="../Opgaver/fejl-og-mangler.php" class="active-main-site">Opgaver</a></li>
             <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
         </ul>
-        <div class="log_out_container"><a href="../index.php">Log ud</a></div>
+        <div class="log_out_container"><a href="../Data/log_out.php">Log ud</a></div>
     </div>
 
     <div class="site_container">
