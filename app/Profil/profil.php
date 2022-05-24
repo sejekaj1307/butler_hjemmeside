@@ -66,7 +66,7 @@
             <ul class="sec_navbar_ul_dropdown">
                 <li><a href="../Profil/profil.php" class="active_site_dropdown">Profil</a>
                 <li><a href="../Profil/notifikationer.php">Notifikationer</a>
-                <li><a href="../Profil/profil-medarbejder.php">Hjælpevideoer</a></li>
+                <li><a href="../Profil/hjælpevideoer.php">Hjælpevideoer</a></li>
                 </li>
             </ul>
         </div>

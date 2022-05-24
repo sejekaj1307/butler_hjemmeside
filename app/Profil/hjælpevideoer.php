@@ -1,5 +1,9 @@
 <?php 
+    //session start
+    session_start(); 
+    //Forbindelse til database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+    $priority = ""; //This variable has to be defined for the html to work correctly. It is for "Create new" priority drop-down menu.   
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +16,7 @@
     <link rel="stylesheet" href="../styles/web/styles.css">
     <title>Hjælpevideoer</title>
 </head>
-
-<body>
+    <body>
 
     <!-- Navigationsbar -->
     <div class="navbar_container">
@@ -38,20 +41,22 @@
                 <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> <?php echo $_SESSION['logged_in_user_global']['last_name'] . ', ' . $_SESSION['logged_in_user_global']['first_name'];?> </div>
                 <div class="navbar_bars"></div>
             </div>
-            <h2 class="sec-navbar-mobile-header">Medarbejder profil<div class="arrow_container"><img
-                        src="../img/arrow.png" alt="arrow" class="sec_nav_dropdown_arrow"></div>
+            <h2 class="sec-navbar-mobile-header">Profil <div class="arrow_container"><img src="../img/arrow.png"
+                        alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
                 <li><a href="../Profil/profil.php">Profil</a>
                 <li><a href="../Profil/notifikationer.php">Notifikationer</a>
-                <li><a href="../Profil/profil-medarbejder.php" class="active_site_dropdown">Hjælpevideoer</a></li>
+                <li><a href="../Profil/hjælpevideoer.php" class="active_site_dropdown">Hjælpevideoer</a></li>
                 </li>
             </ul>
         </div>
 
 
-    </div>
+
+
+
+
     <script src="../javaScript/navbars.js"></script>
 </body>
-
 </html>
