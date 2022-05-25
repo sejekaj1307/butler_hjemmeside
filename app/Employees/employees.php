@@ -234,8 +234,8 @@
                             $list_order_id = 1;
                             while($row = $result->fetch_assoc())
                             {
-                                echo '<div class="employee_data_row" >';
-                                    echo '<div class="mobile_employee_information" onclick="open_close_lists_mobile('. $list_order_id .', '. "'employee_dropdown_mobile'" .') " style="border-left: 5px solid' . $row['colour'] . '">  ';
+                                echo '<div class="employee_data_row" style="border-left: 5px solid' . $row['colour'] . '" >';
+                                    echo '<div class="mobile_employee_information" onclick="open_close_lists_mobile('. $list_order_id .', '. "'employee_dropdown_mobile'" .') " >  ';
                                         echo '<p class="employee_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
                                         echo '<p class="employee_initials">' . $row["initials"] . '</p>';
                                     echo '</div>';

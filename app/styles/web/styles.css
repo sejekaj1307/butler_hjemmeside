@@ -163,6 +163,10 @@
 }
 
 /*Stor pc - L*/
+.video_guides_container {
+  margin-bottom: 50px;
+}
+
 .video_guides_container .iframe_container_parent {
   width: 100%;
 }
