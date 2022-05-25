@@ -53,6 +53,7 @@
             <ul class="sec_navbar_ul_dropdown">
                 <li><a href="../Cases/cases.php" class="active_site_dropdown">Sager liste</a></li>
                 <li><a href="../Cases/archived_cases.php">Arkiverede sager</a>
+                <li><a href="../Cases/describe_case.php">Beskriv sag</a>
                 </li>
             </ul>
         </div>
@@ -106,7 +107,7 @@
                         $est_start_date = $_REQUEST['est_start_date_c'];
                         $est_end_date = $_REQUEST['est_end_date_c'];
                         $date_now = new DateTime();
-                        $date_now_formatted = $date_now->format('Y-m-d H:i:s');
+                        $date_now_formatted = $date_now->format('Y-m-d');
                         
                         $sql = $conn->prepare("insert into cases (case_nr, case_responsible, status, location, est_start_date, est_end_date) values (?, ?, ?, ?, ?, ?)");
                         $sql->bind_param("ssssss", $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date);
@@ -284,7 +285,7 @@
                                     echo '<p class="case_deadline">' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
                                     
                                 echo '</div>';
-echo '<div class="button_container">';
+                                echo '<div class="button_container">';
                                         echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
                                         echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/archive.png" alt="Employee icon" class="edit_icons"<button>';
                                         echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
