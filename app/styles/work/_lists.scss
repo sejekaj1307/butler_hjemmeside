@@ -41,6 +41,8 @@
         font-weight: 600;
         margin-top: 30px !important;
         border: 1px solid $th_border_bottom;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
         .employee_mobile_headers, .case_mobile_headers { //Når der er flere headers i mobil versionen der skal vises
             display: flex;
             .employee_name_header { //Første header på alle headers

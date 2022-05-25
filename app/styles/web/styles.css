@@ -271,6 +271,8 @@
   font-weight: 600;
   margin-top: 30px !important;
   border: 1px solid #5068CB;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .harmonica_container .harmonica_headers .harmonica_name_header, .harmonica_container .harmonica_headers .harmonica_element_headers, .harmonica_container .harmonica_headers .harmonica_name_header, .harmonica_container .harmonica_headers .harmonica_element_headers {
@@ -524,6 +526,8 @@
   font-weight: 600;
   margin-top: 30px !important;
   border: 1px solid #5068CB;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .employee_list .employee_list_header .employee_mobile_headers, .employee_list .employee_list_header .case_mobile_headers, .employee_list .machine_list_header .employee_mobile_headers, .employee_list .machine_list_header .case_mobile_headers, .employee_list .external_list_header .employee_mobile_headers, .employee_list .external_list_header .case_mobile_headers, .employee_list .case_list_header .employee_mobile_headers, .employee_list .case_list_header .case_mobile_headers, .employee_list .task_list_header .employee_mobile_headers, .employee_list .task_list_header .case_mobile_headers, .external_list .employee_list_header .employee_mobile_headers, .external_list .employee_list_header .case_mobile_headers, .external_list .machine_list_header .employee_mobile_headers, .external_list .machine_list_header .case_mobile_headers, .external_list .external_list_header .employee_mobile_headers, .external_list .external_list_header .case_mobile_headers, .external_list .case_list_header .employee_mobile_headers, .external_list .case_list_header .case_mobile_headers, .external_list .task_list_header .employee_mobile_headers, .external_list .task_list_header .case_mobile_headers, .machine_list .employee_list_header .employee_mobile_headers, .machine_list .employee_list_header .case_mobile_headers, .machine_list .machine_list_header .employee_mobile_headers, .machine_list .machine_list_header .case_mobile_headers, .machine_list .external_list_header .employee_mobile_headers, .machine_list .external_list_header .case_mobile_headers, .machine_list .case_list_header .employee_mobile_headers, .machine_list .case_list_header .case_mobile_headers, .machine_list .task_list_header .employee_mobile_headers, .machine_list .task_list_header .case_mobile_headers, .case_list .employee_list_header .employee_mobile_headers, .case_list .employee_list_header .case_mobile_headers, .case_list .machine_list_header .employee_mobile_headers, .case_list .machine_list_header .case_mobile_headers, .case_list .external_list_header .employee_mobile_headers, .case_list .external_list_header .case_mobile_headers, .case_list .case_list_header .employee_mobile_headers, .case_list .case_list_header .case_mobile_headers, .case_list .task_list_header .employee_mobile_headers, .case_list .task_list_header .case_mobile_headers, .task_list .employee_list_header .employee_mobile_headers, .task_list .employee_list_header .case_mobile_headers, .task_list .machine_list_header .employee_mobile_headers, .task_list .machine_list_header .case_mobile_headers, .task_list .external_list_header .employee_mobile_headers, .task_list .external_list_header .case_mobile_headers, .task_list .case_list_header .employee_mobile_headers, .task_list .case_list_header .case_mobile_headers, .task_list .task_list_header .employee_mobile_headers, .task_list .task_list_header .case_mobile_headers {
