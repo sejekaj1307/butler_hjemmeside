@@ -830,6 +830,43 @@
   /*---------------------------------
         Describe case
 ---------------------------------*/
+  .describe_case_navbar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 2px solid #5068CB;
+  }
+  .describe_case_navbar button {
+    background: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #B2C7F9;
+    width: 130px;
+    height: 45px;
+  }
+  .describe_case_navbar button a {
+    font-size: 17px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #000;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .describe_case_navbar button a:hover {
+    cursor: pointer;
+    background-color: #B2C7F9;
+  }
+  .describe_case_navbar .describe_case_navbar_active {
+    background-color: #D0DDFB;
+  }
   .describe_case_info_container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -839,7 +876,6 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    border-radius: 10px;
     padding: 40px 20px 30px 20px;
   }
   .describe_case_info_container h1 {
@@ -874,7 +910,9 @@
   }
   .describe_case_info_container .top_inputs_container .small_inputs input {
     width: 70%;
-    height: 20px;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid #B2C7F9;
   }
   .describe_case_info_container .top_inputs_container .large_inputs {
     padding: 10px;
@@ -885,6 +923,8 @@
     max-width: 100%;
     height: 100px;
     max-height: 200px;
+    border-radius: 5px;
+    border: 1px solid #B2C7F9;
   }
   .describe_case_info_container .bottom_inputs_container {
     margin-top: 50px;
@@ -919,7 +959,9 @@
     padding-right: 5px;
   }
   .describe_case_info_container .bottom_inputs_container .date_and_status .status_container input {
-    height: 20px;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid #B2C7F9;
   }
   .describe_case_info_container .bottom_inputs_container .job_type_container {
     display: -webkit-box;
@@ -928,6 +970,9 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     margin: 30px 0;
   }
   .describe_case_info_container .bottom_inputs_container .job_type_container label {
@@ -935,6 +980,9 @@
   }
   .describe_case_info_container .bottom_inputs_container .job_type_container .job_type_select {
     width: 50%;
+    height: 25px !important;
+    border-radius: 5px;
+    border: 1px solid #B2C7F9;
   }
 }
 
