@@ -270,7 +270,8 @@
   padding: 5px 0;
   font-weight: 600;
   margin-top: 30px !important;
-  border: 1px solid #5068CB;
+  border: 1px solid #AEBFF6;
+  border-bottom: 2px solid #5068CB;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -525,7 +526,8 @@
   padding: 5px 0;
   font-weight: 600;
   margin-top: 30px !important;
-  border: 1px solid #5068CB;
+  border: 1px solid #AEBFF6;
+  border-bottom: 2px solid #5068CB;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
