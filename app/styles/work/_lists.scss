@@ -47,7 +47,7 @@
                 width: 80%;
             }
         }
-        .employee_all_headers, .machines_all_headers, .external_all_headers, .case_all_headers, .task_all_headers { //div rundt om navn- og initialer-header kun på ansatte siden
+        .employee_all_headers, .machines_all_headers, .external_all_headers, .case_all_headers, .task_all_headers { //div rundt om navn- og initialer-header kun på employees siden
             display: flex;
             flex-direction: row;
             display: none;                 

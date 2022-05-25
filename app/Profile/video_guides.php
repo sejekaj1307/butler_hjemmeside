@@ -30,13 +30,13 @@
         <div class="navbar_top"><img src="../img/navbar-cross.png" alt="navbar cross" class="navbar_cross"></div>
         <div class="navbar_mid"><img src="../img/DayTask_logo.png" alt="DayTask logo" class="day_task_logo"></div>
         <ul class="navbar_ul">
-            <li><a href="../Profil/profil.php" class="active-main-site">Profil</a></li>
-            <li><a href="../Medarbejdere/ansatte.php">Medarbejder</a></li>
-            <li><a href="../Kalender/kalender-maskiner.php">Kalender</a></li>
-            <li><a href="../Sagsstyring/sager.php">Sagsstyring</a></li>
-            <li><a href="../Tidsregistrering/tidsregistrering.php">Tidsregistrering</a></li>
-            <li><a href="../Opgaver/fejl-og-mangler.php">Opgaver</a></li>
-            <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
+            <li><a href="../Profile/profile.php" class="active-main-site">Profil</a></li>
+            <li><a href="../Employees/employees.php">Medarbejder</a></li>
+            <li><a href="../Calender/machines_calender.php">Kalender</a></li>
+            <li><a href="../Cases/cases.php">Sager</a></li>
+            <li><a href="../Time_registration/time_registration.php">Tidsregistrering</a></li>
+            <li><a href="../Tasks/tasks.php">Opgaver</a></li>
+            <li><a href="../Storage/storage.php">Lager styring</a></li>
         </ul>
         <div class="log_out_container"><a href="../Data/log_out.php">Log ud</a></div>
     </div>
@@ -48,13 +48,13 @@
                 <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> <?php echo $_SESSION['logged_in_user_global']['last_name'] . ', ' . $_SESSION['logged_in_user_global']['first_name'];?> </div>
                 <div class="navbar_bars"></div>
             </div>
-            <h2 class="sec-navbar-mobile-header">Profil <div class="arrow_container"><img src="../img/arrow.png"
+            <h2 class="sec-navbar-mobile-header">Profile <div class="arrow_container"><img src="../img/arrow.png"
                         alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Profil/profil.php">Profil</a>
-                <li><a href="../Profil/notifikationer.php">Notifikationer</a>
-                <li><a href="../Profil/hjælpevideoer.php" class="active_site_dropdown">Hjælpevideoer</a></li>
+                <li><a href="../Profile/profile.php">Profil</a>
+                <li><a href="../Profile/notifications.php">Notifikationer</a>
+                <li><a href="../Profile/video_guides.php" class="active_site_dropdown">Hjælpevideoer</a></li>
                 </li>
             </ul>
         </div>

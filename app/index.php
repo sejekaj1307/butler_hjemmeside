@@ -42,9 +42,9 @@
                             $password = $row['password']; 
                             if($passwordInput == $password) 
                             {
-                                // echo "<script> window.location.href = 'Medarbejdere/ansatte.php'; </script>"; //HEADER
+                                // echo "<script> window.location.href = 'Medarbejdere/employees.php'; </script>"; //HEADER
                                 $_SESSION['logged_in_user_global'] = array("email"=>$useremail, "first_name"=>$row['first_name'], "last_name"=>$row['last_name'], "initials"=>$row['initials']);
-                                echo "<script> window.location.href = 'Tidsregistrering/tidsregistrering.php'; </script>"; //HEADER
+                                echo "<script> window.location.href = 'Time_registration/time_registration.php'; </script>"; //HEADER
                                 
                             }
                             else { 
