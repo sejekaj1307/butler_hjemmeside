@@ -283,7 +283,6 @@
                                     echo '<p class="case_location">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["location"] . '</p>';
                                     echo '<p class="case_est_start">' . '<span class="dropdown_inline_headers">Seneste </span>' . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
                                     echo '<p class="case_deadline">' . '<span class="dropdown_inline_headers">Seneste </span>' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
-                                    
                                 echo '</div>';
                                 echo '<div class="button_container">';
                                         echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
@@ -354,8 +353,8 @@
                     </select>
                 </div>
             <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
-            <div class="pop-up-row"><p>Startdato : </p><input type="text" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
-            <div class="pop-up-row"><p>Deadline : </p><input type="text" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
+            <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
+            <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
             <div class="pop-up-btn-container">
                 <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                 <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">

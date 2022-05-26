@@ -52,7 +52,7 @@
             <ul class="sec_navbar_ul_dropdown">
                 <li><a href="../Tasks/tasks.php">Fejl og mangler</a></li>
                 <li><a href="../Tasks/tasks_service.php">Planlagt service</a></li>
-                <li><a href="../Tasks/archived_tasks.php" class="active_site_dropdown">Arkiverede Tasks</a>
+                <li><a href="../Tasks/archived_tasks.php" class="active_site_dropdown">Arkiverede opgaver</a>
                 </li>
             </ul>
         </div>

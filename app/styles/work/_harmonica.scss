@@ -75,9 +75,11 @@
 
 }
 
-
 /*Lille pc - M*/
 @media screen and(min-width: 1200px) {
+    .dropdown_inline_headers {
+        display: none !important;
+    }    
     /*----------------------------------
         Harmonica lists 1200
     ----------------------------------*/
@@ -113,13 +115,11 @@
                     padding: 0;
                 }
             }
-            .dropdown_inline_headers {
-                display: none;
-            }    
+
         }
         .harmonica_priority_header, .harmonica_priority, .harmonica_updated_initials_header, .harmonica_updated_initials,
         .harmonica_status_header, .harmonica_status, .harmonica_quantity_header, .harmonica_quantity {
-            width: 10.8vw;
+            width: 10.8vw !important;
         }
         .tasks_service_harmonica_status_header, .tasks_service_harmonica_status, .tasks_service_harmonica_deadline_header, .tasks_service_harmonica_deadline, 
         .tasks_service_harmonica_priority, .tasks_service_harmonica_priority_header, .tasks_service_harmonica_last_service_header, .tasks_service_harmonica_last_service {

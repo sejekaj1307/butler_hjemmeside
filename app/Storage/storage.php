@@ -100,7 +100,8 @@
                     //create, køres hvis "create button" bliver requested
                     if($_REQUEST['knap'] == "Opret")
                     {
-                        $location = $_REQUEST['location_c'];
+                        $location = $_REQUEST['element_location_c'];
+                        
                         $element = $_REQUEST['element_c'];
                         $quantity = $_REQUEST['quantity_c'];
                         $min_quantity = $_REQUEST['min_quantity_c'];
@@ -289,7 +290,7 @@
                     <select name="element_location_c">
                         <?php
                             foreach($element_location_options as $element_location_option){
-                                echo "<option " . ($element_location == $element_location_option ? 'selected' : '') . "value=" . $element_location_option . ">" . $element_location_option . "</option>";
+                                echo '<option ' . ($element_location == $element_location_option ? 'selected' : '') . ' value="' . $element_location_option . '">' . $element_location_option . '</option>';
                             }
                         ?>
                     </select>
@@ -314,7 +315,7 @@
                     <select name="element_location_u">
                         <?php
                             foreach($element_location_options as $element_location_option){
-                                echo "<option " . ($element_location == $element_location_option ? 'selected' : '') . "value=" . $element_location_option . ">" . $element_location_option . "</option>";
+                                echo '<option ' . ($element_location == $element_location_option ? 'selected' : '') . ' value="' . $element_location_option . '">' . $element_location_option . '</option>';
                             }
                         ?>
                     </select>

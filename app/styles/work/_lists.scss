@@ -86,7 +86,7 @@
 .external_dropdown_mobile p, .employee_dropdown_mobile p, .task_dropdown_mobile p,  .task_dropdown_mobile p, .case_dropdown_mobile{
     display: flex;
     width: 100%;
-    padding: 10px 0 10px 0;
+    // padding: 10px 0 10px 0;
     align-items: center;
 
     .dropdown_inline_headers {
@@ -185,7 +185,7 @@
             display: flex;
             width: 6vw !important;
             justify-content: space-between;
-            padding-right: 10px;
+            padding-right: 10px;   
             button {
                 background: none;
                 border: none;
@@ -253,7 +253,7 @@
         padding-left: 15px !important;
     }
     .case_responsible_header, .case_responsible, .case_status_header, .case_status {
-        width: 8vw !important;
+        width: 9vw !important;
     }
     .case_location_header, .case_location {
         width: 18vw !important;
@@ -272,16 +272,16 @@
         padding-left: 15px !important;
     }
     .task_prority_header, .task_prority, .task_status_header, .task_status, .task_updated_initials_header, .task_updated_initials {
-        width: 7.5vw;
+        width: 7.5vw !important;
     }
     .task_archived_at, .task_archived_at_header, .task_archived_initials, .task_archived_initials_header {
-        width: 12vw;
+        width: 12vw !important;
     }
     .task_deadline_header, .task_deadline {
-        width: 8vw;
+        width: 8vw !important;
     }
     .task_comment_header, .task_comment {
-        width: 14vw;
+        width: 14vw !important;
     }
 
 }

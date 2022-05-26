@@ -9,6 +9,10 @@
     if($_SESSION['logged_in_user_global']['last_name'] == ""){
         echo "<script> window.location.href = '../index.php'; </script>";
     }
+
+    $priority = ""; //This variable has to be defined for the html to work correctly. It is for "Create new" priority drop-down menu.
+
+
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +57,7 @@
             <ul class="sec_navbar_ul_dropdown">
                 <li><a href="../Tasks/tasks.php" class="active_site_dropdown">Fejl og mangler</a></li>
                 <li><a href="../Tasks/tasks_service.php">Planlagt service</a></li>
-                <li><a href="../Tasks/archived_tasks.php">Arkiverede Tasks</a>
+                <li><a href="../Tasks/archived_tasks.php">Arkiverede opgave</a>
                 </li>
             </ul>
         </div>
@@ -66,6 +70,7 @@
         <!-- -----------------------------
                     Sager
         ------------------------------ -->
+
         <form action="tasks.php" method="post">
             <?php 
             //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
@@ -90,7 +95,6 @@
                 $display_create_task_pop_up = "none";
                 $display_tasks_service_case_pop_up = "none";
 
-
                 //har vi en post? har serveren en request?
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
@@ -98,13 +102,14 @@
                     if($_REQUEST['knap'] == "Tilføj ny opgave")
                     {
                         $display_create_task_pop_up = "flex";
+
                     }
                     //create, køres hvis "create button" bliver requested
                     if($_REQUEST['knap'] == "Opret ny")
                     {
                         $task_title = $_REQUEST['task_title_c'];
                         $priority = $_REQUEST['priority_c'];
-                        $status = $_REQUEST['status_c'];
+                        $status = "Ikke startet";
                         $deadline = $_REQUEST['deadline_c'];
                         $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                         $comment = $_REQUEST['comment_c'];
@@ -113,6 +118,7 @@
                         $sql->bind_param("ssssss", $task_title, $priority, $status, $deadline, $updated_initials, $comment);
                         $sql->execute();
                         $display_create_task_pop_up = "none";
+                        $display_overlay = "none";
                         
                     }
                     //read
@@ -137,7 +143,9 @@
                                 $deadline = $row['deadline'];
                                 $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                                 $comment = $row['comment'];
+
                                 $display_edit_task_pop_up = "flex";
+
                             }
                         } 
                     }
@@ -159,6 +167,8 @@
                                 $sql->bind_param("ssssssi", $task_title, $priority, $status, $deadline, $updated_initials, $comment, $id);
                                 $sql->execute();
                                 $display_edit_task_pop_up = "none";
+                                $display_overlay = "none";
+
                             }
                         }
                     }
@@ -232,6 +242,7 @@
 
 
             <div class="task_list_page">
+
                 <div class="add_new_link"><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny opgave"></div>
                 <?php 
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
@@ -281,7 +292,7 @@
                                     echo '<div class="task_dropdown_mobile">';
                                         echo '<p class="task_prority">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["priority"] . '</p>';
                                         echo '<p class="task_status">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["status"] . '</p>';
-                                        echo '<p class="task_deadline">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["deadline"] . '</p>';
+                                        echo '<p class="task_deadline">' . '<span class="dropdown_inline_headers">Seneste </span>'  . date_format(new DateTime($row["deadline"]), 'd-m-y') . '</p>';
                                         echo '<p class="task_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["updated_initials"] . '</p>';
                                         echo '<p class="task_comment">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["comment"] . '</p>';
                                     echo '</div>';
@@ -311,9 +322,15 @@
             <div class="pop_up_modal" style="display: <?php echo $display_create_task_pop_up ?>">
                 <h3>Tilføj ny opgave</h3>
                 <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_c" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
-                <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority_c" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
-                <div class="pop-up-row"><p>Status : </p><input type="text" name="status_c" value="<?php echo isset($status) ? $status : '' ?>"></div>
-                <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
+                <div class="pop-up-row">
+                    <p>Prioritet : </p>
+                    <select name="priority_c">
+                        <option <?php echo $priority == "Lav" ? 'selected' : '' ?> value="Lav">Lav</option>
+                        <option <?php echo $priority == "Middel" ? 'selected' : '' ?> value="Middel">Middel</option>
+                        <option <?php echo $priority == "Høj" ? 'selected' : '' ?> value="Høj">Høj</option>
+                    </select>
+                </div> 
+                <div class="pop-up-row"><p>Deadline : </p><input type="date" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
                 <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
@@ -325,24 +342,33 @@
             <!----------------------------
                     Edit profile pop-op
             ----------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_edit_task_pop_up ?>">
-                <h3>Opdater opgave</h3>
-                <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
-                <div class="pop-up-row"><p>Prioritet : </p><input type="text" name="priority_u" value="<?php echo isset($priority) ? $priority : '' ?>"></div>
-                <div class="pop-up-row">
-                    <p>Status : </p>
-                    <select name="status_u">
-                        <option <?php echo $status == "Ikke startet" ? 'selected' : '' ?> value="Ikke startet">Ikke startet</option>
-                        <option <?php echo $status == "Startet" ? 'selected' : '' ?> value="Startet">Startet</option>
-                        <option <?php echo $status == "Venter" ? 'selected' : '' ?> value="Venter">Venter</option>
-                        <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
-                    </select>
-                </div>
-                <div class="pop-up-row"><p>Deadline : </p><input type="text" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+            <div class="pop_up_modal_container" style="display: <?php echo $display_edit_task_pop_up ?>">
+                <div class="pop_up_modal" >
+                    <h3>Opdater opgave</h3>
+                    <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
+                    <div class="pop-up-row">
+                        <p>Prioritet : </p>
+                        <select name="priority_c">
+                            <option <?php echo $priority == "Lav" ? 'selected' : '' ?> value="Lav">Lav</option>
+                            <option <?php echo $priority == "Middel" ? 'selected' : '' ?> value="Middel">Middel</option>
+                            <option <?php echo $priority == "Høj" ? 'selected' : '' ?> value="Høj">Høj</option>
+                        </select>
+                    </div> 
+                    <div class="pop-up-row">
+                        <p>Status : </p>
+                        <select name="status_u">
+                            <option <?php echo $status == "Ikke startet" ? 'selected' : '' ?> value="Ikke startet">Ikke startet</option>
+                            <option <?php echo $status == "Startet" ? 'selected' : '' ?> value="Startet">Startet</option>
+                            <option <?php echo $status == "Venter" ? 'selected' : '' ?> value="Venter">Venter</option>
+                            <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
+                        </select>
+                    </div>
+                    <div class="pop-up-row"><p>Deadline : </p><input type="date" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
+                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
 
@@ -376,7 +402,9 @@
 
     </div>
 
+
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
+
 </body>
 </html>
