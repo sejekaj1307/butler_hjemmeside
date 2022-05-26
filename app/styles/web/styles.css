@@ -905,6 +905,7 @@
   }
   .describe_case_navbar .describe_case_update {
     background-color: #149DB9;
+    cursor: pointer;
     width: 130px;
     height: 45px;
     border: none;
@@ -984,26 +985,28 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
   }
-  .describe_case_info_container .bottom_inputs_container .date_and_status .status_container {
+  .describe_case_info_container .bottom_inputs_container .date_and_status .status_container, .describe_case_info_container .bottom_inputs_container .date_and_status .small_inputs {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    margin: 0 20px;
   }
-  .describe_case_info_container .bottom_inputs_container .date_and_status .status_container p {
+  .describe_case_info_container .bottom_inputs_container .date_and_status .status_container p, .describe_case_info_container .bottom_inputs_container .date_and_status .small_inputs p {
     padding-right: 5px;
   }
-  .describe_case_info_container .bottom_inputs_container .date_and_status .status_container input {
+  .describe_case_info_container .bottom_inputs_container .date_and_status .status_container input, .describe_case_info_container .bottom_inputs_container .date_and_status .status_container select, .describe_case_info_container .bottom_inputs_container .date_and_status .small_inputs input, .describe_case_info_container .bottom_inputs_container .date_and_status .small_inputs select {
     height: 25px;
+    width: 150px;
     border-radius: 5px;
     border: 1px solid #B2C7F9;
   }

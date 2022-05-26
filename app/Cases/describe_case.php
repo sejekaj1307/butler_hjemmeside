@@ -225,8 +225,8 @@
                 </div>
                 <div class="bottom_inputs_container">
                     <div class="date_and_status">
-                        <div class="small_inputs"><p>Forventet start d. :</p><input name="est_start_date" type="text" value="<?php echo $this_case->get_est_start_date();?>"></div>
-                        <div class="small_inputs"><p>Forventet slut d. :</p><input name="est_end_date" type="text" value="<?php echo $this_case->get_est_end_date();?>"></div>
+                        <div class="small_inputs"><p>Forventet start d. :</p><input name="est_start_date" type="date" value="<?php echo $this_case->get_est_start_date();?>"></div>
+                        <div class="small_inputs"><p>Forventet slut d. :</p><input name="est_end_date" type="date" value="<?php echo $this_case->get_est_end_date();?>"></div>
                         <div class="status_container">
                             <p>Status :</p>
                             <select name="status">

@@ -48,6 +48,7 @@
     }
     .describe_case_update {
         background-color: $button_color_green;
+        cursor: pointer;
         width: 130px;
         height: 45px;
         border: none;
@@ -90,8 +91,6 @@
             }
             .large_inputs {
                 padding: 10px;
-                p {
-                }
                 textarea {
                     width: 100%;
                     min-width: 100%;
@@ -109,16 +108,18 @@
             flex-direction: column;
             .date_and_status {
                 display: flex;
-                justify-content: space-evenly;
+                justify-content:center;
                     align-items: center;
-                .status_container {
+                .status_container, .small_inputs {
                     display: flex;
                     align-items: center;
+                    margin: 0 20px;
                     p {
                         padding-right: 5px;
                     }
-                    input {
+                    input, select {
                         height: 25px;
+                        width: 150px;
                         border-radius: 5px;
                         border: 1px solid #B2C7F9;
 
