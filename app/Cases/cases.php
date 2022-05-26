@@ -1,8 +1,15 @@
 <?php 
-    //session start
+    //session start - storage information in session
     session_start(); 
-    //Forbindelse til database
+
+    //connection to database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+
+    //If the user is trying go around the log in process, redirect the user back to the index.php 
+    if($_SESSION['logged_in_user_global']['last_name'] == ""){
+        echo "<script> window.location.href = '../index.php'; </script>";
+    }
+    include("../Data/data.php");
 ?>
 
 <!DOCTYPE html>
@@ -22,15 +29,15 @@
         <div class="navbar_top"><img src="../img/navbar-cross.png" alt="navbar cross" class="navbar_cross"></div>
         <div class="navbar_mid"><img src="../img/DayTask_logo.png" alt="DayTask logo" class="day_task_logo"></div>
         <ul class="navbar_ul">
-            <li><a href="../Profil/profil.php">Profil</a></li>
-            <li><a href="../Medarbejdere/ansatte.php">Medarbejder</a></li>
-            <li><a href="../Kalender/kalender-maskiner.php">Kalender</a></li>
-            <li><a href="../Sagsstyring/sager.php" class="active-main-site">Sagsstyring</a></li>
-            <li><a href="../Tidsregistrering/tidsregistrering.php">Tidsregistrering</a></li>
-            <li><a href="../Opgaver/fejl-og-mangler.php">Opgaver</a></li>
-            <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
+            <li><a href="../Profile/profile.php">Profil</a></li>
+            <li><a href="../Employees/employees.php">Medarbejder</a></li>
+            <li><a href="../Calender/machines_calender.php">Kalender</a></li>
+            <li><a href="../Cases/cases.php" class="active-main-site">Sager</a></li>
+            <li><a href="../Time_registration/time_registration.php">Tidsregistrering</a></li>
+            <li><a href="../Tasks/tasks.php">Opgaver</a></li>
+            <li><a href="../Storage/storage.php">Lager styring</a></li>
         </ul>
-        <div class="log_out_container"><a href="../index.php">Log ud</a></div>
+        <div class="log_out_container"><a href="../Data/log_out.php">Log ud</a></div>
     </div>
 
     <!-- Masthead -->
@@ -44,8 +51,9 @@
                         alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Sagsstyring/sager.php" class="active_site_dropdown">Sager liste</a></li>
-                <li><a href="../Sagsstyring/arkiverede-sager.php">Arkiverede sager</a>
+                <li><a href="../Cases/cases.php" class="active_site_dropdown">Sager liste</a></li>
+                <li><a href="../Cases/archived_cases.php">Arkiverede sager</a>
+                <li><a href="../Cases/describe_case.php">Beskriv sag</a>
                 </li>
             </ul>
         </div>
@@ -54,7 +62,7 @@
 <!-- -----------------------------
             Sager
 ------------------------------ -->
-    <form action="sager.php" method="post">
+    <form action="cases.php" method="post">
         <?php
             //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
             function findes($id, $c)
@@ -99,10 +107,10 @@
                         $est_start_date = $_REQUEST['est_start_date_c'];
                         $est_end_date = $_REQUEST['est_end_date_c'];
                         $date_now = new DateTime();
-                        $date_now_formatted = $date_now->format('Y-m-d H:i:s');
+                        $date_now_formatted = $date_now->format('Y-m-d');
                         
-                        $sql = $conn->prepare("insert into cases (case_nr, case_responsible, status, location, est_start_date, est_end_date, created_at) values (?, ?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param("sssssss", $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date, $date_now_formatted);
+                        $sql = $conn->prepare("insert into cases (case_nr, case_responsible, status, location, est_start_date, est_end_date) values (?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("ssssss", $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date);
                         $sql->execute();
                         
                     }
@@ -121,6 +129,7 @@
                             {
                                 $row = $result->fetch_assoc();
                                 $id = $row['id'];
+                                $_SESSION["selected_task"] = $id;
                                 $case_nr = $row['case_nr'];
                                 $case_responsible = $row['case_responsible'];
                                 $status = $row['status'];
@@ -226,6 +235,12 @@
                 $result = $conn->query($sql);
 
                 echo '<div class="case_list">';
+                    echo '<div class="list_color_guide_container">';
+                        echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Oprettet af leder</p></div>';
+                        echo '<div class="list_color_guide_element"><div class="color orange"></div><p class="color_description">Beskrevet yderligere</p></div>';
+                        echo '<div class="list_color_guide_element"><div class="color yellow"></div><p class="color_description">Aktiv og arbejdes på</p></div>';
+                        echo '<div class="list_color_guide_element"><div class="color green"></div><p class="color_description">Fuldført og afventer godkendelse</p></div>';
+                    echo '</div>';
                     echo '<div class="case_list_header">';
                         echo '<div class="case_mobile_headers">';
                             echo '<p class="case_nr_header">Sagsnr.</p>';
@@ -251,30 +266,29 @@
                                 $status_color = "#FFA2A2";
                             } else if ($row['status'] == "Beskrevet") {
                                 $status_color = "#FFFC9E";
-                            }
-                            else if ($row['status'] == "Aktiv") {
-                                $status_color = "#BBFFB9";
+                            } else if ($row['status'] == "Aktiv") {
+                                $status_color = "#FFD391";
                             } else {
-                                $status_color = "#DBB8FF";
+                                $status_color = "#BBFFB9";
                             }
 
 
                             echo '<div class="case_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'case_dropdown_mobile'" .') " style="border-left: 5px solid' . $status_color . '")>';
                                 echo '<div class="case_information"> ';
                                     echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
-                                    echo '<p class="dark_dropdown_table case_responsible">' . $row["case_responsible"] . '</p>';
+                                    echo '<p class="case_responsible">' . $row["case_responsible"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="case_dropdown_mobile">';
-                                    echo '<p class="light_dropdown_table case_status">' . $row["status"] . '</p>';
-                                    echo '<p class="dark_dropdown_table case_location">' . $row["location"] . '</p>';
-                                    echo '<p class="light_dropdown_table case_est_start">' . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
-                                    echo '<p class="dark_dropdown_table case_deadline">' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
-                                    echo '<div class="button_container">';
+                                    echo '<p class="case_status">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["status"] . '</p>';
+                                    echo '<p class="case_location">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["location"] . '</p>';
+                                    echo '<p class="case_est_start">' . '<span class="dropdown_inline_headers">Seneste </span>' . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
+                                    echo '<p class="case_deadline">' . '<span class="dropdown_inline_headers">Seneste </span>' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
+                                echo '</div>';
+                                echo '<div class="button_container">';
                                         echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
                                         echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/archive.png" alt="Employee icon" class="edit_icons"<button>';
                                         echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
                                     echo '</div>';
-                                echo '</div>';
                             echo '</div>'; 
                             $list_order_id += 1;
                         }   
@@ -294,7 +308,16 @@
         <div class="pop_up_modal" style="display: <?php echo $display_create_case_pop_up ?>">
             <h3>Opret ny sag</h3>
             <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_c" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
-            <div class="pop-up-row"><p>Ansvarlig : </p><input type="text" name="case_responsible_c" value="<?php echo isset($case_responsible) ? $case_responsible : '' ?>"></div>
+            <div class="pop-up-row">
+                <p>Ansvarlig : </p>
+                <select name="case_responsible_c">
+                    <?php
+                        foreach($case_responsible_initials_list as $case_responsible_initials){
+                            echo "<option " . ($case_responsible == $case_responsible_initials ? 'selected' : '') . "value=" . $case_responsible_initials . ">" . $case_responsible_initials . "</option>";
+                        }
+                    ?>
+                </select>
+            </div>
             <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
             <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
             <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
@@ -310,7 +333,16 @@
         <div class="pop_up_modal" style="display: <?php echo $display_edit_case_pop_up ?>">
             <h3>Opdater sag</h3>
             <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_u" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
-            <div class="pop-up-row"><p>Ansvarlig : </p><input type="text" name="case_responsible_u" value="<?php echo isset($case_responsible) ? $case_responsible : '' ?>"></div>
+            <div class="pop-up-row">
+                <p>Ansvarlig : </p>
+                <select name="case_responsible_u">
+                    <?php
+                        foreach($case_responsible_initials_list as $case_responsible_initials){
+                            echo "<option " . ($case_responsible == $case_responsible_initials ? 'selected' : '') . " value=" . $case_responsible_initials . ">" . $case_responsible_initials . "</option>";
+                        }
+                    ?>
+                </select>
+            </div>
             <div class="pop-up-row">
                     <p>Status : </p>
                     <select name="status_u">
@@ -321,8 +353,8 @@
                     </select>
                 </div>
             <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
-            <div class="pop-up-row"><p>Startdato : </p><input type="text" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
-            <div class="pop-up-row"><p>Deadline : </p><input type="text" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
+            <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
+            <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
             <div class="pop-up-btn-container">
                 <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                 <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">

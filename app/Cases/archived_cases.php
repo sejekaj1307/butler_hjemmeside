@@ -1,8 +1,14 @@
 <?php 
-    //session start
+    //session start - storage information in session
     session_start(); 
-    //Forbindelse til database
+
+    //connection to database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+
+    //If the user is trying go around the log in process, redirect the user back to the index.php 
+    if($_SESSION['logged_in_user_global']['last_name'] == ""){
+        echo "<script> window.location.href = '../index.php'; </script>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/web/styles.css">
-    <title>Arkiverede sager</title>
+    <title>Arkiverede cases</title>
 </head>
 
 <body>
@@ -22,15 +28,15 @@
         <div class="navbar_top"><img src="../img/navbar-cross.png" alt="navbar cross" class="navbar_cross"></div>
         <div class="navbar_mid"><img src="../img/DayTask_logo.png" alt="DayTask logo" class="day_task_logo"></div>
         <ul class="navbar_ul">
-            <li><a href="../Profil/profil.php">Profil</a></li>
-            <li><a href="../Medarbejdere/ansatte.php">Medarbejder</a></li>
-            <li><a href="../Kalender/kalender-maskiner.php">Kalender</a></li>
-            <li><a href="../Sagsstyring/sager.php" class="active-main-site">Sagsstyring</a></li>
-            <li><a href="../Tidsregistrering/tidsregistrering.php">Tidsregistrering</a></li>
-            <li><a href="../Opgaver/fejl-og-mangler.php">Opgaver</a></li>
-            <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
+            <li><a href="../Profile/profile.php">Profil</a></li>
+            <li><a href="../Employees/employees.php">Medarbejder</a></li>
+            <li><a href="../Calender/machines_calender.php">Kalender</a></li>
+            <li><a href="../Cases/cases.php" class="active-main-site">Sager</a></li>
+            <li><a href="../Time_registration/time_registration.php">Tidsregistrering</a></li>
+            <li><a href="../Tasks/tasks.php">Opgaver</a></li>
+            <li><a href="../Storage/storage.php">Lager styring</a></li>
         </ul>
-        <div class="log_out_container"><a href="../index.php">Log ud</a></div>
+        <div class="log_out_container"><a href="../Data/log_out.php">Log ud</a></div>
     </div>
 
     <!-- Masthead -->
@@ -44,8 +50,8 @@
                         alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Sagsstyring/sager.php">Sager liste</a></li>
-                <li><a href="../Sagsstyring/arkiverede-sager.php" class="active_site_dropdown">Arkiverede sager</a>
+                <li><a href="../Cases/cases.php">Sager liste</a></li>
+                <li><a href="../Cases/archived_cases.php" class="active_site_dropdown">Arkiverede sager</a>
                 </li>
             </ul>
         </div>
@@ -54,7 +60,7 @@
 <!-- -----------------------------
             Sager
 ------------------------------ -->
-    <form action="arkiverede-sager.php" method="post">
+    <form action="archived_cases.php" method="post">
         <?php
             //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
             function findes($id, $c)
@@ -129,6 +135,12 @@
                 $result = $conn->query($sql);
 
                 echo '<div class="case_list">';
+                    echo '<div class="list_color_guide_container">';
+                        echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Oprettet af leder</p></div>';
+                        echo '<div class="list_color_guide_element"><div class="color orange"></div><p class="color_description">Beskrevet yderligere</p></div>';
+                        echo '<div class="list_color_guide_element"><div class="color yellow"></div><p class="color_description">Aktiv og arbejdes på</p></div>';
+                        echo '<div class="list_color_guide_element"><div class="color green"></div><p class="color_description">Fuldført og afventer godkendelse</p></div>';
+                    echo '</div>';
                     echo '<div class="case_list_header">';
                         echo '<div class="case_mobile_headers">';
                             echo '<p class="case_nr_header">Sagsnr.</p>';
@@ -143,7 +155,6 @@
                         echo '</div>';
                     echo '</div>';
 
-                    $statusColor = '#345643';
                     //if og while her 
                     if($result->num_rows > 0)
                     {
@@ -157,23 +168,23 @@
                                 $status_color = "#FFFC9E";
                             }
                             else if ($row['status'] == "Aktiv") {
-                                $status_color = "#BBFFB9";
+                                $status_color = "#FFD391";
                             } else {
-                                $status_color = "#DBB8FF";
+                                $status_color = "#BBFFB9";
                             }
                             echo '<div class="case_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'case_dropdown_mobile'" .') " style="border-left: 5px solid' . $status_color . '">';
                                 echo '<div class="case_information">';
                                     echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
-                                    echo '<p class="dark_dropdown_table case_responsible">' . $row["case_responsible"] . '</p>';
+                                    echo '<p class="case_responsible">' . $row["case_responsible"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="case_dropdown_mobile">';
-                                    echo '<p class="light_dropdown_table case_status">' . $row["status"] . '</p>';
-                                    echo '<p class="dark_dropdown_table case_location">' . $row["location"] . '</p>';
-                                    echo '<p class="case_est_start">' . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
-                                    echo '<p class="case_deadline">' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
-                                    echo '<div class="button_container">';
-                                        echo '<button type="submit" name="knap" value="activate_' . $row['id'] . '"><img src="../img/activate.png" alt="Employee icon" class="edit_icons"<button>';
-                                    echo '</div>';
+                                    echo '<p class="case_status">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["status"] . '</p>';
+                                    echo '<p class="case_location">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["location"] . '</p>';
+                                    echo '<p class="case_est_start">' . '<span class="dropdown_inline_headers">Seneste </span>'  . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
+                                    echo '<p class="case_deadline">' . '<span class="dropdown_inline_headers">Seneste </span>'  . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
+                                echo '</div>';
+                                echo '<div class="button_container">';
+                                    echo '<button type="submit" name="knap" value="activate_' . $row['id'] . '"><img src="../img/activate.png" alt="Employee icon" class="edit_icons"<button>';
                                 echo '</div>';
                                 
                             echo '</div>'; 
@@ -194,7 +205,6 @@
         <div class="pop_up_modal" style="display: <?php echo $display_activate_case_pop_up ?>">
             <h3>Gør sagen aktiv igen?</h3>
             <div class="pop-up-btn-container">
-                <?php echo $id;?>
                 <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
                 <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
             </div>

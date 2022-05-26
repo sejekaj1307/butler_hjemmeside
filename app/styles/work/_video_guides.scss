@@ -1,0 +1,90 @@
+.video_guides_container {
+    margin-bottom: 50px;
+    .iframe_container_parent {
+        width: 100%;
+        .iframe_container {
+            position: relative; /*Lets us use absolute positioning for the iframe.*/
+            width: 100%;
+            padding-bottom: 56.25%; /*The 16:9 aspect ratio corresponds to a height that is 56.25% of the width.*/
+            .video { 
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        }
+    }
+    .video_text {
+        padding-bottom: 15px;
+        p {
+            padding: 10px 0;
+        }
+    }
+}
+
+
+
+/*Tablet - S */
+@media screen and(min-width: 900px) {
+    .video_guides_container {
+        padding: 0 0 0 50px;
+        .iframe_container_parent {
+            width: 90%;
+        }
+        .video_text {
+            width: 90%;
+        }
+    }
+}
+
+
+/*Lille pc - M*/
+@media screen and(min-width: 1200px) {
+    .video_guides_container {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        padding: 50px 0;
+        .iframe_container_parent {
+            width: 50%;
+            .iframe_container {
+                position: relative; /*Lets us use absolute positioning for the iframe.*/
+                width: 100%;
+                padding-bottom: 56.25%; /*The 16:9 aspect ratio corresponds to a height that is 56.25% of the width.*/
+                .video { 
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: 0;
+                }
+            }
+        }
+        .video_text {
+            width: 46%;
+            max-width: 550px;
+        }
+    }
+
+
+}
+
+/*Stor pc - L*/
+@media screen and(min-width: 1600px) {
+    .video_guides_container {
+        padding-right: 15%;
+        .iframe_container_parent {
+            width: 50%;
+        }
+        
+        .video_text {
+            width: 45%;
+            max-width: 500px;
+        }
+    }
+}
+
+

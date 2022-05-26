@@ -2,12 +2,15 @@
         Harmonica lists
 ----------------------------------*/
 .harmonica_container{
-    .harmonica_headers, .harmonica_headers {
+    .harmonica_headers {
         border-bottom: 3px solid $th_border_bottom;
         padding: 5px 0;
         font-weight: 600;
         margin-top: 30px !important;
-        border: 1px solid $th_border_bottom;
+        border: 1px solid $tr_border_bottom;
+        border-bottom: 2px solid $th_border_bottom;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
         .harmonica_name_header, .harmonica_element_headers {
             font-size: 20px;
             padding: 10px 15px;
@@ -22,18 +25,19 @@
             border: 1px solid $tr_border_bottom;
             border-bottom: 2px solid $tr_border_bottom;
             padding: 10px 0 10px 15px;
+            cursor: pointer;
         }
     }
-    .harmonica_data_row_all_info, .planned_service_data_row_all_info {
+    .harmonica_data_row_all_info {
         display: flex;
         flex-direction: column;
-        // display: none;
+        display: none;
         border: 1px solid $tr_border_bottom;
         border-bottom: 2px solid $tr_border_bottom;
         padding: 10px 0;
         .harmonica_title, .harmonica_priority, .harmonica_status, .harmonica_last_service, .harmonica_deadline, .harmonica_updated_initials, .harmonica_comment, 
-        .harmonica_element, .harmonica_all, .harmonica_quantity, .harmonica_status, .harmonica_created_by, .harmonica_updated_by, .harmonica_comment
-        {
+        .harmonica_element, .harmonica_all, .harmonica_quantity, .tasks_service_harmonica_status, .tasks_service_harmonica_last_service, .tasks_service_harmonica_deadline, .tasks_service_harmonica_comment,
+        .tasks_service_updated_initials_header, .tasks_service_updated_initials, .tasks_service_harmonica_priority, .tasks_service_harmonica_priority_header {
             display: flex;
             align-items: center;
             padding: 10px 0 10px 15px;
@@ -71,45 +75,37 @@
 
 }
 
-
 /*Lille pc - M*/
 @media screen and(min-width: 1200px) {
+    .dropdown_inline_headers {
+        display: none !important;
+    }    
     /*----------------------------------
         Harmonica lists 1200
     ----------------------------------*/
     .harmonica_container {
-        .harmonica_headers, .harmonica_headers {
+        .harmonica_headers {
             display: flex;
-            padding: 15px 0;       
-            .harmonica_all_headers, .harmonica_name_header, .harmonica_all_headers, .harmonica_element_headers {
+            padding: 20px 0;       
+            .harmonica_all_headers, .harmonica_all {
                 display: flex !important;
                 font-size: 17px !important;
+                padding: 0;
             }
         }
-
         .harmonica_name_header, .harmonica_element_headers {
-            padding: 0 !important;
+            display: flex !important;
+            font-size: 17px !important;
+            padding: 0 0 0 10px !important;
             border-left: 5px solid #fff;
+            width: 14.5vw !important;
         }
-        .harmonica_title, .harmonica_element, .harmonica_name_header, .harmonica_element_headers {
-            font-size: 17px;
+        .harmonica_title, .harmonica_element {
             padding: 0;
             width: 14.5vw !important;
             padding-left: 10px !important;
         }
-        .harmonica_priority_header, .harmonica_priority, .harmonica_updated_initials_header, .harmonica_updated_initials {
-            width: 6vw;
-        }
-        .harmonica_status_header, .harmonica_status {
-            width: 7.5vw;
-        }
-        .harmonica_last_service_header,.harmonica_deadline_header, .harmonica_last_service, .harmonica_deadline {
-            width: 8vw;
-        }
-        .harmonica_comment_header, .harmonica_comment {
-            width: 14vw;
-        }            
-        .harmonica_data_row_all_info, .planned_service_data_row_all_info {
+        .harmonica_data_row_all_info {
             flex-direction: row;
             .data_row_info {
                 display: flex;
@@ -119,24 +115,23 @@
                     padding: 0;
                 }
             }
-            .dropdown_inline_headers {
-                display: none;
-            }    
+
         }
-        .harmonica_all_headers, .harmonica_all {
-            padding: 0;
+        .harmonica_priority_header, .harmonica_priority, .harmonica_updated_initials_header, .harmonica_updated_initials,
+        .harmonica_status_header, .harmonica_status, .harmonica_quantity_header, .harmonica_quantity {
+            width: 10.8vw !important;
         }
-        .harmonica_quantity_header, .harmonica_quantity, .harmonica_status_header, .harmonica_status, .harmonica_updated_by_header, .harmonica_updated_by {
-            width: 11vw;
-        }
-        .tasks_service_harmonica_status_header, .tasks_service_harmonica_status, .tasks_service_harmonica_last_service_header, .tasks_service_harmonica_last_service, .tasks_service_harmonica_deadline_header, .tasks_service_harmonica_deadline {
-            width: 8vw;
+        .tasks_service_harmonica_status_header, .tasks_service_harmonica_status, .tasks_service_harmonica_deadline_header, .tasks_service_harmonica_deadline, 
+        .tasks_service_harmonica_priority, .tasks_service_harmonica_priority_header, .tasks_service_harmonica_last_service_header, .tasks_service_harmonica_last_service {
+            width: 7.6vw;
+            padding: 0 !important;
         }
         .tasks_service_harmonica_comment, .tasks_service_harmonica_comment_header {
             width: 14vw;
+            padding: 0 !important;
         }
-        .harmonica_created_by_header, .harmonica_created_by {
-            width: 10vw;
+        .tasks_service_updated_initials_header, .tasks_service_updated_initials {
+            width: 6vw;
         }
         .harmonica_comment_header, .harmonica_comment {
             width: 18vw !important;
@@ -152,8 +147,6 @@
         }
     }
 
-
-
 }
 
 
@@ -163,21 +156,15 @@
         Harmonica lists 1600
     ----------------------------------*/
     .harmonica_contiainer {
-        .harmonica_name_header {
-            width: 14.5vw;
-        }
-        .harmonica_title {
+        .harmonica_name_header, .harmonica_title {
             width: 14.5vw;
         }
         .harmonica_comment_header, .harmonica_comment {
-            width: 16vw;
-        }
-        .harmonica_comment_header, .harmonica_comment {
-            width: 18.5vw !important;
+            width: 18.5vw;
         }
     }
     .tasks_service_harmonica_comment, .tasks_service_harmonica_comment_header {
-        width: 16.2vw !important;
+        width: 14.5vw !important;
     }
 }
 

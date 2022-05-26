@@ -85,6 +85,7 @@
     flex-direction: column;
     justify-content: space-between;
     .logged_in {
+        min-height: $logged-in-height !important;
         height: $logged-in-height;
         display: flex;
         align-items: center;
@@ -218,6 +219,7 @@
     .sec-navbar-mobile {
         border-bottom: 5px solid $light-sec-nav-border-bottom;
         .logged_in {
+            min-height: $logged-in-height-s !important;
             height: $logged-in-height-s;
             padding-left: $space-from-navbar-s;
             border-left: none;

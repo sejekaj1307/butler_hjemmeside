@@ -1,6 +1,14 @@
-<?php session_start(); ?>
 <?php 
+    //session start - storage information in session
+    session_start(); 
+
+    //connection to database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+
+    //If the user is trying go around the log in process, redirect the user back to the index.php 
+    if($_SESSION['logged_in_user_global']['last_name'] == ""){
+        echo "<script> window.location.href = '../index.php'; </script>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -21,15 +29,15 @@
         <div class="navbar_top"><img src="../img/navbar-cross.png" alt="navbar cross" class="navbar_cross"></div>
         <div class="navbar_mid"><img src="../img/DayTask_logo.png" alt="DayTask logo" class="day_task_logo"></div>
         <ul class="navbar_ul">
-            <li><a href="../Profil/profil.php">Profil</a></li>
-            <li><a href="../Medarbejdere/ansatte.php" class="active-main-site">Medarbejder</a></li>
-            <li><a href="../Kalender/kalender-maskiner.php">Kalender</a></li>
-            <li><a href="../Sagsstyring/sager.php">Sagsstyring</a></li>
-            <li><a href="../Tidsregistrering/tidsregistrering.php">Tidsregistrering</a></li>
-            <li><a href="../Opgaver/fejl-og-mangler.php">Opgaver</a></li>
-            <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
+            <li><a href="../Profile/profile.php">Profil</a></li>
+            <li><a href="../Employees/employees.php" class="active-main-site">Medarbejder</a></li>
+            <li><a href="../Calender/machines_calender.php">Kalender</a></li>
+            <li><a href="../Cases/cases.php">Sager</a></li>
+            <li><a href="../Time_registration/time_registration.php">Tidsregistrering</a></li>
+            <li><a href="../Tasks/tasks.php">Opgaver</a></li>
+            <li><a href="../Storage/storage.php">Lager styring</a></li>
         </ul>
-        <div class="log_out_container"><a href="../index.php">Log ud</a></div>
+        <div class="log_out_container"><a href="../Data/log_out.php">Log ud</a></div>
     </div>
 
     <div class="site_container">
@@ -43,10 +51,10 @@
                         alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Medarbejdere/ansatte.php">Ansatte</a></li>
-                <li><a href="../Medarbejdere/eksterne.php">Eksterne</a></li>
-                <li><a href="../Medarbejdere/leverandoere.php">Leverandører</a></li>
-                <li><a href="../Medarbejdere/maskiner.php" class="active_site_dropdown">Maskiner</a>
+                <li><a href="../Employees/employees.php">Ansatte</a></li>
+                <li><a href="../Employees/externals.php">Eksterne</a></li>
+                <li><a href="../Employees/suppliers.php">Leverandører</a></li>
+                <li><a href="../Employees/machines.php" class="active_site_dropdown">Maskiner</a>
                 </li>
             </ul>
         </div>
@@ -54,7 +62,7 @@
 
 
         <!-- FORM emploeyee list with CRUD PHP and pop-up modals  -->
-        <form action="maskiner.php" method="post">
+        <form action="machines.php" method="post">
             <?php 
             //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
                 function findes($id, $c)
@@ -215,8 +223,8 @@
                                     echo '<p class="machine_name">' . $row["name"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="machine_dropdown_mobile" id="'. $row["id"] .'">';
-                                    echo '<p class="dark_dropdown_table machine_nordic_name">' . $row["name_nordic"] . '</p>';
-                                    echo '<p class="light_dropdown_table machine_link">' . "<a href=" . $row['link'] . ">Link til BB hjemmeside</a>" . '</p>';
+                                    echo '<p class="machine_nordic_name">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["name_nordic"] . '</p>';
+                                    echo '<p class="machine_link">' . '<span class="dropdown_inline_headers">Seneste </span>'  . "<a href=" . $row['link'] . ">Link til BB hjemmeside</a>" . '</p>';
                                 echo '</div>';
                                 
                                 echo '<div class="button_container">';
@@ -236,7 +244,7 @@
 
         <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
             <?php 
-            //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årsager
+            //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årcases
                 $conn->close();
             ?>
 

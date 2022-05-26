@@ -28,7 +28,7 @@
 }
 
 /*-------------------------------
-        Employee lists
+            Lists
 -------------------------------*/
 .employee_list, .external_list, .machine_list, .case_list, .task_list { //Aller yderste der har alt
     flex-direction: column;
@@ -40,43 +40,37 @@
         padding: 5px 0;
         font-weight: 600;
         margin-top: 30px !important;
-        border: 1px solid $th_border_bottom;
+        border: 1px solid $tr_border_bottom;
+        border-bottom: 2px solid $th_border_bottom;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
         .employee_mobile_headers, .case_mobile_headers { //Når der er flere headers i mobil versionen der skal vises
             display: flex;
             .employee_name_header { //Første header på alle headers
                 width: 80%;
             }
         }
-        .employee_all_headers, .machines_all_headers, .external_all_headers, .case_all_headers, .task_all_headers { //div rundt om navn- og initialer-header kun på ansatte siden
+        .employee_all_headers, .machines_all_headers, .external_all_headers, .case_all_headers, .task_all_headers { //div rundt om navn- og initialer-header kun på employees siden
             display: flex;
             flex-direction: row;
             display: none;                 
         }
     }
-    .employee_data_row, .external_data_row, .machine_data_row, .case_data_row, .task_data_row {
+    .employee_data_row, .external_data_row, .machine_data_row, .case_data_row, .task_data_row { //borders on the side of the container
             border-left: 1px solid $light-sec-nav;
             border-right: 1px solid $light-sec-nav;
         .mobile_employee_information, .mobile_external_information, .machine_information, .case_information, .task_information { //Den øverste bar, som kan ses af data, f.eks. Ibsen, Steen - Si
             display: flex;
-            border-bottom: 2px solid $tr_border_bottom;
-            cursor: pointer;    
-            .employee_name, .external_name, .machine_name {
-                width: 80%;
-            }
+            border-bottom: 1.5px solid $tr_border_bottom;
+            border-top: 1.5px solid $tr_border_bottom;
+            cursor: pointer;
         }
         .employee_dropdown_mobile, .machine_dropdown_mobile, .external_dropdown_mobile, .case_dropdown_mobile, .task_dropdown_mobile {
             flex-direction: column;
             display: none;
-            .dark_dropdown_table {
-                background-color: $dark_dropdown_background;        
-            }
-            .light_dropdown_table {
-                background-color: $light_dropdown_background;
-            }
-            :last-child {
-                border-bottom: 2px solid $time_registration_navbar_border;
-            }
+            border-bottom: 2px solid $time_registration_navbar_border;
         }
+
     }
     .button_container {
         display: none;
@@ -86,13 +80,34 @@
     }
 }
 
+    
+
+.case_dropdown_mobile p, .external_dropdown_mobile p,  .machine_dropdown_mobile p, 
+.external_dropdown_mobile p, .employee_dropdown_mobile p, .task_dropdown_mobile p,  .task_dropdown_mobile p, .case_dropdown_mobile{
+    display: flex;
+    width: 100%;
+    // padding: 10px 0 10px 0;
+    align-items: center;
+
+    .dropdown_inline_headers {
+        font-weight: 600;
+        display: flex;
+        width: 35% !important;  
+        padding: 0 15px;
+        
+    }
+}
+
+
+.case_nr_header, .case_nr, .employee_name {
+    width: 35% !important;
+}
+ 
+
+
 /*-------------------------------
         Mobile width cases
 -------------------------------*/
-    .case_nr_header, .case_nr {
-        width: 50% !important;
-    }
-
 .add_new_link {
     display: none;
     img {
@@ -109,6 +124,7 @@
         cursor: pointer;
     }
 }
+
 
 
 /*Tablet - S */
@@ -128,7 +144,9 @@
     .add_new_link {
         display: flex;
     }
-
+            .dropdown_inline_headers {
+                display: none;
+            }    
 
     /*---------------------------
             Employees 1200
@@ -139,6 +157,7 @@
         }
         .employee_list_header, .external_list_header, .machine_list_header, .case_list_header, .task_list_header {
             display: flex;
+            font-size: 17px;
         }
         //Div der holder alle andre headers og data
         .employee_all_headers, .machines_all_headers, .external_all_headers, .case_all_headers, .task_all_headers {
@@ -151,6 +170,7 @@
             display: flex;
             cursor: auto !important;
             border-bottom: none !important;
+            border-top: none !important;
         }
         .employee_data_row, .external_data_row, .machine_data_row, .case_data_row, .task_data_row { //En hel række af data, al data per id
             display: flex;
@@ -158,19 +178,14 @@
             .employee_dropdown_mobile, .external_dropdown_mobile, .machine_dropdown_mobile, .case_dropdown_mobile, .task_dropdown_mobile {
                 display: flex;
                 flex-direction: row;
-                .light_dropdown_table, .dark_dropdown_table{
-                    background-color: $no_colour; 
-                }
-                :last-child {
-                    border-bottom: none !important;
-                }
+                border-bottom: none !important;
             }
         }
         .button_container, .button_container_header { //button container, crud, read and delete
             display: flex;
             width: 6vw !important;
             justify-content: space-between;
-            padding-right: 10px;
+            padding-right: 10px;   
             button {
                 background: none;
                 border: none;
@@ -238,7 +253,7 @@
         padding-left: 15px !important;
     }
     .case_responsible_header, .case_responsible, .case_status_header, .case_status {
-        width: 8vw !important;
+        width: 9vw !important;
     }
     .case_location_header, .case_location {
         width: 18vw !important;
@@ -257,16 +272,16 @@
         padding-left: 15px !important;
     }
     .task_prority_header, .task_prority, .task_status_header, .task_status, .task_updated_initials_header, .task_updated_initials {
-        width: 7.5vw;
+        width: 7.5vw !important;
     }
     .task_archived_at, .task_archived_at_header, .task_archived_initials, .task_archived_initials_header {
-        width: 12vw;
+        width: 12vw !important;
     }
     .task_deadline_header, .task_deadline {
-        width: 8vw;
+        width: 8vw !important;
     }
     .task_comment_header, .task_comment {
-        width: 14vw;
+        width: 14vw !important;
     }
 
 }

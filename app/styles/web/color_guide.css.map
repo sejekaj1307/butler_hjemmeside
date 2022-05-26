@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../work/color_guide.scss"
+    ],
+    "names": [],
+    "file": "color_guide.css"
+}

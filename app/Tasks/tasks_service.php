@@ -1,8 +1,16 @@
 <?php 
-    //session start
+    //session start - storage information in session
     session_start(); 
-    //Forbindelse til database
+
+    //connection to database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+
+    //If the user is trying go around the log in process, redirect the user back to the index.php 
+    if($_SESSION['logged_in_user_global']['last_name'] == ""){
+        echo "<script> window.location.href = '../index.php'; </script>";
+    }
+    include("../Data/data.php");
+
     $priority = ""; //This variable has to be defined for the html to work correctly. It is for "Create new" priority drop-down menu.   
 ?>
 
@@ -23,15 +31,15 @@
         <div class="navbar_top"><img src="../img/navbar-cross.png" alt="navbar cross" class="navbar_cross"></div>
         <div class="navbar_mid"><img src="../img/DayTask_logo.png" alt="DayTask logo" class="day_task_logo"></div>
         <ul class="navbar_ul">
-            <li><a href="../Profil/profil.php">Profil</a></li>
-            <li><a href="../Medarbejdere/ansatte.php">Medarbejder</a></li>
-            <li><a href="../Kalender/kalender-maskiner.php">Kalender</a></li>
-            <li><a href="../Sagsstyring/sager.php">Sagsstyring</a></li>
-            <li><a href="../Tidsregistrering/tidsregistrering.php">Tidsregistrering</a></li>
-            <li><a href="../Opgaver/fejl-og-mangler.php" class="active-main-site">Opgaver</a></li>
-            <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
+            <li><a href="../Profile/profile.php">Profil</a></li>
+            <li><a href="../Employees/employees.php">Medarbejder</a></li>
+            <li><a href="../Calender/machines_calender.php">Kalender</a></li>
+            <li><a href="../Cases/cases.php">Sager</a></li>
+            <li><a href="../Time_registration/time_registration.php">Tidsregistrering</a></li>
+            <li><a href="../Tasks/tasks.php" class="active-main-site">Opgaver</a></li>
+            <li><a href="../Storage/storage.php">Lager styring</a></li>
         </ul>
-        <div class="log_out_container"><a href="../index.php">Log ud</a></div>
+        <div class="log_out_container"><a href="../Data/log_out.php">Log ud</a></div>
     </div>
 
     <div class="site_container">
@@ -45,9 +53,9 @@
                         src="../img/arrow.png" alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Opgaver/fejl-og-mangler.php">Fejl og mangler</a></li>
-                <li><a href="../Opgaver/planlagt-service.php" class="active_site_dropdown">Planlagt service</a></li>
-                <li><a href="../Opgaver/arkiverede-opgaver.php">Arkiverede opgaver</a>
+                <li><a href="../Tasks/tasks.php">Fejl og mangler</a></li>
+                <li><a href="../Tasks/tasks_service.php" class="active_site_dropdown">Planlagt service</a></li>
+                <li><a href="../Tasks/archived_tasks.php">Arkiverede opgaver</a>
                 </li>
             </ul>
         </div>
@@ -57,7 +65,7 @@
 
 
         <!-- FORM emploeyee list with CRUD PHP and pop-up modals  -->
-        <form action="planlagt-service.php" method="post">
+        <form action="tasks_service.php" method="post">
             <?php 
             //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
                 function findes($id, $c)
@@ -99,13 +107,13 @@
                         $task_title = $_REQUEST['task_title_c'];
                         $priority = $_REQUEST['priority_c'];
                         $status = "Ikke startet";
-                        $last_service = $_REQUEST['last_service_c'];
+                        // $last_service = $_REQUEST['last_service_c'];
                         $deadline = $_REQUEST['deadline_c'];
                         $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                         $comment = $_REQUEST['comment_c'];
                         
-                        $sql = $conn->prepare("insert into tasks_service (task_header, task_title, priority, status, last_service, deadline, updated_initials, comment) values (?, ?, ?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param("ssssssss", $task_header, $task_title, $priority, $status, $last_service, $deadline, $updated_initials, $comment);
+                        $sql = $conn->prepare("insert into tasks_service (task_header, task_title, priority, status, deadline, updated_initials, comment) values (?, ?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("sssssss", $task_header, $task_title, $priority, $status, $deadline, $updated_initials, $comment);
                         $sql->execute();
                         $display_create_task_service_pop_up = "none";
                         
@@ -126,10 +134,11 @@
                                 $row = $result->fetch_assoc();
                                 $id = $row['id'];
                                 $_SESSION["selected_task"] = $id;
+                                $task_header = $row['task_header'];
                                 $task_title = $row['task_title'];
                                 $priority = $row['priority'];
                                 $status = $row['status'];
-                                $last_service = $row['last_service'];
+                                // $last_service = $row['last_service'];
                                 $deadline = $row['deadline'];
                                 $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                                 $comment = $row['comment'];
@@ -142,6 +151,7 @@
                     if($_REQUEST['knap'] == "Opdater")
                     {
                         $id = $_SESSION["selected_task"];
+                        $task_header = $_REQUEST['task_header_u'];
                         $task_title = $_REQUEST['task_title_u'];
                         $priority = $_REQUEST['priority_u'];
                         $status = $_REQUEST['status_u'];
@@ -153,8 +163,8 @@
                         { 
                             if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                             {
-                                $sql = $conn->prepare("update tasks_service set task_title = ?, priority = ?, status = ?, last_service = ?, deadline = ?, updated_initials = ?, comment = ? where id = ?");
-                                $sql->bind_param("sssssssi", $task_title, $priority, $status, $last_service, $deadline, $updated_initials, $comment, $id);
+                                $sql = $conn->prepare("update tasks_service set task_header = ?, task_title = ?, priority = ?, status = ?, last_service = ?, deadline = ?, updated_initials = ?, comment = ? where id = ?");
+                                $sql->bind_param("ssssssssi", $task_header, $task_title, $priority, $status, $last_service, $deadline, $updated_initials, $comment, $id);
                                 $sql->execute();
                                 $display_edit_task_service_pop_up = "none";
                             }
@@ -208,16 +218,22 @@
                     $sql = "select * from tasks_service order by task_header asc";
                     $result = $conn->query($sql);
                     echo '<div class="harmonica_container">';
+                        echo '<div class="list_color_guide_container">';
+                            echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Ikke startet</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color orange"></div><p class="color_description">Startet</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color yellow"></div><p class="color_description">Venter</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color green"></div><p class="color_description">Fuldført</p></div>';
+                        echo '</div>';
                         echo '<div class="harmonica_headers">';
                             echo '<div class="harmonica_mobile_headers">';
                                 echo '<p class="harmonica_name_header">Opgave</p>';
                             echo '</div>';
                             echo '<div class="harmonica_all_headers">';
-                                echo '<p class="harmonica_priority_header">Prioritet</p>';
+                                echo '<p class="tasks_service_harmonica_priority_header">Prioritet</p>';
                                 echo '<p class="tasks_service_harmonica_status_header">Status</p>';
                                 echo '<p class="tasks_service_harmonica_last_service_header">Sidste service</p>';
                                 echo '<p class="tasks_service_harmonica_deadline_header">Deadline</p>';
-                                echo '<p class="harmonica_updated_initials_header">Seneste</p>';
+                                echo '<p class="tasks_service_updated_initials_header">Seneste</p>';
                                 echo '<p class="tasks_service_harmonica_comment_header">Bemærkning</p>';
                                 echo '<p class="button_container_header">Rediger</p>';
                             echo '</div>';
@@ -240,19 +256,20 @@
                                 if($row['status'] == "Ikke startet") {
                                     $status_color = "#FFA2A2";
                                 } else if ($row['status'] == "Startet") {
+                                    $status_color = "#FFD391";
+                                }else if ($row['status'] == "Venter") {
                                     $status_color = "#FFFC9E";
-                                }
-                                else {
+                                } else {
                                     $status_color = "#BBFFB9";
                                 }
                                 echo '<div class="harmonica_data_row_all_info" id="'. array_search($row["task_header"], $seen_task_headers) .'" style="border-left: 5px solid ' . $status_color . '">';
                                     echo '<div class="data_row_info">';
                                         echo '<p class="harmonica_title">' .  $row["task_title"] . '</p>';
-                                        echo '<p class="harmonica_priority">' . '<span class="dropdown_inline_headers">Prioritet </span>' . $row["priority"] . '</p>';
+                                        echo '<p class="tasks_service_harmonica_priority">' . '<span class="dropdown_inline_headers">Prioritet </span>' . $row["priority"] . '</p>';
                                         echo '<p class="tasks_service_harmonica_status">' . '<span class="dropdown_inline_headers">Status </span>' . $row["status"] . '</p>';
                                         echo '<p class="tasks_service_harmonica_last_service">' . '<span class="dropdown_inline_headers">Sidste service </span>' . date_format(new DateTime($row["last_service"]), 'd-m-y') . '</p>';
                                         echo '<p class="tasks_service_harmonica_deadline">' . '<span class="dropdown_inline_headers">Deadline </span>' . date_format(new DateTime($row["deadline"]), 'd-m-y') . '</p>';
-                                        echo '<p class="harmonica_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
+                                        echo '<p class="tasks_service_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
                                         echo '<p class="tasks_service_harmonica_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
                                     echo "</div>";
                                 
@@ -273,7 +290,7 @@
 
             <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
             <?php 
-            //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årsager
+            //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årcases
                 $conn->close();
             ?>
 
@@ -282,7 +299,16 @@
             ------------------------------------>
             <div class="pop_up_modal" style="display: <?php echo $display_create_task_service_pop_up ?>">
                 <h3>Tilføj ny opgave</h3>
-                <div class="pop-up-row"><p>Maskine : </p><input type="text" name="task_header_c" value="<?php echo isset($task_header) ? $task_header : '' ?>"></div>
+                <div class="pop-up-row">
+                    <p>Maskine : </p>
+                    <select name="task_header_c">
+                        <?php
+                            foreach($tasks_machines_options as $tasks_machines_option){
+                                echo '<option ' . ($task_header == $tasks_machines_option ? 'selected' : '') . ' value="' . $tasks_machines_option . '">' . $tasks_machines_option . '</option>';
+                            }
+                        ?>
+                    </select>
+                </div>
                 <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_c" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                 <div class="pop-up-row">
                     <p>Prioritet : </p>
@@ -305,6 +331,16 @@
             -------------------------------------->
             <div class="pop_up_modal" style="display: <?php echo $display_edit_task_service_pop_up ?>">
                 <h3>Opdater element</h3>
+                <div class="pop-up-row">
+                    <p>Maskine : </p>
+                    <select name="task_header_u">
+                        <?php
+                            foreach($tasks_machines_options as $tasks_machines_option){
+                                echo '<option ' . ($task_header == $tasks_machines_option ? 'selected' : '') . ' value="' . $tasks_machines_option . '">' . $tasks_machines_option . '</option>';
+                            }
+                        ?>
+                    </select>
+                </div>
                 <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                 <div class="pop-up-row">
                     <p>Prioritet : </p>
@@ -319,6 +355,7 @@
                     <select name="status_u">
                         <option <?php echo $status == "Ikke startet" ? 'selected' : '' ?> value="Ikke startet">Ikke startet</option>
                         <option <?php echo $status == "Startet" ? 'selected' : '' ?> value="Startet">Startet</option>
+                        <option <?php echo $status == "Venter" ? 'selected' : '' ?> value="Venter">Venter</option>
                         <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
                     </select>
                 </div> 

@@ -1,0 +1,62 @@
+.list_color_guide_container {
+    font-weight: 400;
+    display: flex;
+    .list_color_guide_element {
+        display: flex;
+        align-items: center;
+        margin: 0 25px 0 0;
+        .color {
+            height: 5px;
+            width: 20px;
+        }
+        .red {
+            background-color: #FFA2A2;
+        }
+        .orange {
+            background-color: #FFD391;
+        }
+        .yellow {
+            background-color: #fff06b;
+        }
+        .green {
+            background-color: #BBFFB9;
+        }  
+        .color_description {
+            padding: 3px 7px;
+            font-size: 13px;
+        }
+    }
+}
+
+
+/*Tablet - S */
+@media screen and(min-width: 900px) {
+    .list_color_guide_container {
+        justify-content: flex-end;
+            :last-child {
+                margin-right: 0;
+            }
+        .list_color_guide_element {
+
+            .color {
+                height: 5px;
+                width: 25px;
+            }
+        }
+    }
+
+}
+
+
+/*Lille pc - M*/
+@media screen and(min-width: 1200px) {
+    
+
+}
+
+/*Stor pc - L*/
+@media screen and(min-width: 1600px) {
+    
+}
+
+

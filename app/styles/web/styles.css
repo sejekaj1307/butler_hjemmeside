@@ -9,213 +9,89 @@
 /*----------------------
       Page content
 ----------------------*/
-/*----------------------------------
-        Harmonica lists
-----------------------------------*/
-.harmonica_container .harmonica_headers, .harmonica_container .harmonica_headers {
-  border-bottom: 3px solid #5068CB;
-  padding: 5px 0;
-  font-weight: 600;
-  margin-top: 30px !important;
-  border: 1px solid #5068CB;
-}
-
-.harmonica_container .harmonica_headers .harmonica_name_header, .harmonica_container .harmonica_headers .harmonica_element_headers, .harmonica_container .harmonica_headers .harmonica_name_header, .harmonica_container .harmonica_headers .harmonica_element_headers {
-  font-size: 20px;
-  padding: 10px 15px;
-}
-
-.harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_all_headers {
-  display: none;
-}
-
-.harmonica_container .harmonica_data_row .harmonica_information, .harmonica_container .harmonica_data_row .harmonica_information, .harmonica_container .harmonica_data_row .harmonica_information, .harmonica_container .harmonica_data_row .harmonica_information {
-  background-color: #EEF2FD;
-  border: 1px solid #AEBFF6;
-  border-bottom: 2px solid #AEBFF6;
-  padding: 10px 0 10px 15px;
-}
-
-.harmonica_container .harmonica_data_row_all_info, .harmonica_container .planned_service_data_row_all_info {
+.list_color_guide_container {
+  font-weight: 400;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  border: 1px solid #AEBFF6;
-  border-bottom: 2px solid #AEBFF6;
-  padding: 10px 0;
 }
 
-.harmonica_container .harmonica_data_row_all_info .harmonica_title, .harmonica_container .harmonica_data_row_all_info .harmonica_priority, .harmonica_container .harmonica_data_row_all_info .harmonica_status, .harmonica_container .harmonica_data_row_all_info .harmonica_last_service, .harmonica_container .harmonica_data_row_all_info .harmonica_deadline, .harmonica_container .harmonica_data_row_all_info .harmonica_updated_initials, .harmonica_container .harmonica_data_row_all_info .harmonica_comment,
-.harmonica_container .harmonica_data_row_all_info .harmonica_element, .harmonica_container .harmonica_data_row_all_info .harmonica_all, .harmonica_container .harmonica_data_row_all_info .harmonica_quantity, .harmonica_container .harmonica_data_row_all_info .harmonica_status, .harmonica_container .harmonica_data_row_all_info .harmonica_created_by, .harmonica_container .harmonica_data_row_all_info .harmonica_updated_by, .harmonica_container .harmonica_data_row_all_info .harmonica_comment, .harmonica_container .planned_service_data_row_all_info .harmonica_title, .harmonica_container .planned_service_data_row_all_info .harmonica_priority, .harmonica_container .planned_service_data_row_all_info .harmonica_status, .harmonica_container .planned_service_data_row_all_info .harmonica_last_service, .harmonica_container .planned_service_data_row_all_info .harmonica_deadline, .harmonica_container .planned_service_data_row_all_info .harmonica_updated_initials, .harmonica_container .planned_service_data_row_all_info .harmonica_comment,
-.harmonica_container .planned_service_data_row_all_info .harmonica_element, .harmonica_container .planned_service_data_row_all_info .harmonica_all, .harmonica_container .planned_service_data_row_all_info .harmonica_quantity, .harmonica_container .planned_service_data_row_all_info .harmonica_status, .harmonica_container .planned_service_data_row_all_info .harmonica_created_by, .harmonica_container .planned_service_data_row_all_info .harmonica_updated_by, .harmonica_container .planned_service_data_row_all_info .harmonica_comment {
+.list_color_guide_container .list_color_guide_element {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 10px 0 10px 15px;
+  margin: 0 25px 0 0;
 }
 
-.harmonica_container .harmonica_data_row_all_info .dropdown_inline_headers, .harmonica_container .planned_service_data_row_all_info .dropdown_inline_headers {
-  font-weight: 600;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 35% !important;
+.list_color_guide_container .list_color_guide_element .color {
+  height: 5px;
+  width: 20px;
 }
 
-.harmonica_container .harmonica_data_row_all_info .harmonica_title, .harmonica_container .harmonica_data_row_all_info .harmonica_element, .harmonica_container .planned_service_data_row_all_info .harmonica_title, .harmonica_container .planned_service_data_row_all_info .harmonica_element {
-  font-size: 22px;
-  padding: 5px 5px 10px 10px;
+.list_color_guide_container .list_color_guide_element .red {
+  background-color: #FFA2A2;
 }
 
-.harmonica_container .button_container, .harmonica_container .button_container_header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  padding: 10px 20px;
+.list_color_guide_container .list_color_guide_element .orange {
+  background-color: #FFD391;
 }
 
-.harmonica_container .button_container button, .harmonica_container .button_container_header button {
-  margin-right: 25px;
-  background: none;
-  border: none;
+.list_color_guide_container .list_color_guide_element .yellow {
+  background-color: #fff06b;
 }
 
-.harmonica_container .button_container button .edit_icons, .harmonica_container .button_container_header button .edit_icons {
-  width: 15px;
-  cursor: pointer;
+.list_color_guide_container .list_color_guide_element .green {
+  background-color: #BBFFB9;
+}
+
+.list_color_guide_container .list_color_guide_element .color_description {
+  padding: 3px 7px;
+  font-size: 13px;
 }
 
 /*Tablet - S */
-/*Lille pc - M*/
-@media screen and (min-width: 1200px) {
-  /*----------------------------------
-        Harmonica lists 1200
-    ----------------------------------*/
-  .harmonica_container .harmonica_headers, .harmonica_container .harmonica_headers {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    padding: 15px 0;
+@media screen and (min-width: 900px) {
+  .list_color_guide_container {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
   }
-  .harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_name_header, .harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_element_headers, .harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_name_header, .harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_element_headers {
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
-    display: flex !important;
-    font-size: 17px !important;
+  .list_color_guide_container :last-child {
+    margin-right: 0;
   }
-  .harmonica_container .harmonica_name_header, .harmonica_container .harmonica_element_headers {
-    padding: 0 !important;
-    border-left: 5px solid #fff;
-  }
-  .harmonica_container .harmonica_title, .harmonica_container .harmonica_element, .harmonica_container .harmonica_name_header, .harmonica_container .harmonica_element_headers {
-    font-size: 17px;
-    padding: 0;
-    width: 14.5vw !important;
-    padding-left: 10px !important;
-  }
-  .harmonica_container .harmonica_priority_header, .harmonica_container .harmonica_priority, .harmonica_container .harmonica_updated_initials_header, .harmonica_container .harmonica_updated_initials {
-    width: 6vw;
-  }
-  .harmonica_container .harmonica_status_header, .harmonica_container .harmonica_status {
-    width: 7.5vw;
-  }
-  .harmonica_container .harmonica_last_service_header, .harmonica_container .harmonica_deadline_header, .harmonica_container .harmonica_last_service, .harmonica_container .harmonica_deadline {
-    width: 8vw;
-  }
-  .harmonica_container .harmonica_comment_header, .harmonica_container .harmonica_comment {
-    width: 14vw;
-  }
-  .harmonica_container .harmonica_data_row_all_info, .harmonica_container .planned_service_data_row_all_info {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-  }
-  .harmonica_container .harmonica_data_row_all_info .data_row_info, .harmonica_container .planned_service_data_row_all_info .data_row_info {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-  .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_title, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_priority, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_status, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_last_service, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_deadline, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_updated_initials, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_comment,
-  .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_element, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_quantity, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_status, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_created_by, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_updated_by, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_comment, .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_title, .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_priority, .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_status, .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_last_service, .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_deadline, .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_updated_initials, .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_comment,
-  .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_element, .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_quantity, .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_status, .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_created_by, .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_updated_by, .harmonica_container .planned_service_data_row_all_info .data_row_info .harmonica_comment {
-    font-size: 16px;
-    padding: 0;
-  }
-  .harmonica_container .harmonica_data_row_all_info .dropdown_inline_headers, .harmonica_container .planned_service_data_row_all_info .dropdown_inline_headers {
-    display: none;
-  }
-  .harmonica_container .harmonica_all_headers, .harmonica_container .harmonica_all {
-    padding: 0;
-  }
-  .harmonica_container .harmonica_quantity_header, .harmonica_container .harmonica_quantity, .harmonica_container .harmonica_status_header, .harmonica_container .harmonica_status, .harmonica_container .harmonica_updated_by_header, .harmonica_container .harmonica_updated_by {
-    width: 11vw;
-  }
-  .harmonica_container .tasks_service_harmonica_status_header, .harmonica_container .tasks_service_harmonica_status, .harmonica_container .tasks_service_harmonica_last_service_header, .harmonica_container .tasks_service_harmonica_last_service, .harmonica_container .tasks_service_harmonica_deadline_header, .harmonica_container .tasks_service_harmonica_deadline {
-    width: 8vw;
-  }
-  .harmonica_container .tasks_service_harmonica_comment, .harmonica_container .tasks_service_harmonica_comment_header {
-    width: 14vw;
-  }
-  .harmonica_container .harmonica_created_by_header, .harmonica_container .harmonica_created_by {
-    width: 10vw;
-  }
-  .harmonica_container .harmonica_comment_header, .harmonica_container .harmonica_comment {
-    width: 18vw !important;
-  }
-  .harmonica_container .button_container, .harmonica_container .button_container_header {
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    padding: 0;
-    width: 5vw !important;
-    padding-right: 10px;
-  }
-  .harmonica_container .button_container button, .harmonica_container .button_container_header button {
-    margin: 0;
+  .list_color_guide_container .list_color_guide_element .color {
+    height: 5px;
+    width: 25px;
   }
 }
 
+/*Lille pc - M*/
 /*Stor pc - L*/
-@media screen and (min-width: 1600px) {
-  /*----------------------------------
-        Harmonica lists 1600
-    ----------------------------------*/
-  .harmonica_contiainer .harmonica_name_header {
-    width: 14.5vw;
-  }
-  .harmonica_contiainer .harmonica_title {
-    width: 14.5vw;
-  }
-  .harmonica_contiainer .harmonica_comment_header, .harmonica_contiainer .harmonica_comment {
-    width: 16vw;
-  }
-  .harmonica_contiainer .harmonica_comment_header, .harmonica_contiainer .harmonica_comment {
-    width: 18.5vw !important;
-  }
-  .tasks_service_harmonica_comment, .tasks_service_harmonica_comment_header {
-    width: 16.2vw !important;
-  }
+.pop_up_modal_container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.322);
+  top: 0;
+  left: 0;
 }
 
 .pop_up_modal {
-  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   padding: 30px 0;
   width: 27vw;
   min-width: 400px;
-  top: 20vh;
-  left: 40vw;
-  z-index: 99;
+  margin-top: 20vh;
+  margin-left: 40vw;
   background-color: #fff;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -301,6 +177,296 @@
 }
 
 /*Stor pc - L*/
+.video_guides_container {
+  margin-bottom: 50px;
+}
+
+.video_guides_container .iframe_container_parent {
+  width: 100%;
+}
+
+.video_guides_container .iframe_container_parent .iframe_container {
+  position: relative;
+  /*Lets us use absolute positioning for the iframe.*/
+  width: 100%;
+  padding-bottom: 56.25%;
+  /*The 16:9 aspect ratio corresponds to a height that is 56.25% of the width.*/
+}
+
+.video_guides_container .iframe_container_parent .iframe_container .video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video_guides_container .video_text {
+  padding-bottom: 15px;
+}
+
+.video_guides_container .video_text p {
+  padding: 10px 0;
+}
+
+/*Tablet - S */
+@media screen and (min-width: 900px) {
+  .video_guides_container {
+    padding: 0 0 0 50px;
+  }
+  .video_guides_container .iframe_container_parent {
+    width: 90%;
+  }
+  .video_guides_container .video_text {
+    width: 90%;
+  }
+}
+
+/*Lille pc - M*/
+@media screen and (min-width: 1200px) {
+  .video_guides_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    padding: 50px 0;
+  }
+  .video_guides_container .iframe_container_parent {
+    width: 50%;
+  }
+  .video_guides_container .iframe_container_parent .iframe_container {
+    position: relative;
+    /*Lets us use absolute positioning for the iframe.*/
+    width: 100%;
+    padding-bottom: 56.25%;
+    /*The 16:9 aspect ratio corresponds to a height that is 56.25% of the width.*/
+  }
+  .video_guides_container .iframe_container_parent .iframe_container .video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .video_guides_container .video_text {
+    width: 46%;
+    max-width: 550px;
+  }
+}
+
+/*Stor pc - L*/
+@media screen and (min-width: 1600px) {
+  .video_guides_container {
+    padding-right: 15%;
+  }
+  .video_guides_container .iframe_container_parent {
+    width: 50%;
+  }
+  .video_guides_container .video_text {
+    width: 45%;
+    max-width: 500px;
+  }
+}
+
+/*----------------------------------
+        Harmonica lists
+----------------------------------*/
+.harmonica_container .harmonica_headers {
+  border-bottom: 3px solid #5068CB;
+  padding: 5px 0;
+  font-weight: 600;
+  margin-top: 30px !important;
+  border: 1px solid #AEBFF6;
+  border-bottom: 2px solid #5068CB;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.harmonica_container .harmonica_headers .harmonica_name_header, .harmonica_container .harmonica_headers .harmonica_element_headers {
+  font-size: 20px;
+  padding: 10px 15px;
+}
+
+.harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_all_headers {
+  display: none;
+}
+
+.harmonica_container .harmonica_data_row .harmonica_information, .harmonica_container .harmonica_data_row .harmonica_information, .harmonica_container .harmonica_data_row .harmonica_information, .harmonica_container .harmonica_data_row .harmonica_information {
+  background-color: #EEF2FD;
+  border: 1px solid #AEBFF6;
+  border-bottom: 2px solid #AEBFF6;
+  padding: 10px 0 10px 15px;
+  cursor: pointer;
+}
+
+.harmonica_container .harmonica_data_row_all_info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: none;
+  border: 1px solid #AEBFF6;
+  border-bottom: 2px solid #AEBFF6;
+  padding: 10px 0;
+}
+
+.harmonica_container .harmonica_data_row_all_info .harmonica_title, .harmonica_container .harmonica_data_row_all_info .harmonica_priority, .harmonica_container .harmonica_data_row_all_info .harmonica_status, .harmonica_container .harmonica_data_row_all_info .harmonica_last_service, .harmonica_container .harmonica_data_row_all_info .harmonica_deadline, .harmonica_container .harmonica_data_row_all_info .harmonica_updated_initials, .harmonica_container .harmonica_data_row_all_info .harmonica_comment,
+.harmonica_container .harmonica_data_row_all_info .harmonica_element, .harmonica_container .harmonica_data_row_all_info .harmonica_all, .harmonica_container .harmonica_data_row_all_info .harmonica_quantity, .harmonica_container .harmonica_data_row_all_info .tasks_service_harmonica_status, .harmonica_container .harmonica_data_row_all_info .tasks_service_harmonica_last_service, .harmonica_container .harmonica_data_row_all_info .tasks_service_harmonica_deadline, .harmonica_container .harmonica_data_row_all_info .tasks_service_harmonica_comment,
+.harmonica_container .harmonica_data_row_all_info .tasks_service_updated_initials_header, .harmonica_container .harmonica_data_row_all_info .tasks_service_updated_initials, .harmonica_container .harmonica_data_row_all_info .tasks_service_harmonica_priority, .harmonica_container .harmonica_data_row_all_info .tasks_service_harmonica_priority_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0 10px 15px;
+}
+
+.harmonica_container .harmonica_data_row_all_info .dropdown_inline_headers {
+  font-weight: 600;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 35% !important;
+}
+
+.harmonica_container .harmonica_data_row_all_info .harmonica_title, .harmonica_container .harmonica_data_row_all_info .harmonica_element {
+  font-size: 22px;
+  padding: 5px 5px 10px 10px;
+}
+
+.harmonica_container .button_container, .harmonica_container .button_container_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 10px 20px;
+}
+
+.harmonica_container .button_container button, .harmonica_container .button_container_header button {
+  margin-right: 25px;
+  background: none;
+  border: none;
+}
+
+.harmonica_container .button_container button .edit_icons, .harmonica_container .button_container_header button .edit_icons {
+  width: 15px;
+  cursor: pointer;
+}
+
+/*Tablet - S */
+/*Lille pc - M*/
+@media screen and (min-width: 1200px) {
+  .dropdown_inline_headers {
+    display: none !important;
+  }
+  /*----------------------------------
+        Harmonica lists 1200
+    ----------------------------------*/
+  .harmonica_container .harmonica_headers {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 20px 0;
+  }
+  .harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_all {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    font-size: 17px !important;
+    padding: 0;
+  }
+  .harmonica_container .harmonica_name_header, .harmonica_container .harmonica_element_headers {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    font-size: 17px !important;
+    padding: 0 0 0 10px !important;
+    border-left: 5px solid #fff;
+    width: 14.5vw !important;
+  }
+  .harmonica_container .harmonica_title, .harmonica_container .harmonica_element {
+    padding: 0;
+    width: 14.5vw !important;
+    padding-left: 10px !important;
+  }
+  .harmonica_container .harmonica_data_row_all_info {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .harmonica_container .harmonica_data_row_all_info .data_row_info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_title, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_priority, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_status, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_last_service, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_deadline, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_updated_initials, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_comment,
+  .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_element, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_quantity, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_status, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_created_by, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_updated_by, .harmonica_container .harmonica_data_row_all_info .data_row_info .harmonica_comment {
+    font-size: 16px;
+    padding: 0;
+  }
+  .harmonica_container .harmonica_priority_header, .harmonica_container .harmonica_priority, .harmonica_container .harmonica_updated_initials_header, .harmonica_container .harmonica_updated_initials,
+  .harmonica_container .harmonica_status_header, .harmonica_container .harmonica_status, .harmonica_container .harmonica_quantity_header, .harmonica_container .harmonica_quantity {
+    width: 10.8vw !important;
+  }
+  .harmonica_container .tasks_service_harmonica_status_header, .harmonica_container .tasks_service_harmonica_status, .harmonica_container .tasks_service_harmonica_deadline_header, .harmonica_container .tasks_service_harmonica_deadline,
+  .harmonica_container .tasks_service_harmonica_priority, .harmonica_container .tasks_service_harmonica_priority_header, .harmonica_container .tasks_service_harmonica_last_service_header, .harmonica_container .tasks_service_harmonica_last_service {
+    width: 7.6vw;
+    padding: 0 !important;
+  }
+  .harmonica_container .tasks_service_harmonica_comment, .harmonica_container .tasks_service_harmonica_comment_header {
+    width: 14vw;
+    padding: 0 !important;
+  }
+  .harmonica_container .tasks_service_updated_initials_header, .harmonica_container .tasks_service_updated_initials {
+    width: 6vw;
+  }
+  .harmonica_container .harmonica_comment_header, .harmonica_container .harmonica_comment {
+    width: 18vw !important;
+  }
+  .harmonica_container .button_container, .harmonica_container .button_container_header {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 0;
+    width: 5vw !important;
+    padding-right: 10px;
+  }
+  .harmonica_container .button_container button, .harmonica_container .button_container_header button {
+    margin: 0;
+  }
+}
+
+/*Stor pc - L*/
+@media screen and (min-width: 1600px) {
+  /*----------------------------------
+        Harmonica lists 1600
+    ----------------------------------*/
+  .harmonica_contiainer .harmonica_name_header, .harmonica_contiainer .harmonica_title {
+    width: 14.5vw;
+  }
+  .harmonica_contiainer .harmonica_comment_header, .harmonica_contiainer .harmonica_comment {
+    width: 18.5vw;
+  }
+  .tasks_service_harmonica_comment, .tasks_service_harmonica_comment_header {
+    width: 14.5vw !important;
+  }
+}
+
 /*---------------------------------
     Time registration navbar
 ---------------------------------*/
@@ -344,7 +510,7 @@
 }
 
 /*-------------------------------
-        Employee lists
+            Lists
 -------------------------------*/
 .employee_list, .external_list, .machine_list, .case_list, .task_list {
   -webkit-box-orient: vertical;
@@ -362,7 +528,10 @@
   padding: 5px 0;
   font-weight: 600;
   margin-top: 30px !important;
-  border: 1px solid #5068CB;
+  border: 1px solid #AEBFF6;
+  border-bottom: 2px solid #5068CB;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .employee_list .employee_list_header .employee_mobile_headers, .employee_list .employee_list_header .case_mobile_headers, .employee_list .machine_list_header .employee_mobile_headers, .employee_list .machine_list_header .case_mobile_headers, .employee_list .external_list_header .employee_mobile_headers, .employee_list .external_list_header .case_mobile_headers, .employee_list .case_list_header .employee_mobile_headers, .employee_list .case_list_header .case_mobile_headers, .employee_list .task_list_header .employee_mobile_headers, .employee_list .task_list_header .case_mobile_headers, .external_list .employee_list_header .employee_mobile_headers, .external_list .employee_list_header .case_mobile_headers, .external_list .machine_list_header .employee_mobile_headers, .external_list .machine_list_header .case_mobile_headers, .external_list .external_list_header .employee_mobile_headers, .external_list .external_list_header .case_mobile_headers, .external_list .case_list_header .employee_mobile_headers, .external_list .case_list_header .case_mobile_headers, .external_list .task_list_header .employee_mobile_headers, .external_list .task_list_header .case_mobile_headers, .machine_list .employee_list_header .employee_mobile_headers, .machine_list .employee_list_header .case_mobile_headers, .machine_list .machine_list_header .employee_mobile_headers, .machine_list .machine_list_header .case_mobile_headers, .machine_list .external_list_header .employee_mobile_headers, .machine_list .external_list_header .case_mobile_headers, .machine_list .case_list_header .employee_mobile_headers, .machine_list .case_list_header .case_mobile_headers, .machine_list .task_list_header .employee_mobile_headers, .machine_list .task_list_header .case_mobile_headers, .case_list .employee_list_header .employee_mobile_headers, .case_list .employee_list_header .case_mobile_headers, .case_list .machine_list_header .employee_mobile_headers, .case_list .machine_list_header .case_mobile_headers, .case_list .external_list_header .employee_mobile_headers, .case_list .external_list_header .case_mobile_headers, .case_list .case_list_header .employee_mobile_headers, .case_list .case_list_header .case_mobile_headers, .case_list .task_list_header .employee_mobile_headers, .case_list .task_list_header .case_mobile_headers, .task_list .employee_list_header .employee_mobile_headers, .task_list .employee_list_header .case_mobile_headers, .task_list .machine_list_header .employee_mobile_headers, .task_list .machine_list_header .case_mobile_headers, .task_list .external_list_header .employee_mobile_headers, .task_list .external_list_header .case_mobile_headers, .task_list .case_list_header .employee_mobile_headers, .task_list .case_list_header .case_mobile_headers, .task_list .task_list_header .employee_mobile_headers, .task_list .task_list_header .case_mobile_headers {
@@ -395,12 +564,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border-bottom: 2px solid #AEBFF6;
+  border-bottom: 1.5px solid #AEBFF6;
+  border-top: 1.5px solid #AEBFF6;
   cursor: pointer;
-}
-
-.employee_list .employee_data_row .mobile_employee_information .employee_name, .employee_list .employee_data_row .mobile_employee_information .external_name, .employee_list .employee_data_row .mobile_employee_information .machine_name, .employee_list .employee_data_row .mobile_external_information .employee_name, .employee_list .employee_data_row .mobile_external_information .external_name, .employee_list .employee_data_row .mobile_external_information .machine_name, .employee_list .employee_data_row .machine_information .employee_name, .employee_list .employee_data_row .machine_information .external_name, .employee_list .employee_data_row .machine_information .machine_name, .employee_list .employee_data_row .case_information .employee_name, .employee_list .employee_data_row .case_information .external_name, .employee_list .employee_data_row .case_information .machine_name, .employee_list .employee_data_row .task_information .employee_name, .employee_list .employee_data_row .task_information .external_name, .employee_list .employee_data_row .task_information .machine_name, .employee_list .external_data_row .mobile_employee_information .employee_name, .employee_list .external_data_row .mobile_employee_information .external_name, .employee_list .external_data_row .mobile_employee_information .machine_name, .employee_list .external_data_row .mobile_external_information .employee_name, .employee_list .external_data_row .mobile_external_information .external_name, .employee_list .external_data_row .mobile_external_information .machine_name, .employee_list .external_data_row .machine_information .employee_name, .employee_list .external_data_row .machine_information .external_name, .employee_list .external_data_row .machine_information .machine_name, .employee_list .external_data_row .case_information .employee_name, .employee_list .external_data_row .case_information .external_name, .employee_list .external_data_row .case_information .machine_name, .employee_list .external_data_row .task_information .employee_name, .employee_list .external_data_row .task_information .external_name, .employee_list .external_data_row .task_information .machine_name, .employee_list .machine_data_row .mobile_employee_information .employee_name, .employee_list .machine_data_row .mobile_employee_information .external_name, .employee_list .machine_data_row .mobile_employee_information .machine_name, .employee_list .machine_data_row .mobile_external_information .employee_name, .employee_list .machine_data_row .mobile_external_information .external_name, .employee_list .machine_data_row .mobile_external_information .machine_name, .employee_list .machine_data_row .machine_information .employee_name, .employee_list .machine_data_row .machine_information .external_name, .employee_list .machine_data_row .machine_information .machine_name, .employee_list .machine_data_row .case_information .employee_name, .employee_list .machine_data_row .case_information .external_name, .employee_list .machine_data_row .case_information .machine_name, .employee_list .machine_data_row .task_information .employee_name, .employee_list .machine_data_row .task_information .external_name, .employee_list .machine_data_row .task_information .machine_name, .employee_list .case_data_row .mobile_employee_information .employee_name, .employee_list .case_data_row .mobile_employee_information .external_name, .employee_list .case_data_row .mobile_employee_information .machine_name, .employee_list .case_data_row .mobile_external_information .employee_name, .employee_list .case_data_row .mobile_external_information .external_name, .employee_list .case_data_row .mobile_external_information .machine_name, .employee_list .case_data_row .machine_information .employee_name, .employee_list .case_data_row .machine_information .external_name, .employee_list .case_data_row .machine_information .machine_name, .employee_list .case_data_row .case_information .employee_name, .employee_list .case_data_row .case_information .external_name, .employee_list .case_data_row .case_information .machine_name, .employee_list .case_data_row .task_information .employee_name, .employee_list .case_data_row .task_information .external_name, .employee_list .case_data_row .task_information .machine_name, .employee_list .task_data_row .mobile_employee_information .employee_name, .employee_list .task_data_row .mobile_employee_information .external_name, .employee_list .task_data_row .mobile_employee_information .machine_name, .employee_list .task_data_row .mobile_external_information .employee_name, .employee_list .task_data_row .mobile_external_information .external_name, .employee_list .task_data_row .mobile_external_information .machine_name, .employee_list .task_data_row .machine_information .employee_name, .employee_list .task_data_row .machine_information .external_name, .employee_list .task_data_row .machine_information .machine_name, .employee_list .task_data_row .case_information .employee_name, .employee_list .task_data_row .case_information .external_name, .employee_list .task_data_row .case_information .machine_name, .employee_list .task_data_row .task_information .employee_name, .employee_list .task_data_row .task_information .external_name, .employee_list .task_data_row .task_information .machine_name, .external_list .employee_data_row .mobile_employee_information .employee_name, .external_list .employee_data_row .mobile_employee_information .external_name, .external_list .employee_data_row .mobile_employee_information .machine_name, .external_list .employee_data_row .mobile_external_information .employee_name, .external_list .employee_data_row .mobile_external_information .external_name, .external_list .employee_data_row .mobile_external_information .machine_name, .external_list .employee_data_row .machine_information .employee_name, .external_list .employee_data_row .machine_information .external_name, .external_list .employee_data_row .machine_information .machine_name, .external_list .employee_data_row .case_information .employee_name, .external_list .employee_data_row .case_information .external_name, .external_list .employee_data_row .case_information .machine_name, .external_list .employee_data_row .task_information .employee_name, .external_list .employee_data_row .task_information .external_name, .external_list .employee_data_row .task_information .machine_name, .external_list .external_data_row .mobile_employee_information .employee_name, .external_list .external_data_row .mobile_employee_information .external_name, .external_list .external_data_row .mobile_employee_information .machine_name, .external_list .external_data_row .mobile_external_information .employee_name, .external_list .external_data_row .mobile_external_information .external_name, .external_list .external_data_row .mobile_external_information .machine_name, .external_list .external_data_row .machine_information .employee_name, .external_list .external_data_row .machine_information .external_name, .external_list .external_data_row .machine_information .machine_name, .external_list .external_data_row .case_information .employee_name, .external_list .external_data_row .case_information .external_name, .external_list .external_data_row .case_information .machine_name, .external_list .external_data_row .task_information .employee_name, .external_list .external_data_row .task_information .external_name, .external_list .external_data_row .task_information .machine_name, .external_list .machine_data_row .mobile_employee_information .employee_name, .external_list .machine_data_row .mobile_employee_information .external_name, .external_list .machine_data_row .mobile_employee_information .machine_name, .external_list .machine_data_row .mobile_external_information .employee_name, .external_list .machine_data_row .mobile_external_information .external_name, .external_list .machine_data_row .mobile_external_information .machine_name, .external_list .machine_data_row .machine_information .employee_name, .external_list .machine_data_row .machine_information .external_name, .external_list .machine_data_row .machine_information .machine_name, .external_list .machine_data_row .case_information .employee_name, .external_list .machine_data_row .case_information .external_name, .external_list .machine_data_row .case_information .machine_name, .external_list .machine_data_row .task_information .employee_name, .external_list .machine_data_row .task_information .external_name, .external_list .machine_data_row .task_information .machine_name, .external_list .case_data_row .mobile_employee_information .employee_name, .external_list .case_data_row .mobile_employee_information .external_name, .external_list .case_data_row .mobile_employee_information .machine_name, .external_list .case_data_row .mobile_external_information .employee_name, .external_list .case_data_row .mobile_external_information .external_name, .external_list .case_data_row .mobile_external_information .machine_name, .external_list .case_data_row .machine_information .employee_name, .external_list .case_data_row .machine_information .external_name, .external_list .case_data_row .machine_information .machine_name, .external_list .case_data_row .case_information .employee_name, .external_list .case_data_row .case_information .external_name, .external_list .case_data_row .case_information .machine_name, .external_list .case_data_row .task_information .employee_name, .external_list .case_data_row .task_information .external_name, .external_list .case_data_row .task_information .machine_name, .external_list .task_data_row .mobile_employee_information .employee_name, .external_list .task_data_row .mobile_employee_information .external_name, .external_list .task_data_row .mobile_employee_information .machine_name, .external_list .task_data_row .mobile_external_information .employee_name, .external_list .task_data_row .mobile_external_information .external_name, .external_list .task_data_row .mobile_external_information .machine_name, .external_list .task_data_row .machine_information .employee_name, .external_list .task_data_row .machine_information .external_name, .external_list .task_data_row .machine_information .machine_name, .external_list .task_data_row .case_information .employee_name, .external_list .task_data_row .case_information .external_name, .external_list .task_data_row .case_information .machine_name, .external_list .task_data_row .task_information .employee_name, .external_list .task_data_row .task_information .external_name, .external_list .task_data_row .task_information .machine_name, .machine_list .employee_data_row .mobile_employee_information .employee_name, .machine_list .employee_data_row .mobile_employee_information .external_name, .machine_list .employee_data_row .mobile_employee_information .machine_name, .machine_list .employee_data_row .mobile_external_information .employee_name, .machine_list .employee_data_row .mobile_external_information .external_name, .machine_list .employee_data_row .mobile_external_information .machine_name, .machine_list .employee_data_row .machine_information .employee_name, .machine_list .employee_data_row .machine_information .external_name, .machine_list .employee_data_row .machine_information .machine_name, .machine_list .employee_data_row .case_information .employee_name, .machine_list .employee_data_row .case_information .external_name, .machine_list .employee_data_row .case_information .machine_name, .machine_list .employee_data_row .task_information .employee_name, .machine_list .employee_data_row .task_information .external_name, .machine_list .employee_data_row .task_information .machine_name, .machine_list .external_data_row .mobile_employee_information .employee_name, .machine_list .external_data_row .mobile_employee_information .external_name, .machine_list .external_data_row .mobile_employee_information .machine_name, .machine_list .external_data_row .mobile_external_information .employee_name, .machine_list .external_data_row .mobile_external_information .external_name, .machine_list .external_data_row .mobile_external_information .machine_name, .machine_list .external_data_row .machine_information .employee_name, .machine_list .external_data_row .machine_information .external_name, .machine_list .external_data_row .machine_information .machine_name, .machine_list .external_data_row .case_information .employee_name, .machine_list .external_data_row .case_information .external_name, .machine_list .external_data_row .case_information .machine_name, .machine_list .external_data_row .task_information .employee_name, .machine_list .external_data_row .task_information .external_name, .machine_list .external_data_row .task_information .machine_name, .machine_list .machine_data_row .mobile_employee_information .employee_name, .machine_list .machine_data_row .mobile_employee_information .external_name, .machine_list .machine_data_row .mobile_employee_information .machine_name, .machine_list .machine_data_row .mobile_external_information .employee_name, .machine_list .machine_data_row .mobile_external_information .external_name, .machine_list .machine_data_row .mobile_external_information .machine_name, .machine_list .machine_data_row .machine_information .employee_name, .machine_list .machine_data_row .machine_information .external_name, .machine_list .machine_data_row .machine_information .machine_name, .machine_list .machine_data_row .case_information .employee_name, .machine_list .machine_data_row .case_information .external_name, .machine_list .machine_data_row .case_information .machine_name, .machine_list .machine_data_row .task_information .employee_name, .machine_list .machine_data_row .task_information .external_name, .machine_list .machine_data_row .task_information .machine_name, .machine_list .case_data_row .mobile_employee_information .employee_name, .machine_list .case_data_row .mobile_employee_information .external_name, .machine_list .case_data_row .mobile_employee_information .machine_name, .machine_list .case_data_row .mobile_external_information .employee_name, .machine_list .case_data_row .mobile_external_information .external_name, .machine_list .case_data_row .mobile_external_information .machine_name, .machine_list .case_data_row .machine_information .employee_name, .machine_list .case_data_row .machine_information .external_name, .machine_list .case_data_row .machine_information .machine_name, .machine_list .case_data_row .case_information .employee_name, .machine_list .case_data_row .case_information .external_name, .machine_list .case_data_row .case_information .machine_name, .machine_list .case_data_row .task_information .employee_name, .machine_list .case_data_row .task_information .external_name, .machine_list .case_data_row .task_information .machine_name, .machine_list .task_data_row .mobile_employee_information .employee_name, .machine_list .task_data_row .mobile_employee_information .external_name, .machine_list .task_data_row .mobile_employee_information .machine_name, .machine_list .task_data_row .mobile_external_information .employee_name, .machine_list .task_data_row .mobile_external_information .external_name, .machine_list .task_data_row .mobile_external_information .machine_name, .machine_list .task_data_row .machine_information .employee_name, .machine_list .task_data_row .machine_information .external_name, .machine_list .task_data_row .machine_information .machine_name, .machine_list .task_data_row .case_information .employee_name, .machine_list .task_data_row .case_information .external_name, .machine_list .task_data_row .case_information .machine_name, .machine_list .task_data_row .task_information .employee_name, .machine_list .task_data_row .task_information .external_name, .machine_list .task_data_row .task_information .machine_name, .case_list .employee_data_row .mobile_employee_information .employee_name, .case_list .employee_data_row .mobile_employee_information .external_name, .case_list .employee_data_row .mobile_employee_information .machine_name, .case_list .employee_data_row .mobile_external_information .employee_name, .case_list .employee_data_row .mobile_external_information .external_name, .case_list .employee_data_row .mobile_external_information .machine_name, .case_list .employee_data_row .machine_information .employee_name, .case_list .employee_data_row .machine_information .external_name, .case_list .employee_data_row .machine_information .machine_name, .case_list .employee_data_row .case_information .employee_name, .case_list .employee_data_row .case_information .external_name, .case_list .employee_data_row .case_information .machine_name, .case_list .employee_data_row .task_information .employee_name, .case_list .employee_data_row .task_information .external_name, .case_list .employee_data_row .task_information .machine_name, .case_list .external_data_row .mobile_employee_information .employee_name, .case_list .external_data_row .mobile_employee_information .external_name, .case_list .external_data_row .mobile_employee_information .machine_name, .case_list .external_data_row .mobile_external_information .employee_name, .case_list .external_data_row .mobile_external_information .external_name, .case_list .external_data_row .mobile_external_information .machine_name, .case_list .external_data_row .machine_information .employee_name, .case_list .external_data_row .machine_information .external_name, .case_list .external_data_row .machine_information .machine_name, .case_list .external_data_row .case_information .employee_name, .case_list .external_data_row .case_information .external_name, .case_list .external_data_row .case_information .machine_name, .case_list .external_data_row .task_information .employee_name, .case_list .external_data_row .task_information .external_name, .case_list .external_data_row .task_information .machine_name, .case_list .machine_data_row .mobile_employee_information .employee_name, .case_list .machine_data_row .mobile_employee_information .external_name, .case_list .machine_data_row .mobile_employee_information .machine_name, .case_list .machine_data_row .mobile_external_information .employee_name, .case_list .machine_data_row .mobile_external_information .external_name, .case_list .machine_data_row .mobile_external_information .machine_name, .case_list .machine_data_row .machine_information .employee_name, .case_list .machine_data_row .machine_information .external_name, .case_list .machine_data_row .machine_information .machine_name, .case_list .machine_data_row .case_information .employee_name, .case_list .machine_data_row .case_information .external_name, .case_list .machine_data_row .case_information .machine_name, .case_list .machine_data_row .task_information .employee_name, .case_list .machine_data_row .task_information .external_name, .case_list .machine_data_row .task_information .machine_name, .case_list .case_data_row .mobile_employee_information .employee_name, .case_list .case_data_row .mobile_employee_information .external_name, .case_list .case_data_row .mobile_employee_information .machine_name, .case_list .case_data_row .mobile_external_information .employee_name, .case_list .case_data_row .mobile_external_information .external_name, .case_list .case_data_row .mobile_external_information .machine_name, .case_list .case_data_row .machine_information .employee_name, .case_list .case_data_row .machine_information .external_name, .case_list .case_data_row .machine_information .machine_name, .case_list .case_data_row .case_information .employee_name, .case_list .case_data_row .case_information .external_name, .case_list .case_data_row .case_information .machine_name, .case_list .case_data_row .task_information .employee_name, .case_list .case_data_row .task_information .external_name, .case_list .case_data_row .task_information .machine_name, .case_list .task_data_row .mobile_employee_information .employee_name, .case_list .task_data_row .mobile_employee_information .external_name, .case_list .task_data_row .mobile_employee_information .machine_name, .case_list .task_data_row .mobile_external_information .employee_name, .case_list .task_data_row .mobile_external_information .external_name, .case_list .task_data_row .mobile_external_information .machine_name, .case_list .task_data_row .machine_information .employee_name, .case_list .task_data_row .machine_information .external_name, .case_list .task_data_row .machine_information .machine_name, .case_list .task_data_row .case_information .employee_name, .case_list .task_data_row .case_information .external_name, .case_list .task_data_row .case_information .machine_name, .case_list .task_data_row .task_information .employee_name, .case_list .task_data_row .task_information .external_name, .case_list .task_data_row .task_information .machine_name, .task_list .employee_data_row .mobile_employee_information .employee_name, .task_list .employee_data_row .mobile_employee_information .external_name, .task_list .employee_data_row .mobile_employee_information .machine_name, .task_list .employee_data_row .mobile_external_information .employee_name, .task_list .employee_data_row .mobile_external_information .external_name, .task_list .employee_data_row .mobile_external_information .machine_name, .task_list .employee_data_row .machine_information .employee_name, .task_list .employee_data_row .machine_information .external_name, .task_list .employee_data_row .machine_information .machine_name, .task_list .employee_data_row .case_information .employee_name, .task_list .employee_data_row .case_information .external_name, .task_list .employee_data_row .case_information .machine_name, .task_list .employee_data_row .task_information .employee_name, .task_list .employee_data_row .task_information .external_name, .task_list .employee_data_row .task_information .machine_name, .task_list .external_data_row .mobile_employee_information .employee_name, .task_list .external_data_row .mobile_employee_information .external_name, .task_list .external_data_row .mobile_employee_information .machine_name, .task_list .external_data_row .mobile_external_information .employee_name, .task_list .external_data_row .mobile_external_information .external_name, .task_list .external_data_row .mobile_external_information .machine_name, .task_list .external_data_row .machine_information .employee_name, .task_list .external_data_row .machine_information .external_name, .task_list .external_data_row .machine_information .machine_name, .task_list .external_data_row .case_information .employee_name, .task_list .external_data_row .case_information .external_name, .task_list .external_data_row .case_information .machine_name, .task_list .external_data_row .task_information .employee_name, .task_list .external_data_row .task_information .external_name, .task_list .external_data_row .task_information .machine_name, .task_list .machine_data_row .mobile_employee_information .employee_name, .task_list .machine_data_row .mobile_employee_information .external_name, .task_list .machine_data_row .mobile_employee_information .machine_name, .task_list .machine_data_row .mobile_external_information .employee_name, .task_list .machine_data_row .mobile_external_information .external_name, .task_list .machine_data_row .mobile_external_information .machine_name, .task_list .machine_data_row .machine_information .employee_name, .task_list .machine_data_row .machine_information .external_name, .task_list .machine_data_row .machine_information .machine_name, .task_list .machine_data_row .case_information .employee_name, .task_list .machine_data_row .case_information .external_name, .task_list .machine_data_row .case_information .machine_name, .task_list .machine_data_row .task_information .employee_name, .task_list .machine_data_row .task_information .external_name, .task_list .machine_data_row .task_information .machine_name, .task_list .case_data_row .mobile_employee_information .employee_name, .task_list .case_data_row .mobile_employee_information .external_name, .task_list .case_data_row .mobile_employee_information .machine_name, .task_list .case_data_row .mobile_external_information .employee_name, .task_list .case_data_row .mobile_external_information .external_name, .task_list .case_data_row .mobile_external_information .machine_name, .task_list .case_data_row .machine_information .employee_name, .task_list .case_data_row .machine_information .external_name, .task_list .case_data_row .machine_information .machine_name, .task_list .case_data_row .case_information .employee_name, .task_list .case_data_row .case_information .external_name, .task_list .case_data_row .case_information .machine_name, .task_list .case_data_row .task_information .employee_name, .task_list .case_data_row .task_information .external_name, .task_list .case_data_row .task_information .machine_name, .task_list .task_data_row .mobile_employee_information .employee_name, .task_list .task_data_row .mobile_employee_information .external_name, .task_list .task_data_row .mobile_employee_information .machine_name, .task_list .task_data_row .mobile_external_information .employee_name, .task_list .task_data_row .mobile_external_information .external_name, .task_list .task_data_row .mobile_external_information .machine_name, .task_list .task_data_row .machine_information .employee_name, .task_list .task_data_row .machine_information .external_name, .task_list .task_data_row .machine_information .machine_name, .task_list .task_data_row .case_information .employee_name, .task_list .task_data_row .case_information .external_name, .task_list .task_data_row .case_information .machine_name, .task_list .task_data_row .task_information .employee_name, .task_list .task_data_row .task_information .external_name, .task_list .task_data_row .task_information .machine_name {
-  width: 80%;
 }
 
 .employee_list .employee_data_row .employee_dropdown_mobile, .employee_list .employee_data_row .machine_dropdown_mobile, .employee_list .employee_data_row .external_dropdown_mobile, .employee_list .employee_data_row .case_dropdown_mobile, .employee_list .employee_data_row .task_dropdown_mobile, .employee_list .external_data_row .employee_dropdown_mobile, .employee_list .external_data_row .machine_dropdown_mobile, .employee_list .external_data_row .external_dropdown_mobile, .employee_list .external_data_row .case_dropdown_mobile, .employee_list .external_data_row .task_dropdown_mobile, .employee_list .machine_data_row .employee_dropdown_mobile, .employee_list .machine_data_row .machine_dropdown_mobile, .employee_list .machine_data_row .external_dropdown_mobile, .employee_list .machine_data_row .case_dropdown_mobile, .employee_list .machine_data_row .task_dropdown_mobile, .employee_list .case_data_row .employee_dropdown_mobile, .employee_list .case_data_row .machine_dropdown_mobile, .employee_list .case_data_row .external_dropdown_mobile, .employee_list .case_data_row .case_dropdown_mobile, .employee_list .case_data_row .task_dropdown_mobile, .employee_list .task_data_row .employee_dropdown_mobile, .employee_list .task_data_row .machine_dropdown_mobile, .employee_list .task_data_row .external_dropdown_mobile, .employee_list .task_data_row .case_dropdown_mobile, .employee_list .task_data_row .task_dropdown_mobile, .external_list .employee_data_row .employee_dropdown_mobile, .external_list .employee_data_row .machine_dropdown_mobile, .external_list .employee_data_row .external_dropdown_mobile, .external_list .employee_data_row .case_dropdown_mobile, .external_list .employee_data_row .task_dropdown_mobile, .external_list .external_data_row .employee_dropdown_mobile, .external_list .external_data_row .machine_dropdown_mobile, .external_list .external_data_row .external_dropdown_mobile, .external_list .external_data_row .case_dropdown_mobile, .external_list .external_data_row .task_dropdown_mobile, .external_list .machine_data_row .employee_dropdown_mobile, .external_list .machine_data_row .machine_dropdown_mobile, .external_list .machine_data_row .external_dropdown_mobile, .external_list .machine_data_row .case_dropdown_mobile, .external_list .machine_data_row .task_dropdown_mobile, .external_list .case_data_row .employee_dropdown_mobile, .external_list .case_data_row .machine_dropdown_mobile, .external_list .case_data_row .external_dropdown_mobile, .external_list .case_data_row .case_dropdown_mobile, .external_list .case_data_row .task_dropdown_mobile, .external_list .task_data_row .employee_dropdown_mobile, .external_list .task_data_row .machine_dropdown_mobile, .external_list .task_data_row .external_dropdown_mobile, .external_list .task_data_row .case_dropdown_mobile, .external_list .task_data_row .task_dropdown_mobile, .machine_list .employee_data_row .employee_dropdown_mobile, .machine_list .employee_data_row .machine_dropdown_mobile, .machine_list .employee_data_row .external_dropdown_mobile, .machine_list .employee_data_row .case_dropdown_mobile, .machine_list .employee_data_row .task_dropdown_mobile, .machine_list .external_data_row .employee_dropdown_mobile, .machine_list .external_data_row .machine_dropdown_mobile, .machine_list .external_data_row .external_dropdown_mobile, .machine_list .external_data_row .case_dropdown_mobile, .machine_list .external_data_row .task_dropdown_mobile, .machine_list .machine_data_row .employee_dropdown_mobile, .machine_list .machine_data_row .machine_dropdown_mobile, .machine_list .machine_data_row .external_dropdown_mobile, .machine_list .machine_data_row .case_dropdown_mobile, .machine_list .machine_data_row .task_dropdown_mobile, .machine_list .case_data_row .employee_dropdown_mobile, .machine_list .case_data_row .machine_dropdown_mobile, .machine_list .case_data_row .external_dropdown_mobile, .machine_list .case_data_row .case_dropdown_mobile, .machine_list .case_data_row .task_dropdown_mobile, .machine_list .task_data_row .employee_dropdown_mobile, .machine_list .task_data_row .machine_dropdown_mobile, .machine_list .task_data_row .external_dropdown_mobile, .machine_list .task_data_row .case_dropdown_mobile, .machine_list .task_data_row .task_dropdown_mobile, .case_list .employee_data_row .employee_dropdown_mobile, .case_list .employee_data_row .machine_dropdown_mobile, .case_list .employee_data_row .external_dropdown_mobile, .case_list .employee_data_row .case_dropdown_mobile, .case_list .employee_data_row .task_dropdown_mobile, .case_list .external_data_row .employee_dropdown_mobile, .case_list .external_data_row .machine_dropdown_mobile, .case_list .external_data_row .external_dropdown_mobile, .case_list .external_data_row .case_dropdown_mobile, .case_list .external_data_row .task_dropdown_mobile, .case_list .machine_data_row .employee_dropdown_mobile, .case_list .machine_data_row .machine_dropdown_mobile, .case_list .machine_data_row .external_dropdown_mobile, .case_list .machine_data_row .case_dropdown_mobile, .case_list .machine_data_row .task_dropdown_mobile, .case_list .case_data_row .employee_dropdown_mobile, .case_list .case_data_row .machine_dropdown_mobile, .case_list .case_data_row .external_dropdown_mobile, .case_list .case_data_row .case_dropdown_mobile, .case_list .case_data_row .task_dropdown_mobile, .case_list .task_data_row .employee_dropdown_mobile, .case_list .task_data_row .machine_dropdown_mobile, .case_list .task_data_row .external_dropdown_mobile, .case_list .task_data_row .case_dropdown_mobile, .case_list .task_data_row .task_dropdown_mobile, .task_list .employee_data_row .employee_dropdown_mobile, .task_list .employee_data_row .machine_dropdown_mobile, .task_list .employee_data_row .external_dropdown_mobile, .task_list .employee_data_row .case_dropdown_mobile, .task_list .employee_data_row .task_dropdown_mobile, .task_list .external_data_row .employee_dropdown_mobile, .task_list .external_data_row .machine_dropdown_mobile, .task_list .external_data_row .external_dropdown_mobile, .task_list .external_data_row .case_dropdown_mobile, .task_list .external_data_row .task_dropdown_mobile, .task_list .machine_data_row .employee_dropdown_mobile, .task_list .machine_data_row .machine_dropdown_mobile, .task_list .machine_data_row .external_dropdown_mobile, .task_list .machine_data_row .case_dropdown_mobile, .task_list .machine_data_row .task_dropdown_mobile, .task_list .case_data_row .employee_dropdown_mobile, .task_list .case_data_row .machine_dropdown_mobile, .task_list .case_data_row .external_dropdown_mobile, .task_list .case_data_row .case_dropdown_mobile, .task_list .case_data_row .task_dropdown_mobile, .task_list .task_data_row .employee_dropdown_mobile, .task_list .task_data_row .machine_dropdown_mobile, .task_list .task_data_row .external_dropdown_mobile, .task_list .task_data_row .case_dropdown_mobile, .task_list .task_data_row .task_dropdown_mobile {
@@ -409,17 +575,6 @@
       -ms-flex-direction: column;
           flex-direction: column;
   display: none;
-}
-
-.employee_list .employee_data_row .employee_dropdown_mobile .dark_dropdown_table, .employee_list .employee_data_row .machine_dropdown_mobile .dark_dropdown_table, .employee_list .employee_data_row .external_dropdown_mobile .dark_dropdown_table, .employee_list .employee_data_row .case_dropdown_mobile .dark_dropdown_table, .employee_list .employee_data_row .task_dropdown_mobile .dark_dropdown_table, .employee_list .external_data_row .employee_dropdown_mobile .dark_dropdown_table, .employee_list .external_data_row .machine_dropdown_mobile .dark_dropdown_table, .employee_list .external_data_row .external_dropdown_mobile .dark_dropdown_table, .employee_list .external_data_row .case_dropdown_mobile .dark_dropdown_table, .employee_list .external_data_row .task_dropdown_mobile .dark_dropdown_table, .employee_list .machine_data_row .employee_dropdown_mobile .dark_dropdown_table, .employee_list .machine_data_row .machine_dropdown_mobile .dark_dropdown_table, .employee_list .machine_data_row .external_dropdown_mobile .dark_dropdown_table, .employee_list .machine_data_row .case_dropdown_mobile .dark_dropdown_table, .employee_list .machine_data_row .task_dropdown_mobile .dark_dropdown_table, .employee_list .case_data_row .employee_dropdown_mobile .dark_dropdown_table, .employee_list .case_data_row .machine_dropdown_mobile .dark_dropdown_table, .employee_list .case_data_row .external_dropdown_mobile .dark_dropdown_table, .employee_list .case_data_row .case_dropdown_mobile .dark_dropdown_table, .employee_list .case_data_row .task_dropdown_mobile .dark_dropdown_table, .employee_list .task_data_row .employee_dropdown_mobile .dark_dropdown_table, .employee_list .task_data_row .machine_dropdown_mobile .dark_dropdown_table, .employee_list .task_data_row .external_dropdown_mobile .dark_dropdown_table, .employee_list .task_data_row .case_dropdown_mobile .dark_dropdown_table, .employee_list .task_data_row .task_dropdown_mobile .dark_dropdown_table, .external_list .employee_data_row .employee_dropdown_mobile .dark_dropdown_table, .external_list .employee_data_row .machine_dropdown_mobile .dark_dropdown_table, .external_list .employee_data_row .external_dropdown_mobile .dark_dropdown_table, .external_list .employee_data_row .case_dropdown_mobile .dark_dropdown_table, .external_list .employee_data_row .task_dropdown_mobile .dark_dropdown_table, .external_list .external_data_row .employee_dropdown_mobile .dark_dropdown_table, .external_list .external_data_row .machine_dropdown_mobile .dark_dropdown_table, .external_list .external_data_row .external_dropdown_mobile .dark_dropdown_table, .external_list .external_data_row .case_dropdown_mobile .dark_dropdown_table, .external_list .external_data_row .task_dropdown_mobile .dark_dropdown_table, .external_list .machine_data_row .employee_dropdown_mobile .dark_dropdown_table, .external_list .machine_data_row .machine_dropdown_mobile .dark_dropdown_table, .external_list .machine_data_row .external_dropdown_mobile .dark_dropdown_table, .external_list .machine_data_row .case_dropdown_mobile .dark_dropdown_table, .external_list .machine_data_row .task_dropdown_mobile .dark_dropdown_table, .external_list .case_data_row .employee_dropdown_mobile .dark_dropdown_table, .external_list .case_data_row .machine_dropdown_mobile .dark_dropdown_table, .external_list .case_data_row .external_dropdown_mobile .dark_dropdown_table, .external_list .case_data_row .case_dropdown_mobile .dark_dropdown_table, .external_list .case_data_row .task_dropdown_mobile .dark_dropdown_table, .external_list .task_data_row .employee_dropdown_mobile .dark_dropdown_table, .external_list .task_data_row .machine_dropdown_mobile .dark_dropdown_table, .external_list .task_data_row .external_dropdown_mobile .dark_dropdown_table, .external_list .task_data_row .case_dropdown_mobile .dark_dropdown_table, .external_list .task_data_row .task_dropdown_mobile .dark_dropdown_table, .machine_list .employee_data_row .employee_dropdown_mobile .dark_dropdown_table, .machine_list .employee_data_row .machine_dropdown_mobile .dark_dropdown_table, .machine_list .employee_data_row .external_dropdown_mobile .dark_dropdown_table, .machine_list .employee_data_row .case_dropdown_mobile .dark_dropdown_table, .machine_list .employee_data_row .task_dropdown_mobile .dark_dropdown_table, .machine_list .external_data_row .employee_dropdown_mobile .dark_dropdown_table, .machine_list .external_data_row .machine_dropdown_mobile .dark_dropdown_table, .machine_list .external_data_row .external_dropdown_mobile .dark_dropdown_table, .machine_list .external_data_row .case_dropdown_mobile .dark_dropdown_table, .machine_list .external_data_row .task_dropdown_mobile .dark_dropdown_table, .machine_list .machine_data_row .employee_dropdown_mobile .dark_dropdown_table, .machine_list .machine_data_row .machine_dropdown_mobile .dark_dropdown_table, .machine_list .machine_data_row .external_dropdown_mobile .dark_dropdown_table, .machine_list .machine_data_row .case_dropdown_mobile .dark_dropdown_table, .machine_list .machine_data_row .task_dropdown_mobile .dark_dropdown_table, .machine_list .case_data_row .employee_dropdown_mobile .dark_dropdown_table, .machine_list .case_data_row .machine_dropdown_mobile .dark_dropdown_table, .machine_list .case_data_row .external_dropdown_mobile .dark_dropdown_table, .machine_list .case_data_row .case_dropdown_mobile .dark_dropdown_table, .machine_list .case_data_row .task_dropdown_mobile .dark_dropdown_table, .machine_list .task_data_row .employee_dropdown_mobile .dark_dropdown_table, .machine_list .task_data_row .machine_dropdown_mobile .dark_dropdown_table, .machine_list .task_data_row .external_dropdown_mobile .dark_dropdown_table, .machine_list .task_data_row .case_dropdown_mobile .dark_dropdown_table, .machine_list .task_data_row .task_dropdown_mobile .dark_dropdown_table, .case_list .employee_data_row .employee_dropdown_mobile .dark_dropdown_table, .case_list .employee_data_row .machine_dropdown_mobile .dark_dropdown_table, .case_list .employee_data_row .external_dropdown_mobile .dark_dropdown_table, .case_list .employee_data_row .case_dropdown_mobile .dark_dropdown_table, .case_list .employee_data_row .task_dropdown_mobile .dark_dropdown_table, .case_list .external_data_row .employee_dropdown_mobile .dark_dropdown_table, .case_list .external_data_row .machine_dropdown_mobile .dark_dropdown_table, .case_list .external_data_row .external_dropdown_mobile .dark_dropdown_table, .case_list .external_data_row .case_dropdown_mobile .dark_dropdown_table, .case_list .external_data_row .task_dropdown_mobile .dark_dropdown_table, .case_list .machine_data_row .employee_dropdown_mobile .dark_dropdown_table, .case_list .machine_data_row .machine_dropdown_mobile .dark_dropdown_table, .case_list .machine_data_row .external_dropdown_mobile .dark_dropdown_table, .case_list .machine_data_row .case_dropdown_mobile .dark_dropdown_table, .case_list .machine_data_row .task_dropdown_mobile .dark_dropdown_table, .case_list .case_data_row .employee_dropdown_mobile .dark_dropdown_table, .case_list .case_data_row .machine_dropdown_mobile .dark_dropdown_table, .case_list .case_data_row .external_dropdown_mobile .dark_dropdown_table, .case_list .case_data_row .case_dropdown_mobile .dark_dropdown_table, .case_list .case_data_row .task_dropdown_mobile .dark_dropdown_table, .case_list .task_data_row .employee_dropdown_mobile .dark_dropdown_table, .case_list .task_data_row .machine_dropdown_mobile .dark_dropdown_table, .case_list .task_data_row .external_dropdown_mobile .dark_dropdown_table, .case_list .task_data_row .case_dropdown_mobile .dark_dropdown_table, .case_list .task_data_row .task_dropdown_mobile .dark_dropdown_table, .task_list .employee_data_row .employee_dropdown_mobile .dark_dropdown_table, .task_list .employee_data_row .machine_dropdown_mobile .dark_dropdown_table, .task_list .employee_data_row .external_dropdown_mobile .dark_dropdown_table, .task_list .employee_data_row .case_dropdown_mobile .dark_dropdown_table, .task_list .employee_data_row .task_dropdown_mobile .dark_dropdown_table, .task_list .external_data_row .employee_dropdown_mobile .dark_dropdown_table, .task_list .external_data_row .machine_dropdown_mobile .dark_dropdown_table, .task_list .external_data_row .external_dropdown_mobile .dark_dropdown_table, .task_list .external_data_row .case_dropdown_mobile .dark_dropdown_table, .task_list .external_data_row .task_dropdown_mobile .dark_dropdown_table, .task_list .machine_data_row .employee_dropdown_mobile .dark_dropdown_table, .task_list .machine_data_row .machine_dropdown_mobile .dark_dropdown_table, .task_list .machine_data_row .external_dropdown_mobile .dark_dropdown_table, .task_list .machine_data_row .case_dropdown_mobile .dark_dropdown_table, .task_list .machine_data_row .task_dropdown_mobile .dark_dropdown_table, .task_list .case_data_row .employee_dropdown_mobile .dark_dropdown_table, .task_list .case_data_row .machine_dropdown_mobile .dark_dropdown_table, .task_list .case_data_row .external_dropdown_mobile .dark_dropdown_table, .task_list .case_data_row .case_dropdown_mobile .dark_dropdown_table, .task_list .case_data_row .task_dropdown_mobile .dark_dropdown_table, .task_list .task_data_row .employee_dropdown_mobile .dark_dropdown_table, .task_list .task_data_row .machine_dropdown_mobile .dark_dropdown_table, .task_list .task_data_row .external_dropdown_mobile .dark_dropdown_table, .task_list .task_data_row .case_dropdown_mobile .dark_dropdown_table, .task_list .task_data_row .task_dropdown_mobile .dark_dropdown_table {
-  background-color: #ECF0FD;
-}
-
-.employee_list .employee_data_row .employee_dropdown_mobile .light_dropdown_table, .employee_list .employee_data_row .machine_dropdown_mobile .light_dropdown_table, .employee_list .employee_data_row .external_dropdown_mobile .light_dropdown_table, .employee_list .employee_data_row .case_dropdown_mobile .light_dropdown_table, .employee_list .employee_data_row .task_dropdown_mobile .light_dropdown_table, .employee_list .external_data_row .employee_dropdown_mobile .light_dropdown_table, .employee_list .external_data_row .machine_dropdown_mobile .light_dropdown_table, .employee_list .external_data_row .external_dropdown_mobile .light_dropdown_table, .employee_list .external_data_row .case_dropdown_mobile .light_dropdown_table, .employee_list .external_data_row .task_dropdown_mobile .light_dropdown_table, .employee_list .machine_data_row .employee_dropdown_mobile .light_dropdown_table, .employee_list .machine_data_row .machine_dropdown_mobile .light_dropdown_table, .employee_list .machine_data_row .external_dropdown_mobile .light_dropdown_table, .employee_list .machine_data_row .case_dropdown_mobile .light_dropdown_table, .employee_list .machine_data_row .task_dropdown_mobile .light_dropdown_table, .employee_list .case_data_row .employee_dropdown_mobile .light_dropdown_table, .employee_list .case_data_row .machine_dropdown_mobile .light_dropdown_table, .employee_list .case_data_row .external_dropdown_mobile .light_dropdown_table, .employee_list .case_data_row .case_dropdown_mobile .light_dropdown_table, .employee_list .case_data_row .task_dropdown_mobile .light_dropdown_table, .employee_list .task_data_row .employee_dropdown_mobile .light_dropdown_table, .employee_list .task_data_row .machine_dropdown_mobile .light_dropdown_table, .employee_list .task_data_row .external_dropdown_mobile .light_dropdown_table, .employee_list .task_data_row .case_dropdown_mobile .light_dropdown_table, .employee_list .task_data_row .task_dropdown_mobile .light_dropdown_table, .external_list .employee_data_row .employee_dropdown_mobile .light_dropdown_table, .external_list .employee_data_row .machine_dropdown_mobile .light_dropdown_table, .external_list .employee_data_row .external_dropdown_mobile .light_dropdown_table, .external_list .employee_data_row .case_dropdown_mobile .light_dropdown_table, .external_list .employee_data_row .task_dropdown_mobile .light_dropdown_table, .external_list .external_data_row .employee_dropdown_mobile .light_dropdown_table, .external_list .external_data_row .machine_dropdown_mobile .light_dropdown_table, .external_list .external_data_row .external_dropdown_mobile .light_dropdown_table, .external_list .external_data_row .case_dropdown_mobile .light_dropdown_table, .external_list .external_data_row .task_dropdown_mobile .light_dropdown_table, .external_list .machine_data_row .employee_dropdown_mobile .light_dropdown_table, .external_list .machine_data_row .machine_dropdown_mobile .light_dropdown_table, .external_list .machine_data_row .external_dropdown_mobile .light_dropdown_table, .external_list .machine_data_row .case_dropdown_mobile .light_dropdown_table, .external_list .machine_data_row .task_dropdown_mobile .light_dropdown_table, .external_list .case_data_row .employee_dropdown_mobile .light_dropdown_table, .external_list .case_data_row .machine_dropdown_mobile .light_dropdown_table, .external_list .case_data_row .external_dropdown_mobile .light_dropdown_table, .external_list .case_data_row .case_dropdown_mobile .light_dropdown_table, .external_list .case_data_row .task_dropdown_mobile .light_dropdown_table, .external_list .task_data_row .employee_dropdown_mobile .light_dropdown_table, .external_list .task_data_row .machine_dropdown_mobile .light_dropdown_table, .external_list .task_data_row .external_dropdown_mobile .light_dropdown_table, .external_list .task_data_row .case_dropdown_mobile .light_dropdown_table, .external_list .task_data_row .task_dropdown_mobile .light_dropdown_table, .machine_list .employee_data_row .employee_dropdown_mobile .light_dropdown_table, .machine_list .employee_data_row .machine_dropdown_mobile .light_dropdown_table, .machine_list .employee_data_row .external_dropdown_mobile .light_dropdown_table, .machine_list .employee_data_row .case_dropdown_mobile .light_dropdown_table, .machine_list .employee_data_row .task_dropdown_mobile .light_dropdown_table, .machine_list .external_data_row .employee_dropdown_mobile .light_dropdown_table, .machine_list .external_data_row .machine_dropdown_mobile .light_dropdown_table, .machine_list .external_data_row .external_dropdown_mobile .light_dropdown_table, .machine_list .external_data_row .case_dropdown_mobile .light_dropdown_table, .machine_list .external_data_row .task_dropdown_mobile .light_dropdown_table, .machine_list .machine_data_row .employee_dropdown_mobile .light_dropdown_table, .machine_list .machine_data_row .machine_dropdown_mobile .light_dropdown_table, .machine_list .machine_data_row .external_dropdown_mobile .light_dropdown_table, .machine_list .machine_data_row .case_dropdown_mobile .light_dropdown_table, .machine_list .machine_data_row .task_dropdown_mobile .light_dropdown_table, .machine_list .case_data_row .employee_dropdown_mobile .light_dropdown_table, .machine_list .case_data_row .machine_dropdown_mobile .light_dropdown_table, .machine_list .case_data_row .external_dropdown_mobile .light_dropdown_table, .machine_list .case_data_row .case_dropdown_mobile .light_dropdown_table, .machine_list .case_data_row .task_dropdown_mobile .light_dropdown_table, .machine_list .task_data_row .employee_dropdown_mobile .light_dropdown_table, .machine_list .task_data_row .machine_dropdown_mobile .light_dropdown_table, .machine_list .task_data_row .external_dropdown_mobile .light_dropdown_table, .machine_list .task_data_row .case_dropdown_mobile .light_dropdown_table, .machine_list .task_data_row .task_dropdown_mobile .light_dropdown_table, .case_list .employee_data_row .employee_dropdown_mobile .light_dropdown_table, .case_list .employee_data_row .machine_dropdown_mobile .light_dropdown_table, .case_list .employee_data_row .external_dropdown_mobile .light_dropdown_table, .case_list .employee_data_row .case_dropdown_mobile .light_dropdown_table, .case_list .employee_data_row .task_dropdown_mobile .light_dropdown_table, .case_list .external_data_row .employee_dropdown_mobile .light_dropdown_table, .case_list .external_data_row .machine_dropdown_mobile .light_dropdown_table, .case_list .external_data_row .external_dropdown_mobile .light_dropdown_table, .case_list .external_data_row .case_dropdown_mobile .light_dropdown_table, .case_list .external_data_row .task_dropdown_mobile .light_dropdown_table, .case_list .machine_data_row .employee_dropdown_mobile .light_dropdown_table, .case_list .machine_data_row .machine_dropdown_mobile .light_dropdown_table, .case_list .machine_data_row .external_dropdown_mobile .light_dropdown_table, .case_list .machine_data_row .case_dropdown_mobile .light_dropdown_table, .case_list .machine_data_row .task_dropdown_mobile .light_dropdown_table, .case_list .case_data_row .employee_dropdown_mobile .light_dropdown_table, .case_list .case_data_row .machine_dropdown_mobile .light_dropdown_table, .case_list .case_data_row .external_dropdown_mobile .light_dropdown_table, .case_list .case_data_row .case_dropdown_mobile .light_dropdown_table, .case_list .case_data_row .task_dropdown_mobile .light_dropdown_table, .case_list .task_data_row .employee_dropdown_mobile .light_dropdown_table, .case_list .task_data_row .machine_dropdown_mobile .light_dropdown_table, .case_list .task_data_row .external_dropdown_mobile .light_dropdown_table, .case_list .task_data_row .case_dropdown_mobile .light_dropdown_table, .case_list .task_data_row .task_dropdown_mobile .light_dropdown_table, .task_list .employee_data_row .employee_dropdown_mobile .light_dropdown_table, .task_list .employee_data_row .machine_dropdown_mobile .light_dropdown_table, .task_list .employee_data_row .external_dropdown_mobile .light_dropdown_table, .task_list .employee_data_row .case_dropdown_mobile .light_dropdown_table, .task_list .employee_data_row .task_dropdown_mobile .light_dropdown_table, .task_list .external_data_row .employee_dropdown_mobile .light_dropdown_table, .task_list .external_data_row .machine_dropdown_mobile .light_dropdown_table, .task_list .external_data_row .external_dropdown_mobile .light_dropdown_table, .task_list .external_data_row .case_dropdown_mobile .light_dropdown_table, .task_list .external_data_row .task_dropdown_mobile .light_dropdown_table, .task_list .machine_data_row .employee_dropdown_mobile .light_dropdown_table, .task_list .machine_data_row .machine_dropdown_mobile .light_dropdown_table, .task_list .machine_data_row .external_dropdown_mobile .light_dropdown_table, .task_list .machine_data_row .case_dropdown_mobile .light_dropdown_table, .task_list .machine_data_row .task_dropdown_mobile .light_dropdown_table, .task_list .case_data_row .employee_dropdown_mobile .light_dropdown_table, .task_list .case_data_row .machine_dropdown_mobile .light_dropdown_table, .task_list .case_data_row .external_dropdown_mobile .light_dropdown_table, .task_list .case_data_row .case_dropdown_mobile .light_dropdown_table, .task_list .case_data_row .task_dropdown_mobile .light_dropdown_table, .task_list .task_data_row .employee_dropdown_mobile .light_dropdown_table, .task_list .task_data_row .machine_dropdown_mobile .light_dropdown_table, .task_list .task_data_row .external_dropdown_mobile .light_dropdown_table, .task_list .task_data_row .case_dropdown_mobile .light_dropdown_table, .task_list .task_data_row .task_dropdown_mobile .light_dropdown_table {
-  background-color: #FAFBFF;
-}
-
-.employee_list .employee_data_row .employee_dropdown_mobile :last-child, .employee_list .employee_data_row .machine_dropdown_mobile :last-child, .employee_list .employee_data_row .external_dropdown_mobile :last-child, .employee_list .employee_data_row .case_dropdown_mobile :last-child, .employee_list .employee_data_row .task_dropdown_mobile :last-child, .employee_list .external_data_row .employee_dropdown_mobile :last-child, .employee_list .external_data_row .machine_dropdown_mobile :last-child, .employee_list .external_data_row .external_dropdown_mobile :last-child, .employee_list .external_data_row .case_dropdown_mobile :last-child, .employee_list .external_data_row .task_dropdown_mobile :last-child, .employee_list .machine_data_row .employee_dropdown_mobile :last-child, .employee_list .machine_data_row .machine_dropdown_mobile :last-child, .employee_list .machine_data_row .external_dropdown_mobile :last-child, .employee_list .machine_data_row .case_dropdown_mobile :last-child, .employee_list .machine_data_row .task_dropdown_mobile :last-child, .employee_list .case_data_row .employee_dropdown_mobile :last-child, .employee_list .case_data_row .machine_dropdown_mobile :last-child, .employee_list .case_data_row .external_dropdown_mobile :last-child, .employee_list .case_data_row .case_dropdown_mobile :last-child, .employee_list .case_data_row .task_dropdown_mobile :last-child, .employee_list .task_data_row .employee_dropdown_mobile :last-child, .employee_list .task_data_row .machine_dropdown_mobile :last-child, .employee_list .task_data_row .external_dropdown_mobile :last-child, .employee_list .task_data_row .case_dropdown_mobile :last-child, .employee_list .task_data_row .task_dropdown_mobile :last-child, .external_list .employee_data_row .employee_dropdown_mobile :last-child, .external_list .employee_data_row .machine_dropdown_mobile :last-child, .external_list .employee_data_row .external_dropdown_mobile :last-child, .external_list .employee_data_row .case_dropdown_mobile :last-child, .external_list .employee_data_row .task_dropdown_mobile :last-child, .external_list .external_data_row .employee_dropdown_mobile :last-child, .external_list .external_data_row .machine_dropdown_mobile :last-child, .external_list .external_data_row .external_dropdown_mobile :last-child, .external_list .external_data_row .case_dropdown_mobile :last-child, .external_list .external_data_row .task_dropdown_mobile :last-child, .external_list .machine_data_row .employee_dropdown_mobile :last-child, .external_list .machine_data_row .machine_dropdown_mobile :last-child, .external_list .machine_data_row .external_dropdown_mobile :last-child, .external_list .machine_data_row .case_dropdown_mobile :last-child, .external_list .machine_data_row .task_dropdown_mobile :last-child, .external_list .case_data_row .employee_dropdown_mobile :last-child, .external_list .case_data_row .machine_dropdown_mobile :last-child, .external_list .case_data_row .external_dropdown_mobile :last-child, .external_list .case_data_row .case_dropdown_mobile :last-child, .external_list .case_data_row .task_dropdown_mobile :last-child, .external_list .task_data_row .employee_dropdown_mobile :last-child, .external_list .task_data_row .machine_dropdown_mobile :last-child, .external_list .task_data_row .external_dropdown_mobile :last-child, .external_list .task_data_row .case_dropdown_mobile :last-child, .external_list .task_data_row .task_dropdown_mobile :last-child, .machine_list .employee_data_row .employee_dropdown_mobile :last-child, .machine_list .employee_data_row .machine_dropdown_mobile :last-child, .machine_list .employee_data_row .external_dropdown_mobile :last-child, .machine_list .employee_data_row .case_dropdown_mobile :last-child, .machine_list .employee_data_row .task_dropdown_mobile :last-child, .machine_list .external_data_row .employee_dropdown_mobile :last-child, .machine_list .external_data_row .machine_dropdown_mobile :last-child, .machine_list .external_data_row .external_dropdown_mobile :last-child, .machine_list .external_data_row .case_dropdown_mobile :last-child, .machine_list .external_data_row .task_dropdown_mobile :last-child, .machine_list .machine_data_row .employee_dropdown_mobile :last-child, .machine_list .machine_data_row .machine_dropdown_mobile :last-child, .machine_list .machine_data_row .external_dropdown_mobile :last-child, .machine_list .machine_data_row .case_dropdown_mobile :last-child, .machine_list .machine_data_row .task_dropdown_mobile :last-child, .machine_list .case_data_row .employee_dropdown_mobile :last-child, .machine_list .case_data_row .machine_dropdown_mobile :last-child, .machine_list .case_data_row .external_dropdown_mobile :last-child, .machine_list .case_data_row .case_dropdown_mobile :last-child, .machine_list .case_data_row .task_dropdown_mobile :last-child, .machine_list .task_data_row .employee_dropdown_mobile :last-child, .machine_list .task_data_row .machine_dropdown_mobile :last-child, .machine_list .task_data_row .external_dropdown_mobile :last-child, .machine_list .task_data_row .case_dropdown_mobile :last-child, .machine_list .task_data_row .task_dropdown_mobile :last-child, .case_list .employee_data_row .employee_dropdown_mobile :last-child, .case_list .employee_data_row .machine_dropdown_mobile :last-child, .case_list .employee_data_row .external_dropdown_mobile :last-child, .case_list .employee_data_row .case_dropdown_mobile :last-child, .case_list .employee_data_row .task_dropdown_mobile :last-child, .case_list .external_data_row .employee_dropdown_mobile :last-child, .case_list .external_data_row .machine_dropdown_mobile :last-child, .case_list .external_data_row .external_dropdown_mobile :last-child, .case_list .external_data_row .case_dropdown_mobile :last-child, .case_list .external_data_row .task_dropdown_mobile :last-child, .case_list .machine_data_row .employee_dropdown_mobile :last-child, .case_list .machine_data_row .machine_dropdown_mobile :last-child, .case_list .machine_data_row .external_dropdown_mobile :last-child, .case_list .machine_data_row .case_dropdown_mobile :last-child, .case_list .machine_data_row .task_dropdown_mobile :last-child, .case_list .case_data_row .employee_dropdown_mobile :last-child, .case_list .case_data_row .machine_dropdown_mobile :last-child, .case_list .case_data_row .external_dropdown_mobile :last-child, .case_list .case_data_row .case_dropdown_mobile :last-child, .case_list .case_data_row .task_dropdown_mobile :last-child, .case_list .task_data_row .employee_dropdown_mobile :last-child, .case_list .task_data_row .machine_dropdown_mobile :last-child, .case_list .task_data_row .external_dropdown_mobile :last-child, .case_list .task_data_row .case_dropdown_mobile :last-child, .case_list .task_data_row .task_dropdown_mobile :last-child, .task_list .employee_data_row .employee_dropdown_mobile :last-child, .task_list .employee_data_row .machine_dropdown_mobile :last-child, .task_list .employee_data_row .external_dropdown_mobile :last-child, .task_list .employee_data_row .case_dropdown_mobile :last-child, .task_list .employee_data_row .task_dropdown_mobile :last-child, .task_list .external_data_row .employee_dropdown_mobile :last-child, .task_list .external_data_row .machine_dropdown_mobile :last-child, .task_list .external_data_row .external_dropdown_mobile :last-child, .task_list .external_data_row .case_dropdown_mobile :last-child, .task_list .external_data_row .task_dropdown_mobile :last-child, .task_list .machine_data_row .employee_dropdown_mobile :last-child, .task_list .machine_data_row .machine_dropdown_mobile :last-child, .task_list .machine_data_row .external_dropdown_mobile :last-child, .task_list .machine_data_row .case_dropdown_mobile :last-child, .task_list .machine_data_row .task_dropdown_mobile :last-child, .task_list .case_data_row .employee_dropdown_mobile :last-child, .task_list .case_data_row .machine_dropdown_mobile :last-child, .task_list .case_data_row .external_dropdown_mobile :last-child, .task_list .case_data_row .case_dropdown_mobile :last-child, .task_list .case_data_row .task_dropdown_mobile :last-child, .task_list .task_data_row .employee_dropdown_mobile :last-child, .task_list .task_data_row .machine_dropdown_mobile :last-child, .task_list .task_data_row .external_dropdown_mobile :last-child, .task_list .task_data_row .case_dropdown_mobile :last-child, .task_list .task_data_row .task_dropdown_mobile :last-child {
   border-bottom: 2px solid #149DB9;
 }
 
@@ -431,13 +586,34 @@
   border-left: 5px solid #fff;
 }
 
+.case_dropdown_mobile p, .external_dropdown_mobile p, .machine_dropdown_mobile p,
+.external_dropdown_mobile p, .employee_dropdown_mobile p, .task_dropdown_mobile p, .task_dropdown_mobile p, .case_dropdown_mobile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.case_dropdown_mobile p .dropdown_inline_headers, .external_dropdown_mobile p .dropdown_inline_headers, .machine_dropdown_mobile p .dropdown_inline_headers,
+.external_dropdown_mobile p .dropdown_inline_headers, .employee_dropdown_mobile p .dropdown_inline_headers, .task_dropdown_mobile p .dropdown_inline_headers, .task_dropdown_mobile p .dropdown_inline_headers, .case_dropdown_mobile .dropdown_inline_headers {
+  font-weight: 600;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 35% !important;
+  padding: 0 15px;
+}
+
+.case_nr_header, .case_nr, .employee_name {
+  width: 35% !important;
+}
+
 /*-------------------------------
         Mobile width cases
 -------------------------------*/
-.case_nr_header, .case_nr {
-  width: 50% !important;
-}
-
 .add_new_link {
   display: none;
 }
@@ -471,6 +647,9 @@
     display: -ms-flexbox;
     display: flex;
   }
+  .dropdown_inline_headers {
+    display: none;
+  }
   /*---------------------------
             Employees 1200
     ---------------------------*/
@@ -481,6 +660,7 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    font-size: 17px;
   }
   .employee_list .employee_all_headers, .employee_list .machines_all_headers, .employee_list .external_all_headers, .employee_list .case_all_headers, .employee_list .task_all_headers, .external_list .employee_all_headers, .external_list .machines_all_headers, .external_list .external_all_headers, .external_list .case_all_headers, .external_list .task_all_headers, .machine_list .employee_all_headers, .machine_list .machines_all_headers, .machine_list .external_all_headers, .machine_list .case_all_headers, .machine_list .task_all_headers, .case_list .employee_all_headers, .case_list .machines_all_headers, .case_list .external_all_headers, .case_list .case_all_headers, .case_list .task_all_headers, .task_list .employee_all_headers, .task_list .machines_all_headers, .task_list .external_all_headers, .task_list .case_all_headers, .task_list .task_all_headers {
     display: -webkit-box !important;
@@ -501,6 +681,7 @@
     display: flex;
     cursor: auto !important;
     border-bottom: none !important;
+    border-top: none !important;
   }
   .employee_list .employee_data_row, .employee_list .external_data_row, .employee_list .machine_data_row, .employee_list .case_data_row, .employee_list .task_data_row, .external_list .employee_data_row, .external_list .external_data_row, .external_list .machine_data_row, .external_list .case_data_row, .external_list .task_data_row, .machine_list .employee_data_row, .machine_list .external_data_row, .machine_list .machine_data_row, .machine_list .case_data_row, .machine_list .task_data_row, .case_list .employee_data_row, .case_list .external_data_row, .case_list .machine_data_row, .case_list .case_data_row, .case_list .task_data_row, .task_list .employee_data_row, .task_list .external_data_row, .task_list .machine_data_row, .task_list .case_data_row, .task_list .task_data_row {
     display: -webkit-box;
@@ -516,11 +697,6 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-  }
-  .employee_list .employee_data_row .employee_dropdown_mobile .light_dropdown_table, .employee_list .employee_data_row .employee_dropdown_mobile .dark_dropdown_table, .employee_list .employee_data_row .external_dropdown_mobile .light_dropdown_table, .employee_list .employee_data_row .external_dropdown_mobile .dark_dropdown_table, .employee_list .employee_data_row .machine_dropdown_mobile .light_dropdown_table, .employee_list .employee_data_row .machine_dropdown_mobile .dark_dropdown_table, .employee_list .employee_data_row .case_dropdown_mobile .light_dropdown_table, .employee_list .employee_data_row .case_dropdown_mobile .dark_dropdown_table, .employee_list .employee_data_row .task_dropdown_mobile .light_dropdown_table, .employee_list .employee_data_row .task_dropdown_mobile .dark_dropdown_table, .employee_list .external_data_row .employee_dropdown_mobile .light_dropdown_table, .employee_list .external_data_row .employee_dropdown_mobile .dark_dropdown_table, .employee_list .external_data_row .external_dropdown_mobile .light_dropdown_table, .employee_list .external_data_row .external_dropdown_mobile .dark_dropdown_table, .employee_list .external_data_row .machine_dropdown_mobile .light_dropdown_table, .employee_list .external_data_row .machine_dropdown_mobile .dark_dropdown_table, .employee_list .external_data_row .case_dropdown_mobile .light_dropdown_table, .employee_list .external_data_row .case_dropdown_mobile .dark_dropdown_table, .employee_list .external_data_row .task_dropdown_mobile .light_dropdown_table, .employee_list .external_data_row .task_dropdown_mobile .dark_dropdown_table, .employee_list .machine_data_row .employee_dropdown_mobile .light_dropdown_table, .employee_list .machine_data_row .employee_dropdown_mobile .dark_dropdown_table, .employee_list .machine_data_row .external_dropdown_mobile .light_dropdown_table, .employee_list .machine_data_row .external_dropdown_mobile .dark_dropdown_table, .employee_list .machine_data_row .machine_dropdown_mobile .light_dropdown_table, .employee_list .machine_data_row .machine_dropdown_mobile .dark_dropdown_table, .employee_list .machine_data_row .case_dropdown_mobile .light_dropdown_table, .employee_list .machine_data_row .case_dropdown_mobile .dark_dropdown_table, .employee_list .machine_data_row .task_dropdown_mobile .light_dropdown_table, .employee_list .machine_data_row .task_dropdown_mobile .dark_dropdown_table, .employee_list .case_data_row .employee_dropdown_mobile .light_dropdown_table, .employee_list .case_data_row .employee_dropdown_mobile .dark_dropdown_table, .employee_list .case_data_row .external_dropdown_mobile .light_dropdown_table, .employee_list .case_data_row .external_dropdown_mobile .dark_dropdown_table, .employee_list .case_data_row .machine_dropdown_mobile .light_dropdown_table, .employee_list .case_data_row .machine_dropdown_mobile .dark_dropdown_table, .employee_list .case_data_row .case_dropdown_mobile .light_dropdown_table, .employee_list .case_data_row .case_dropdown_mobile .dark_dropdown_table, .employee_list .case_data_row .task_dropdown_mobile .light_dropdown_table, .employee_list .case_data_row .task_dropdown_mobile .dark_dropdown_table, .employee_list .task_data_row .employee_dropdown_mobile .light_dropdown_table, .employee_list .task_data_row .employee_dropdown_mobile .dark_dropdown_table, .employee_list .task_data_row .external_dropdown_mobile .light_dropdown_table, .employee_list .task_data_row .external_dropdown_mobile .dark_dropdown_table, .employee_list .task_data_row .machine_dropdown_mobile .light_dropdown_table, .employee_list .task_data_row .machine_dropdown_mobile .dark_dropdown_table, .employee_list .task_data_row .case_dropdown_mobile .light_dropdown_table, .employee_list .task_data_row .case_dropdown_mobile .dark_dropdown_table, .employee_list .task_data_row .task_dropdown_mobile .light_dropdown_table, .employee_list .task_data_row .task_dropdown_mobile .dark_dropdown_table, .external_list .employee_data_row .employee_dropdown_mobile .light_dropdown_table, .external_list .employee_data_row .employee_dropdown_mobile .dark_dropdown_table, .external_list .employee_data_row .external_dropdown_mobile .light_dropdown_table, .external_list .employee_data_row .external_dropdown_mobile .dark_dropdown_table, .external_list .employee_data_row .machine_dropdown_mobile .light_dropdown_table, .external_list .employee_data_row .machine_dropdown_mobile .dark_dropdown_table, .external_list .employee_data_row .case_dropdown_mobile .light_dropdown_table, .external_list .employee_data_row .case_dropdown_mobile .dark_dropdown_table, .external_list .employee_data_row .task_dropdown_mobile .light_dropdown_table, .external_list .employee_data_row .task_dropdown_mobile .dark_dropdown_table, .external_list .external_data_row .employee_dropdown_mobile .light_dropdown_table, .external_list .external_data_row .employee_dropdown_mobile .dark_dropdown_table, .external_list .external_data_row .external_dropdown_mobile .light_dropdown_table, .external_list .external_data_row .external_dropdown_mobile .dark_dropdown_table, .external_list .external_data_row .machine_dropdown_mobile .light_dropdown_table, .external_list .external_data_row .machine_dropdown_mobile .dark_dropdown_table, .external_list .external_data_row .case_dropdown_mobile .light_dropdown_table, .external_list .external_data_row .case_dropdown_mobile .dark_dropdown_table, .external_list .external_data_row .task_dropdown_mobile .light_dropdown_table, .external_list .external_data_row .task_dropdown_mobile .dark_dropdown_table, .external_list .machine_data_row .employee_dropdown_mobile .light_dropdown_table, .external_list .machine_data_row .employee_dropdown_mobile .dark_dropdown_table, .external_list .machine_data_row .external_dropdown_mobile .light_dropdown_table, .external_list .machine_data_row .external_dropdown_mobile .dark_dropdown_table, .external_list .machine_data_row .machine_dropdown_mobile .light_dropdown_table, .external_list .machine_data_row .machine_dropdown_mobile .dark_dropdown_table, .external_list .machine_data_row .case_dropdown_mobile .light_dropdown_table, .external_list .machine_data_row .case_dropdown_mobile .dark_dropdown_table, .external_list .machine_data_row .task_dropdown_mobile .light_dropdown_table, .external_list .machine_data_row .task_dropdown_mobile .dark_dropdown_table, .external_list .case_data_row .employee_dropdown_mobile .light_dropdown_table, .external_list .case_data_row .employee_dropdown_mobile .dark_dropdown_table, .external_list .case_data_row .external_dropdown_mobile .light_dropdown_table, .external_list .case_data_row .external_dropdown_mobile .dark_dropdown_table, .external_list .case_data_row .machine_dropdown_mobile .light_dropdown_table, .external_list .case_data_row .machine_dropdown_mobile .dark_dropdown_table, .external_list .case_data_row .case_dropdown_mobile .light_dropdown_table, .external_list .case_data_row .case_dropdown_mobile .dark_dropdown_table, .external_list .case_data_row .task_dropdown_mobile .light_dropdown_table, .external_list .case_data_row .task_dropdown_mobile .dark_dropdown_table, .external_list .task_data_row .employee_dropdown_mobile .light_dropdown_table, .external_list .task_data_row .employee_dropdown_mobile .dark_dropdown_table, .external_list .task_data_row .external_dropdown_mobile .light_dropdown_table, .external_list .task_data_row .external_dropdown_mobile .dark_dropdown_table, .external_list .task_data_row .machine_dropdown_mobile .light_dropdown_table, .external_list .task_data_row .machine_dropdown_mobile .dark_dropdown_table, .external_list .task_data_row .case_dropdown_mobile .light_dropdown_table, .external_list .task_data_row .case_dropdown_mobile .dark_dropdown_table, .external_list .task_data_row .task_dropdown_mobile .light_dropdown_table, .external_list .task_data_row .task_dropdown_mobile .dark_dropdown_table, .machine_list .employee_data_row .employee_dropdown_mobile .light_dropdown_table, .machine_list .employee_data_row .employee_dropdown_mobile .dark_dropdown_table, .machine_list .employee_data_row .external_dropdown_mobile .light_dropdown_table, .machine_list .employee_data_row .external_dropdown_mobile .dark_dropdown_table, .machine_list .employee_data_row .machine_dropdown_mobile .light_dropdown_table, .machine_list .employee_data_row .machine_dropdown_mobile .dark_dropdown_table, .machine_list .employee_data_row .case_dropdown_mobile .light_dropdown_table, .machine_list .employee_data_row .case_dropdown_mobile .dark_dropdown_table, .machine_list .employee_data_row .task_dropdown_mobile .light_dropdown_table, .machine_list .employee_data_row .task_dropdown_mobile .dark_dropdown_table, .machine_list .external_data_row .employee_dropdown_mobile .light_dropdown_table, .machine_list .external_data_row .employee_dropdown_mobile .dark_dropdown_table, .machine_list .external_data_row .external_dropdown_mobile .light_dropdown_table, .machine_list .external_data_row .external_dropdown_mobile .dark_dropdown_table, .machine_list .external_data_row .machine_dropdown_mobile .light_dropdown_table, .machine_list .external_data_row .machine_dropdown_mobile .dark_dropdown_table, .machine_list .external_data_row .case_dropdown_mobile .light_dropdown_table, .machine_list .external_data_row .case_dropdown_mobile .dark_dropdown_table, .machine_list .external_data_row .task_dropdown_mobile .light_dropdown_table, .machine_list .external_data_row .task_dropdown_mobile .dark_dropdown_table, .machine_list .machine_data_row .employee_dropdown_mobile .light_dropdown_table, .machine_list .machine_data_row .employee_dropdown_mobile .dark_dropdown_table, .machine_list .machine_data_row .external_dropdown_mobile .light_dropdown_table, .machine_list .machine_data_row .external_dropdown_mobile .dark_dropdown_table, .machine_list .machine_data_row .machine_dropdown_mobile .light_dropdown_table, .machine_list .machine_data_row .machine_dropdown_mobile .dark_dropdown_table, .machine_list .machine_data_row .case_dropdown_mobile .light_dropdown_table, .machine_list .machine_data_row .case_dropdown_mobile .dark_dropdown_table, .machine_list .machine_data_row .task_dropdown_mobile .light_dropdown_table, .machine_list .machine_data_row .task_dropdown_mobile .dark_dropdown_table, .machine_list .case_data_row .employee_dropdown_mobile .light_dropdown_table, .machine_list .case_data_row .employee_dropdown_mobile .dark_dropdown_table, .machine_list .case_data_row .external_dropdown_mobile .light_dropdown_table, .machine_list .case_data_row .external_dropdown_mobile .dark_dropdown_table, .machine_list .case_data_row .machine_dropdown_mobile .light_dropdown_table, .machine_list .case_data_row .machine_dropdown_mobile .dark_dropdown_table, .machine_list .case_data_row .case_dropdown_mobile .light_dropdown_table, .machine_list .case_data_row .case_dropdown_mobile .dark_dropdown_table, .machine_list .case_data_row .task_dropdown_mobile .light_dropdown_table, .machine_list .case_data_row .task_dropdown_mobile .dark_dropdown_table, .machine_list .task_data_row .employee_dropdown_mobile .light_dropdown_table, .machine_list .task_data_row .employee_dropdown_mobile .dark_dropdown_table, .machine_list .task_data_row .external_dropdown_mobile .light_dropdown_table, .machine_list .task_data_row .external_dropdown_mobile .dark_dropdown_table, .machine_list .task_data_row .machine_dropdown_mobile .light_dropdown_table, .machine_list .task_data_row .machine_dropdown_mobile .dark_dropdown_table, .machine_list .task_data_row .case_dropdown_mobile .light_dropdown_table, .machine_list .task_data_row .case_dropdown_mobile .dark_dropdown_table, .machine_list .task_data_row .task_dropdown_mobile .light_dropdown_table, .machine_list .task_data_row .task_dropdown_mobile .dark_dropdown_table, .case_list .employee_data_row .employee_dropdown_mobile .light_dropdown_table, .case_list .employee_data_row .employee_dropdown_mobile .dark_dropdown_table, .case_list .employee_data_row .external_dropdown_mobile .light_dropdown_table, .case_list .employee_data_row .external_dropdown_mobile .dark_dropdown_table, .case_list .employee_data_row .machine_dropdown_mobile .light_dropdown_table, .case_list .employee_data_row .machine_dropdown_mobile .dark_dropdown_table, .case_list .employee_data_row .case_dropdown_mobile .light_dropdown_table, .case_list .employee_data_row .case_dropdown_mobile .dark_dropdown_table, .case_list .employee_data_row .task_dropdown_mobile .light_dropdown_table, .case_list .employee_data_row .task_dropdown_mobile .dark_dropdown_table, .case_list .external_data_row .employee_dropdown_mobile .light_dropdown_table, .case_list .external_data_row .employee_dropdown_mobile .dark_dropdown_table, .case_list .external_data_row .external_dropdown_mobile .light_dropdown_table, .case_list .external_data_row .external_dropdown_mobile .dark_dropdown_table, .case_list .external_data_row .machine_dropdown_mobile .light_dropdown_table, .case_list .external_data_row .machine_dropdown_mobile .dark_dropdown_table, .case_list .external_data_row .case_dropdown_mobile .light_dropdown_table, .case_list .external_data_row .case_dropdown_mobile .dark_dropdown_table, .case_list .external_data_row .task_dropdown_mobile .light_dropdown_table, .case_list .external_data_row .task_dropdown_mobile .dark_dropdown_table, .case_list .machine_data_row .employee_dropdown_mobile .light_dropdown_table, .case_list .machine_data_row .employee_dropdown_mobile .dark_dropdown_table, .case_list .machine_data_row .external_dropdown_mobile .light_dropdown_table, .case_list .machine_data_row .external_dropdown_mobile .dark_dropdown_table, .case_list .machine_data_row .machine_dropdown_mobile .light_dropdown_table, .case_list .machine_data_row .machine_dropdown_mobile .dark_dropdown_table, .case_list .machine_data_row .case_dropdown_mobile .light_dropdown_table, .case_list .machine_data_row .case_dropdown_mobile .dark_dropdown_table, .case_list .machine_data_row .task_dropdown_mobile .light_dropdown_table, .case_list .machine_data_row .task_dropdown_mobile .dark_dropdown_table, .case_list .case_data_row .employee_dropdown_mobile .light_dropdown_table, .case_list .case_data_row .employee_dropdown_mobile .dark_dropdown_table, .case_list .case_data_row .external_dropdown_mobile .light_dropdown_table, .case_list .case_data_row .external_dropdown_mobile .dark_dropdown_table, .case_list .case_data_row .machine_dropdown_mobile .light_dropdown_table, .case_list .case_data_row .machine_dropdown_mobile .dark_dropdown_table, .case_list .case_data_row .case_dropdown_mobile .light_dropdown_table, .case_list .case_data_row .case_dropdown_mobile .dark_dropdown_table, .case_list .case_data_row .task_dropdown_mobile .light_dropdown_table, .case_list .case_data_row .task_dropdown_mobile .dark_dropdown_table, .case_list .task_data_row .employee_dropdown_mobile .light_dropdown_table, .case_list .task_data_row .employee_dropdown_mobile .dark_dropdown_table, .case_list .task_data_row .external_dropdown_mobile .light_dropdown_table, .case_list .task_data_row .external_dropdown_mobile .dark_dropdown_table, .case_list .task_data_row .machine_dropdown_mobile .light_dropdown_table, .case_list .task_data_row .machine_dropdown_mobile .dark_dropdown_table, .case_list .task_data_row .case_dropdown_mobile .light_dropdown_table, .case_list .task_data_row .case_dropdown_mobile .dark_dropdown_table, .case_list .task_data_row .task_dropdown_mobile .light_dropdown_table, .case_list .task_data_row .task_dropdown_mobile .dark_dropdown_table, .task_list .employee_data_row .employee_dropdown_mobile .light_dropdown_table, .task_list .employee_data_row .employee_dropdown_mobile .dark_dropdown_table, .task_list .employee_data_row .external_dropdown_mobile .light_dropdown_table, .task_list .employee_data_row .external_dropdown_mobile .dark_dropdown_table, .task_list .employee_data_row .machine_dropdown_mobile .light_dropdown_table, .task_list .employee_data_row .machine_dropdown_mobile .dark_dropdown_table, .task_list .employee_data_row .case_dropdown_mobile .light_dropdown_table, .task_list .employee_data_row .case_dropdown_mobile .dark_dropdown_table, .task_list .employee_data_row .task_dropdown_mobile .light_dropdown_table, .task_list .employee_data_row .task_dropdown_mobile .dark_dropdown_table, .task_list .external_data_row .employee_dropdown_mobile .light_dropdown_table, .task_list .external_data_row .employee_dropdown_mobile .dark_dropdown_table, .task_list .external_data_row .external_dropdown_mobile .light_dropdown_table, .task_list .external_data_row .external_dropdown_mobile .dark_dropdown_table, .task_list .external_data_row .machine_dropdown_mobile .light_dropdown_table, .task_list .external_data_row .machine_dropdown_mobile .dark_dropdown_table, .task_list .external_data_row .case_dropdown_mobile .light_dropdown_table, .task_list .external_data_row .case_dropdown_mobile .dark_dropdown_table, .task_list .external_data_row .task_dropdown_mobile .light_dropdown_table, .task_list .external_data_row .task_dropdown_mobile .dark_dropdown_table, .task_list .machine_data_row .employee_dropdown_mobile .light_dropdown_table, .task_list .machine_data_row .employee_dropdown_mobile .dark_dropdown_table, .task_list .machine_data_row .external_dropdown_mobile .light_dropdown_table, .task_list .machine_data_row .external_dropdown_mobile .dark_dropdown_table, .task_list .machine_data_row .machine_dropdown_mobile .light_dropdown_table, .task_list .machine_data_row .machine_dropdown_mobile .dark_dropdown_table, .task_list .machine_data_row .case_dropdown_mobile .light_dropdown_table, .task_list .machine_data_row .case_dropdown_mobile .dark_dropdown_table, .task_list .machine_data_row .task_dropdown_mobile .light_dropdown_table, .task_list .machine_data_row .task_dropdown_mobile .dark_dropdown_table, .task_list .case_data_row .employee_dropdown_mobile .light_dropdown_table, .task_list .case_data_row .employee_dropdown_mobile .dark_dropdown_table, .task_list .case_data_row .external_dropdown_mobile .light_dropdown_table, .task_list .case_data_row .external_dropdown_mobile .dark_dropdown_table, .task_list .case_data_row .machine_dropdown_mobile .light_dropdown_table, .task_list .case_data_row .machine_dropdown_mobile .dark_dropdown_table, .task_list .case_data_row .case_dropdown_mobile .light_dropdown_table, .task_list .case_data_row .case_dropdown_mobile .dark_dropdown_table, .task_list .case_data_row .task_dropdown_mobile .light_dropdown_table, .task_list .case_data_row .task_dropdown_mobile .dark_dropdown_table, .task_list .task_data_row .employee_dropdown_mobile .light_dropdown_table, .task_list .task_data_row .employee_dropdown_mobile .dark_dropdown_table, .task_list .task_data_row .external_dropdown_mobile .light_dropdown_table, .task_list .task_data_row .external_dropdown_mobile .dark_dropdown_table, .task_list .task_data_row .machine_dropdown_mobile .light_dropdown_table, .task_list .task_data_row .machine_dropdown_mobile .dark_dropdown_table, .task_list .task_data_row .case_dropdown_mobile .light_dropdown_table, .task_list .task_data_row .case_dropdown_mobile .dark_dropdown_table, .task_list .task_data_row .task_dropdown_mobile .light_dropdown_table, .task_list .task_data_row .task_dropdown_mobile .dark_dropdown_table {
-    background-color: rgba(0, 0, 0, 0);
-  }
-  .employee_list .employee_data_row .employee_dropdown_mobile :last-child, .employee_list .employee_data_row .external_dropdown_mobile :last-child, .employee_list .employee_data_row .machine_dropdown_mobile :last-child, .employee_list .employee_data_row .case_dropdown_mobile :last-child, .employee_list .employee_data_row .task_dropdown_mobile :last-child, .employee_list .external_data_row .employee_dropdown_mobile :last-child, .employee_list .external_data_row .external_dropdown_mobile :last-child, .employee_list .external_data_row .machine_dropdown_mobile :last-child, .employee_list .external_data_row .case_dropdown_mobile :last-child, .employee_list .external_data_row .task_dropdown_mobile :last-child, .employee_list .machine_data_row .employee_dropdown_mobile :last-child, .employee_list .machine_data_row .external_dropdown_mobile :last-child, .employee_list .machine_data_row .machine_dropdown_mobile :last-child, .employee_list .machine_data_row .case_dropdown_mobile :last-child, .employee_list .machine_data_row .task_dropdown_mobile :last-child, .employee_list .case_data_row .employee_dropdown_mobile :last-child, .employee_list .case_data_row .external_dropdown_mobile :last-child, .employee_list .case_data_row .machine_dropdown_mobile :last-child, .employee_list .case_data_row .case_dropdown_mobile :last-child, .employee_list .case_data_row .task_dropdown_mobile :last-child, .employee_list .task_data_row .employee_dropdown_mobile :last-child, .employee_list .task_data_row .external_dropdown_mobile :last-child, .employee_list .task_data_row .machine_dropdown_mobile :last-child, .employee_list .task_data_row .case_dropdown_mobile :last-child, .employee_list .task_data_row .task_dropdown_mobile :last-child, .external_list .employee_data_row .employee_dropdown_mobile :last-child, .external_list .employee_data_row .external_dropdown_mobile :last-child, .external_list .employee_data_row .machine_dropdown_mobile :last-child, .external_list .employee_data_row .case_dropdown_mobile :last-child, .external_list .employee_data_row .task_dropdown_mobile :last-child, .external_list .external_data_row .employee_dropdown_mobile :last-child, .external_list .external_data_row .external_dropdown_mobile :last-child, .external_list .external_data_row .machine_dropdown_mobile :last-child, .external_list .external_data_row .case_dropdown_mobile :last-child, .external_list .external_data_row .task_dropdown_mobile :last-child, .external_list .machine_data_row .employee_dropdown_mobile :last-child, .external_list .machine_data_row .external_dropdown_mobile :last-child, .external_list .machine_data_row .machine_dropdown_mobile :last-child, .external_list .machine_data_row .case_dropdown_mobile :last-child, .external_list .machine_data_row .task_dropdown_mobile :last-child, .external_list .case_data_row .employee_dropdown_mobile :last-child, .external_list .case_data_row .external_dropdown_mobile :last-child, .external_list .case_data_row .machine_dropdown_mobile :last-child, .external_list .case_data_row .case_dropdown_mobile :last-child, .external_list .case_data_row .task_dropdown_mobile :last-child, .external_list .task_data_row .employee_dropdown_mobile :last-child, .external_list .task_data_row .external_dropdown_mobile :last-child, .external_list .task_data_row .machine_dropdown_mobile :last-child, .external_list .task_data_row .case_dropdown_mobile :last-child, .external_list .task_data_row .task_dropdown_mobile :last-child, .machine_list .employee_data_row .employee_dropdown_mobile :last-child, .machine_list .employee_data_row .external_dropdown_mobile :last-child, .machine_list .employee_data_row .machine_dropdown_mobile :last-child, .machine_list .employee_data_row .case_dropdown_mobile :last-child, .machine_list .employee_data_row .task_dropdown_mobile :last-child, .machine_list .external_data_row .employee_dropdown_mobile :last-child, .machine_list .external_data_row .external_dropdown_mobile :last-child, .machine_list .external_data_row .machine_dropdown_mobile :last-child, .machine_list .external_data_row .case_dropdown_mobile :last-child, .machine_list .external_data_row .task_dropdown_mobile :last-child, .machine_list .machine_data_row .employee_dropdown_mobile :last-child, .machine_list .machine_data_row .external_dropdown_mobile :last-child, .machine_list .machine_data_row .machine_dropdown_mobile :last-child, .machine_list .machine_data_row .case_dropdown_mobile :last-child, .machine_list .machine_data_row .task_dropdown_mobile :last-child, .machine_list .case_data_row .employee_dropdown_mobile :last-child, .machine_list .case_data_row .external_dropdown_mobile :last-child, .machine_list .case_data_row .machine_dropdown_mobile :last-child, .machine_list .case_data_row .case_dropdown_mobile :last-child, .machine_list .case_data_row .task_dropdown_mobile :last-child, .machine_list .task_data_row .employee_dropdown_mobile :last-child, .machine_list .task_data_row .external_dropdown_mobile :last-child, .machine_list .task_data_row .machine_dropdown_mobile :last-child, .machine_list .task_data_row .case_dropdown_mobile :last-child, .machine_list .task_data_row .task_dropdown_mobile :last-child, .case_list .employee_data_row .employee_dropdown_mobile :last-child, .case_list .employee_data_row .external_dropdown_mobile :last-child, .case_list .employee_data_row .machine_dropdown_mobile :last-child, .case_list .employee_data_row .case_dropdown_mobile :last-child, .case_list .employee_data_row .task_dropdown_mobile :last-child, .case_list .external_data_row .employee_dropdown_mobile :last-child, .case_list .external_data_row .external_dropdown_mobile :last-child, .case_list .external_data_row .machine_dropdown_mobile :last-child, .case_list .external_data_row .case_dropdown_mobile :last-child, .case_list .external_data_row .task_dropdown_mobile :last-child, .case_list .machine_data_row .employee_dropdown_mobile :last-child, .case_list .machine_data_row .external_dropdown_mobile :last-child, .case_list .machine_data_row .machine_dropdown_mobile :last-child, .case_list .machine_data_row .case_dropdown_mobile :last-child, .case_list .machine_data_row .task_dropdown_mobile :last-child, .case_list .case_data_row .employee_dropdown_mobile :last-child, .case_list .case_data_row .external_dropdown_mobile :last-child, .case_list .case_data_row .machine_dropdown_mobile :last-child, .case_list .case_data_row .case_dropdown_mobile :last-child, .case_list .case_data_row .task_dropdown_mobile :last-child, .case_list .task_data_row .employee_dropdown_mobile :last-child, .case_list .task_data_row .external_dropdown_mobile :last-child, .case_list .task_data_row .machine_dropdown_mobile :last-child, .case_list .task_data_row .case_dropdown_mobile :last-child, .case_list .task_data_row .task_dropdown_mobile :last-child, .task_list .employee_data_row .employee_dropdown_mobile :last-child, .task_list .employee_data_row .external_dropdown_mobile :last-child, .task_list .employee_data_row .machine_dropdown_mobile :last-child, .task_list .employee_data_row .case_dropdown_mobile :last-child, .task_list .employee_data_row .task_dropdown_mobile :last-child, .task_list .external_data_row .employee_dropdown_mobile :last-child, .task_list .external_data_row .external_dropdown_mobile :last-child, .task_list .external_data_row .machine_dropdown_mobile :last-child, .task_list .external_data_row .case_dropdown_mobile :last-child, .task_list .external_data_row .task_dropdown_mobile :last-child, .task_list .machine_data_row .employee_dropdown_mobile :last-child, .task_list .machine_data_row .external_dropdown_mobile :last-child, .task_list .machine_data_row .machine_dropdown_mobile :last-child, .task_list .machine_data_row .case_dropdown_mobile :last-child, .task_list .machine_data_row .task_dropdown_mobile :last-child, .task_list .case_data_row .employee_dropdown_mobile :last-child, .task_list .case_data_row .external_dropdown_mobile :last-child, .task_list .case_data_row .machine_dropdown_mobile :last-child, .task_list .case_data_row .case_dropdown_mobile :last-child, .task_list .case_data_row .task_dropdown_mobile :last-child, .task_list .task_data_row .employee_dropdown_mobile :last-child, .task_list .task_data_row .external_dropdown_mobile :last-child, .task_list .task_data_row .machine_dropdown_mobile :last-child, .task_list .task_data_row .case_dropdown_mobile :last-child, .task_list .task_data_row .task_dropdown_mobile :last-child {
     border-bottom: none !important;
   }
   .employee_list .button_container, .employee_list .button_container_header, .external_list .button_container, .external_list .button_container_header, .machine_list .button_container, .machine_list .button_container_header, .case_list .button_container, .case_list .button_container_header, .task_list .button_container, .task_list .button_container_header {
@@ -597,7 +773,7 @@
     padding-left: 15px !important;
   }
   .case_responsible_header, .case_responsible, .case_status_header, .case_status {
-    width: 8vw !important;
+    width: 9vw !important;
   }
   .case_location_header, .case_location {
     width: 18vw !important;
@@ -616,16 +792,16 @@
     padding-left: 15px !important;
   }
   .task_prority_header, .task_prority, .task_status_header, .task_status, .task_updated_initials_header, .task_updated_initials {
-    width: 7.5vw;
+    width: 7.5vw !important;
   }
   .task_archived_at, .task_archived_at_header, .task_archived_initials, .task_archived_initials_header {
-    width: 12vw;
+    width: 12vw !important;
   }
   .task_deadline_header, .task_deadline {
-    width: 8vw;
+    width: 8vw !important;
   }
   .task_comment_header, .task_comment {
-    width: 14vw;
+    width: 14vw !important;
   }
 }
 
@@ -672,6 +848,169 @@
   }
 }
 
+/*Tablet - S */
+/*Lille pc - M*/
+@media screen and (min-width: 1200px) {
+  /*---------------------------------
+        Describe case
+---------------------------------*/
+  .describe_case_navbar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 2px solid #5068CB;
+  }
+  .describe_case_navbar button {
+    background: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #B2C7F9;
+    width: 130px;
+    height: 45px;
+  }
+  .describe_case_navbar button a {
+    font-size: 17px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #000;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .describe_case_navbar button a:hover {
+    cursor: pointer;
+    background-color: #B2C7F9;
+  }
+  .describe_case_navbar .describe_case_navbar_active {
+    background-color: #D0DDFB;
+  }
+  .describe_case_info_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: #EEF2FD;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 40px 20px 30px 20px;
+  }
+  .describe_case_info_container h1 {
+    font-size: 30px;
+    font-weight: 500;
+  }
+  .describe_case_info_container .input_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin-top: 30px;
+  }
+  .describe_case_info_container .top_inputs_container {
+    width: 45%;
+  }
+  .describe_case_info_container .top_inputs_container .small_inputs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 10px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .describe_case_info_container .top_inputs_container .small_inputs p {
+    width: 30%;
+    padding-right: 5px;
+    text-align: end;
+  }
+  .describe_case_info_container .top_inputs_container .small_inputs input {
+    width: 70%;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid #B2C7F9;
+  }
+  .describe_case_info_container .top_inputs_container .large_inputs {
+    padding: 10px;
+  }
+  .describe_case_info_container .top_inputs_container .large_inputs textarea {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: 100px;
+    max-height: 200px;
+    border-radius: 5px;
+    border: 1px solid #B2C7F9;
+  }
+  .describe_case_info_container .bottom_inputs_container {
+    margin-top: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .describe_case_info_container .bottom_inputs_container .date_and_status {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .describe_case_info_container .bottom_inputs_container .date_and_status .status_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .describe_case_info_container .bottom_inputs_container .date_and_status .status_container p {
+    padding-right: 5px;
+  }
+  .describe_case_info_container .bottom_inputs_container .date_and_status .status_container input {
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid #B2C7F9;
+  }
+  .describe_case_info_container .bottom_inputs_container .job_type_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 30px 0;
+  }
+  .describe_case_info_container .bottom_inputs_container .job_type_container label {
+    padding-right: 5px;
+  }
+  .describe_case_info_container .bottom_inputs_container .job_type_container .job_type_select {
+    width: 50%;
+    height: 25px !important;
+    border-radius: 5px;
+    border: 1px solid #B2C7F9;
+  }
+}
+
+/*Stor pc - L*/
 /*---------------------------------
         Login page
 ---------------------------------*/
@@ -930,6 +1269,7 @@
 }
 
 .sec-navbar-mobile .logged_in {
+  min-height: 6vh !important;
   height: 6vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1089,6 +1429,7 @@
     border-bottom: 5px solid #87AFFF;
   }
   .sec-navbar-mobile .logged_in {
+    min-height: 5vh !important;
     height: 5vh;
     padding-left: 50px;
     border-left: none;

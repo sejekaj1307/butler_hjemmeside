@@ -1,8 +1,14 @@
 <?php 
-    //session start
+    //session start - storage information in session
     session_start(); 
-    //Forbindelse til database
+
+    //connection to database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+
+    //If the user is trying go around the log in process, redirect the user back to the index.php 
+    if($_SESSION['logged_in_user_global']['last_name'] == ""){
+        echo "<script> window.location.href = '../index.php'; </script>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/web/styles.css">
-    <title>Arkiverede sager</title>
+    <title>Arkiverede cases</title>
 </head>
 
 <body>
@@ -22,15 +28,15 @@
         <div class="navbar_top"><img src="../img/navbar-cross.png" alt="navbar cross" class="navbar_cross"></div>
         <div class="navbar_mid"><img src="../img/DayTask_logo.png" alt="DayTask logo" class="day_task_logo"></div>
         <ul class="navbar_ul">
-            <li><a href="../Profil/profil.php">Profil</a></li>
-            <li><a href="../Medarbejdere/ansatte.php">Medarbejder</a></li>
-            <li><a href="../Kalender/kalender-maskiner.php">Kalender</a></li>
-            <li><a href="../Sagsstyring/sager.php">Sagsstyring</a></li>
-            <li><a href="../Tidsregistrering/tidsregistrering.php">Tidsregistrering</a></li>
-            <li><a href="../Opgaver/fejl-og-mangler.php" class="active-main-site">Opgaver</a></li>
-            <li><a href="../Lagerstyring/lade.php">Lager styring</a></li>
+            <li><a href="../Profile/profile.php">Profil</a></li>
+            <li><a href="../Employees/employees.php">Medarbejder</a></li>
+            <li><a href="../Calender/machines_calender.php">Kalender</a></li>
+            <li><a href="../Cases/cases.php">Sager</a></li>
+            <li><a href="../Time_registration/time_registration.php">Tidsregistrering</a></li>
+            <li><a href="../Tasks/tasks.php" class="active-main-site">Opgaver</a></li>
+            <li><a href="../Storage/storage.php">Lager styring</a></li>
         </ul>
-        <div class="log_out_container"><a href="../index.php">Log ud</a></div>
+        <div class="log_out_container"><a href="../Data/log_out.php">Log ud</a></div>
     </div>
 
     <div class="site_container">
@@ -44,9 +50,9 @@
                         src="../img/arrow.png" alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Opgaver/fejl-og-mangler.php">Fejl og mangler</a></li>
-                <li><a href="../Opgaver/planlagt-service.php">Planlagt service</a></li>
-                <li><a href="../Opgaver/arkiverede-opgaver.php" class="active_site_dropdown">Arkiverede opgaver</a>
+                <li><a href="../Tasks/tasks.php">Fejl og mangler</a></li>
+                <li><a href="../Tasks/tasks_service.php">Planlagt service</a></li>
+                <li><a href="../Tasks/archived_tasks.php" class="active_site_dropdown">Arkiverede opgaver</a>
                 </li>
             </ul>
         </div>
@@ -55,7 +61,7 @@
 <!-- -----------------------------
             Sager
 ------------------------------ -->
-    <form action="arkiverede-opgaver.php" method="post">
+    <form action="archived_tasks.php" method="post">
         <?php
             //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
             function findes($id, $c)
@@ -131,6 +137,12 @@
                 $result = $conn->query($sql);
 
                 echo '<div class="task_list">';
+                    echo '<div class="list_color_guide_container">';
+                            echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Ikke startet</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color orange"></div><p class="color_description">Startet</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color yellow"></div><p class="color_description">Venter</p></div>';
+                            echo '<div class="list_color_guide_element"><div class="color green"></div><p class="color_description">Fuldført</p></div>';
+                        echo '</div>';
                     echo '<div class="task_list_header">';
                         echo '<div class="task_mobile_headers">';
                             echo '<p class="task_name_header">Opgave</p>';
@@ -155,21 +167,20 @@
                                 $status_color = "#FFA2A2";
                             } else if ($row['status'] == "Startet") {
                                 $status_color = "#FFFC9E";
-                            }
-                            else if ($row['status'] == "Venter") {
-                                $status_color = "#BBFFB9";
+                            }else if ($row['status'] == "Venter") {
+                                $status_color = "#FFD391";
                             } else {
-                                $status_color = "#DBB8FF";
+                                $status_color = "#BBFFB9";
                             }
                             echo '<div class="task_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'task_dropdown_mobile'" .') " style="border-left: 5px solid' . $status_color . '">';
                                 echo '<div class="task_information"> ';
                                     echo '<p class="task_name">' . $row["task_title"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="task_dropdown_mobile">';
-                                    echo '<p class="task_archived_at">' . $row["archived_at"] . '</p>';
-                                    echo '<p class="task_archived_initials">' . $row["archived_initials"] . '</p>';
-                                    echo '<p class="task_updated_initials">' . $row["updated_initials"] . '</p>';
-                                    echo '<p class="task_comment">' . $row["comment"] . '</p>';
+                                    echo '<p class="task_archived_at">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["archived_at"] . '</p>';
+                                    echo '<p class="task_archived_initials">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["archived_initials"] . '</p>';
+                                    echo '<p class="task_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["updated_initials"] . '</p>';
+                                    echo '<p class="task_comment">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["comment"] . '</p>';
                                 echo '</div>';
                                 
                                 echo '<div class="button_container">';
