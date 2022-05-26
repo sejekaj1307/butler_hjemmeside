@@ -283,61 +283,67 @@
             <!--------------------------------------
                     Create new storage pop-op
             --------------------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_create_element_pop_up ?>">
-                <h3>Opret nyt element</h3>
-                <div class="pop-up-row">
-                    <p>Lokation : </p>
-                    <select name="element_location_c">
-                        <?php
-                            foreach($element_location_options as $element_location_option){
-                                echo '<option ' . ($element_location == $element_location_option ? 'selected' : '') . ' value="' . $element_location_option . '">' . $element_location_option . '</option>';
-                            }
-                        ?>
-                    </select>
-                </div>
-                <div class="pop-up-row"><p>Element : </p><input type="text" name="element_c" value="<?php echo isset($element) ? $element : '' ?>"></div>
-                <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_c" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
-                <div class="pop-up-row"><p>Min. antal : </p><input type="number" name="min_quantity_c" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
-                <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Opret" class="pop_up_confirm">
+            <div class="pop_up_modal_container" style="display: <?php echo $display_create_element_pop_up ?>">
+                <div class="pop_up_modal">
+                    <h3>Opret nyt element</h3>
+                    <div class="pop-up-row">
+                        <p>Lokation : </p>
+                        <select name="element_location_c">
+                            <?php
+                                foreach($element_location_options as $element_location_option){
+                                    echo '<option ' . ($element_location == $element_location_option ? 'selected' : '') . ' value="' . $element_location_option . '">' . $element_location_option . '</option>';
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="pop-up-row"><p>Element : </p><input type="text" name="element_c" value="<?php echo isset($element) ? $element : '' ?>"></div>
+                    <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_c" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
+                    <div class="pop-up-row"><p>Min. antal : </p><input type="number" name="min_quantity_c" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
+                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Opret" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
 
             <!----------------------------
                     Edit storage pop-op
             ----------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_edit_storage_pop_up ?>">
-                <h3>Opdater element</h3>
-                <div class="pop-up-row">
-                    <p>Lokation : </p>
-                    <select name="element_location_u">
-                        <?php
-                            foreach($element_location_options as $element_location_option){
-                                echo '<option ' . ($element_location == $element_location_option ? 'selected' : '') . ' value="' . $element_location_option . '">' . $element_location_option . '</option>';
-                            }
-                        ?>
-                    </select>
-                </div>
-                <div class="pop-up-row"><p>Element : </p><input type="text" name="element_u" value="<?php echo isset($element) ? $element : '' ?>"></div>
-                <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_u" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
-                <div class="pop-up-row"><p>Min. antal : </p><input type="number" name="min_quantity_u" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
-                <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+            <div class="pop_up_modal_container" style="display: <?php echo $display_edit_storage_pop_up ?>">
+                <div class="pop_up_modal">
+                    <h3>Opdater element</h3>
+                    <div class="pop-up-row">
+                        <p>Lokation : </p>
+                        <select name="element_location_u">
+                            <?php
+                                foreach($element_location_options as $element_location_option){
+                                    echo '<option ' . ($element_location == $element_location_option ? 'selected' : '') . ' value="' . $element_location_option . '">' . $element_location_option . '</option>';
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="pop-up-row"><p>Element : </p><input type="text" name="element_u" value="<?php echo isset($element) ? $element : '' ?>"></div>
+                    <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_u" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
+                    <div class="pop-up-row"><p>Min. antal : </p><input type="number" name="min_quantity_u" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
+                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
 
             <!------------------------
                     delete pop up
             ------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_delete_storage_pop_up ?>">
-                <h3>Slet element</h3>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+            <div class="pop_up_modal_container" style="display: <?php echo $display_delete_storage_pop_up ?>">
+                <div class="pop_up_modal">
+                    <h3>Slet element</h3>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
             

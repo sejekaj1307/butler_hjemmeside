@@ -251,41 +251,47 @@
             <!----------------------------
                     Edit profile pop-op
             ----------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_edit_machine_pop_up ?>">
-                <h3>Opdater medarbejderprofil</h3>
-                id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
-                <div class="pop-up-row"><p>Navn : </p><input type="text" name="name_u" value="<?php echo isset($name) ? $name : '' ?>"></div>
-                <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_u" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
-                <div class="pop-up-row"><p>Link : </p><input type="text" name="link_u" value="<?php echo isset($link) ? $link : '' ?>"></div>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+            <div class="pop_up_modal_container" style="display: <?php echo $display_edit_machine_pop_up ?>">
+                <div class="pop_up_modal">
+                    <h3>Opdater medarbejderprofil</h3>
+                    id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
+                    <div class="pop-up-row"><p>Navn : </p><input type="text" name="name_u" value="<?php echo isset($name) ? $name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_u" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
+                    <div class="pop-up-row"><p>Link : </p><input type="text" name="link_u" value="<?php echo isset($link) ? $link : '' ?>"></div>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
 
             <!---------------------------
                 Add new employee pop-up
             ---------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_create_machine_pop_up ?>">
-                <h3>Tilføj ny medarbejder</h3>
-                id : <input type="text" name="id_c" value="<?php echo isset($id) ? $id : '' ?>">
-                <div class="pop-up-row"><p>Navn : </p><input type="text" name="name_c" value="<?php echo isset($name) ? $name : '' ?>"></div>
-                <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_c" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
-                <div class="pop-up-row"><p>Link : </p><input type="text" name="link_c" value="<?php echo isset($link) ? $link : '' ?>"></div>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
+            <div class="pop_up_modal_container" style="display: <?php echo $display_create_machine_pop_up ?>">
+                <div class="pop_up_modal">
+                    <h3>Tilføj ny medarbejder</h3>
+                    id : <input type="text" name="id_c" value="<?php echo isset($id) ? $id : '' ?>">
+                    <div class="pop-up-row"><p>Navn : </p><input type="text" name="name_c" value="<?php echo isset($name) ? $name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_c" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
+                    <div class="pop-up-row"><p>Link : </p><input type="text" name="link_c" value="<?php echo isset($link) ? $link : '' ?>"></div>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
 
             <!------------------------
                     delete pop up
             ------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_delete_machine_pop_up ?>">
-                <h3>Slet medarbejder</h3>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+            <div class="pop_up_modal_container" style="display: <?php echo $display_delete_machine_pop_up ?>">
+                <div class="pop_up_modal">
+                    <h3>Slet medarbejder</h3>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
         </form>
