@@ -10,6 +10,36 @@
         echo "<script> window.location.href = '../index.php'; </script>";
     }
     include("../Data/data.php");
+    include("../Data/case_describe_data.php");
+
+    //Get case_nr from the URL
+    $case_nr = $_GET['case_nr'];
+    
+    //Fetch data for the selected case
+    $sql = $conn->prepare("select * from cases where case_nr = ?");
+    $sql->bind_param("s", $case_nr);
+    $sql->execute();
+    $result = $sql->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+    }
+    
+    $this_case = new case_describe_data(
+        $row["id"], 
+        $row["client"], 
+        $row["client_case_nr"], 
+        $row["case_nr"], 
+        $row["case_responsible"], 
+        $row["location"], 
+        $row["zip_code"], 
+        $row["machines"], 
+        $row["employees"], 
+        $row["comment_road_info"], 
+        $row["comment_extra_work"], 
+        $row["status"],
+        $row["est_start_date"],
+        $row["est_end_date"]
+    );
 ?>
 
 <!DOCTYPE html>
@@ -53,8 +83,7 @@
             <ul class="sec_navbar_ul_dropdown">
                 <li><a href="../Cases/cases.php">Sager liste</a></li>
                 <li><a href="../Cases/archived_cases.php">Arkiverede sager</a>
-                <li><a href="../Cases/describe_case.php" class="active_site_dropdown">Beskriv sag</a>
-                </li>
+                <li><a href="../Cases/describe_case.php" class="active_site_dropdown">Beskriv sag</a></li>
             </ul>
         </div>
 
@@ -62,7 +91,7 @@
     <!-- -----------------------------
                 Sager
     ------------------------------ -->
-    <form action="describe_case.php" method="post"> <!-- Skal den her være cases? -->
+    <form action="describe_case.php?case_nr=<?php echo $case_nr;?>" method="post"> <!-- Skal den her være cases? -->
         <?php
             //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
             function findes($id, $c)
@@ -81,8 +110,6 @@
                 }
             }
 
-
-        $display_describe_case_pop_up = "none";
         ?>
         <?php
             // CRUD, create, read, update, delete - og confirm og cancel knap til delete
@@ -107,21 +134,48 @@
                 //update
                 if($_REQUEST['knap'] == "Opdater") 
                 {
-                    $id = $_SESSION["selected_task"];
-                    $case_nr = $_REQUEST['case_nr_u'];
-                    $case_responsible = $_REQUEST['case_responsible_u'];
-                    $status = $_REQUEST['status_u'];
-                    $location = $_REQUEST['location_u'];
-
+                    $id = $this_case->get_id();
+                    
                     if(is_numeric($id) && is_integer(0 + $id))
                     {
                         if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                         {
-                            $sql = $conn->prepare("update cases set case_nr = ?, case_responsible = ?, status = ?, location = ? where id = ?");
-                            $sql->bind_param("ssssi", $case_nr, $case_responsible, $status, $location, $id);
+                            $sql = $conn->prepare("update cases set client = ?, client_case_nr = ?, case_nr = ?, case_responsible = ?, location = ?, zip_code = ?, machines = ?, employees = ?, comment_road_info = ?, comment_extra_work = ?, status = ?, est_start_date = ?, est_end_date = ? where id = ?");
+                            $sql->bind_param("sssssssssssssi", 
+                                $_REQUEST['client'],
+                                $_REQUEST['client_case_nr'],
+                                $_REQUEST['case_nr'],
+                                $_REQUEST['case_responsible'],
+                                $_REQUEST['location'],
+                                $_REQUEST['zip_code'],
+                                $_REQUEST['machines'],
+                                $_REQUEST['employees'],
+                                $_REQUEST['comment_road_info'],
+                                $_REQUEST['comment_extra_work'],
+                                $_REQUEST['status'],
+                                $_REQUEST['est_start_date'],
+                                $_REQUEST['est_end_date'],
+                                $id
+                            );
                             $sql->execute();    
                         }
                     }
+                    $this_case = new case_describe_data(
+                        $id,
+                        $_REQUEST['client'],
+                        $_REQUEST['client_case_nr'],
+                        $_REQUEST['case_nr'],
+                        $_REQUEST['case_responsible'],
+                        $_REQUEST['location'],
+                        $_REQUEST['zip_code'],
+                        $_REQUEST['machines'],
+                        $_REQUEST['employees'],
+                        $_REQUEST['comment_road_info'],
+                        $_REQUEST['comment_extra_work'],
+                        $_REQUEST['status'],
+                        $_REQUEST['est_start_date'],
+                        $_REQUEST['est_end_date']
+                    );
                 }
                 
                 //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
@@ -144,33 +198,44 @@
 
         <div class="case_list_page">
             <div class="describe_case_navbar">
-                <button class="describe_case_navbar_active"><a href="describe_case.php">Sagsinfo</a></button>
-                <button><a href="pictures.php">Billeder</a></button>
-                <button><a href="files.php">Filer</a></button>
+                <div class="button_container">
+                    <button class="describe_case_navbar_active"><a href="describe_case.php?case_nr=<?php echo $case_nr;?>">Sagsinfo</a></button>
+                    <button><a href="pictures.php?case_nr=<?php echo $case_nr;?>">Billeder</a></button>
+                    <button><a href="files.php?case_nr=<?php echo $case_nr;?>">Filer</a></button>
+                </div>
+                <input type="submit" name="knap" value="Opdater" class="describe_case_update">
             </div>
             <div class="describe_case_info_container">
-                <h1>Sagsinfo - sag nr #</h1>
+                <h1>Sagsinfo - sag nr <?php echo $case_nr?></h1>
                 <div class="input_container">
                     <div class="top_inputs_container">
-                        <div class="small_inputs"><p>Kunde :</p><input type="text"></div>
-                        <div class="small_inputs"><p>Kundesag nr :</p><input type="text"></div>
-                        <div class="small_inputs"><p>Intern sag nr. :</p><input type="text"></div>
-                        <div class="small_inputs"><p>Ansvarlig :</p><input type="text"></div>
-                        <div class="large_inputs"><p>Tilkørsel - pladsforhold, adgang, tid, støj, mm.</p><textarea type="subject"></textarea></div>
+                        <div class="small_inputs"><p>Kunde :</p><input name="client" type="text" value="<?php echo $this_case->get_client();?>"></div>
+                        <div class="small_inputs"><p>Kundesag nr :</p><input name="client_case_nr" type="text" value="<?php echo $this_case->get_client_case_nr();?>"></div>
+                        <div class="small_inputs"><p>Intern sag nr. :</p><input name="case_nr" type="text" value="<?php echo $this_case->get_case_nr();?>"></div>
+                        <div class="small_inputs"><p>Ansvarlig :</p><input name="case_responsible" type="text" value="<?php echo $this_case->get_case_responsible();?>"></div>
+                        <div class="large_inputs"><p>Tilkørsel - pladsforhold, adgang, tid, støj, mm.</p><textarea name="comment_road_info" type="subject"><?php echo $this_case->get_comment_road_info();?></textarea></div>
                     </div>
                     <div class="top_inputs_container">
-                        <div class="small_inputs"><p>Lokation :</p><input type="text"></div>
-                        <div class="small_inputs"><p>Postnummer :</p><input type="text"></div>
-                        <div class="small_inputs"><p>Maskiner :</p><input type="text"></div>
-                        <div class="small_inputs"><p>Medarbejder :</p><input type="text"></div>
-                        <div class="large_inputs"><p>Ekstra arbejde/ventetid</p><textarea type="subject"></textarea></div>
+                        <div class="small_inputs"><p>Lokation :</p><input name="location" type="text" value="<?php echo $this_case->get_location();?>"></div>
+                        <div class="small_inputs"><p>Postnummer :</p><input name="zip_code" type="text" value="<?php echo $this_case->get_zip_code();?>"></div>
+                        <div class="small_inputs"><p>Maskiner :</p><input name="machines" type="text" value="<?php echo $this_case->get_machines();?>"></div>
+                        <div class="small_inputs"><p>Medarbejder :</p><input name="employees" type="text" value="<?php echo $this_case->get_employees();?>"></div>
+                        <div class="large_inputs"><p>Ekstra arbejde/ventetid</p><textarea name="comment_extra_work" type="subject"><?php echo $this_case->get_comment_extra_work();?></textarea></div>
                     </div>
                 </div>
                 <div class="bottom_inputs_container">
                     <div class="date_and_status">
-                        <p>Forventet start d.: 02-02-22</p>
-                        <p>Forventet slut d. : 02-02-22</p>
-                        <div class="status_container"><p>Status :</p><input type="text" name="" id=""></div>    
+                        <div class="small_inputs"><p>Forventet start d. :</p><input name="est_start_date" type="text" value="<?php echo $this_case->get_est_start_date();?>"></div>
+                        <div class="small_inputs"><p>Forventet slut d. :</p><input name="est_end_date" type="text" value="<?php echo $this_case->get_est_end_date();?>"></div>
+                        <div class="status_container">
+                            <p>Status :</p>
+                            <select name="status">
+                                <option <?php echo $this_case->get_status() == "Oprettet" ? 'selected' : '' ?> value="Oprettet">Oprettet</option>
+                                <option <?php echo $this_case->get_status() == "Beskrevet" ? 'selected' : '' ?> value="Beskrevet">Beskrevet</option>
+                                <option <?php echo $this_case->get_status() == "Aktiv" ? 'selected' : '' ?> value="Aktiv">Aktiv</option>
+                                <option <?php echo $this_case->get_status() == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
+                            </select>
+                        </div>    
                     </div>
                     <div class="job_type_container">
                         <label for="jobtypes">Job typer :</label>
@@ -190,43 +255,6 @@
         //Man skal huske at slukke for forbindelsen. Det er ikke så vigtigt i små programmer, men vi gør det for en god ordens skyld
             $conn->close();
         ?>
-
-        <!----------------------------
-                Edit profile pop-op
-        ----------------------------->
-        <div class="pop_up_modal" style="display: <?php echo $display_describe_case_pop_up ?>">
-            Opdater sagen?
-            <!-- <h3>Beskriv sag</h3>
-            <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_u" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
-            <div class="pop-up-row">
-                <p>Ansvarlig : </p>
-                <select name="case_responsible_u">
-                    <?php
-                        foreach($case_responsible_initials_list as $case_responsible_initials){
-                            echo "<option " . ($case_responsible == $case_responsible_initials ? 'selected' : '') . " value=" . $case_responsible_initials . ">" . $case_responsible_initials . "</option>";
-                        }
-                    ?>
-                </select>
-            </div>
-            <div class="pop-up-row">
-                    <p>Status : </p>
-                    <select name="status_u">
-                        <option <?php echo $status == "Oprettet" ? 'selected' : '' ?> value="Oprettet">Oprettet</option>
-                        <option <?php echo $status == "Beskrevet" ? 'selected' : '' ?> value="Beskrevet">Beskrevet</option>
-                        <option <?php echo $status == "Aktiv" ? 'selected' : '' ?> value="Aktiv">Aktiv</option>
-                        <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
-                    </select>
-                </div>   
-            <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
-            <div class="pop-up-row"><p>Startdato : </p><input type="text" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
-            <div class="pop-up-row"><p>Deadline : </p><input type="text" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
-            <div class="pop-up-btn-container">
-                <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
-            </div>
-        </div> -->
-        </div>
-        
     </form>
 
 

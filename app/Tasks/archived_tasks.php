@@ -130,7 +130,6 @@
 
 
         <div class="case_list_page">
-            <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny sag"></div>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                 $sql = "select * from tasks where archived_at != ''";
@@ -202,11 +201,13 @@
         <!------------------------
                 archive pop up
         ------------------------->
-        <div class="pop_up_modal" style="display: <?php echo $display_activate_case_pop_up ?>">
-            <h3>Gør sagen aktiv igen</h3>
-            <div class="pop-up-btn-container">
-                <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
-                <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
+        <div class="pop_up_modal_container" style="display: <?php echo $display_activate_case_pop_up ?>">
+            <div class="pop_up_modal">
+                <h3>Gør sagen aktiv igen</h3>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
+                </div>
             </div>
         </div>
         

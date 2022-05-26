@@ -319,22 +319,24 @@
             <!---------------------------
                 Add new employee pop-up
             ---------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_create_task_pop_up ?>">
-                <h3>Tilføj ny opgave</h3>
-                <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_c" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
-                <div class="pop-up-row">
-                    <p>Prioritet : </p>
-                    <select name="priority_c">
-                        <option <?php echo $priority == "Lav" ? 'selected' : '' ?> value="Lav">Lav</option>
-                        <option <?php echo $priority == "Middel" ? 'selected' : '' ?> value="Middel">Middel</option>
-                        <option <?php echo $priority == "Høj" ? 'selected' : '' ?> value="Høj">Høj</option>
-                    </select>
-                </div> 
-                <div class="pop-up-row"><p>Deadline : </p><input type="date" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
+            <div class="pop_up_modal_container" style="display: <?php echo $display_create_task_pop_up ?>">
+                <div class="pop_up_modal">
+                    <h3>Tilføj ny opgave</h3>
+                    <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_c" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
+                    <div class="pop-up-row">
+                        <p>Prioritet : </p>
+                        <select name="priority_c">
+                            <option <?php echo $priority == "Lav" ? 'selected' : '' ?> value="Lav">Lav</option>
+                            <option <?php echo $priority == "Middel" ? 'selected' : '' ?> value="Middel">Middel</option>
+                            <option <?php echo $priority == "Høj" ? 'selected' : '' ?> value="Høj">Høj</option>
+                        </select>
+                    </div> 
+                    <div class="pop-up-row"><p>Deadline : </p><input type="date" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
+                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
 
@@ -375,21 +377,25 @@
             <!------------------------
                     delete pop up
             ------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_delete_task_pop_up ?>">
-                <h3>Slet opgave</h3>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+            <div class="pop_up_modal_container" style="display: <?php echo $display_delete_task_pop_up?>">
+                <div class="pop_up_modal">
+                    <h3>Slet opgave</h3>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
             <!------------------------
                     archive pop up
             ------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_tasks_service_case_pop_up ?>">
-                <h3>Arkiver opgave</h3>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
+            <div class="pop_up_modal_container" style="display: <?php echo $display_tasks_service_case_pop_up ?>">
+                <div class="pop_up_modal">
+                    <h3>Arkiver opgave</h3>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
 

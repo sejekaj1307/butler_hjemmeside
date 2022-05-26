@@ -10,38 +10,51 @@
 /*Lille pc - M*/
 @media screen and(min-width: 1200px) {
         
+
 /*---------------------------------
         Describe case
 ---------------------------------*/
 .describe_case_navbar {
     display: flex;
     border-bottom: 2px solid #5068CB;
-    button { 
-        background: none;
-        margin: 0;
-        padding: 0;
-        border: 1px solid #B2C7F9;
+    justify-content: space-between;
+    .button_container {
+        display: flex;
+        button { 
+            background: none;
+            margin: 0;
+            padding: 0;
+            border: 1px solid #B2C7F9;
+            width: 130px;
+            height: 45px;
+            a {
+                font-size: 17px;
+                display: flex;
+                width: 100%;
+                height: 100%;
+                text-decoration: none;
+                color: #000;
+                align-items: center;
+                justify-content: center;
+                &:hover {
+                    cursor: pointer;
+                    background-color: #B2C7F9;
+                }
+            }       
+        }
+        .describe_case_navbar_active {
+            background-color: #D0DDFB;
+        }
+    }
+    .describe_case_update {
+        background-color: $button_color_green;
         width: 130px;
         height: 45px;
-        a {
-            font-size: 17px;
-            display: flex;
-            width: 100%;
-            height: 100%;
-            text-decoration: none;
-            color: #000;
-            align-items: center;
-            justify-content: center;
-            &:hover {
-                cursor: pointer;
-                background-color: #B2C7F9;
-            }
-        }
-        
+        border: none;
+        color: #fff;
+        font-size: 18px;
     }
-    .describe_case_navbar_active{
-        background-color: #D0DDFB;
-    }
+
 }
 .describe_case_info_container {
     display: flex;

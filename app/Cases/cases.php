@@ -285,9 +285,10 @@
                                     echo '<p class="case_deadline">' . '<span class="dropdown_inline_headers">Seneste </span>' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
                                 echo '</div>';
                                 echo '<div class="button_container">';
-                                        echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
-                                        echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/archive.png" alt="Employee icon" class="edit_icons"<button>';
-                                        echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
+                                        //echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"><button>';
+                                        echo '<a class="describe_case_link" href="describe_case.php?case_nr=' . $row['case_nr'] . '" class="active_site_dropdown"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"></a>';
+                                        echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/archive.png" alt="Employee icon" class="edit_icons"><button>';
+                                        echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"><button>';
                                     echo '</div>';
                             echo '</div>'; 
                             $list_order_id += 1;
@@ -305,80 +306,88 @@
         <!---------------------------
             Add new case pop-up
         ---------------------------->
-        <div class="pop_up_modal" style="display: <?php echo $display_create_case_pop_up ?>">
-            <h3>Opret ny sag</h3>
-            <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_c" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
-            <div class="pop-up-row">
-                <p>Ansvarlig : </p>
-                <select name="case_responsible_c">
-                    <?php
-                        foreach($case_responsible_initials_list as $case_responsible_initials){
-                            echo "<option " . ($case_responsible == $case_responsible_initials ? 'selected' : '') . "value=" . $case_responsible_initials . ">" . $case_responsible_initials . "</option>";
-                        }
-                    ?>
-                </select>
-            </div>
-            <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
-            <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
-            <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
-            <div class="pop-up-btn-container">
-                <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                <input type="submit" name="knap" value="Opret" class="pop_up_confirm">
+        <div class="pop_up_modal_container" style="display: <?php echo $display_create_case_pop_up ?>">
+            <div class="pop_up_modal">
+                <h3>Opret ny sag</h3>
+                <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_c" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
+                <div class="pop-up-row">
+                    <p>Ansvarlig : </p>
+                    <select name="case_responsible_c">
+                        <?php
+                            foreach($case_responsible_initials_list as $case_responsible_initials){
+                                echo "<option " . ($case_responsible == $case_responsible_initials ? 'selected' : '') . "value=" . $case_responsible_initials . ">" . $case_responsible_initials . "</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
+                <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
+                <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
+                <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Opret" class="pop_up_confirm">
+                </div>
             </div>
         </div>
 
         <!----------------------------
                 Edit profile pop-op
         ----------------------------->
-        <div class="pop_up_modal" style="display: <?php echo $display_edit_case_pop_up ?>">
-            <h3>Opdater sag</h3>
-            <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_u" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
-            <div class="pop-up-row">
-                <p>Ansvarlig : </p>
-                <select name="case_responsible_u">
-                    <?php
-                        foreach($case_responsible_initials_list as $case_responsible_initials){
-                            echo "<option " . ($case_responsible == $case_responsible_initials ? 'selected' : '') . " value=" . $case_responsible_initials . ">" . $case_responsible_initials . "</option>";
-                        }
-                    ?>
-                </select>
-            </div>
-            <div class="pop-up-row">
-                    <p>Status : </p>
-                    <select name="status_u">
-                        <option <?php echo $status == "Oprettet" ? 'selected' : '' ?> value="Oprettet">Oprettet</option>
-                        <option <?php echo $status == "Beskrevet" ? 'selected' : '' ?> value="Beskrevet">Beskrevet</option>
-                        <option <?php echo $status == "Aktiv" ? 'selected' : '' ?> value="Aktiv">Aktiv</option>
-                        <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
+        <div class="pop_up_modal_container" style="display: <?php echo $display_edit_case_pop_up ?>">
+            <div class="pop_up_modal">
+                <h3>Opdater sag</h3>
+                <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_u" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
+                <div class="pop-up-row">
+                    <p>Ansvarlig : </p>
+                    <select name="case_responsible_u">
+                        <?php
+                            foreach($case_responsible_initials_list as $case_responsible_initials){
+                                echo "<option " . ($case_responsible == $case_responsible_initials ? 'selected' : '') . " value=" . $case_responsible_initials . ">" . $case_responsible_initials . "</option>";
+                            }
+                        ?>
                     </select>
                 </div>
-            <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
-            <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
-            <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
-            <div class="pop-up-btn-container">
-                <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+                <div class="pop-up-row">
+                        <p>Status : </p>
+                        <select name="status_u">
+                            <option <?php echo $status == "Oprettet" ? 'selected' : '' ?> value="Oprettet">Oprettet</option>
+                            <option <?php echo $status == "Beskrevet" ? 'selected' : '' ?> value="Beskrevet">Beskrevet</option>
+                            <option <?php echo $status == "Aktiv" ? 'selected' : '' ?> value="Aktiv">Aktiv</option>
+                            <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
+                        </select>
+                    </div>
+                <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
+                <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
+                <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+                </div>
             </div>
         </div>
 
         <!------------------------
                 delete pop up
         ------------------------->
-        <div class="pop_up_modal" style="display: <?php echo $display_delete_case_pop_up ?>">
-            <h3>Slet sag</h3>
-            <div class="pop-up-btn-container">
-                <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
-                <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+        <div class="pop_up_modal_container" style="display: <?php echo $display_delete_case_pop_up ?>">
+            <div class="pop_up_modal">
+                <h3>Slet sag</h3>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+                </div>
             </div>
         </div>
         <!------------------------
                 archive pop up
         ------------------------->
-        <div class="pop_up_modal" style="display: <?php echo $display_archive_case_pop_up ?>">
-            <h3>Arkiver sag</h3>
-            <div class="pop-up-btn-container">
-                <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
-                <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
+        <div class="pop_up_modal_container" style="display: <?php echo $display_archive_case_pop_up ?>">
+            <div class="pop_up_modal">
+                <h3>Arkiver sag</h3>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
+                </div>
             </div>
         </div>
         

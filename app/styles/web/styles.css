@@ -467,6 +467,10 @@
   }
 }
 
+.describe_case_link img {
+  width: 20px;
+}
+
 /*---------------------------------
     Time registration navbar
 ---------------------------------*/
@@ -859,8 +863,16 @@
     display: -ms-flexbox;
     display: flex;
     border-bottom: 2px solid #5068CB;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
-  .describe_case_navbar button {
+  .describe_case_navbar .button_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .describe_case_navbar .button_container button {
     background: none;
     margin: 0;
     padding: 0;
@@ -868,7 +880,7 @@
     width: 130px;
     height: 45px;
   }
-  .describe_case_navbar button a {
+  .describe_case_navbar .button_container button a {
     font-size: 17px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -884,12 +896,20 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .describe_case_navbar button a:hover {
+  .describe_case_navbar .button_container button a:hover {
     cursor: pointer;
     background-color: #B2C7F9;
   }
-  .describe_case_navbar .describe_case_navbar_active {
+  .describe_case_navbar .button_container .describe_case_navbar_active {
     background-color: #D0DDFB;
+  }
+  .describe_case_navbar .describe_case_update {
+    background-color: #149DB9;
+    width: 130px;
+    height: 45px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
   }
   .describe_case_info_container {
     display: -webkit-box;

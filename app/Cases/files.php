@@ -10,6 +10,9 @@
         echo "<script> window.location.href = '../index.php'; </script>";
     }
     include("../Data/data.php");
+
+    //Get case_nr from the URL
+    $case_nr = $_GET['case_nr'];
 ?>
 
 <!DOCTYPE html>
@@ -144,12 +147,15 @@
 
         <div class="case_list_page">
             <div class="describe_case_navbar">
-                <button><a href="describe_case.php">Sagsinfo</a></button>
-                <button><a href="pictures.php">Billeder</a></button>
-                <button class="describe_case_navbar_active"><a href="files.php">Filer</a></button>
+                <div class="button_container">
+                    <button><a href="describe_case.php?case_nr=<?php echo $case_nr;?>">Sagsinfo</a></button>
+                    <button><a href="pictures.php?case_nr=<?php echo $case_nr;?>">Billeder</a></button>
+                    <button class="describe_case_navbar_active"><a href="files.php?case_nr=<?php echo $case_nr;?>">Filer</a></button>
+                </div>
+                <input type="submit" name="knap" value="Opdater" class="describe_case_update">
             </div>
             <div class="describe_case_info_container">
-                <h1>Billeder - sag nr #</h1>
+                <h1>Filer - sag nr <?php echo $case_nr?></h1>
                 <div class="input_container">
             </div>
         <div>
