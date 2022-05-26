@@ -279,11 +279,11 @@
                                         echo '<p class="task_name">' . $row["task_title"] . '</p>';
                                     echo '</div>';
                                     echo '<div class="task_dropdown_mobile">';
-                                        echo '<p class="task_prority">' . $row["priority"] . '</p>';
-                                        echo '<p class="task_status">' . $row["status"] . '</p>';
-                                        echo '<p class="task_deadline">' . $row["deadline"] . '</p>';
-                                        echo '<p class="task_updated_initials">' . $row["updated_initials"] . '</p>';
-                                        echo '<p class="task_comment">' . $row["comment"] . '</p>';
+                                        echo '<p class="task_prority">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["priority"] . '</p>';
+                                        echo '<p class="task_status">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["status"] . '</p>';
+                                        echo '<p class="task_deadline">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["deadline"] . '</p>';
+                                        echo '<p class="task_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["updated_initials"] . '</p>';
+                                        echo '<p class="task_comment">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["comment"] . '</p>';
                                     echo '</div>';
 
                                     echo '<div class="button_container">';

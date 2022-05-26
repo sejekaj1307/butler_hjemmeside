@@ -231,10 +231,10 @@
                                     echo '<p class="external_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="external_dropdown_mobile" id="'. $row["id"] .'">';
-                                    echo '<p class="dark_dropdown_table external_phone">' . $row["phone"] . '</p>';
-                                    echo '<p class="light_dropdown_table external_phone">' . $row["phone_private"] . '</p>';
-                                    echo '<p class="dark_dropdown_table external_email">' . $row["email"] . '</p>';
-                                    echo '<p class="light_dropdown_table external_product">' . $row["contact_type"] . '</p>';
+                                    echo '<p class="external_phone">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["phone"] . '</p>';
+                                    echo '<p class="external_phone">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["phone_private"] . '</p>';
+                                    echo '<p class="external_email">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["email"] . '</p>';
+                                    echo '<p class="external_product">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["contact_type"] . '</p>';
                                 echo '</div>';
 
                                 echo '<div class="button_container">';

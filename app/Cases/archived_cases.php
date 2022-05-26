@@ -176,13 +176,13 @@
                             echo '<div class="case_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'case_dropdown_mobile'" .') " style="border-left: 5px solid' . $status_color . '">';
                                 echo '<div class="case_information">';
                                     echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
-                                    echo '<p class="dark_dropdown_table case_responsible">' . $row["case_responsible"] . '</p>';
+                                    echo '<p class="case_responsible">' . $row["case_responsible"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="case_dropdown_mobile">';
-                                    echo '<p class="light_dropdown_table case_status">' . $row["status"] . '</p>';
-                                    echo '<p class="dark_dropdown_table case_location">' . $row["location"] . '</p>';
-                                    echo '<p class="case_est_start">' . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
-                                    echo '<p class="case_deadline">' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
+                                    echo '<p class="case_status">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["status"] . '</p>';
+                                    echo '<p class="case_location">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["location"] . '</p>';
+                                    echo '<p class="case_est_start">' . '<span class="dropdown_inline_headers">Seneste </span>'  . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
+                                    echo '<p class="case_deadline">' . '<span class="dropdown_inline_headers">Seneste </span>'  . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
                                 echo '</div>';
                                 echo '<div class="button_container">';
                                     echo '<button type="submit" name="knap" value="activate_' . $row['id'] . '"><img src="../img/activate.png" alt="Employee icon" class="edit_icons"<button>';

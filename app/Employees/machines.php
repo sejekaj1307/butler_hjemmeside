@@ -223,8 +223,8 @@
                                     echo '<p class="machine_name">' . $row["name"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="machine_dropdown_mobile" id="'. $row["id"] .'">';
-                                    echo '<p class="dark_dropdown_table machine_nordic_name">' . $row["name_nordic"] . '</p>';
-                                    echo '<p class="light_dropdown_table machine_link">' . "<a href=" . $row['link'] . ">Link til BB hjemmeside</a>" . '</p>';
+                                    echo '<p class="machine_nordic_name">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["name_nordic"] . '</p>';
+                                    echo '<p class="machine_link">' . '<span class="dropdown_inline_headers">Seneste </span>'  . "<a href=" . $row['link'] . ">Link til BB hjemmeside</a>" . '</p>';
                                 echo '</div>';
                                 
                                 echo '<div class="button_container">';

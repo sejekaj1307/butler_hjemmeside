@@ -28,7 +28,7 @@
 }
 
 /*-------------------------------
-        Employee lists
+            Lists
 -------------------------------*/
 .employee_list, .external_list, .machine_list, .case_list, .task_list { //Aller yderste der har alt
     flex-direction: column;
@@ -56,25 +56,21 @@
             display: none;                 
         }
     }
-    .employee_data_row, .external_data_row, .machine_data_row, .case_data_row, .task_data_row {
+    .employee_data_row, .external_data_row, .machine_data_row, .case_data_row, .task_data_row { //borders on the side of the container
             border-left: 1px solid $light-sec-nav;
             border-right: 1px solid $light-sec-nav;
         .mobile_employee_information, .mobile_external_information, .machine_information, .case_information, .task_information { //Den øverste bar, som kan ses af data, f.eks. Ibsen, Steen - Si
             display: flex;
             border-bottom: 1.5px solid $tr_border_bottom;
             border-top: 1.5px solid $tr_border_bottom;
-            cursor: pointer;    
-            .employee_name, .external_name, .machine_name {
-                width: 80%;
-            }
+            cursor: pointer;
         }
         .employee_dropdown_mobile, .machine_dropdown_mobile, .external_dropdown_mobile, .case_dropdown_mobile, .task_dropdown_mobile {
             flex-direction: column;
             display: none;
-            :last-child {
-                border-bottom: 2px solid $time_registration_navbar_border;
-            }
+            border-bottom: 2px solid $time_registration_navbar_border;
         }
+
     }
     .button_container {
         display: none;
@@ -84,13 +80,34 @@
     }
 }
 
+    
+
+.case_dropdown_mobile p, .external_dropdown_mobile p,  .machine_dropdown_mobile p, 
+.external_dropdown_mobile p, .employee_dropdown_mobile p, .task_dropdown_mobile p,  .task_dropdown_mobile p, .case_dropdown_mobile{
+    display: flex;
+    width: 100%;
+    padding: 10px 0 10px 0;
+    align-items: center;
+
+    .dropdown_inline_headers {
+        font-weight: 600;
+        display: flex;
+        width: 35% !important;  
+        padding: 0 15px;
+        
+    }
+}
+
+
+.case_nr_header, .case_nr, .employee_name {
+    width: 35% !important;
+}
+ 
+
+
 /*-------------------------------
         Mobile width cases
 -------------------------------*/
-    .case_nr_header, .case_nr {
-        width: 50% !important;
-    }
-
 .add_new_link {
     display: none;
     img {
@@ -107,6 +124,7 @@
         cursor: pointer;
     }
 }
+
 
 
 /*Tablet - S */
@@ -126,7 +144,9 @@
     .add_new_link {
         display: flex;
     }
-
+            .dropdown_inline_headers {
+                display: none;
+            }    
 
     /*---------------------------
             Employees 1200
@@ -137,6 +157,7 @@
         }
         .employee_list_header, .external_list_header, .machine_list_header, .case_list_header, .task_list_header {
             display: flex;
+            font-size: 17px;
         }
         //Div der holder alle andre headers og data
         .employee_all_headers, .machines_all_headers, .external_all_headers, .case_all_headers, .task_all_headers {
@@ -157,9 +178,7 @@
             .employee_dropdown_mobile, .external_dropdown_mobile, .machine_dropdown_mobile, .case_dropdown_mobile, .task_dropdown_mobile {
                 display: flex;
                 flex-direction: row;
-                :last-child {
-                    border-bottom: none !important;
-                }
+                border-bottom: none !important;
             }
         }
         .button_container, .button_container_header { //button container, crud, read and delete

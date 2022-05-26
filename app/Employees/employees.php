@@ -240,10 +240,10 @@
                                         echo '<p class="employee_initials">' . $row["initials"] . '</p>';
                                     echo '</div>';
                                     echo '<div class="employee_dropdown_mobile" id="'. $row["id"] .'">';
-                                        echo '<p class="dark_dropdown_table employee_phone">' . $row["phone"] . '</p>';
-                                        echo '<p class="light_dropdown_table employee_phone">' . $row["phone_private"] . '</p>';
-                                        echo '<p class="dark_dropdown_table employee_email">' . $row["email"] . '</p>';
-                                        echo '<p class="light_dropdown_table employee_emergency">' . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</p>';
+                                        echo '<p class="employee_phone">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["phone"] . '</p>';
+                                        echo '<p class="employee_phone">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["phone_private"] . '</p>';
+                                        echo '<p class="employee_email">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["email"] . '</p>';
+                                        echo '<p class="employee_emergency">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</p>';
                                     echo '</div>';
 
                                     echo '<div class="button_container">';

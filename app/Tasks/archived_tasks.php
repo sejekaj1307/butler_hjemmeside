@@ -177,10 +177,10 @@
                                     echo '<p class="task_name">' . $row["task_title"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="task_dropdown_mobile">';
-                                    echo '<p class="task_archived_at">' . $row["archived_at"] . '</p>';
-                                    echo '<p class="task_archived_initials">' . $row["archived_initials"] . '</p>';
-                                    echo '<p class="task_updated_initials">' . $row["updated_initials"] . '</p>';
-                                    echo '<p class="task_comment">' . $row["comment"] . '</p>';
+                                    echo '<p class="task_archived_at">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["archived_at"] . '</p>';
+                                    echo '<p class="task_archived_initials">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["archived_initials"] . '</p>';
+                                    echo '<p class="task_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["updated_initials"] . '</p>';
+                                    echo '<p class="task_comment">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["comment"] . '</p>';
                                 echo '</div>';
                                 
                                 echo '<div class="button_container">';
