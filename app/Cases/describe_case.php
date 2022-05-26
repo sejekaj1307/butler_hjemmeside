@@ -209,24 +209,24 @@
                 <h1>Sagsinfo - sag nr <?php echo $case_nr?></h1>
                 <div class="input_container">
                     <div class="top_inputs_container">
-                        <div class="small_inputs"><p>Kunde :</p><input name="client" type="text" value="<?php echo $this_case->get_client();?>"></div>
-                        <div class="small_inputs"><p>Kundesag nr :</p><input name="client_case_nr" type="text" value="<?php echo $this_case->get_client_case_nr();?>"></div>
-                        <div class="small_inputs"><p>Intern sag nr. :</p><input name="case_nr" type="text" value="<?php echo $this_case->get_case_nr();?>"></div>
-                        <div class="small_inputs"><p>Ansvarlig :</p><input name="case_responsible" type="text" value="<?php echo $this_case->get_case_responsible();?>"></div>
+                        <div class="small_inputs"><p>Kunde :</p><input autocomplete="off" name="client" type="text" value="<?php echo $this_case->get_client();?>"></div>
+                        <div class="small_inputs"><p>Kundesag nr :</p><input autocomplete="off" name="client_case_nr" type="text" value="<?php echo $this_case->get_client_case_nr();?>"></div>
+                        <div class="small_inputs"><p>Intern sag nr. :</p><input autocomplete="off" name="case_nr" type="text" value="<?php echo $this_case->get_case_nr();?>"></div>
+                        <div class="small_inputs"><p>Ansvarlig :</p><input autocomplete="off" name="case_responsible" type="text" value="<?php echo $this_case->get_case_responsible();?>"></div>
                         <div class="large_inputs"><p>Tilkørsel - pladsforhold, adgang, tid, støj, mm.</p><textarea name="comment_road_info" type="subject"><?php echo $this_case->get_comment_road_info();?></textarea></div>
                     </div>
                     <div class="top_inputs_container">
-                        <div class="small_inputs"><p>Lokation :</p><input name="location" type="text" value="<?php echo $this_case->get_location();?>"></div>
-                        <div class="small_inputs"><p>Postnummer :</p><input name="zip_code" type="text" value="<?php echo $this_case->get_zip_code();?>"></div>
-                        <div class="small_inputs"><p>Maskiner :</p><input name="machines" type="text" value="<?php echo $this_case->get_machines();?>"></div>
-                        <div class="small_inputs"><p>Medarbejder :</p><input name="employees" type="text" value="<?php echo $this_case->get_employees();?>"></div>
+                        <div class="small_inputs"><p>Lokation :</p><input autocomplete="off" name="location" type="text" value="<?php echo $this_case->get_location();?>"></div>
+                        <div class="small_inputs"><p>Postnummer :</p><input autocomplete="off" name="zip_code" type="text" value="<?php echo $this_case->get_zip_code();?>"></div>
+                        <div class="small_inputs"><p>Maskiner :</p><input autocomplete="off" name="machines" type="text" value="<?php echo $this_case->get_machines();?>"></div>
+                        <div class="small_inputs"><p>Medarbejder :</p><input autocomplete="off" name="employees" type="text" value="<?php echo $this_case->get_employees();?>"></div>
                         <div class="large_inputs"><p>Ekstra arbejde/ventetid</p><textarea name="comment_extra_work" type="subject"><?php echo $this_case->get_comment_extra_work();?></textarea></div>
                     </div>
                 </div>
                 <div class="bottom_inputs_container">
                     <div class="date_and_status">
-                        <div class="small_inputs"><p>Forventet start d. :</p><input name="est_start_date" type="date" value="<?php echo $this_case->get_est_start_date();?>"></div>
-                        <div class="small_inputs"><p>Forventet slut d. :</p><input name="est_end_date" type="date" value="<?php echo $this_case->get_est_end_date();?>"></div>
+                        <div class="small_inputs"><p>Forventet start d. :</p><input autocomplete="off" name="est_start_date" type="date" value="<?php echo $this_case->get_est_start_date();?>"></div>
+                        <div class="small_inputs"><p>Forventet slut d. :</p><input autocomplete="off" name="est_end_date" type="date" value="<?php echo $this_case->get_est_end_date();?>"></div>
                         <div class="status_container">
                             <p>Status :</p>
                             <select name="status">

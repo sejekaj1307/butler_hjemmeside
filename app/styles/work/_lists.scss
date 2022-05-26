@@ -1,9 +1,3 @@
-.describe_case_link{
-    img{
-        width: 20px;
-    }
-}
-
 /*---------------------------------
     Time registration navbar
 ---------------------------------*/
@@ -190,11 +184,13 @@
         .button_container, .button_container_header { //button container, crud, read and delete
             display: flex;
             width: 6vw !important;
-            justify-content: space-between;
-            padding-right: 10px;   
-            button {
+            justify-content: space-between !important;
+            padding-right: 7px;   
+            button, a {
                 background: none;
                 border: none;
+                display: flex;
+                align-items: center;
                 .edit_icons {
                     width: 20px;
                     cursor: pointer;

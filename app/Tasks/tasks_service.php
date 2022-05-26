@@ -181,6 +181,15 @@
                             if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                             {
                                 $_SESSION["selected_task"] = $id;
+                                $sql = $conn->prepare("select task_title from tasks_service where id = ?");
+                                $sql->bind_param("i", $id);
+                                $sql->execute();
+                                $result = $sql->get_result();
+                                if($result->num_rows > 0) 
+                                {
+                                    $row = $result->fetch_assoc();
+                                    $_SESSION["selected_task_name"] = $row['task_title'];
+                                }
                                 $display_delete_harmonica_pop_up = "flex";
                             }
                         }
@@ -310,7 +319,7 @@
                             ?>
                         </select>
                     </div>
-                    <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_c" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
+                    <div class="pop-up-row"><p>Opgave : </p><input autocomplete="off"  type="text" name="task_title_c" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                     <div class="pop-up-row">
                         <p>Prioritet : </p>
                         <select name="priority_c">
@@ -319,8 +328,8 @@
                             <option <?php echo $priority == "Høj" ? 'selected' : '' ?> value="Høj">Høj</option>
                         </select>
                     </div> 
-                    <div class="pop-up-row"><p>Deadline : </p><input type="date" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                    <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
+                    <div class="pop-up-row"><p>Bemærkning : </p><input autocomplete="off" type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
@@ -344,7 +353,7 @@
                             ?>
                         </select>
                     </div>
-                    <div class="pop-up-row"><p>Opgave : </p><input type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
+                    <div class="pop-up-row"><p>Opgave : </p><input autocomplete="off" type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                     <div class="pop-up-row">
                         <p>Prioritet : </p>
                         <select name="priority_u">
@@ -362,9 +371,9 @@
                             <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
                         </select>
                     </div> 
-                    <div class="pop-up-row"><p>Seneste service : </p><input type="date" name="last_service_u" value="<?php echo isset($last_service) ? $last_service : '' ?>"></div>
-                    <div class="pop-up-row"><p>Deadline : </p><input type="date" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                    <div class="pop-up-row"><p>Seneste service : </p><input autocomplete="off" type="date" name="last_service_u" value="<?php echo isset($last_service) ? $last_service : '' ?>"></div>
+                    <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
+                    <div class="pop-up-row"><p>Bemærkning : </p><input autocomplete="off" type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
@@ -376,7 +385,8 @@
             ------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_delete_harmonica_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Slet opgave</h3>
+                    <h3>Slet opgave?</h3>
+                    <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_task_name"];?>"</i></p>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Slet" class="pop_up_confirm">

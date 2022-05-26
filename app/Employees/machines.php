@@ -97,20 +97,14 @@
                 //create, køres hvis "create button" bliver requested
                 if($_REQUEST['knap'] == "Opret ny")
                 {
-                    $id = $_REQUEST['id_c'];
                     $name = $_REQUEST['name_c'];
                     $name_nordic = $_REQUEST['name_nordic_c'];
                     $link = $_REQUEST['link_c'];
-                    if(is_numeric($id) && is_integer(0 + $id)) 
-                    {
-                        if(!findes($id, $conn)) //opret ny klub
-                        {
-                            $sql = $conn->prepare("insert into machines (id, name, name_nordic, link) values (?, ?, ?, ?)");
-                            $sql->bind_param("isss", $id, $name, $name_nordic, $link);
-                            $sql->execute();
-                            $display_create_machine_pop_up = "none";
-                        }
-                    }
+    
+                    $sql = $conn->prepare("insert into machines (name, name_nordic, link) values (?, ?, ?)");
+                    $sql->bind_param("sss", $name, $name_nordic, $link);
+                    $sql->execute();
+                    $display_create_machine_pop_up = "none";
                 }
                 //read, koden køres hvis "read button" bliver requested 
                 if(str_contains($_REQUEST['knap'] , "read"))
@@ -127,6 +121,7 @@
                         {
                             $row = $result->fetch_assoc();
                             $id = $row['id'];
+                            $_SESSION["selected_machine"] = $id;
                             $name = $row['name'];
                             $name_nordic = $row['name_nordic'];
                             $link = $row['link'];
@@ -137,7 +132,7 @@
                 //update
                 if($_REQUEST['knap'] == "Opdater") 
                 {
-                    $id = $_REQUEST['id_u'];
+                    $id = $_SESSION["selected_machine"];
                     $name = $_REQUEST['name_u'];
                     $name_nordic = $_REQUEST['name_nordic_u'];
                     $link = $_REQUEST['link_u'];
@@ -160,7 +155,17 @@
                     {
                         if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                         {
-                            $_SESSION["maskineTilDelete"] = $id;
+                            $_SESSION["selected_machine"] = $id;
+                            $sql = $conn->prepare("select name from machines where id = ?");
+                            $sql->bind_param("i", $id);
+                            $sql->execute();
+                            $result = $sql->get_result();
+                            if($result->num_rows > 0) 
+                            {
+                                $row = $result->fetch_assoc();
+                                $_SESSION["selected_machine_name"] = $row['name'];
+                            }
+
                             $display_delete_machine_pop_up = "flex";
                         }
                     }
@@ -169,7 +174,7 @@
                 if($_REQUEST['knap'] == "Slet")
                 {
                     //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede id forbliver det samme hvis siden genindlæses.
-                    $id = $_SESSION["maskineTilDelete"];
+                    $id = $_SESSION["selected_machine"];
                     $sql = $conn->prepare("delete from machines where id = ?");
                     $sql->bind_param("i", $id);
                     $sql->execute();
@@ -254,7 +259,6 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_machine_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Opdater medarbejderprofil</h3>
-                    id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
                     <div class="pop-up-row"><p>Navn : </p><input type="text" name="name_u" value="<?php echo isset($name) ? $name : '' ?>"></div>
                     <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_u" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
                     <div class="pop-up-row"><p>Link : </p><input type="text" name="link_u" value="<?php echo isset($link) ? $link : '' ?>"></div>
@@ -271,7 +275,6 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_machine_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Tilføj ny medarbejder</h3>
-                    id : <input type="text" name="id_c" value="<?php echo isset($id) ? $id : '' ?>">
                     <div class="pop-up-row"><p>Navn : </p><input type="text" name="name_c" value="<?php echo isset($name) ? $name : '' ?>"></div>
                     <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_c" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
                     <div class="pop-up-row"><p>Link : </p><input type="text" name="link_c" value="<?php echo isset($link) ? $link : '' ?>"></div>
@@ -288,6 +291,7 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_delete_machine_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Slet medarbejder</h3>
+                    <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_machine_name"];?>"</i></p>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Slet" class="pop_up_confirm">

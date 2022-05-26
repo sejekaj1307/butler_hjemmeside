@@ -53,7 +53,6 @@
             <ul class="sec_navbar_ul_dropdown">
                 <li><a href="../Cases/cases.php" class="active_site_dropdown">Sager liste</a></li>
                 <li><a href="../Cases/archived_cases.php">Arkiverede sager</a>
-                <li><a href="../Cases/describe_case.php">Beskriv sag</a>
                 </li>
             </ul>
         </div>
@@ -167,7 +166,16 @@
                         {
                             if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                             {
-                                $_SESSION["bilTilDelete"] = $id;
+                                $_SESSION["selected_case"] = $id;
+                                $sql = $conn->prepare("select case_nr from cases where id = ?");
+                                $sql->bind_param("i", $id);
+                                $sql->execute();
+                                $result = $sql->get_result();
+                                if($result->num_rows > 0) 
+                                {
+                                    $row = $result->fetch_assoc();
+                                    $_SESSION["selected_case_nr"] = $row['case_nr'];
+                                }
                                 $display_delete_case_pop_up = "flex";
                             }
                         }
@@ -175,7 +183,7 @@
                     //Execute - confirm delete
                     if($_REQUEST['knap'] == "Slet")
                     {
-                        $id = $_SESSION["bilTilDelete"];
+                        $id = $_SESSION["selected_case"];
                         $sql = $conn->prepare("delete from cases where id = ?");
                         $sql->bind_param("i", $id);
                         $sql->execute();
@@ -206,7 +214,16 @@
                         {
                             if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                             {
-                                $_SESSION["bilTilDelete"] = $id;
+                                $_SESSION["selected_case"] = $id;
+                                $sql = $conn->prepare("select case_nr from cases where id = ?");
+                                $sql->bind_param("i", $id);
+                                $sql->execute();
+                                $result = $sql->get_result();
+                                if($result->num_rows > 0) 
+                                {
+                                    $row = $result->fetch_assoc();
+                                    $_SESSION["selected_case_nr"] = $row['case_nr'];
+                                }
                                 $display_archive_case_pop_up = "flex";
                             }
                         }
@@ -216,7 +233,7 @@
                     {
                         $date_now = new DateTime();
                         $date_now_formatted = $date_now->format('Y-m-d H:i:s');
-                        $id = $_SESSION["bilTilDelete"];
+                        $id = $_SESSION["selected_case"];
                         $sql = $conn->prepare("update cases set archived_at = ? where id = ?");
                         $sql->bind_param("si", $date_now_formatted, $id);
                         $sql->execute();
@@ -285,8 +302,7 @@
                                     echo '<p class="case_deadline">' . '<span class="dropdown_inline_headers">Seneste </span>' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
                                 echo '</div>';
                                 echo '<div class="button_container">';
-                                        //echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"><button>';
-                                        echo '<a class="describe_case_link" href="describe_case.php?case_nr=' . $row['case_nr'] . '" class="active_site_dropdown"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"></a>';
+                                        echo '<a class="describe_case_link" href="describe_case.php?case_nr=' . $row['case_nr'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"></a>';
                                         echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/archive.png" alt="Employee icon" class="edit_icons"><button>';
                                         echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"><button>';
                                     echo '</div>';
@@ -309,7 +325,7 @@
         <div class="pop_up_modal_container" style="display: <?php echo $display_create_case_pop_up ?>">
             <div class="pop_up_modal">
                 <h3>Opret ny sag</h3>
-                <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_c" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
+                <div class="pop-up-row"><p>Sagssnr. : </p><input autocomplete="off" type="text" name="case_nr_c" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
                 <div class="pop-up-row">
                     <p>Ansvarlig : </p>
                     <select name="case_responsible_c">
@@ -320,9 +336,9 @@
                         ?>
                     </select>
                 </div>
-                <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
-                <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
-                <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
+                <div class="pop-up-row"><p>Lokation : </p><input autocomplete="off" type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
+                <div class="pop-up-row"><p>Startdato : </p><input autocomplete="off" type="date" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
+                <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Opret" class="pop_up_confirm">
@@ -336,7 +352,7 @@
         <div class="pop_up_modal_container" style="display: <?php echo $display_edit_case_pop_up ?>">
             <div class="pop_up_modal">
                 <h3>Opdater sag</h3>
-                <div class="pop-up-row"><p>Sagssnr. : </p><input type="text" name="case_nr_u" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
+                <div class="pop-up-row"><p>Sagssnr. : </p><input autocomplete="off" type="text" name="case_nr_u" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
                 <div class="pop-up-row">
                     <p>Ansvarlig : </p>
                     <select name="case_responsible_u">
@@ -356,9 +372,9 @@
                             <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
                         </select>
                     </div>
-                <div class="pop-up-row"><p>Lokation : </p><input type="text" name="location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
-                <div class="pop-up-row"><p>Startdato : </p><input type="date" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
-                <div class="pop-up-row"><p>Deadline : </p><input type="date" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
+                <div class="pop-up-row"><p>Lokation : </p><input autocomplete="off" type="text" name="location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
+                <div class="pop-up-row"><p>Startdato : </p><input autocomplete="off" type="date" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
+                <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
@@ -372,6 +388,7 @@
         <div class="pop_up_modal_container" style="display: <?php echo $display_delete_case_pop_up ?>">
             <div class="pop_up_modal">
                 <h3>Slet sag</h3>
+                <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_case_nr"];?>"</i></p>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
@@ -384,6 +401,7 @@
         <div class="pop_up_modal_container" style="display: <?php echo $display_archive_case_pop_up ?>">
             <div class="pop_up_modal">
                 <h3>Arkiver sag</h3>
+                <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_case_nr"];?>"</i></p>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
                     <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">

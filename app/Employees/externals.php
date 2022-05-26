@@ -95,21 +95,16 @@
             //create, køres hvis "create button" bliver requested
             if($_REQUEST['knap'] == "Opret ny")
             {
-                $id = $_REQUEST['id_c'];
                 $first_name = $_REQUEST['first_name_c'];
                 $phone = $_REQUEST['phone_c'];
                 $phone_private = $_REQUEST['phone_private_c'];
                 $email = $_REQUEST['email_c'];
                 $contact_type = $_REQUEST['contact_type_c'];
-                if(is_numeric($id) && is_integer(0 + $id)) 
-                {
-                    if(!findes($id, $conn)) //opret ny klub
-                    {
-                        $sql = $conn->prepare("insert into externals (id, first_name, phone, phone_private, email, contact_type) values (?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param("isssss", $id, $first_name, $phone, $phone_private, $email, $contact_type);
-                        $sql->execute();
-                    }
-                }
+
+                $sql = $conn->prepare("insert into externals (first_name, phone, phone_private, email, contact_type) values (?, ?, ?, ?, ?)");
+                $sql->bind_param("sssss", $first_name, $phone, $phone_private, $email, $contact_type);
+                $sql->execute();
+            
             }
             //read, koden køres hvis "read button" bliver requested 
             if(str_contains($_REQUEST['knap'] , "read"))
@@ -126,6 +121,7 @@
                     {
                         $row = $result->fetch_assoc();
                         $id = $row['id'];
+                        $_SESSION["selected_external"] = $id;
                         $first_name = $row['first_name'];
                         $phone = $row['phone'];
                         $phone_private = $row['phone_private'];
@@ -139,7 +135,7 @@
             //update
             if($_REQUEST['knap'] == "Opdater") 
             {
-                $id = $_REQUEST['id_u'];
+                $id = $_SESSION["selected_external"];
                 $first_name = $_REQUEST['first_name_u'];
                 $phone = $_REQUEST['phone_u'];
                 $phone_private = $_REQUEST['phone_private_u'];
@@ -165,7 +161,18 @@
                 {
                     if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                     {
-                        $_SESSION["bilTilDelete"] = $id;
+                        $_SESSION["selected_external"] = $id;
+                        $sql = $conn->prepare("select first_name, last_name from externals where id = ?");
+                        $sql->bind_param("i", $id);
+                        $sql->execute();
+                        $result = $sql->get_result();
+                        if($result->num_rows > 0) 
+                        {
+                            $row = $result->fetch_assoc();
+                            $_SESSION["selected_externals_first_name"] = $row['first_name'];
+                            $_SESSION["selected_externals_last_name"] = $row['last_name'];
+                        }
+
                         $display_delete_external_pop_up = "flex";
                     }
                 }
@@ -175,7 +182,7 @@
             {
                 //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede id forbliver det samme hvis siden genindlæses.
                 //Vi skal have fat i bilid, men vi kan ikke længere bruge den tidligere variabel. Vi skal sikre at brugeren ikke har ændret tallet i mellemtiden
-                $id = $_SESSION["bilTilDelete"];
+                $id = $_SESSION["selected_external"];
                 $sql = $conn->prepare("delete from externals where id = ?");
                 $sql->bind_param("i", $id);
                 $sql->execute();
@@ -264,7 +271,6 @@
         <div class="pop_up_modal_container" style="display: <?php echo $display_edit_external_pop_up ?>">
             <div class="pop_up_modal">
                 <h3>Opdater ekstern</h3>
-                id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
                 <div class="pop-up-row"><p>Navn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
                 <div class="pop-up-row"><p>Tlf. : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
                 <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private_u" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
@@ -283,7 +289,6 @@
         <div class="pop_up_modal_container" style="display: <?php echo $display_create_external_pop_up ?>">
             <div class="pop_up_modal">
                 <h3>Tilføj ny ekstern</h3>
-                id : <input type="text" name="id_c" value="<?php echo isset($id) ? $id : '' ?>">
                 <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
                 <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_c" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
                 <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private_c" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
@@ -302,6 +307,7 @@
         <div class="pop_up_modal_container" style="display: <?php echo $display_delete_external_pop_up ?>">
             <div class="pop_up_modal">
                 <h3>Slet ekstern</h3>
+                <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_externals_last_name"]. ', ' . $_SESSION["selected_externals_first_name"];?>"</i></p>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Annuller" class="pop_up_cancel"  >
                     <input type="submit" name="knap" value="Slet" class="pop_up_confirm"  >

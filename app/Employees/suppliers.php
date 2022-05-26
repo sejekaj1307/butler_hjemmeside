@@ -98,22 +98,16 @@
             //create, køres hvis "create button" bliver requested
             if($_REQUEST['knap'] == "Opret ny")
             {
-                $id = $_REQUEST['id_c'];
                 $first_name = $_REQUEST['first_name_c'];
                 $phone = $_REQUEST['phone_c'];
                 $address = $_REQUEST['address_c'];
                 $email = $_REQUEST['email_c'];
                 $product = $_REQUEST['product_c'];
-                if(is_numeric($id) && is_integer(0 + $id)) 
-                {
-                    if(!findes($id, $conn)) //opret ny klub
-                    {
-                        $sql = $conn->prepare("insert into suppliers (id, first_name, phone, address, email, product) values (?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param("isssss", $id, $first_name, $phone, $address, $email, $product);
-                        $sql->execute();
-                        $display_create_supplier_pop_up = "none";
-                    }
-                } 
+
+                $sql = $conn->prepare("insert into suppliers (first_name, phone, address, email, product) values (?, ?, ?, ?, ?)");
+                $sql->bind_param("sssss", $first_name, $phone, $address, $email, $product);
+                $sql->execute();
+                $display_create_supplier_pop_up = "none"; 
             }
             //read, koden køres hvis "read button" bliver requested 
             if(str_contains($_REQUEST['knap'] , "read"))
@@ -130,6 +124,7 @@
                     {
                         $row = $result->fetch_assoc();
                         $id = $row['id'];
+                        $_SESSION["selected_supplier"] = $id;
                         $first_name = $row['first_name'];
                         $phone = $row['phone'];
                         $address = $row['address'];
@@ -142,7 +137,7 @@
             //update
             if($_REQUEST['knap'] == "Opdater") 
             {
-                $id = $_REQUEST['id_u'];
+                $id = $_SESSION["selected_supplier"];
                 $first_name = $_REQUEST['first_name_u'];
                 $phone = $_REQUEST['phone_u'];
                 $address = $_REQUEST['address_u'];
@@ -168,7 +163,17 @@
                 {
                     if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                     {
-                        $_SESSION["bilTilDelete"] = $id;
+                        $_SESSION["selected_supplier"] = $id;
+                        $sql = $conn->prepare("select first_name, last_name from suppliers where id = ?");
+                        $sql->bind_param("i", $id);
+                        $sql->execute();
+                        $result = $sql->get_result();
+                        if($result->num_rows > 0) 
+                        {
+                            $row = $result->fetch_assoc();
+                            $_SESSION["selected_supplier_first_name"] = $row['first_name'];
+                            $_SESSION["selected_supplier_last_name"] = $row['last_name'];
+                        }
                         $display_delete_supplier_pop_up = "flex";
                     }
                 }
@@ -176,7 +181,7 @@
             //Execute - confirm delete
             if($_REQUEST['knap'] == "Slet")
             {
-                $id = $_SESSION["bilTilDelete"];
+                $id = $_SESSION["selected_supplier"];
                 $sql = $conn->prepare("delete from suppliers where id = ?");
                 $sql->bind_param("i", $id);
                 $sql->execute();          
@@ -264,7 +269,6 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_supplier_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Opdater ekstern</h3>
-                    id : <input type="text" name="id_u" value="<?php echo isset($id) ? $id : '' ?>">
                     <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
                     <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
                     <div class="pop-up-row"><p>Adresse : </p><input type="text" name="address_u" value="<?php echo isset($address) ? $address : '' ?>"></div>
@@ -283,7 +287,6 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_supplier_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Tilføj ny ekstern</h3>
-                    id : <input type="text" name="id_c" value="<?php echo isset($id) ? $id : '' ?>">
                     <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
                     <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_c" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
                     <div class="pop-up-row"><p>Adresse : </p><input type="text" name="address_c" value="<?php echo isset($address) ? $address : '' ?>"></div>
@@ -302,6 +305,7 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_delete_supplier_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Slet ekstern</h3>
+                    <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_supplier_last_name"]. ', ' . $_SESSION["selected_supplier_first_name"];?>"</i></p>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel"  >
                         <input type="submit" name="knap" value="Slet" class="pop_up_confirm"  >

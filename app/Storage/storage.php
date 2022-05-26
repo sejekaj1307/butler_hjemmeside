@@ -170,6 +170,16 @@
                             if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                             {
                                 $_SESSION["selected_element"] = $id;
+                                $sql = $conn->prepare("select element from storage where id = ?");
+                                $sql->bind_param("i", $id);
+                                $sql->execute();
+                                $result = $sql->get_result();
+                                if($result->num_rows > 0) 
+                                {
+                                    $row = $result->fetch_assoc();
+                                    $_SESSION["selected_element_name"] = $row['element'];
+                                }
+
                                 $display_delete_storage_pop_up = "flex";
                             }
                         }
@@ -340,6 +350,7 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_delete_storage_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Slet element</h3>
+                    <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_element_name"];?>"</i></p>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Slet" class="pop_up_confirm">

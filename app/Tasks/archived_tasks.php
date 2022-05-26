@@ -94,6 +94,15 @@
                         $split = explode("_", $_REQUEST['knap']);
                         $id = $split[1];
                         $_SESSION["selected_task"] = $id;
+                        $sql = $conn->prepare("select task_title from tasks where id = ?");
+                                $sql->bind_param("i", $id);
+                                $sql->execute();
+                                $result = $sql->get_result();
+                                if($result->num_rows > 0) 
+                                {
+                                    $row = $result->fetch_assoc();
+                                    $_SESSION["selected_task_name"] = $row['task_title'];
+                                }
                         $display_activate_case_pop_up = "flex";                        
                     }
                     //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
@@ -110,7 +119,7 @@
                     }
 
                     //Archive
-                    if($_REQUEST['knap'] == "Arkiver")
+                    if($_REQUEST['knap'] == "Aktiver")
                     {
                         $id = $_SESSION["selected_task"];
                         if(is_numeric($id) && is_integer(0 + $id))
@@ -203,10 +212,11 @@
         ------------------------->
         <div class="pop_up_modal_container" style="display: <?php echo $display_activate_case_pop_up ?>">
             <div class="pop_up_modal">
-                <h3>Gør sagen aktiv igen</h3>
+                <h3>Gør sagen aktiv igen?</h3>
+                <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_task_name"];?>"</i></p>
                 <div class="pop-up-btn-container">
                     <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
+                    <input type="submit" name="knap" value="Aktiver" class="pop_up_confirm">
                 </div>
             </div>
         </div>

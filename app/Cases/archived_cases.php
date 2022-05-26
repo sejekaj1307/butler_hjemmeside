@@ -93,6 +93,16 @@
                         $split = explode("_", $_REQUEST['knap']);
                         $id = $split[1];
                         $_SESSION["selected_case"] = $id;
+                        $sql = $conn->prepare("select case_nr from cases where id = ?");
+                        $sql->bind_param("i", $id);
+                        $sql->execute();
+                        $result = $sql->get_result();
+                        if($result->num_rows > 0) 
+                        {
+                            $row = $result->fetch_assoc();
+                            $_SESSION["selected_case_nr"] = $row['case_nr'];
+                        }
+
                         $display_activate_case_pop_up = "flex";                        
                     }
                     //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
@@ -202,11 +212,14 @@
         <!------------------------
                 archive pop up
         ------------------------->
-        <div class="pop_up_modal" style="display: <?php echo $display_activate_case_pop_up ?>">
-            <h3>Gør sagen aktiv igen?</h3>
-            <div class="pop-up-btn-container">
-                <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
-                <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
+        <div class="pop_up_modal_container"  style="display: <?php echo $display_activate_case_pop_up ?>">
+            <div class="pop_up_modal">
+                <h3>Gør sagen aktiv igen?</h3>
+                <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_case_nr"];?>"</i></p>
+                <div class="pop-up-btn-container">
+                    <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
+                    <input type="submit" name="knap" value="Arkiver" class="pop_up_confirm">
+                </div>
             </div>
         </div>
         
