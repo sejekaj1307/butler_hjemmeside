@@ -6,7 +6,7 @@
 
 
 
-.time_registration, .profile_list, .calender_container, .task_list_page, .archived_case_list_page, .case_list_page, .in_house_time {
+.time_registration, .profile_list, .calender_container, .task_list_page, .archived_case_list_page, .case_list_page, .in_house_time, .profile_page {
     width: $page-content-width;
     margin: 50px auto;
 }
@@ -19,7 +19,7 @@
         margin-left: $nav_with-s; 
     }
     //container for content on pages
-    .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time  {
+    .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time, .profile_page  {
         width: $page-content-width-s;
         margin-left: $space-from-navbar-s;
         margin-top: 50px;
@@ -32,7 +32,7 @@
     .site_container { //every site can be seen right of navbar
         margin-left: $nav_with-l;    
     }
-    .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time  {
+    .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time, .profile_page  {
         width: $page-content-width-l;
         margin-left: $space-from-navbar-m;
         margin-top: 50px;

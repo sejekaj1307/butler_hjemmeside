@@ -96,7 +96,7 @@
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
                     //create
-                    if($_REQUEST['knap'] == "Tilføj nyt element")
+                    if($_REQUEST['knap'] == "Opret ny planlagt service")
                     {
                         $display_create_task_service_pop_up = "flex";
                     }
@@ -221,7 +221,7 @@
 
             <!-- SELVE TABELLEN -->
             <div class="profile_list">
-                <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj nyt element"></div>
+                <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny planlagt service"></div>
                 <?php 
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                     $sql = "select * from tasks_service order by task_header asc";
@@ -308,7 +308,7 @@
             ------------------------------------>
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_task_service_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Tilføj ny opgave</h3>
+                    <h3>Tilføj ny planlagt service</h3>
                     <div class="pop-up-row">
                         <p>Maskine : </p>
                         <select name="task_header_c">
@@ -342,7 +342,7 @@
             -------------------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_task_service_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Opdater element</h3>
+                    <h3>Opdater planlagt service</h3>
                     <div class="pop-up-row">
                         <p>Maskine : </p>
                         <select name="task_header_u">
@@ -385,7 +385,7 @@
             ------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_delete_harmonica_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Slet opgave?</h3>
+                    <h3>Slet planlagt service?</h3>
                     <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_task_name"];?>"</i></p>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
