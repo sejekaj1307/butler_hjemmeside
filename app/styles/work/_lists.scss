@@ -1,31 +1,4 @@
-/*---------------------------------
-    Time registration navbar
----------------------------------*/
-.time_registration_navbar, .in_house_time_navbar {
-    width: 100%;
-    border-bottom: 3px solid #ace2ec;
-    height: 45px;
-    display: flex;
-    align-items: flex-end;
-    button {
-        border: none;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: none;
-        width: 100%;
-        border: 1px solid $time_registration_navbar_border;
-        font-size: 14px;
-        cursor: pointer;
-        &:hover {
-            background-color: $time_registration_navbar_active_hover;
-        }
-    }
-    .active_time_registration_page {
-        background-color: $time_registration_navbar_active;
-    }
-}
+
 
 /*-------------------------------
             Lists
@@ -134,12 +107,6 @@
 
 /*Lille pc - M*/
 @media screen and(min-width: 1200px) {
-    .time_registration_navbar, .in_house_time_navbar {
-        button {
-            font-size: 18px;
-            width: 175px;
-        }
-    }
     .add_new_link {
         display: flex;
     }

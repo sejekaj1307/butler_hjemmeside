@@ -1,0 +1,120 @@
+/*---------------------------------
+    Time registration navbar
+---------------------------------*/
+.time_registration {
+    .time_registration_navbar, .in_house_time_navbar {
+        border-bottom: 3px solid $th_border_bottom;
+        height: 45px;
+        display: flex;
+        align-items: flex-end;
+        button {
+            border: none;
+            height: 100%;
+            width: 100%;
+            max-width: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 2px solid $time_navbar_blue;
+            font-size: 14px;
+            cursor: pointer;
+            &:hover {
+                background-color: $time_navbar_blue;
+            }
+        }
+        .active_time_registration_page {
+            background-color: $time_navbar_blue;
+        }
+    }
+    .time_reg_basics_container {
+        border: 2px solid $tr_border_bottom;
+        padding: 15px;
+        min-height: 500px;
+    }
+    .add_new_time_reg {
+        border: none;
+        background: none;
+        margin: 15px 0;
+        cursor: pointer;
+        img {
+            width: 30px;
+        }
+    }
+    .daily_reports_data_row {
+        display: flex;
+        justify-content: space-between;
+        margin: 15px 0;
+        .label_and_input_container {
+            width: 95%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 15px;
+            .row_label {
+                width: 40%;
+                max-width: 140px;
+            }
+            .input_container {
+                display: flex;
+                width: 100%;
+                .row_input, .row_input_other {
+                    width: 40%;
+                    max-width: 140px;
+                    border: none;
+                    height: 18px;
+                    margin: 0 15px;
+                    padding: 5px;
+                    border-radius: 10px;
+                    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.123);
+                }
+                .row_input {
+                    background-color: #C6D7FF;
+                }
+                .row_input_other {
+                    background-color: #EFF4FF;
+                }
+            }
+        }
+        .row_delete {
+            width: 5%;
+            border: none;
+            background: none;
+            img {
+                width: 15px;
+            }
+        }
+
+        
+    }
+}
+
+
+/*Tablet - S */
+@media screen and(min-width: 900px) {
+    .label_and_input_container {
+        .row_label {
+            width: 30%;
+            max-width: 140px;
+        }
+        .input_container {
+            .row_input, .row_input_other {
+                width: 30%;
+                max-width: 140px;
+            }
+        }
+    }
+        .row_delete {
+        }
+}
+
+
+/*Lille pc - M*/
+@media screen and(min-width: 1200px) {
+    .time_registration_navbar, .in_house_time_navbar {
+        button {
+            font-size: 18px;
+            width: 175px;
+        }
+    }
+}

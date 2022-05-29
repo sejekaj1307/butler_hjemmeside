@@ -56,26 +56,6 @@
             array_push($daily_report_data, $row["id"] . '_' . $row["time_reg_data"]);
         }
     }
-                
-
-    /*__________ TODO __________        
-        
-
-        IMPORTANT!!
-        7. Gør opmærksom på hvis man prøver at forlade siden uden at have gemt sine ændringer
-        Note - Koden til dette er i bunden, men den skal kun komme med en alert hvis der er ugemte ændringer.
-        (MAJA) - Update cases table. Employees: varchar(50) -> varchar(100), added collumn "Job_types"
-        (MAJA) - Can we change case_nr in cases to be the id?
-
-        DONE
-        1. Check hvilke sager medarbejderen er tilknyttet ---> Lav top menu bar efter dette (Intern sag skal altid være der for all).
-        2. Check hvilke job typer der er tilknytte til den først valgte sag (default nå man kommer ind på siden) 
-            ---> Load alle "time_reg_feilds" basseret på dette (job typer i sag og altid 'generalt' felterne).
-        3. Check for data i "daily_reports" for i dags dato og display hvis der er nogen.  
-        4. Mulighed for at oprette nye input felter.
-        5. Mulighed for at redigere og opdatere.
-       
-    */
 ?>
 
 <!DOCTYPE html>
@@ -138,12 +118,7 @@
         </div>
 
 
-        <div class="time_registration">
-            <div class="time_registration_navbar">
-                <button class="active_time_registration_page">Tidsregistrering</button>
-                <button>Forbrug</button>
-            </div>
-        </div>
+
 
 
     <form action="time_registration.php" method="post">
@@ -177,7 +152,9 @@
                    //read, koden køres hvis "read button" bliver requested 
                     if(str_contains($_REQUEST['knap'] , "read"))
                     {
-                        $display_create_time_reg_field_pop_up = "flex";    
+                        $display_create_time_reg_field_pop_up = "flex";  
+                        $level_1 = "flex";
+                        $level_2 = "none";  
                     }
                     //update
                     if($_REQUEST['knap'] == "Opdater") 
@@ -225,12 +202,6 @@
                         $display_create_time_reg_field_pop_up = "none";
                         $display_delete_time_reg_field_pop_up = "none";
                     }
-                    if(str_contains($_REQUEST['knap'], "level0"))
-                    {
-                        $level_1 = "flex";
-                        $level_2 = "none";
-                        $display_create_time_reg_field_pop_up = "flex";
-                    }
                     if(str_contains($_REQUEST['knap'],"level1"))
                     {   
                         $split = explode("_", $_REQUEST['knap']);
@@ -258,9 +229,18 @@
                 }
             ?>
 
-            <!-- SELVE TABELLEN -->
-            <div class="profile_list">
 
+            <!-- ------------------------------
+                    Time registration
+            -------------------------------- -->
+            <div class="time_registration">
+                <div class="time_registration_navbar">
+                    <button class="active_time_registration_page">Tidsregistrering</button>
+                    <button>Forbrug</button>
+                    <button type="submit" name="knap" value="Opdater" onclick="myFunction()">Gem ændringer</button>
+                </div>           
+
+                <div class="time_reg_basics_container">
                 <?php
                     $sql = $conn->prepare("select * from daily_reports where date = ?");
                     $myDate = date('d-m-Y');
@@ -273,61 +253,71 @@
                         while ($row = $result->fetch_assoc()) {
                             $id = array_search($row["time_reg_field_id"], $time_reg_id);
                             echo '<div class="daily_reports_data_row" >';
-                                echo '<label for="fname">' . $time_reg_input_labels[$id] . '</label>';
-                                echo '<input id="time_reg_field" name="time_reg_field_' . $test . '" type="' . $time_reg_input_types[$id] . '" value="'. $row["time_reg_data"] . '" class="pop_up_cancel">';
-                                echo '<button type="submit" name="knap" value="slet_' . $row['id'] . '">Slet_' . $row['id'] . '</button>';
+                                echo '<div class="label_and_input_container">';
+                                    echo '<p class="row_label" for="fname">' . $time_reg_input_labels[$id] . '</p>';
+                                    echo '<div class="input_container">';
+                                        echo '<input class="row_input" id="time_reg_field" name="time_reg_field_' . $test . '" type="' . $time_reg_input_types[$id] . '" value="'. $row["time_reg_data"] . '" class="pop_up_cancel">';
+                                        echo '<input class="row_input_other" id="time_reg_field" name="time_reg_field_' . $test . '" type="' . $time_reg_input_types[$id] . '" value="'. $row["time_reg_data"] . '" class="pop_up_cancel">';
+                                    echo '</div>';
+                                echo '</div>';
+                                echo '<button class="row_delete" type="submit" name="knap" value="slet_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"></button>';
                             echo '</div>';
                             $test += 1;
                         }
                     }
                 ?>
-                <button type="submit" name="knap" value="read">Opret nyt tidsregistrerings felt!</button>
-                <button type="submit" name="knap" value="Opdater" onclick="myFunction()">Gem ændringer</button>
+
+                <button class="add_new_time_reg" type="submit" name="knap" value="read"><img src="../img/time_reg_cross.png" alt="Tilføj ny linje"></button>
+                </div>
             </div>
 
-             <!---------------------------
-                Add new employee pop-up
-            ---------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_create_time_reg_field_pop_up ?>">
-                <h3>Tilføj nyt tidsregistrerings felt</h3>
-                
-                <div class="dropdown">
-                    <button type="submit" name="knap" value="level0">Tutorials</button>
-                    <div style="display: <?php echo $level_1 ?>">
-                         <ul>
-                            <?php
-                                for ($i = 0; $i < count($my_case_job_types); $i++) {
-                                    echo '<li><button type="submit" name="knap" value="level1_' . $i . '">' . $my_case_job_types[$i] . '</button></li>';
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                    <div style="display: <?php echo $level_2 ?>">
-                        <ul>
-                            <?php
-                                for ($i = 0; $i < count($time_reg_job_type); $i++) {
-                                    if($time_reg_job_type[$i] == $my_case_job_types[$level_1_selected]){
-                                        echo '<li><button type="submit" name="knap" value="level2_' . $i . '">' . $time_reg_input_labels[$i] . '</button></li>';
-                                    }
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                </div>
 
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
+             <!---------------------------
+                Add new time reg field
+            ---------------------------->
+            <div class="pop_up_modal_container" style="display: <?php echo $display_create_time_reg_field_pop_up ?>">
+                <div class="pop_up_modal">
+                    <h3>Tilføj nyt tidsregistrerings felt</h3>    
+                    <div class="dropdown">
+                        <div style="display: <?php echo $level_1 ?>">
+                            <ul>
+                                <?php
+                                    for ($i = 0; $i < count($my_case_job_types); $i++) {
+                                        echo '<li><button type="submit" name="knap" value="level1_' . $i . '">' . $my_case_job_types[$i] . '</button></li>';
+                                    }
+                                ?>
+                            </ul>
+                        </div>
+                        <div style="display: <?php echo $level_2 ?>">
+                            <ul>
+                                <?php
+                                    for ($i = 0; $i < count($time_reg_job_type); $i++) {
+                                        if($time_reg_job_type[$i] == $my_case_job_types[$level_1_selected]){
+                                            echo '<li><button type="submit" name="knap" value="level2_' . $i . '">' . $time_reg_input_labels[$i] . '</button></li>';
+                                        }
+                                    }
+                                ?>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
             <!------------------------
                     delete pop up
             ------------------------->
-            <div class="pop_up_modal" style="display: <?php echo $display_delete_time_reg_field_pop_up ?>">
-                <h3>Slet tidsregistrerings felt</h3>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+            <div class="pop_up_modal_container" style="display: <?php echo $display_delete_time_reg_field_pop_up ?>">
+                <div class="pop_up_modal" >
+                    <h3>Slet tidsregistrerings felt</h3>
+                    <p class="pop_up_selected_information"><i>"<?php echo ?>"</i></p>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
 
