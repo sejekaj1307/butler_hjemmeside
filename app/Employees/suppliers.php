@@ -99,13 +99,14 @@
             if($_REQUEST['knap'] == "Opret ny")
             {
                 $first_name = $_REQUEST['first_name_c'];
+                $last_name = $_REQUEST['last_name_c'];
                 $phone = $_REQUEST['phone_c'];
                 $address = $_REQUEST['address_c'];
                 $email = $_REQUEST['email_c'];
                 $product = $_REQUEST['product_c'];
 
-                $sql = $conn->prepare("insert into suppliers (first_name, phone, address, email, product) values (?, ?, ?, ?, ?)");
-                $sql->bind_param("sssss", $first_name, $phone, $address, $email, $product);
+                $sql = $conn->prepare("insert into suppliers (first_name, last_name, phone, address, email, product) values (?, ?, ?, ?, ?, ?)");
+                $sql->bind_param("ssssss", $first_name, $last_name, $phone, $address, $email, $product);
                 $sql->execute();
                 $display_create_supplier_pop_up = "none"; 
             }
@@ -126,6 +127,7 @@
                         $id = $row['id'];
                         $_SESSION["selected_supplier"] = $id;
                         $first_name = $row['first_name'];
+                        $last_name = $row['last_name'];
                         $phone = $row['phone'];
                         $address = $row['address'];
                         $email = $row['email'];
@@ -139,6 +141,7 @@
             {
                 $id = $_SESSION["selected_supplier"];
                 $first_name = $_REQUEST['first_name_u'];
+                $last_name = $_REQUEST['last_name_u'];
                 $phone = $_REQUEST['phone_u'];
                 $address = $_REQUEST['address_u'];
                 $email = $_REQUEST['email_u'];
@@ -147,8 +150,8 @@
                 {
                     if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                     {
-                        $sql = $conn->prepare("update suppliers set first_name = ?, phone = ?, address = ?, email = ?, product = ? where id = ?");
-                        $sql->bind_param("sssssi", $first_name, $phone, $address, $email, $product, $id);
+                        $sql = $conn->prepare("update suppliers set first_name = ?, last_name = ?, phone = ?, address = ?, email = ?, product = ? where id = ?");
+                        $sql->bind_param("ssssssi", $first_name, $last_name, $phone, $address, $email, $product, $id);
                         $sql->execute();
                         $display_edit_supplier_pop_up = "none";
                     }
@@ -220,7 +223,7 @@
                             echo '<p class="external_phone_header">Telefon</p>';
                             echo '<p class="external_phone_header">Adresse</p>';
                             echo '<p class="external_email_header">Email</p>';
-                            echo '<p class="external_product_header">Produkt</p>';
+                            echo '<p class="external_product_header">Kontaktype</p>';
                             echo '<p class="button_container_header">Rediger</p>';
                         echo '</div>';
                     echo '</div>';
@@ -236,10 +239,10 @@
                                     echo '<p class="external_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="external_dropdown_mobile" id="'. $row["id"] .'">';
-                                    echo '<p class="external_phone">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["phone"] . '</p>';
-                                    echo '<p class="external_phone">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["address"] . '</p>';
-                                    echo '<p class="external_email">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["email"] . '</p>';
-                                    echo '<p class="external_product">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["product"] . '</p>';
+                                    echo '<p class="external_phone">' . '<span class="dropdown_inline_headers">tlf. nr. </span>'  . $row["phone"] . '</p>';
+                                    echo '<p class="external_phone">' . '<span class="dropdown_inline_headers">Adresse </span>'  . $row["address"] . '</p>';
+                                    echo '<p class="external_email">' . '<span class="dropdown_inline_headers">Email </span>'  . $row["email"] . '</p>';
+                                    echo '<p class="external_product">' . '<span class="dropdown_inline_headers">Kontakttype </span>'  . $row["product"] . '</p>';
                                 echo '</div>';
                                 
                                 echo '<div class="button_container">';
@@ -269,8 +272,9 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_supplier_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Opdater ekstern</h3>
-                    <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
-                    <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
+                    <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_u" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Tlf. nr : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
                     <div class="pop-up-row"><p>Adresse : </p><input type="text" name="address_u" value="<?php echo isset($address) ? $address : '' ?>"></div>
                     <div class="pop-up-row"><p>Email : </p><input type="text" name="email_u" value="<?php echo isset($email) ? $email : '' ?>"></div>
                     <div class="pop-up-row"><p>Kontakt type : </p><input type="text" name="product_u" value="<?php echo isset($product) ? $product : '' ?>"></div>
@@ -287,7 +291,8 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_supplier_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Tilføj ny ekstern</h3>
-                    <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_c" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
                     <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_c" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
                     <div class="pop-up-row"><p>Adresse : </p><input type="text" name="address_c" value="<?php echo isset($address) ? $address : '' ?>"></div>
                     <div class="pop-up-row"><p>Email : </p><input type="text" name="email_c" value="<?php echo isset($email) ? $email : '' ?>"></div>

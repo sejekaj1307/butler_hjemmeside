@@ -100,14 +100,17 @@
                     if($_REQUEST['knap'] == "Opret ny")
                     {
                         $first_name = $_REQUEST['first_name_c'];
+                        $last_name = $_REQUEST['last_name_c'];
                         $initials = $_REQUEST['initials_c'];
                         $phone = $_REQUEST['phone_c'];
                         $phone_private = $_REQUEST['phone_private_c'];
                         $email = $_REQUEST['email_c'];
+                        $email_private = $_REQUEST['email_private_c'];
                         $emergency_name = $_REQUEST['emergency_name_c'];
+                        $emergency_phone = $_REQUEST['emergency_phone_c'];
                         
-                        $sql = $conn->prepare("insert into employees (first_name, initials, phone, phone_private, email, emergency_name) values (?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param("ssssss", $first_name, $initials, $phone, $phone_private, $email, $emergency_name);
+                        $sql = $conn->prepare("insert into employees (first_name, last_name, initials, phone, phone_private, email, email_private, emergency_name, emergency_phone) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("sssssssss", $first_name, $last_name, $initials, $phone, $phone_private, $email, $email_private, $emergency_name, $emergency_phone);
                         $sql->execute();
                     }
                     //read, koden køres hvis "read button" bliver requested 
@@ -127,11 +130,14 @@
                                 $id = $row['id'];
                                 $_SESSION["selected_employee"] = $id;
                                 $first_name = $row['first_name'];
+                                $last_name = $row['last_name'];
                                 $initials = $row['initials'];
                                 $phone = $row['phone'];
                                 $phone_private = $row['phone_private'];
                                 $email = $row['email'];
+                                $email_private = $row['email_private'];
                                 $emergency_name = $row['emergency_name'];
+                                $emergency_phone = $row['emergency_phone'];
 
                                 $display_edit_employee_pop_up = "flex";
                             }
@@ -142,18 +148,21 @@
                     {
                         $id = $_SESSION["selected_employee"];
                         $first_name = $_REQUEST['first_name_u'];
+                        $last_name = $_REQUEST['last_name_u'];
                         $initials = $_REQUEST['initials_u'];
                         $phone = $_REQUEST['phone_u'];
                         $phone_private = $_REQUEST['phone_private_u'];
                         $email = $_REQUEST['email_u'];
+                        $email_private = $_REQUEST['email_private_u'];
                         $emergency_name = $_REQUEST['emergency_name_u'];
+                        $emergency_phone = $_REQUEST['emergency_phone_u'];
 
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
                             if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                             {
-                                $sql = $conn->prepare("update employees set first_name = ?, initials = ?, phone = ?, phone_private = ?, email = ?, emergency_name = ? where id = ?");
-                                $sql->bind_param("ssssssi", $first_name, $initials, $phone, $phone_private, $email, $emergency_name, $id);
+                                $sql = $conn->prepare("update employees set first_name = ?, last_name = ?, initials = ?, phone = ?, phone_private = ?, email = ?, email_private = ?, emergency_name = ?, emergency_phone = ? where id = ?");
+                                $sql->bind_param("sssssssssi", $first_name, $last_name, $initials, $phone, $phone_private, $email, $email_private, $emergency_name, $emergency_phone, $id);
                                 $sql->execute();    
                             }
                         }
@@ -270,24 +279,6 @@
             //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årcases
                 $conn->close();
             ?>
-            <!----------------------------
-                    Edit profile pop-op
-            ----------------------------->
-            <div class="pop_up_modal_container" style="display: <?php echo $display_edit_employee_pop_up ?>">
-                <div class="pop_up_modal">
-                    <h3>Opdater medarbejderprofil</h3>
-                    <div class="pop-up-row"><p>Navn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
-                    <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials_u" value="<?php echo isset($initials) ? $initials : '' ?>"></div>
-                    <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
-                    <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private_u" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
-                    <div class="pop-up-row"><p>Email : </p><input type="text" name="email_u" value="<?php echo isset($email) ? $email : '' ?>"></div>
-                    <div class="pop-up-row"><p>Emergency : </p><input type="text" name="emergency_name_u" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
-                    <div class="pop-up-btn-container">
-                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                        <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
-                    </div>
-                </div>
-            </div>
 
             <!---------------------------
                 Add new employee pop-up
@@ -295,15 +286,40 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_employee_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Tilføj ny medarbejder</h3>
-                    <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Navn : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_c" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials_c" value="<?php echo isset($initials) ? $initials : '' ?>"></div>
-                    <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_c" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
-                    <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private_c" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
+                    <div class="pop-up-row"><p>Arbejds tlf. : </p><input type="text" name="phone_c" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
+                    <div class="pop-up-row"><p>Privat Mobil : </p><input type="text" name="phone_private_c" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
                     <div class="pop-up-row"><p>Email : </p><input type="text" name="email_c" value="<?php echo isset($email) ? $email : '' ?>"></div>
-                    <div class="pop-up-row"><p>Emergency : </p><input type="text" name="emergency_name_c" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Privat email : </p><input type="text" name="email_private_c" value="<?php echo isset($email_private) ? $email_private : '' ?>"></div>
+                    <div class="pop-up-row"><p>Kontaktperson : </p><input type="text" name="emergency_name_c" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Kontaktperson tlf. : </p><input type="text" name="emergency_phone_c" value="<?php echo isset($emergency_phone) ? $emergency_phone : '' ?>"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
+                    </div>
+                </div>
+            </div>
+
+            <!----------------------------
+                    Edit profile pop-op
+            ----------------------------->
+            <div class="pop_up_modal_container" style="display: <?php echo $display_edit_employee_pop_up ?>">
+                <div class="pop_up_modal">
+                    <h3>Opdater medarbejder</h3>
+                    <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_u" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials_u" value="<?php echo isset($initials) ? $initials : '' ?>"></div>
+                    <div class="pop-up-row"><p>Arbejds tlf. : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
+                    <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private_u" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
+                    <div class="pop-up-row"><p>Email : </p><input type="text" name="email_u" value="<?php echo isset($email) ? $email : '' ?>"></div>
+                    <div class="pop-up-row"><p>Privat email : </p><input type="text" name="email_private_u" value="<?php echo isset($email_private) ? $email_private : '' ?>"></div>
+                    <div class="pop-up-row"><p>Kontaktperson : </p><input type="text" name="emergency_name_u" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Kontaktperson tlf. : </p><input type="text" name="emergency_phone_u" value="<?php echo isset($emergency_phone) ? $emergency_phone : '' ?>"></div>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
                     </div>
                 </div>
             </div>

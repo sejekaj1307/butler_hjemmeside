@@ -96,13 +96,14 @@
             if($_REQUEST['knap'] == "Opret ny")
             {
                 $first_name = $_REQUEST['first_name_c'];
+                $last_name = $_REQUEST['last_name_c'];
                 $phone = $_REQUEST['phone_c'];
                 $phone_private = $_REQUEST['phone_private_c'];
                 $email = $_REQUEST['email_c'];
                 $contact_type = $_REQUEST['contact_type_c'];
 
-                $sql = $conn->prepare("insert into externals (first_name, phone, phone_private, email, contact_type) values (?, ?, ?, ?, ?)");
-                $sql->bind_param("sssss", $first_name, $phone, $phone_private, $email, $contact_type);
+                $sql = $conn->prepare("insert into externals (first_name, last_name, phone, phone_private, email, contact_type) values (?, ?, ?, ?, ?, ?)");
+                $sql->bind_param("ssssss", $first_name, $last_name, $phone, $phone_private, $email, $contact_type);
                 $sql->execute();
             
             }
@@ -123,6 +124,7 @@
                         $id = $row['id'];
                         $_SESSION["selected_external"] = $id;
                         $first_name = $row['first_name'];
+                        $last_name = $row['last_name'];
                         $phone = $row['phone'];
                         $phone_private = $row['phone_private'];
                         $email = $row['email'];
@@ -137,6 +139,7 @@
             {
                 $id = $_SESSION["selected_external"];
                 $first_name = $_REQUEST['first_name_u'];
+                $last_name = $_REQUEST['last_name_u'];
                 $phone = $_REQUEST['phone_u'];
                 $phone_private = $_REQUEST['phone_private_u'];
                 $email = $_REQUEST['email_u'];
@@ -146,8 +149,8 @@
                 {
                     if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                     {
-                        $sql = $conn->prepare("update externals set first_name = ?, phone = ?, phone_private = ?, email = ?, contact_type = ? where id = ?"); 
-                        $sql->bind_param("sssssi", $first_name, $phone, $phone_private, $email, $contact_type, $id); 
+                        $sql = $conn->prepare("update externals set first_name = ?, last_name = ?, phone = ?, phone_private = ?, email = ?, contact_type = ? where id = ?"); 
+                        $sql->bind_param("ssssssi", $first_name, $last_name, $phone, $phone_private, $email, $contact_type, $id); 
                         $sql->execute(); 
                     }
                 }
@@ -271,7 +274,8 @@
         <div class="pop_up_modal_container" style="display: <?php echo $display_edit_external_pop_up ?>">
             <div class="pop_up_modal">
                 <h3>Opdater ekstern</h3>
-                <div class="pop-up-row"><p>Navn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_u" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
                 <div class="pop-up-row"><p>Tlf. : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
                 <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private_u" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
                 <div class="pop-up-row"><p>Email : </p><input type="text" name="email_u" value="<?php echo isset($email) ? $email : '' ?>"></div>
@@ -289,8 +293,9 @@
         <div class="pop_up_modal_container" style="display: <?php echo $display_create_external_pop_up ?>">
             <div class="pop_up_modal">
                 <h3>Tilføj ny ekstern</h3>
-                <div class="pop-up-row"><p>Name : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
-                <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_c" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
+                <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_c" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
+                <div class="pop-up-row"><p>Tlf. : </p><input type="text" name="phone_c" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
                 <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private_c" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
                 <div class="pop-up-row"><p>Email : </p><input type="text" name="email_c" value="<?php echo isset($email) ? $email : '' ?>"></div>
                 <div class="pop-up-row"><p>Kontakt type : </p><input type="text" name="contact_type_c" value="<?php echo isset($contact_type) ? $contact_type : '' ?>"></div>
