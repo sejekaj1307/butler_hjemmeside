@@ -17,7 +17,7 @@
         }
     }
     //TODO: remove this 
-    $_SESSION['logged_in_user_global'] = array("initials"=>'BL');
+    //$_SESSION['logged_in_user_global'] = array("initials"=>'BL');
 
     $my_cases = array();
     $my_case_job_types = array();

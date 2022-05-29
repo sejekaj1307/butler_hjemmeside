@@ -26,6 +26,8 @@
         $email_private = $row['email_private'];
         $emergency_name = $row['emergency_name'];
         $emergency_phone = $row['emergency_phone'];
+        $colour = $row['colour'];
+        $filename = $row['filename'];
     }
                 
 
@@ -62,7 +64,7 @@
 <!-- ----------------------
 Masthead er i formen grundet at session variablen måske bliver opdateret
 ------------------------ -->
-        <form action="profile.php" method="post">
+        <form action="profile.php" method="post" enctype="multipart/form-data">
             <?php
                 function findes($id, $c)
                 {
@@ -110,7 +112,7 @@ Masthead er i formen grundet at session variablen måske bliver opdateret
                                     $email_private = $row['email_private'];
                                     $emergency_name = $row['emergency_name'];
                                     $emergency_phone = $row['emergency_phone'];
-
+                                    
                                     $display_edit_profile_pop_up = "flex";
                                 }
                             }
@@ -129,14 +131,46 @@ Masthead er i formen grundet at session variablen måske bliver opdateret
                             $email_private = $_REQUEST['email_private_u'];
                             $emergency_name = $_REQUEST['emergency_name_u'];
                             $emergency_phone = $_REQUEST['emergency_phone_u'];
-                          
+                            $colour = $_REQUEST['html5colorpicker']; 
+
+                            $hasImage = false;
+                            if(!empty($_FILES["image"]["name"])){
+                                $fileName = basename($_FILES["image"]["name"]);
+                                $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+                                $target_file = "profile_img/" . $fileName;
+
+                                $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+                                if(in_array($fileType, $allowTypes)){
+                                    $file_tmp_name = $_FILES['image']['tmp_name'];
+                                    
+                                    $hasImage = true;
+                                }
+                                if (move_uploaded_file($file_tmp_name, $target_file))  {
+                                    $msg = "Image uploaded successfully";
+                                    $fileName = "profile_img/" . $fileName;
+                
+                                    $filename = $target_file;
+                                }else{
+                                    $msg = "Failed to upload image";
+                                }
+                            }
+                           
+
                             if(is_numeric($id) && is_integer(0 + $id))
                             {
                                 if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
-                                {
-                                    $sql = $conn->prepare("update employees set first_name = ?, last_name = ?, initials = ?, phone = ?, phone_private = ?, email = ?, email_private = ?, emergency_name = ?, emergency_phone = ? where id = ?");
-                                    $sql->bind_param("sssssssssi", $first_name, $last_name, $initials, $phone, $phone_private, $email, $email_private, $emergency_name, $emergency_phone, $id);
-                                    $sql->execute();    
+                                {  
+                                    echo $hasImage ? 'true' : 'false';;
+                                    if($hasImage){
+                                        $sql = $conn->prepare("update employees set first_name = ?, last_name = ?, initials = ?, phone = ?, phone_private = ?, email = ?, email_private = ?, emergency_name = ?, emergency_phone = ?, colour = ?, filename = ? where id = ?");
+                                        $sql->bind_param("sssssssssssi", $first_name, $last_name, $initials, $phone, $phone_private, $email, $email_private, $emergency_name, $emergency_phone, $colour, $fileName, $id);
+                                        $sql->execute();
+                                    }    
+                                    else {
+                                        $sql = $conn->prepare("update employees set first_name = ?, last_name = ?, initials = ?, phone = ?, phone_private = ?, email = ?, email_private = ?, emergency_name = ?, emergency_phone = ?, colour = ? where id = ?");
+                                        $sql->bind_param("ssssssssssi", $first_name, $last_name, $initials, $phone, $phone_private, $email, $email_private, $emergency_name, $emergency_phone, $colour, $id);
+                                        $sql->execute();
+                                    }
 
                                     //In case the user changes one of the following informations, the session variable needs to be updated as well.
                                     $_SESSION['logged_in_user_global']['first_name'] = $first_name;
@@ -186,8 +220,9 @@ Masthead er i formen grundet at session variablen måske bliver opdateret
 
                 <div class="pic_and_info_container"> <!-- container til billede, farve og personlige oplysninger-->
                     <div class="profile_pic_container">
-                        <img class="profile_pic" src="profile_img/tester.jpg" alt="Profil billede">
-                        <div class="profile_color">Din farve</div>
+                        <!-- <img class="profile_pic" src="profile_img/tester.jpg" alt="Profil billede"> -->
+                        <img class="profile_pic" src="<?php echo $filename;?>" alt="Profil billede"> 
+                        <div class="profile_color" style="background-color: <?php echo $colour?>">Din farve</div>
                     </div>
                     <div class="profile_info">
                         <div>
@@ -235,7 +270,8 @@ Masthead er i formen grundet at session variablen måske bliver opdateret
                     <div class="pop-up-row"><p>Privat email : </p><input type="text" name="email_private_u" value="<?php echo isset($email_private) ? $email_private : '' ?>"></div>
                     <div class="pop-up-row"><p>Kontaktperson : </p><input type="text" name="emergency_name_u" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Kontaktperson tlf. : </p><input type="text" name="emergency_phone_u" value="<?php echo isset($emergency_phone) ? $emergency_phone : '' ?>"></div>
-                    <div class="pop-up-row"><p>Medarbejder farve : </p><input type="color" id="html5colorpicker" onchange="clickColor(0, -1, -1, 5)" value="#5ADACC"></div>
+                    <div class="pop-up-row"><p>Medarbejder farve : </p><input type="color" name="html5colorpicker" onchange="clickColor(0, -1, -1, 5)" value="<?php echo $colour?>"></div>
+                    <div class="pop-up-row"><p>Upload billede : </p><input type="file" name="image" value="Upload"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
