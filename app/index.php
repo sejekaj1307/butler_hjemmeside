@@ -43,7 +43,7 @@
                             if($passwordInput == $password) 
                             {
                                 // echo "<script> window.location.href = 'Medarbejdere/employees.php'; </script>"; //HEADER
-                                $_SESSION['logged_in_user_global'] = array("email"=>$useremail, "first_name"=>$row['first_name'], "last_name"=>$row['last_name'], "initials"=>$row['initials']);
+                                $_SESSION['logged_in_user_global'] = array("id"=>$row["id"],"email"=>$useremail, "first_name"=>$row['first_name'], "last_name"=>$row['last_name'], "initials"=>$row['initials']);
                                 echo "<script> window.location.href = 'Time_registration/time_registration.php'; </script>"; //HEADER
                                 
                             }
