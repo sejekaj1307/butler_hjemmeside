@@ -607,12 +607,12 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 35% !important;
-  padding: 0 15px;
+  width: 45% !important;
+  padding: 0 10px;
 }
 
 .case_nr_header, .case_nr, .employee_name {
-  width: 35% !important;
+  width: 45% !important;
 }
 
 /*-------------------------------
@@ -1236,6 +1236,11 @@
   margin: 40px 0;
   background-color: #149DB9;
   cursor: pointer;
+}
+
+.login_container .error_message {
+  margin-top: 20px;
+  font-size: 22px;
 }
 
 /*Tablet - S */

@@ -49,12 +49,12 @@
                             }
                             else { 
                                 $fejltekst = "Forkert email eller password";
-                                $tekstfarve = "#000000";
+                                $tekstfarve = "#ff0000";
                             }
                         }
                         else //if it doesn't match, tell user. 
                         {
-                            $fejltekst = "Brugernavn findes ikke";
+                            $fejltekst = "Forkert email eller password";
                             $tekstfarve = "#ff0000";
                         }
                     } 
@@ -75,10 +75,11 @@
             <input class="login_inputs" type="text" name="email" placeholder="Email addresse" value="<?php echo isset($username) ? $username : '' ?>">
             <input class="login_inputs" type="password" name="password" placeholder="Password" value="<?php echo isset($passwordInput) ? $passwordInput : '' ?>">
             <p>Glemt password? <a href="#">Klik her</a></p>
+
             <div class="loginErrorMessage"></div>
             
 
-            <span style="color: <?php echo $tekstfarve ?>"><?php echo $fejltekst ?> </span>
+            <p class="error_message" style="color: <?php echo $tekstfarve ?>"><?php echo $fejltekst ?> </p>
             <input class="login_btn" type="submit" name="knap" value="Login" >
         </div>
     </form>

@@ -65,39 +65,88 @@
         ------------------------------->
         <div class="profile_list">
             
-            <!-- Video 1-->
+            <!-- Video 1 Opret ny opgave og rediger den-->
             <div class="video_guides_container">
                 <div class="video_text">
-                    <h2>Opret ny aftale guide</h2>
-                    <p>I denne video kan du få hjælp til, hvordan du skal oprette en ny aftale i kalenderen.</p>
-                    <p>Dette gælder både for medarbejdere og chefer. Du lærer også hvordan du kan redigere og slette dine allerede eksisterende aftaler.</p>
+                    <h2>Opret ny opgave og rediger den</h2>
+                    <p>I denne video kan du få hjælp til, hvordan du skal oprette en ny opgave under <i>Fejl og mangler</i> i <i>Opgaver</i>.</p>
+                    <br>
+                    <p>Se også hvordan du kan redigere en ønsket opgave.</p>
+                    <br>
+                    <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe class="video" src="https://www.youtube.com/embed/7zT-t-diLNs" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe class="video" src="video_guides/Opret-ny-opgave-og-rediger-hjælpevideo.mp4" allowfullscreen></iframe></div>
                 </div>
             </div>
             
-            <!-- Video 2-->
+            <!-- Video 2 arkiver og aktiver -->
             <div class="video_guides_container">
                 <div class="video_text">
-                    <h2>Opret nyt skab guide</h2>
-                    <p>I denne video kan du få hjælp til, hvordan du skal oprette et nyt skab og sætte indhold i skabet.</p>
-                    <p>Du lærer også hvordan du registrerer, hvis du Bruger noget indhold fra et allerede eksisterende skab, eller hvis du vil fylde op og registrere dette. </p>
+                    <h2>Arkiver og aktiver en opgave</h2>
+                    <p>I denne video kan du få hjælp til, hvordan du kan arkivere en opgave, hvor du kan finde den og hvordan du kan aktivere den igen.</p>
+                    <p>Fremgangsmåden er ens for <i>opgaver</i> og <i>sager</i>.</p>
+                    <br>
+                    <p><i>OBS:</i> Vær opmærksom på, at hvis du ønsker at redigere en opgave eller sag, skal de aktiveres igen og findes på den aktive liste.</p>
+                    <br>
+                    <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe class="video" src="https://www.youtube.com/embed/7zT-t-diLNs" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe class="video" src="video_guides/Arkiver-aktiver-hjælpevideo.mp4" allowfullscreen></iframe></div>
                 </div>
             </div>
             
-            <!-- Video 3-->
+            <!-- Video 3 slet opgave -->
             <div class="video_guides_container">
                 <div class="video_text">
-                    <h2>Opret ny aftale guide</h2>
-                    <p>I denne video kan du få hjælp til, hvordan du skal oprette en ny aftale i kalenderen.</p>
-                    <p>Dette gælder både for medarbejdere og chefer. Du lærer også hvordan du kan redigere og slette dine allerede eksisterende aftaler.</p>
+                    <h2>Slet en opgave</h2>
+                    <p>I denne video kan du få hjælp til, hvordan du sletter en opgave.</p>
+                    <p><i>OBS:</i> Fremgangsmåden er ens for alle elementer, der kan slettes.</p>
+                    <br>
+                    <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe class="video" src="https://www.youtube.com/embed/7zT-t-diLNs" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe class="video" src="video_guides/Slet-opgave-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                </div>
+            </div>
+            <!-- Video 4 planlagt service -->
+            <div class="video_guides_container">
+                <div class="video_text">
+                    <h2>Opret ny planlagt service og rediger den</h2>
+                    <p>I denne video kan du få hjælp til, hvordan du skal oprette en <i>planlagt service</i> under <i>opgaver</i>, og hvordan du kan redigere den.</p>
+                    <br>
+                    <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
+                </div>
+                <div class="iframe_container_parent">
+                    <div class="iframe_container"><iframe class="video" src="video_guides/planalgt-service-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                </div>
+            </div>
+            <!-- Video 5 Opret ny sag -->
+            <div class="video_guides_container">
+                <div class="video_text">
+                    <h2>Opret ny sag</h2>
+                    <p>I denne video kan du få hjælp til, hvordan du kan oprette en ny <i>sag</i> under <i>sagsstyring</i>.</p>
+                    <br>
+                    <p><i>OBS:</i> vær opmærksom på at <i>opret ny sag</i> kun indebærer de helt basale elementer for en sag, sagen skal herefter uddybes i <i>beskriv sag</i></p>
+                    <br>
+                    <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
+                </div>
+                <div class="iframe_container_parent">
+                    <div class="iframe_container"><iframe class="video" src="video_guides/Opret-ny-sag-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                </div>
+            </div>
+            <!-- Video 6 beskriv ny sag -->
+            <div class="video_guides_container">
+                <div class="video_text">
+                    <h2>Beskriv sag</h2>
+                    <p>I denne video kan du få hjælp til, hvordan du beskriver en <i>sag</i> under <i>sagsstyring</i>.</p>
+                    <br>
+                    <p><i>OBS: </i>vær opmærksom på at en sag skal oprettes før den kan beskrives, se video om <i>Opret ny sag</i></p>
+                    <br>
+                    <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
+                </div>
+                <div class="iframe_container_parent">
+                    <div class="iframe_container"><iframe class="video" src="video_guides/beskriv-sag-hjælpevideomp4.mp4" allowfullscreen></iframe></div>
                 </div>
             </div>
     </div>

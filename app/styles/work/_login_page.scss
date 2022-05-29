@@ -42,7 +42,13 @@
                 background-color: $button_color_green;
                         cursor: pointer;
         }
+        .error_message {
+                margin-top: 20px;
+                font-size: 22px;
+        }
 }
+
+
 
 /*Tablet - S */
 @media screen and(min-width: 900px) {

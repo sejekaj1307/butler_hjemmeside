@@ -186,10 +186,10 @@
                 </div>
             </div>
             <div class="profile_calender">
-                Kalender
+                Kalender kommer senere
             </div>
             <div class="profile_weeklies">
-                Ugeseddler
+                Ugeseddler kommer senere
             </div>
         </div>
 
