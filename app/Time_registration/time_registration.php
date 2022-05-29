@@ -234,10 +234,12 @@
                     Time registration
             -------------------------------- -->
             <div class="time_registration">
-                <div class="time_registration_navbar">
-                    <button class="active_time_registration_page">Tidsregistrering</button>
-                    <button>Forbrug</button>
-                    <button type="submit" name="knap" value="Opdater" onclick="myFunction()">Gem ændringer</button>
+                <div class="time_registration_navbar_container">
+                    <div class="time_registration_navbar">
+                        <button class="active_time_registration_page">Tidsregistrering</button>
+                        <button>Forbrug</button>
+                    </div>
+                    <button class="update_button" type="submit" name="knap" value="Opdater" onclick="myFunction()">Gem ændringer</button>
                 </div>           
 
                 <div class="time_reg_basics_container">
@@ -313,7 +315,7 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_delete_time_reg_field_pop_up ?>">
                 <div class="pop_up_modal" >
                     <h3>Slet tidsregistrerings felt</h3>
-                    <p class="pop_up_selected_information"><i>"<?php echo ?>"</i></p>
+                    <p class="pop_up_selected_information"><i>"<?php echo "noget";?>"</i></p>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Slet" class="pop_up_confirm">

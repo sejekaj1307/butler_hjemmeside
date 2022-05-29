@@ -59,11 +59,48 @@
             cursor: pointer;
         }
         .pop_up_cancel {
-            background-color: #EB7979;
+            background-color: $button_color_red;
+            &:hover {
+                background-color: $button_color_red_hover;
+            }
         }
 
         .pop_up_confirm {
             background-color: $button_color_green;
+            &:hover {
+                background-color: $button_color_green_hover;
+            }
+        }
+    }
+    //time registration options
+    .dropdown {
+        width: 40%;
+        max-width: 200px;
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            li {   
+                margin: 8px 0;
+                display: flex;
+                width: 100%;
+                button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 30px;
+                    background-color: #fff;
+                    border: 2px solid #C6D7FF;
+                    border-radius: 7px;
+                    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.068);
+                    &:hover {
+                        background-color: #C6D7FF;
+                        cursor: pointer;
+                    }
+                }
+            }
         }
     }
 }

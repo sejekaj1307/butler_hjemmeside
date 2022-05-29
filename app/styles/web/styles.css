@@ -167,8 +167,65 @@
   background-color: #EB7979;
 }
 
+.pop_up_modal .pop-up-btn-container .pop_up_cancel:hover {
+  background-color: #E36E6E;
+}
+
 .pop_up_modal .pop-up-btn-container .pop_up_confirm {
   background-color: #149DB9;
+}
+
+.pop_up_modal .pop-up-btn-container .pop_up_confirm:hover {
+  background-color: #118EA8;
+}
+
+.pop_up_modal .dropdown {
+  width: 40%;
+  max-width: 200px;
+}
+
+.pop_up_modal .dropdown ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+}
+
+.pop_up_modal .dropdown ul li {
+  margin: 8px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.pop_up_modal .dropdown ul li button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 30px;
+  background-color: #fff;
+  border: 2px solid #C6D7FF;
+  border-radius: 7px;
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.068);
+          box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.068);
+}
+
+.pop_up_modal .dropdown ul li button:hover {
+  background-color: #C6D7FF;
+  cursor: pointer;
 }
 
 /*Tablet - S */
@@ -876,6 +933,9 @@
     color: #fff;
     font-size: 18px;
   }
+  .describe_case_navbar .describe_case_update:hover {
+    background-color: #118EA8;
+  }
   .describe_case_info_container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1141,18 +1201,26 @@
 /*---------------------------------
     Time registration navbar
 ---------------------------------*/
-.time_registration .time_registration_navbar, .time_registration .in_house_time_navbar {
+.time_registration .time_registration_navbar_container, .time_registration .in_house_time_navbar {
   border-bottom: 3px solid #5068CB;
-  height: 45px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 45px;
 }
 
-.time_registration .time_registration_navbar button, .time_registration .in_house_time_navbar button {
+.time_registration .time_registration_navbar_container .time_registration_navbar, .time_registration .in_house_time_navbar .time_registration_navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 45px;
+  width: 50%;
+}
+
+.time_registration .time_registration_navbar_container .time_registration_navbar button, .time_registration .in_house_time_navbar .time_registration_navbar button {
   border: none;
   height: 100%;
   width: 100%;
@@ -1172,12 +1240,36 @@
   cursor: pointer;
 }
 
-.time_registration .time_registration_navbar button:hover, .time_registration .in_house_time_navbar button:hover {
+.time_registration .time_registration_navbar_container .time_registration_navbar button:hover, .time_registration .in_house_time_navbar .time_registration_navbar button:hover {
   background-color: #D0DDFB;
 }
 
-.time_registration .time_registration_navbar .active_time_registration_page, .time_registration .in_house_time_navbar .active_time_registration_page {
+.time_registration .time_registration_navbar_container .time_registration_navbar .active_time_registration_page, .time_registration .in_house_time_navbar .time_registration_navbar .active_time_registration_page {
   background-color: #D0DDFB;
+}
+
+.time_registration .time_registration_navbar_container .update_button, .time_registration .in_house_time_navbar .update_button {
+  border: none;
+  height: 100%;
+  width: 100%;
+  max-width: 170px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #149DB9;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.time_registration .time_registration_navbar_container .update_button:hover, .time_registration .in_house_time_navbar .update_button:hover {
+  background-color: #118EA8;
 }
 
 .time_registration .time_reg_basics_container {
@@ -1261,6 +1353,7 @@
 
 .time_registration .daily_reports_data_row .row_delete img {
   width: 15px;
+  cursor: pointer;
 }
 
 /*Tablet - S */
@@ -1447,6 +1540,10 @@
   margin: 40px 0;
   background-color: #149DB9;
   cursor: pointer;
+}
+
+.login_container .login_btn:hover {
+  background-color: #118EA8;
 }
 
 .login_container .error_message {

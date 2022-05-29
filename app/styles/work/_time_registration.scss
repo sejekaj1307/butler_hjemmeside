@@ -2,12 +2,36 @@
     Time registration navbar
 ---------------------------------*/
 .time_registration {
-    .time_registration_navbar, .in_house_time_navbar {
+    .time_registration_navbar_container, .in_house_time_navbar {
         border-bottom: 3px solid $th_border_bottom;
-        height: 45px;
         display: flex;
-        align-items: flex-end;
-        button {
+        justify-content: space-between;
+        height: 45px;
+        .time_registration_navbar {
+            display: flex;
+            height: 45px;
+            width: 50%;
+            button {
+                border: none;
+                height: 100%;
+                width: 100%;
+                max-width: 170px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: none;
+                border: 2px solid $time_navbar_blue;
+                font-size: 14px;
+                cursor: pointer;
+                &:hover {
+                    background-color: $time_navbar_blue;
+                }
+            }
+            .active_time_registration_page {
+                background-color: $time_navbar_blue;
+            }
+        }
+        .update_button {
             border: none;
             height: 100%;
             width: 100%;
@@ -15,18 +39,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: none;
-            border: 2px solid $time_navbar_blue;
+            background-color: $button_color_green;
+            color: #fff;
             font-size: 14px;
             cursor: pointer;
             &:hover {
-                background-color: $time_navbar_blue;
+                background-color: $button_color_green_hover;
             }
-        }
-        .active_time_registration_page {
-            background-color: $time_navbar_blue;
-        }
     }
+}
+    //Time reg container
     .time_reg_basics_container {
         border: 2px solid $tr_border_bottom;
         padding: 15px;
@@ -82,6 +104,7 @@
             background: none;
             img {
                 width: 15px;
+                cursor: pointer;
             }
         }
 
