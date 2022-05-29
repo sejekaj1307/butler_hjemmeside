@@ -118,7 +118,7 @@
                     <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/planalgt-service-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/planlagt-service-hjælpevideo.mp4" allowfullscreen></iframe></div>
                 </div>
             </div>
             <!-- Video 5 Opret ny sag -->
