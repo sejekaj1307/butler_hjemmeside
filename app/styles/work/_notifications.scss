@@ -15,10 +15,11 @@
         a {
             text-decoration: none;
             color: #000;
-        &:hover {
-        cursor: pointer;
         }
-        }
+            &:hover {
+                cursor: pointer;
+                background-color: $time_navbar_blue;        
+            }
     }
     .notification_navbar_active {
         background-color: $time_navbar_blue;
@@ -42,7 +43,7 @@
         padding: 10px 15px;
         .notification_information {
         padding: 20px 0;
-            width: 78%;
+        width: 78%;
             .notification_text {
 
             }
@@ -63,21 +64,6 @@
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

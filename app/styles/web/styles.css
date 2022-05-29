@@ -1312,8 +1312,9 @@
   color: #000;
 }
 
-.notification_list_page .notification_navbar button a:hover {
+.notification_list_page .notification_navbar button:hover {
   cursor: pointer;
+  background-color: #D0DDFB;
 }
 
 .notification_list_page .notification_navbar .notification_navbar_active {
