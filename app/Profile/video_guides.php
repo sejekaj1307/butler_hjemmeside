@@ -76,7 +76,7 @@
                     <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe autoplay="0" class="video" src="video_guides/Opret-ny-opgave-og-rediger-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/Opret-ny-opgave-og-rediger-hjælpevideo.mp4" allowfullscreen></iframe></div>
                 </div>
             </div>
             
@@ -92,7 +92,7 @@
                     <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe autoplay="0" class="video" src="video_guides/Arkiver-aktiver-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/Arkiver-aktiver-hjælpevideo.mp4" allowfullscreen></iframe></div>
                 </div>
             </div>
             
@@ -106,7 +106,7 @@
                     <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe autoplay="0" class="video" src="video_guides/Slet-opgave-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/Slet-opgave-hjælpevideo.mp4" allowfullscreen></iframe></div>
                 </div>
             </div>
             <!-- Video 4 planlagt service -->
@@ -118,7 +118,7 @@
                     <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe autoplay="0" class="video" src="video_guides/planalgt-service-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/planalgt-service-hjælpevideo.mp4" allowfullscreen></iframe></div>
                 </div>
             </div>
             <!-- Video 5 Opret ny sag -->
@@ -132,7 +132,7 @@
                     <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe autoplay="0" class="video" src="video_guides/Opret-ny-sag-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/Opret-ny-sag-hjælpevideo.mp4" allowfullscreen></iframe></div>
                 </div>
             </div>
             <!-- Video 6 beskriv ny sag -->
@@ -146,7 +146,7 @@
                     <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe autoplay="0" class="video" src="video_guides/beskriv-sag-hjælpevideomp4.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/beskriv-sag-hjælpevideomp4.mp4" allowfullscreen></iframe></div>
                 </div>
             </div>
     </div>

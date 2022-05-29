@@ -1,0 +1,123 @@
+
+.notification_list_page {
+    .notification_navbar {
+        height: 40px;
+        display: flex;
+        border-bottom: 3px solid $th_border_bottom;
+    button {
+        display: flex;
+        background: none;
+        border: 2px solid $time_navbar_blue;
+        min-width: 100px;
+        width: 150px;
+        justify-content: center;
+        align-items: center;
+        a {
+            text-decoration: none;
+            color: #000;
+        &:hover {
+        cursor: pointer;
+        }
+        }
+    }
+    .notification_navbar_active {
+        background-color: $time_navbar_blue;
+    }
+}
+
+    .notification_list {
+        border: 1px solid $sec-navbar-dropdwon-border;
+        .notification_date{
+            border-bottom: 2px solid $sec-navbar-dropdwon-border;
+            margin-top: 30px;
+            padding: 0 15px 10px 15px;
+            color: #818181;
+        }
+    }
+    .notification_row {
+        display: flex;
+        justify-content: space-between;
+
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.116);
+        padding: 10px 15px;
+        .notification_information {
+        padding: 20px 0;
+            width: 78%;
+            .notification_text {
+
+            }
+
+        }
+        .button_container {
+            display: flex;
+            justify-content: space-between;
+            width: 20%;
+            padding-left: 10px;
+            button {
+                background: none;
+                border: none;
+                img {
+                    width: 20px;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Tablet - S */
+@media screen and(min-width: 900px) {
+
+    .notification_list_page {
+        .notification_row {
+            .notification_information {
+                width: 78%;
+            }
+            .button_container {
+                width: 10%;
+            }
+        }
+    }
+
+
+}
+
+/*Lille pc - M*/
+@media screen and(min-width: 1200px) {
+    .notification_list_page {
+        .notification_row {
+            .notification_information {
+                width: 85%;
+            }
+            .button_container {
+                width: 5%; 
+                max-width: 200px;
+            }
+        }
+    }
+
+}
+
+
+/*Stor pc - L*/
+@media screen and(min-width: 1600px) {
+
+}
+
+

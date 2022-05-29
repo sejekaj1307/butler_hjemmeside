@@ -426,9 +426,13 @@
   .harmonica_container .harmonica_status_header, .harmonica_container .harmonica_status, .harmonica_container .harmonica_quantity_header, .harmonica_container .harmonica_quantity {
     width: 10.8vw !important;
   }
-  .harmonica_container .tasks_service_harmonica_status_header, .harmonica_container .tasks_service_harmonica_status, .harmonica_container .tasks_service_harmonica_deadline_header, .harmonica_container .tasks_service_harmonica_deadline,
-  .harmonica_container .tasks_service_harmonica_priority, .harmonica_container .tasks_service_harmonica_priority_header, .harmonica_container .tasks_service_harmonica_last_service_header, .harmonica_container .tasks_service_harmonica_last_service {
-    width: 7.6vw;
+  .harmonica_container .tasks_service_harmonica_status_header, .harmonica_container .tasks_service_harmonica_status,
+  .harmonica_container .tasks_service_harmonica_priority, .harmonica_container .tasks_service_harmonica_priority_header {
+    width: 6.5vw;
+    padding: 0 !important;
+  }
+  .harmonica_container .tasks_service_harmonica_deadline_header, .harmonica_container .tasks_service_harmonica_deadline, .harmonica_container .tasks_service_harmonica_last_service_header, .harmonica_container .tasks_service_harmonica_last_service {
+    width: 9vw;
     padding: 0 !important;
   }
   .harmonica_container .tasks_service_harmonica_comment, .harmonica_container .tasks_service_harmonica_comment_header {
@@ -437,6 +441,7 @@
   }
   .harmonica_container .tasks_service_updated_initials_header, .harmonica_container .tasks_service_updated_initials {
     width: 6vw;
+    padding: 0 !important;
   }
   .harmonica_container .harmonica_comment_header, .harmonica_container .harmonica_comment {
     width: 18vw !important;
@@ -463,7 +468,7 @@
     width: 14.5vw;
   }
   .harmonica_contiainer .harmonica_comment_header, .harmonica_contiainer .harmonica_comment {
-    width: 18.5vw;
+    width: 18vw;
   }
   .tasks_service_harmonica_comment, .tasks_service_harmonica_comment_header {
     width: 14.5vw !important;
@@ -1179,6 +1184,113 @@
 }
 
 /*Stor pc - L*/
+.notification_list_page .notification_navbar {
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 3px solid #5068CB;
+}
+
+.notification_list_page .notification_navbar button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: none;
+  border: 2px solid #D0DDFB;
+  min-width: 100px;
+  width: 150px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.notification_list_page .notification_navbar button a {
+  text-decoration: none;
+  color: #000;
+}
+
+.notification_list_page .notification_navbar button a:hover {
+  cursor: pointer;
+}
+
+.notification_list_page .notification_navbar .notification_navbar_active {
+  background-color: #D0DDFB;
+}
+
+.notification_list_page .notification_list {
+  border: 1px solid #87AFFF;
+}
+
+.notification_list_page .notification_list .notification_date {
+  border-bottom: 2px solid #87AFFF;
+  margin-top: 30px;
+  padding: 0 15px 10px 15px;
+  color: #818181;
+}
+
+.notification_list_page .notification_row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.116);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.116);
+  padding: 10px 15px;
+}
+
+.notification_list_page .notification_row .notification_information {
+  padding: 20px 0;
+  width: 78%;
+}
+
+.notification_list_page .notification_row .button_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 20%;
+  padding-left: 10px;
+}
+
+.notification_list_page .notification_row .button_container button {
+  background: none;
+  border: none;
+}
+
+.notification_list_page .notification_row .button_container button img {
+  width: 20px;
+}
+
+/*Tablet - S */
+@media screen and (min-width: 900px) {
+  .notification_list_page .notification_row .notification_information {
+    width: 78%;
+  }
+  .notification_list_page .notification_row .button_container {
+    width: 10%;
+  }
+}
+
+/*Lille pc - M*/
+@media screen and (min-width: 1200px) {
+  .notification_list_page .notification_row .notification_information {
+    width: 85%;
+  }
+  .notification_list_page .notification_row .button_container {
+    width: 5%;
+    max-width: 200px;
+  }
+}
+
+/*Stor pc - L*/
 /*---------------------------------
         Login page
 ---------------------------------*/
@@ -1271,7 +1383,7 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.time_registration, .profile_list, .calender_container, .task_list_page, .archived_case_list_page, .case_list_page, .in_house_time, .profile_page {
+.time_registration, .profile_list, .calender_container, .task_list_page, .archived_case_list_page, .case_list_page, .in_house_time, .profile_page, .notification_list_page {
   width: 90vw;
   margin: 50px auto;
 }
@@ -1281,7 +1393,7 @@
   .site_container {
     margin-left: 22vw;
   }
-  .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time, .profile_page {
+  .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time, .profile_page, .notification_list_page {
     width: 68vw;
     margin-left: 50px;
     margin-top: 50px;
@@ -1293,7 +1405,7 @@
   .site_container {
     margin-left: 16vw;
   }
-  .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time, .profile_page {
+  .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time, .profile_page, .notification_list_page {
     width: 72vw;
     margin-left: 100px;
     margin-top: 50px;

@@ -121,9 +121,13 @@
         .harmonica_status_header, .harmonica_status, .harmonica_quantity_header, .harmonica_quantity {
             width: 10.8vw !important;
         }
-        .tasks_service_harmonica_status_header, .tasks_service_harmonica_status, .tasks_service_harmonica_deadline_header, .tasks_service_harmonica_deadline, 
-        .tasks_service_harmonica_priority, .tasks_service_harmonica_priority_header, .tasks_service_harmonica_last_service_header, .tasks_service_harmonica_last_service {
-            width: 7.6vw;
+        .tasks_service_harmonica_status_header, .tasks_service_harmonica_status,  
+        .tasks_service_harmonica_priority, .tasks_service_harmonica_priority_header {
+            width: 6.5vw;
+            padding: 0 !important;
+        }
+        .tasks_service_harmonica_deadline_header, .tasks_service_harmonica_deadline, .tasks_service_harmonica_last_service_header, .tasks_service_harmonica_last_service {
+            width: 9vw;
             padding: 0 !important;
         }
         .tasks_service_harmonica_comment, .tasks_service_harmonica_comment_header {
@@ -132,6 +136,7 @@
         }
         .tasks_service_updated_initials_header, .tasks_service_updated_initials {
             width: 6vw;
+            padding: 0 !important;
         }
         .harmonica_comment_header, .harmonica_comment {
             width: 18vw !important;
@@ -160,7 +165,7 @@
             width: 14.5vw;
         }
         .harmonica_comment_header, .harmonica_comment {
-            width: 18.5vw;
+            width: 18vw;
         }
     }
     .tasks_service_harmonica_comment, .tasks_service_harmonica_comment_header {

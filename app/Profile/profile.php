@@ -27,7 +27,7 @@
         $emergency_name = $row['emergency_name'];
         $emergency_phone = $row['emergency_phone'];
         $colour = $row['colour'];
-        $filename = $row['filename'];
+        $picture_path = $row['picture_path'];
     }
                 
 
@@ -149,7 +149,7 @@ Masthead er i formen grundet at session variablen måske bliver opdateret
                                     $msg = "Image uploaded successfully";
                                     $fileName = "profile_img/" . $fileName;
                 
-                                    $filename = $target_file;
+                                    $picture_path = $target_file;
                                 }else{
                                     $msg = "Failed to upload image";
                                 }
@@ -160,9 +160,8 @@ Masthead er i formen grundet at session variablen måske bliver opdateret
                             {
                                 if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                                 {  
-                                    echo $hasImage ? 'true' : 'false';;
                                     if($hasImage){
-                                        $sql = $conn->prepare("update employees set first_name = ?, last_name = ?, initials = ?, phone = ?, phone_private = ?, email = ?, email_private = ?, emergency_name = ?, emergency_phone = ?, colour = ?, filename = ? where id = ?");
+                                        $sql = $conn->prepare("update employees set first_name = ?, last_name = ?, initials = ?, phone = ?, phone_private = ?, email = ?, email_private = ?, emergency_name = ?, emergency_phone = ?, colour = ?, picture_path = ? where id = ?");
                                         $sql->bind_param("sssssssssssi", $first_name, $last_name, $initials, $phone, $phone_private, $email, $email_private, $emergency_name, $emergency_phone, $colour, $fileName, $id);
                                         $sql->execute();
                                     }    
@@ -221,7 +220,7 @@ Masthead er i formen grundet at session variablen måske bliver opdateret
                 <div class="pic_and_info_container"> <!-- container til billede, farve og personlige oplysninger-->
                     <div class="profile_pic_container">
                         <!-- <img class="profile_pic" src="profile_img/tester.jpg" alt="Profil billede"> -->
-                        <img class="profile_pic" src="<?php echo $filename;?>" alt="Profil billede"> 
+                        <img class="profile_pic" src="<?php echo $picture_path;?>" alt="Profil billede"> 
                         <div class="profile_color" style="background-color: <?php echo $colour?>">Din farve</div>
                     </div>
                     <div class="profile_info">

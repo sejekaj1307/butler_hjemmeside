@@ -107,13 +107,13 @@
                         $task_title = $_REQUEST['task_title_c'];
                         $priority = $_REQUEST['priority_c'];
                         $status = "Ikke startet";
-                        // $last_service = $_REQUEST['last_service_c'];
+                        $last_service = $_REQUEST['last_service_c'];
                         $deadline = $_REQUEST['deadline_c'];
                         $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                         $comment = $_REQUEST['comment_c'];
                         
-                        $sql = $conn->prepare("insert into tasks_service (task_header, task_title, priority, status, deadline, updated_initials, comment) values (?, ?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param("sssssss", $task_header, $task_title, $priority, $status, $deadline, $updated_initials, $comment);
+                        $sql = $conn->prepare("insert into tasks_service (task_header, task_title, priority, status, last_service, deadline, updated_initials, comment) values (?, ?, ?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("ssssssss", $task_header, $task_title, $priority, $status, $deadline, $last_service, $updated_initials, $comment);
                         $sql->execute();
                         $display_create_task_service_pop_up = "none";
                         
@@ -291,7 +291,7 @@
                                   
                         }
                     echo '</div>';
-                            ?>
+                ?>
                             
             </div>
 
@@ -328,6 +328,7 @@
                             <option <?php echo $priority == "Høj" ? 'selected' : '' ?> value="Høj">Høj</option>
                         </select>
                     </div> 
+                    <div class="pop-up-row"><p>Sidste service : </p><input autocomplete="off" type="date" name="last_service_c" value="<?php echo isset($last_service) ? $last_service : '' ?>"></div>
                     <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
                     <div class="pop-up-row"><p>Bemærkning : </p><input autocomplete="off" type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                     <div class="pop-up-btn-container">

@@ -25,10 +25,13 @@
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $this_row_employees_json = json_decode($row['employees'], true);
-            if($this_row_employees_json[$_SESSION['logged_in_user_global']['initials']]){
-                array_push($my_cases, $row["case_nr"]);
-                array_push($my_case_job_types, $row["job_types"], true);
+            
+            $this_row_employees_json = json_decode($row['employees'], true);      
+            if(!empty($this_row_employees_json)){
+                if($this_row_employees_json[$_SESSION['logged_in_user_global']['initials']]){
+                    array_push($my_cases, $row["case_nr"]);
+                    array_push($my_case_job_types, $row["job_types"], true);
+                }
             }
         }
     }
@@ -143,7 +146,7 @@
         </div>
 
 
-    <form action="tidsregistrering.php" method="post">
+    <form action="time_registration.php" method="post">
             <?php 
             //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
                 function findes($id, $c)
