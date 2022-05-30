@@ -91,7 +91,7 @@
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
-                    //create, køres hvis "Tilføj ny medarbejder" bliver requested
+                    //create, køres hvis "Opret ny medarbejder" bliver requested
                     if($_REQUEST['knap'] == "Opret ny sag")
                     {
                         $display_create_case_pop_up = "flex";
@@ -107,9 +107,46 @@
                         $est_end_date = $_REQUEST['est_end_date_c'];
                         $date_now = new DateTime();
                         $date_now_formatted = $date_now->format('Y-m-d');
+
+                        $employees_initials_list = array();
                         
-                        $sql = $conn->prepare("insert into cases (case_nr, case_responsible, status, location, est_start_date, est_end_date) values (?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param("ssssss", $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date);
+                        $sql = "select initials from employees";
+                        $result = $conn->query($sql);
+                        if($result->num_rows > 0)
+                        {
+                            while($row = $result->fetch_assoc())
+                            {
+                                if (!array_key_exists($row['initials'], $employees_initials_list)){
+                                    $employees_initials_list[$row['initials']] = false;
+                                }
+                            }
+                        }
+
+                        $machine_name_list = array();
+                        $sql = "select name from machines";
+                        $result = $conn->query($sql);
+                        if($result->num_rows > 0)
+                        {
+                            while($row = $result->fetch_assoc())
+                            {
+                                if (!array_key_exists($row['name'], $machine_name_list)){
+                                    $machine_name_list[$row['name']] = false;
+                                }
+                            }
+                        }
+                        $default_job_types_json = array();
+                        for($i=0; $i<count($case_job_types_list); $i++)
+                        {
+                            if (!array_key_exists($case_job_types_list[$i], $default_job_types_json)){
+                                $default_case_job_types_json[$case_job_types_list[$i]] = false;
+                            }
+                        }
+                        $employees_initials_list = json_encode($employees_initials_list);
+                        $machine_name_list = json_encode($machine_name_list);
+                        $default_case_job_types_json = json_encode($default_case_job_types_json);
+                        
+                        $sql = $conn->prepare("insert into cases (case_nr, case_responsible, status, location, est_start_date, est_end_date, machines, job_type, employees) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("sssssssss", $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date, $machine_name_list, $default_case_job_types_json, $employees_initials_list);
                         $sql->execute();
                         
                     }

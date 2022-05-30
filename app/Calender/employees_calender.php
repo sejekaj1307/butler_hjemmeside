@@ -56,7 +56,7 @@
 
 
         <div class="calender_container">
-            <button class="add_new_link"><img src="../img/kryds.png" alt="plus">Tilføj ny</button>
+            <p>Kommer snart</p>
         </div>
 
 

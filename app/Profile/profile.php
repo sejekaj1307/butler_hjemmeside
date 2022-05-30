@@ -259,7 +259,7 @@ Masthead er i formen grundet at session variablen måske bliver opdateret
             ----------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_profile_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Opdater medarbejder</h3>
+                    <h3>Rediger profil</h3>
                     <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_u" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials_u" value="<?php echo isset($initials) ? $initials : '' ?>"></div>

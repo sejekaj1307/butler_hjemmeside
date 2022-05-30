@@ -89,8 +89,8 @@
             // CRUD, create, read, update, delete - og confirm og cancel knap til delete
             if($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                //create, køres hvis "Tilføj ny medarbejder" bliver requested
-                if($_REQUEST['knap'] == "Tilføj ny maskine")
+                //create, køres hvis "Opret ny medarbejder" bliver requested
+                if($_REQUEST['knap'] == "Opret ny maskine")
                 {
                     $display_create_machine_pop_up = "flex";
                 }
@@ -201,7 +201,7 @@
 
         <!-- SELVE TABELLEN -->
         <div class="profile_list">
-            <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny maskine"></div>
+            <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny maskine"></div>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                $sql = "select * from machines";
@@ -211,7 +211,7 @@
                     echo '<div class="machine_list_header">';
                     echo '<p class="machine_name_header">Navn</p>';
                         echo '<div class="machines_all_headers">';
-                            echo '<p class="machine_nordic_name_header">Nordic navn</p>';
+                            echo '<p class="machine_nordic_name_header">Nordisk navn</p>';
                             echo '<p class="machine_link_header">Link til BB hjemmeside</p>';
                             echo '<p class="button_container_header">Rediger</p>';
                         echo '</div>';
@@ -258,7 +258,7 @@
             ----------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_machine_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Opdater medarbejderprofil</h3>
+                    <h3>Rediger maskine</h3>
                     <div class="pop-up-row"><p>Navn : </p><input type="text" name="name_u" value="<?php echo isset($name) ? $name : '' ?>"></div>
                     <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_u" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
                     <div class="pop-up-row"><p>Link : </p><input type="text" name="link_u" value="<?php echo isset($link) ? $link : '' ?>"></div>
@@ -274,7 +274,7 @@
             ---------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_machine_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Tilføj ny medarbejder</h3>
+                    <h3>Opret ny maskine</h3>
                     <div class="pop-up-row"><p>Navn : </p><input type="text" name="name_c" value="<?php echo isset($name) ? $name : '' ?>"></div>
                     <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_c" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
                     <div class="pop-up-row"><p>Link : </p><input type="text" name="link_c" value="<?php echo isset($link) ? $link : '' ?>"></div>
@@ -290,7 +290,7 @@
             ------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_delete_machine_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Slet medarbejder</h3>
+                    <h3>Slet maskine</h3>
                     <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_machine_name"];?>"</i></p>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">

@@ -160,7 +160,7 @@
                             echo '<p class="task_archived_initials_header">Arkiveret af</p>';
                             echo '<p class="task_updated_initials_header">Seneste</p>';
                             echo '<p class="task_comment_header">Bemærkninger</p>';
-                            echo '<p class="button_container_header">Rediger</p>';
+                            echo '<p class="button_container_header">Aktiver</p>';
                         echo '</div>';
                     echo '</div>';
 

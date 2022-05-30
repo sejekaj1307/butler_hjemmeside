@@ -30,5 +30,20 @@
         "SI",
         "TB"
     );
+
+/*-- ---------------------------------
+    Case job types
+------------------------------------*/
+    $case_job_types_list = array(
+        "CPT",
+        "Miljøboring",
+        "Grout - sløjfning",
+        "GPS - afsæt/indmål",
+        "Kerneboring",
+        "Vand brønde - lukning",
+        "Geoteknik boring",
+        "Dth boring",
+        "Andet arbejde",
+    );
 ?>
 

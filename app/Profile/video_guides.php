@@ -73,7 +73,7 @@
                     <br>
                     <p>Se også hvordan du kan redigere en ønsket opgave.</p>
                     <br>
-                    <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
+                    <p>Hvis du ønsker mere information se også brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
                     <div class="iframe_container"><iframe sandbox class="video" src="video_guides/Opret-ny-opgave-og-rediger-hjælpevideo.mp4" allowfullscreen></iframe></div>
@@ -89,7 +89,7 @@
                     <br>
                     <p><i>OBS:</i> Vær opmærksom på, at hvis du ønsker at redigere en opgave eller sag, skal de aktiveres igen og findes på den aktive liste.</p>
                     <br>
-                    <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
+                    <p>Hvis du ønsker mere information se også brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
                     <div class="iframe_container"><iframe sandbox class="video" src="video_guides/Arkiver-aktiver-hjælpevideo.mp4" allowfullscreen></iframe></div>
@@ -103,7 +103,7 @@
                     <p>I denne video kan du få hjælp til, hvordan du sletter en opgave.</p>
                     <p><i>OBS:</i> Fremgangsmåden er ens for alle elementer, der kan slettes.</p>
                     <br>
-                    <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
+                    <p>Hvis du ønsker mere information se også brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
                     <div class="iframe_container"><iframe sandbox class="video" src="video_guides/Slet-opgave-hjælpevideo.mp4" allowfullscreen></iframe></div>
@@ -115,7 +115,7 @@
                     <h2>Opret ny planlagt service og rediger den</h2>
                     <p>I denne video kan du få hjælp til, hvordan du skal oprette en <i>planlagt service</i> under <i>opgaver</i>, og hvordan du kan redigere den.</p>
                     <br>
-                    <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
+                    <p>Hvis du ønsker mere information se også brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
                     <div class="iframe_container"><iframe sandbox class="video" src="video_guides/planlagt-service-hjælpevideo.mp4" allowfullscreen></iframe></div>
@@ -129,7 +129,7 @@
                     <br>
                     <p><i>OBS:</i> vær opmærksom på at <i>opret ny sag</i> kun indebærer de helt basale elementer for en sag, sagen skal herefter uddybes i <i>beskriv sag</i></p>
                     <br>
-                    <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
+                    <p>Hvis du ønsker mere information se også brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
                     <div class="iframe_container"><iframe sandbox class="video" src="video_guides/Opret-ny-sag-hjælpevideo.mp4" allowfullscreen></iframe></div>
@@ -143,7 +143,7 @@
                     <br>
                     <p><i>OBS: </i>vær opmærksom på at en sag skal oprettes før den kan beskrives, se video om <i>Opret ny sag</i></p>
                     <br>
-                    <p>Hvis du ønsker mere information se også side xx i brugermanualen.</p>
+                    <p>Hvis du ønsker mere information se også brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
                     <div class="iframe_container"><iframe sandbox class="video" src="video_guides/beskriv-sag-hjælpevideomp4.mp4" allowfullscreen></iframe></div>

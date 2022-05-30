@@ -90,8 +90,8 @@
         // CRUD, create, read, update, delete - og confirm og cancel knap til delete
         if($_SERVER['REQUEST_METHOD'] === 'POST')
         {
-            //create, køres hvis "Tilføj ny medarbejder" bliver requested
-            if($_REQUEST['knap'] == "Tilføj ny leverandør")
+            //create, køres hvis "Opret ny medarbejder" bliver requested
+            if($_REQUEST['knap'] == "Opret ny leverandør")
             {
                 $display_create_supplier_pop_up = "flex";
             }
@@ -210,7 +210,7 @@
 
         <!-- SELVE TABELLEN -->
         <div class="profile_list">
-            <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny leverandør"></div>
+            <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny leverandør"></div>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                 $sql = "select * from suppliers";
@@ -271,7 +271,7 @@
             ----------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_supplier_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Opdater ekstern</h3>
+                    <h3>Rediger leverandør</h3>
                     <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_u" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Tlf. nr : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
@@ -290,7 +290,7 @@
             ---------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_supplier_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Tilføj ny ekstern</h3>
+                    <h3>Opret ny leverandør</h3>
                     <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_c" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
                     <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_c" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
@@ -309,7 +309,7 @@
             ------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_delete_supplier_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Slet ekstern</h3>
+                    <h3>Slet leverandør</h3>
                     <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_supplier_last_name"]. ', ' . $_SESSION["selected_supplier_first_name"];?>"</i></p>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel"  >

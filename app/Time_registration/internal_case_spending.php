@@ -113,8 +113,8 @@
             <div class="time_registration">
                 <div class="time_registration_navbar_container">
                     <div class="time_registration_navbar">
-                        <button class="active_time_registration_page"><a href="internal_case.php">2022 intern</a></button>
-                        <button><a href="internal_case_spending.php">Forbrug</a></button>
+                        <button><a href="internal_case.php">2022 intern</a></button>
+                        <button class="active_time_registration_page"><a href="#">Forbrug</a></button>
                     </div>
                     <button class="update_button" type="submit" name="knap" value="Opdater" onclick="myFunction()">Gem ændringer</button>
                 </div>           

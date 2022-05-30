@@ -23,6 +23,10 @@
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
     }
+
+    $this_row_employees_json = json_decode($row['employees'], true);
+    $this_case_machines_json = json_decode($row['machines'], true);
+    $this_case_job_types_json = json_decode($row['job_type'], true);
     
     $this_case = new case_describe_data(
         $row["id"], 
@@ -40,6 +44,50 @@
         $row["est_start_date"],
         $row["est_end_date"]
     );
+
+    //This is for the employee drop down menu
+    $employees_initials_list = array();
+    $sql = "select initials from employees";
+    $result = $conn->query($sql);
+                    
+    //if og while her 
+    if($result->num_rows > 0)
+    {
+        while($row = $result->fetch_assoc())
+        {
+            if (!array_key_exists($row['initials'], $this_row_employees_json)){
+                $this_row_employees_json[$row['initials']] = false;
+            }
+            array_push($employees_initials_list, $row["initials"]);
+        }
+    }
+
+    //This is for the machine drop down menu
+    $machine_name_list = array();
+    $sql = "select name from machines";
+    $result = $conn->query($sql);
+                    
+    //if og while her 
+    if($result->num_rows > 0)
+    {
+        while($row = $result->fetch_assoc())
+        {
+            if (!array_key_exists($row['name'], $this_case_machines_json)){
+                $this_case_machines_json[$row['name']] = false;
+            }
+            array_push($machine_name_list, $row["name"]);
+        }
+    }
+    //This is for the job_type drop down menu
+    //case_job_types_list is defined in the data file
+    
+    for($i=0; $i<count($case_job_types_list); $i++)
+    {
+        if (!array_key_exists($case_job_types_list[$i], $this_case_job_types_json)){
+            $this_case_job_types_json[$case_job_types_list[$i]] = false;
+        }
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -134,22 +182,38 @@
                 //update
                 if($_REQUEST['knap'] == "Opdater") 
                 {
+                    for($i=0; $i<count($employees_initials_list); $i++){
+                        $this_row_employees_json[$employees_initials_list[$i]] = !empty($_REQUEST["employee_checkbox_".$i]) ? true : false;
+                    }
+                    $new_employee_data = json_encode($this_row_employees_json);
+
+                    for($i=0; $i<count($machine_name_list); $i++){
+                        $this_case_machines_json[$machine_name_list[$i]] = !empty($_REQUEST["machine_checkbox_".$i]) ? true : false;
+                    }
+                    $new_machine_data = json_encode($this_case_machines_json);
+
+                    for($i=0; $i<count($case_job_types_list); $i++){
+                        $this_case_job_types_json[$case_job_types_list[$i]] = !empty($_REQUEST["job_type_checkbox_".$i]) ? true : false;
+                    }
+                    $new_job_type_data = json_encode($this_case_job_types_json);
+
                     $id = $this_case->get_id();
                     
                     if(is_numeric($id) && is_integer(0 + $id))
                     {
                         if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
                         {
-                            $sql = $conn->prepare("update cases set client = ?, client_case_nr = ?, case_nr = ?, case_responsible = ?, location = ?, zip_code = ?, machines = ?, employees = ?, comment_road_info = ?, comment_extra_work = ?, status = ?, est_start_date = ?, est_end_date = ? where id = ?");
-                            $sql->bind_param("sssssssssssssi", 
+                            $sql = $conn->prepare("update cases set client = ?, client_case_nr = ?, case_nr = ?, case_responsible = ?, location = ?, zip_code = ?, job_type = ?, machines = ?, employees = ?, comment_road_info = ?, comment_extra_work = ?, status = ?, est_start_date = ?, est_end_date = ? where id = ?");
+                            $sql->bind_param("ssssssssssssssi", 
                                 $_REQUEST['client'],
                                 $_REQUEST['client_case_nr'],
                                 $_REQUEST['case_nr'],
                                 $_REQUEST['case_responsible'],
                                 $_REQUEST['location'],
                                 $_REQUEST['zip_code'],
-                                $_REQUEST['machines'],
-                                $_REQUEST['employees'],
+                                $new_job_type_data,
+                                $new_machine_data,
+                                $new_employee_data,
                                 $_REQUEST['comment_road_info'],
                                 $_REQUEST['comment_extra_work'],
                                 $_REQUEST['status'],
@@ -168,8 +232,8 @@
                         $_REQUEST['case_responsible'],
                         $_REQUEST['location'],
                         $_REQUEST['zip_code'],
-                        $_REQUEST['machines'],
-                        $_REQUEST['employees'],
+                        $new_machine_data,
+                        $new_employee_data,
                         $_REQUEST['comment_road_info'],
                         $_REQUEST['comment_extra_work'],
                         $_REQUEST['status'],
@@ -218,8 +282,35 @@
                     <div class="top_inputs_container">
                         <div class="small_inputs"><p>Lokation :</p><input autocomplete="off" name="location" type="text" value="<?php echo $this_case->get_location();?>"></div>
                         <div class="small_inputs"><p>Postnummer :</p><input autocomplete="off" name="zip_code" type="text" value="<?php echo $this_case->get_zip_code();?>"></div>
-                        <div class="small_inputs"><p>Maskiner :</p><input autocomplete="off" name="machines" type="text" value="<?php echo $this_case->get_machines();?>"></div>
-                        <div class="small_inputs"><p>Medarbejder :</p><input autocomplete="off" name="employees" type="text" value="<?php echo $this_case->get_employees();?>"></div>
+                        <div id="list1" class="dropdown-check-list" tabindex="100">
+                            <div class="small_inputs"><p>Maskiner :</p>
+                                <div class="dropdown list1">
+                                    <p class="dropbtn">Maskiner</p>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <?php
+                                            for($i=0; $i<count($machine_name_list); $i++){
+                                                echo '<li><input name="machine_checkbox_' . $i . '" type="checkbox" ' . ($this_case_machines_json[$machine_name_list[$i]] ? 'checked' : '') . '/>' . $machine_name_list[$i] . '</li>';
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>  
+                        <div id="list1" class="dropdown-check-list" tabindex="100">
+                            <div class="small_inputs tester"><p>Medarbejdere :</p>
+                                <div class="dropdown list1">
+                                    <p class="dropbtn">Medarbejdere</p>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <?php
+                                            for($i=0; $i<count($employees_initials_list); $i++){
+                                                echo '<li><input name="employee_checkbox_' . $i . '" type="checkbox" ' . ($this_row_employees_json[$employees_initials_list[$i]] ? 'checked' : '') . '/>' . $employees_initials_list[$i] . '</li>';
+                                            }
+                                        ?> 
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>  
+
                         <div class="large_inputs"><p>Ekstra arbejde/ventetid</p><textarea name="comment_extra_work" type="subject"><?php echo $this_case->get_comment_extra_work();?></textarea></div>
                     </div>
                 </div>
@@ -237,13 +328,22 @@
                             </select>
                         </div>    
                     </div>
+
                     <div class="job_type_container">
-                        <label for="jobtypes">Job typer :</label>
-                        <select name="jobtypes" id="jobtypes" class="job_type_select">
-                            <option value="CPT">CPT</option>
-                            <option value="Miljø">Miljø</option>
-                            <option value="GPS_afsætning">GPS afsætning</option>
-                        </select>
+                        <div id="list1" class="dropdown-check-list" tabindex="100">
+                            <div class="small_inputs jobtypes"><p>Jobtyper :</p>
+                                <div class="dropdown list1">
+                                    <p class="dropbtn">Jobtyper</p>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <?php
+                                            for($i=0; $i<count($case_job_types_list); $i++){
+                                                echo '<li><input name="job_type_checkbox_' . $i . '" type="checkbox" ' . ($this_case_job_types_json[$case_job_types_list[$i]] ? 'checked' : '') . '/>' . $case_job_types_list[$i] . '</li>';
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
                     </div>
                 </div>
             </div>
@@ -262,6 +362,28 @@
     </div>
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
+    <script src="open_close_functions.js"></script>
+    <!-- <script>
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+            }
+        }
+        }
+</script> -->
 </body>
 
 </html>

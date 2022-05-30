@@ -1,5 +1,8 @@
 
-// * {color: red;}
+.describe_case_link {
+    display: none !important;
+}
+
 
 /*Tablet - S */
 @media screen and(min-width: 900px) {
@@ -9,11 +12,14 @@
 
 /*Lille pc - M*/
 @media screen and(min-width: 1200px) {
-        
 
+       
 /*---------------------------------
         Describe case
 ---------------------------------*/
+.describe_case_link {
+   display: flex !important;
+}
 .describe_case_navbar {
     display: flex;
     border-bottom: 2px solid #5068CB;
@@ -148,7 +154,78 @@
         }
     }
 
+
+
+
+.jobtypes {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    min-width: 600px;
+    p {
+        text-align: right;
+        width: 30%;
+        min-width: 70px;
+    }
+
 }
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        width: 67%;
+    }
+
+    /* Dropdown Button */
+    .dropbtn {
+        background-color: #fff;
+        color: #000;
+        padding: 5px;
+        font-size: 14px;
+        border: 1px solid #B2C7F9;
+        width: 100% !important; 
+        text-align: left !important;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content li {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        input {
+            width: 20px !important;
+            margin-right: 5px;
+        }
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content li:hover {background-color: #fff}
+
+    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+    .show {display:block;}
+
+
+}
+
+
+
+
+
+
+
+
+
 
 
 /*Stor pc - L*/

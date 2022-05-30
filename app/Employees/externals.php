@@ -87,8 +87,8 @@
         // CRUD, create, read, update, delete - og confirm og cancel knap til delete
         if($_SERVER['REQUEST_METHOD'] === 'POST')
         {
-            //create, køres hvis "Tilføj ny ekstern" bliver requested
-            if($_REQUEST['knap'] == "Tilføj ny ekstern")
+            //create, køres hvis "Opret ny ekstern" bliver requested
+            if($_REQUEST['knap'] == "Opret ny ekstern")
             {
                 $display_create_external_pop_up = "flex";
             }
@@ -212,7 +212,7 @@
 
         <!-- SELVE TABELLEN -->
         <div class="profile_list">
-            <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny ekstern"  ></div>
+            <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny ekstern"  ></div>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                 $sql = "select * from externals";
@@ -273,7 +273,7 @@
         ----------------------------->
         <div class="pop_up_modal_container" style="display: <?php echo $display_edit_external_pop_up ?>">
             <div class="pop_up_modal">
-                <h3>Opdater ekstern</h3>
+                <h3>Rediger ekstern</h3>
                 <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
                 <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_u" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
                 <div class="pop-up-row"><p>Tlf. : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
@@ -292,7 +292,7 @@
         ---------------------------->
         <div class="pop_up_modal_container" style="display: <?php echo $display_create_external_pop_up ?>">
             <div class="pop_up_modal">
-                <h3>Tilføj ny ekstern</h3>
+                <h3>Opret ny ekstern</h3>
                 <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
                 <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_c" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
                 <div class="pop-up-row"><p>Tlf. : </p><input type="text" name="phone_c" value="<?php echo isset($phone) ? $phone : '' ?>"></div>

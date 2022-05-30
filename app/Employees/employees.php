@@ -91,8 +91,8 @@
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
-                    //create, køres hvis "Tilføj ny medarbejder" bliver requested
-                    if($_REQUEST['knap'] == "Tilføj ny medarbejder")
+                    //create, køres hvis "Opret ny medarbejder" bliver requested
+                    if($_REQUEST['knap'] == "Opret ny medarbejder")
                     {
                         $display_create_employee_pop_up = "flex";
                     }
@@ -220,7 +220,7 @@
 
             <!-- SELVE TABELLEN -->
             <div class="profile_list">
-                <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny medarbejder"></div>
+                <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny medarbejder"></div>
                 <?php 
 
 
@@ -285,7 +285,7 @@
             ---------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_employee_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Tilføj ny medarbejder</h3>
+                    <h3>Opret ny medarbejder</h3>
                     <div class="pop-up-row"><p>Navn : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_c" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials_c" value="<?php echo isset($initials) ? $initials : '' ?>"></div>
@@ -307,7 +307,7 @@
             ----------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_employee_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Opdater medarbejder</h3>
+                    <h3>Rediger medarbejder</h3>
                     <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_u" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials_u" value="<?php echo isset($initials) ? $initials : '' ?>"></div>

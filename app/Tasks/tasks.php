@@ -99,7 +99,7 @@
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
                     //create
-                    if($_REQUEST['knap'] == "Tilføj ny opgave")
+                    if($_REQUEST['knap'] == "Opret ny opgave")
                     {
                         $display_create_task_pop_up = "flex";
 
@@ -262,7 +262,7 @@
 
             <div class="task_list_page">
 
-                <div class="add_new_link"><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Tilføj ny opgave"></div>
+                <div class="add_new_link"><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny opgave"></div>
                 <?php 
                     //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
                     $sql = "select * from tasks where archived_at = ''";
@@ -340,7 +340,7 @@
             ---------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_task_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Tilføj ny opgave</h3>
+                    <h3>Opret ny opgave</h3>
                     <div class="pop-up-row"><p>Opgave : </p><input autocomplete="off" type="text" name="task_title_c" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                     <div class="pop-up-row">
                         <p>Prioritet : </p>
@@ -365,7 +365,7 @@
             ----------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_task_pop_up ?>">
                 <div class="pop_up_modal" >
-                    <h3>Opdater opgave</h3>
+                    <h3>Rediger opgave</h3>
                     <div class="pop-up-row"><p>Opgave : </p><input autocomplete="off" type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                     <div class="pop-up-row">
                         <p>Prioritet : </p>

@@ -138,7 +138,7 @@
                                 $task_title = $row['task_title'];
                                 $priority = $row['priority'];
                                 $status = $row['status'];
-                                // $last_service = $row['last_service'];
+                                $last_service = $row['last_service'];
                                 $deadline = $row['deadline'];
                                 $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                                 $comment = $row['comment'];
@@ -244,7 +244,7 @@
                                 echo '<p class="tasks_service_harmonica_deadline_header">Deadline</p>';
                                 echo '<p class="tasks_service_updated_initials_header">Seneste</p>';
                                 echo '<p class="tasks_service_harmonica_comment_header">Bemærkning</p>';
-                                echo '<p class="button_container_header">Rediger</p>';
+                                echo '<p class="button_container_header">Aktiver</p>';
                             echo '</div>';
                         echo '</div>';
                         //if og while her
@@ -308,7 +308,7 @@
             ------------------------------------>
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_task_service_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Tilføj ny planlagt service</h3>
+                    <h3>Opret ny planlagt service</h3>
                     <div class="pop-up-row">
                         <p>Maskine : </p>
                         <select name="task_header_c">
@@ -343,7 +343,7 @@
             -------------------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_task_service_pop_up ?>">
                 <div class="pop_up_modal">
-                    <h3>Opdater planlagt service</h3>
+                    <h3>Rediger planlagt service</h3>
                     <div class="pop-up-row">
                         <p>Maskine : </p>
                         <select name="task_header_u">

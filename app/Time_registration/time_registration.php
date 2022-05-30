@@ -30,23 +30,31 @@
             if(!empty($this_row_employees_json)){
                 if($this_row_employees_json[$_SESSION['logged_in_user_global']['initials']]){
                     array_push($my_cases, $row["case_nr"]);
-                    array_push($my_case_job_types, $row["job_types"], true);
+                    array_push($my_case_job_types, $row["job_type"]);
                 }
             }
         }
     }
-    
-    $my_case_job_types = array_keys(array_filter(json_decode($my_case_job_types[0], true)));
+    if(!empty($_GET['cases_selected'])){
+        $my_case_job_types = json_decode($my_case_job_types[array_search($_GET['cases_selected'], $my_cases)], true);
+    }
+    else {
+        $my_case_job_types = json_decode($my_case_job_types[0], true);
+    }
+
+    $my_case_job_types["Generel"] = true;
+    $my_case_job_types = array_keys(array_filter($my_case_job_types));
 
     $level_1 = "none";
     $level_2 = "none";
     $level_1_selected = 0;
 
    
-    $sql = $conn->prepare("select * from daily_reports where date = ?");
+    $sql = $conn->prepare("select * from daily_reports where date = ? AND case_nr = ?");
     $myDate = date('d-m-Y');
-
-    $sql->bind_param("s", $myDate);
+    $myTime = date('h:i');
+    $this_case_nr = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
+    $sql->bind_param("ss", $myDate, $this_case_nr);
     $sql->execute();
     $result = $sql->get_result();
     
@@ -54,6 +62,16 @@
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             array_push($daily_report_data, $row["id"] . '_' . $row["time_reg_data"]);
+        }
+    }
+    //If it is a new day we need to generate the basic fields for the daily report
+    else {
+        $general_time_reg_fields_ids = array(14);
+        $this_case_nr = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
+        foreach($general_time_reg_fields_ids as $general_time_reg_fields_id){
+            $sql = $conn->prepare("insert into daily_reports (time_reg_field_id, time_reg_data, user_initials, date, time, case_nr) values (?, '', ?, ?, ?, ?)");
+            $sql->bind_param("issss", $general_time_reg_fields_id, $_SESSION['logged_in_user_global']['initials'], $myDate, $myTime, $this_case_nr);
+            $sql->execute();   
         }
     }
 ?>
@@ -99,19 +117,19 @@
             <ul class="sec_navbar_ul_dropdown">
                 <?php
                     for($i=0; $i<count($my_cases); $i++){
-                        $selected_case = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : (!empty($my_cases) ? $my_cases[0] : '');
+                        $selected_case = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
                         if($my_cases[$i] == $selected_case){
-                            echo '<li><a href="tidsregistrering.php?cases_selected=' . $my_cases[$i] . '" class="active_site_dropdown">'. $my_cases[$i] .'</a></li>';
+                            echo '<li><a href="time_registration.php?cases_selected=' . $my_cases[$i] . '" class="active_site_dropdown">'. $my_cases[$i] .'</a></li>';
                         }
                         else {
-                            echo '<li><a href="tidsregistrering.php?cases_selected=' . $my_cases[$i] . '">'. $my_cases[$i] .'</a></li>';
+                            echo '<li><a href="time_registration.php?cases_selected=' . $my_cases[$i] . '">'. $my_cases[$i] .'</a></li>';
                         }
                     }
                     if(empty($selected_case)){
-                        echo '<li><a href="../Tidsregistrering/intern-sag.php" class="active_site_dropdown">2022 intern sag</a></li>';
+                        echo '<li><a href="../Time_registration/internal_case.php" class="active_site_dropdown">2022 intern sag</a></li>';
                     }
                     else {
-                        echo '<li><a href="../Tidsregistrering/intern-sag.php">2022 intern sag</a></li>';
+                        echo '<li><a href="../Time_registration/internal_case.php">2022 intern sag</a></li>';
                     }
                 ?>
             </ul>
@@ -121,7 +139,7 @@
 
 
 
-    <form action="time_registration.php" method="post">
+    <form action="time_registration.php?cases_selected=<?php echo !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : ''?>" method="post">
             <?php 
             //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
                 function findes($id, $c)
@@ -160,6 +178,7 @@
                     if($_REQUEST['knap'] == "Opdater") 
                     {
                         $field_to_update = array();
+                        
                         for($i=0; $i<count($daily_report_data); $i++){
                             $split = explode("_", $daily_report_data[$i]);
                             if($split[1] != $_REQUEST['time_reg_field_'.$i]){
@@ -177,11 +196,22 @@
                     {
                         $split = explode("_", $_REQUEST['knap']);
                         $id = $split[1];
+                        
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
                             if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
                             {
-                                $_SESSION["tidsregistreringsFeltTilDelete"] = $id;
+                                $sql = $conn->prepare("select * from daily_reports where id = ?");
+                                $sql->bind_param("i", $id);
+                                $sql->execute();
+                                $result = $sql->get_result();
+                                
+                                if ($result->num_rows > 0) {
+                                    $row = $result->fetch_assoc(); 
+                                    $my_time_reg_id = array_search($row["time_reg_field_id"], $time_reg_id);
+                                    $_SESSION["tidsregistreringsFeltTilDeleteText"] = $time_reg_input_labels[$my_time_reg_id];
+                                    $_SESSION["tidsregistreringsFeltTilDelete"] = $id;
+                                }
                                 $display_delete_time_reg_field_pop_up = "flex";
                             }
                         }
@@ -191,7 +221,7 @@
                     {
                         $id = $_SESSION["tidsregistreringsFeltTilDelete"];
                         $sql = $conn->prepare("delete from daily_reports where id = ?");
-                        $sql->bind_param("i", $id);
+                        $sql->bind_param("i", $id); 
                         $sql->execute();
                         $display_delete_time_reg_field_pop_up = "none";
                         
@@ -218,13 +248,29 @@
                         $time_reg_data = "";
                         $user_initials = !empty($_SESSION['logged_in_user_global']['initials']) ? $_SESSION['logged_in_user_global']['initials'] : "";
                         $myDate = date('d-m-Y');
-                        $myTime = date('H:m:s');
-                        $sql = $conn->prepare("insert into daily_reports (time_reg_field_id, time_reg_data, user_initials, date, time) values (?, ?, ?, ?, ?)");
-                        $sql->bind_param("issss", $time_reg_id_c, $time_reg_data, $user_initials, $myDate, $myTime);
+                        $myTime = date('h:i');
+                        $this_case_nr = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
+                        $sql = $conn->prepare("insert into daily_reports (time_reg_field_id, time_reg_data, user_initials, date, time, case_nr) values (?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("isssss", $time_reg_id_c, $time_reg_data, $user_initials, $myDate, $myTime, $this_case_nr);
                         $sql->execute();
 
                         $level_1 = "none";
                         $level_2 = "none";
+                    }
+                    if(str_contains($_REQUEST['knap'],"get_time"))
+                    {
+                        $split = explode("_", $_REQUEST['knap']);
+                        $id = $split[2];
+                        $myTime = date('h:i');
+                        if(is_numeric($id) && is_integer(0 + $id))
+                        {
+                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            {   
+                                $sql = $conn->prepare("update daily_reports set time_reg_data = ? where id = ?");
+                                $sql->bind_param("si", $myTime, $id);
+                                $sql->execute();  
+                            }
+                        }
                     }
                 }
             ?>
@@ -236,21 +282,22 @@
             <div class="time_registration">
                 <div class="time_registration_navbar_container">
                     <div class="time_registration_navbar">
-                        <button class="active_time_registration_page">Tidsregistrering</button>
-                        <button>Forbrug</button>
+                        <button class="active_time_registration_page?cases_selected=<?php echo !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : ''?>"><a href="#">Tidsregistrering</a></button>
+                        <button><a href="time_registration_spending.php?cases_selected=<?php echo !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : ''?>">Forbrug</a></button>
                     </div>
                     <button class="update_button" type="submit" name="knap" value="Opdater" onclick="myFunction()">Gem ændringer</button>
                 </div>           
 
                 <div class="time_reg_basics_container">
                 <?php
-                    $sql = $conn->prepare("select * from daily_reports where date = ?");
+                    $this_case_nr = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
+                    $sql = $conn->prepare("select * from daily_reports where date = ? AND case_nr = ?");
                     $myDate = date('d-m-Y');
 
-                    $sql->bind_param("s", $myDate);
+                    $sql->bind_param("ss", $myDate, $this_case_nr);
                     $sql->execute();
                     $result = $sql->get_result();
-                    $test = 0;
+                    $temp_id = 0;
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             $id = array_search($row["time_reg_field_id"], $time_reg_id);
@@ -258,13 +305,13 @@
                                 echo '<div class="label_and_input_container">';
                                     echo '<p class="row_label" for="fname">' . $time_reg_input_labels[$id] . '</p>';
                                     echo '<div class="input_container">';
-                                        echo '<input class="row_input" id="time_reg_field" name="time_reg_field_' . $test . '" type="' . $time_reg_input_types[$id] . '" value="'. $row["time_reg_data"] . '" class="pop_up_cancel">';
-                                        echo '<input class="row_input_other" id="time_reg_field" name="time_reg_field_' . $test . '" type="' . $time_reg_input_types[$id] . '" value="'. $row["time_reg_data"] . '" class="pop_up_cancel">';
+                                        echo '<button class="row_input" type="submit" name="knap" value="get_time_' . $row["id"] . '"><p>Tid nu</p></button>';
+                                        echo '<input class="row_input_other" id="time_reg_field" name="time_reg_field_' . $temp_id . '" type="' . $time_reg_input_types[$id] . '" value="'. $row["time_reg_data"] . '" class="pop_up_cancel">';
                                     echo '</div>';
                                 echo '</div>';
                                 echo '<button class="row_delete" type="submit" name="knap" value="slet_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"></button>';
                             echo '</div>';
-                            $test += 1;
+                            $temp_id += 1;
                         }
                     }
                 ?>
@@ -315,7 +362,7 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_delete_time_reg_field_pop_up ?>">
                 <div class="pop_up_modal" >
                     <h3>Slet tidsregistrerings felt</h3>
-                    <p class="pop_up_selected_information"><i>"<?php echo "noget";?>"</i></p>
+                    <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["tidsregistreringsFeltTilDeleteText"];?>"</i></p>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
@@ -329,9 +376,11 @@
 
 
     <script src="../javaScript/navbars.js"></script>
+
+    <!-- This cannot be moved to a .js file because we are looking for a php variable -->
     <script type="text/JavaScript">
         window.onbeforeunload = ExitPage;
-        var test = document.querySelectorAll('[id="time_reg_field"]');
+        var all_time_reg_fields = document.querySelectorAll('[id="time_reg_field"]');
         var opdate_cliecked = false;
         function myFunction(){
             opdate_cliecked = true;
@@ -344,8 +393,8 @@
         }
         function checkForUnsavedWordk() {
             var unsavedWork = <?=json_encode($daily_report_data)?> ;
-            for(let i = 0; i<test.length; i++){
-                if(unsavedWork[i].split("_")[1] != test[i].value){
+            for(let i = 0; i<all_time_reg_fields.length; i++){
+                if(unsavedWork[i].split("_")[1] != all_time_reg_fields[i].value){
                     return true;
                 }
             }

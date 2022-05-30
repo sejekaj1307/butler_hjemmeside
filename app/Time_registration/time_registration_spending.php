@@ -28,7 +28,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/web/styles.css">
-    <title>2022 intern sag</title>
+    <title>Time_registration</title>
 </head>
 
 <body>
@@ -74,7 +74,7 @@
                     else {
                         echo '<li><a href="../Time_registration/internal_case.php">2022 intern sag</a></li>';
                     }
-                ?>
+                ?> 
             </ul>
         </div>
 
@@ -82,7 +82,7 @@
 
 
 
-    <form action="internal_case.php" method="post">
+    <form action="time_registration_spending.php" method="post">
             <?php 
             //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
                 function findes($id, $c)
@@ -113,8 +113,8 @@
             <div class="time_registration">
                 <div class="time_registration_navbar_container">
                     <div class="time_registration_navbar">
-                        <button class="active_time_registration_page"><a href="internal_case.php">2022 intern</a></button>
-                        <button><a href="internal_case_spending.php">Forbrug</a></button>
+                        <button><a href="time_registration.php?cases_selected=<?php echo !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : ''?>">Tidsregistrering</a></button>
+                        <button class="active_time_registration_page?cases_selected=<?php echo !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : ''?>"><a href="#">Forbrug</a></button>
                     </div>
                     <button class="update_button" type="submit" name="knap" value="Opdater" onclick="myFunction()">Gem ændringer</button>
                 </div>           

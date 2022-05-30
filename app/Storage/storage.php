@@ -92,7 +92,7 @@
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
-                    //create, køres hvis "Tilføj ny medarbejder" bliver requested
+                    //create, køres hvis "Opret ny medarbejder" bliver requested
                     if($_REQUEST['knap'] == "Opret nyt element")
                     {
                         $display_create_element_pop_up = "flex";
@@ -128,7 +128,6 @@
                                 $id = $row['id'];
                                 $_SESSION["selected_element"] = $id;
                                 $element = $row['element'];
-                                $status = $row['status'];
                                 $element_location = $row['element_location'];
                                 $quantity = $row['quantity'];
                                 $min_quantity = $row['min_quantity'];
@@ -198,12 +197,12 @@
                     if($_REQUEST['knap'] == "Annuller")
                     {
                         $id = "";
-                        $first_name = "";
-                        $initials = "";
-                        $phone = "";
-                        $phone_private = "";
-                        $email = "";
-                        $emergency_name = "";
+                        $element = "";
+                        $element_location = "";
+                        $quantity = "";
+                        $min_quantity = "";
+                        $updated_initials = "";
+                        $comment = "";
                         $display_none_archive_pop_up = "none";
                     }
                 }

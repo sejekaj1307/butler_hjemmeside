@@ -17,12 +17,19 @@
                 width: 100%;
                 max-width: 170px;
                 display: flex;
-                align-items: center;
-                justify-content: center;
                 background: none;
                 border: 2px solid $time_navbar_blue;
                 font-size: 14px;
                 cursor: pointer;
+                a {
+                    text-decoration: none;
+                    color: #000;
+                    display: flex;
+                    width: 100%;
+                    height: 100%;
+                    justify-content: center;
+                    align-items: center;
+                }
                 &:hover {
                     background-color: $time_navbar_blue;
                 }
@@ -81,17 +88,16 @@
                 display: flex;
                 width: 100%;
                 .row_input, .row_input_other {
+                    border: none;
+                    height: 25px;
+                    margin: 0px 15px;
                     width: 40%;
                     max-width: 140px;
-                    border: none;
-                    height: 18px;
-                    margin: 0 15px;
-                    padding: 5px;
-                    border-radius: 10px;
                     box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.123);
                 }
                 .row_input {
                     background-color: #C6D7FF;
+
                 }
                 .row_input_other {
                     background-color: #EFF4FF;
@@ -127,17 +133,10 @@
             }
         }
     }
-        .row_delete {
-        }
 }
 
 
 /*Lille pc - M*/
 @media screen and(min-width: 1200px) {
-    .time_registration_navbar, .in_house_time_navbar {
-        button {
-            font-size: 18px;
-            width: 175px;
-        }
-    }
+
 }
