@@ -52,8 +52,7 @@
         border-left: 5px solid #fff;
     }
 }
-
-    
+   
 
 .case_dropdown_mobile p, .external_dropdown_mobile p,  .machine_dropdown_mobile p, 
 .external_dropdown_mobile p, .employee_dropdown_mobile p, .task_dropdown_mobile p,  .task_dropdown_mobile p, .case_dropdown_mobile{
@@ -295,7 +294,13 @@
             cases width 1200
     ------------------------------------*/             
     .case_location_header, .case_location {
-        width: 18.5vw !important;
+        width: 16vw !important;
+    }
+    .case_list .button_container, .case_list .button_container_header { //button container, crud, read and delete
+        width: 9vw !important;
+    }
+    .case_list .button_container_header {
+        padding-left: 10px;
     }
     
 }

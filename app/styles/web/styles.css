@@ -869,7 +869,13 @@
             cases width 1200
     ------------------------------------*/
   .case_location_header, .case_location {
-    width: 18.5vw !important;
+    width: 16vw !important;
+  }
+  .case_list .button_container, .case_list .button_container_header {
+    width: 9vw !important;
+  }
+  .case_list .button_container_header {
+    padding-left: 10px;
   }
 }
 
