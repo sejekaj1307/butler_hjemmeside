@@ -1,6 +1,6 @@
 <?php 
     session_start(); 
-    $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
+    $conn = new mysqli("mlsdesign.dk.mysql", "mlsdesign_dkbutler_db", "mls_design97", "mlsdesign_dkbutler_db");
 ?>
 
 
