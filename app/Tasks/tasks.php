@@ -254,7 +254,6 @@
                 }
             ?>
 
-
             <div class="task_list_page">
 
                 <div class="add_new_link"><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny opgave"></div>
