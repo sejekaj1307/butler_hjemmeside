@@ -91,7 +91,7 @@
         align-items: center;
         justify-content: space-between;
         background-color: #fff;
-        border-left: 2vw solid $sec-navbar-dropdwon-border;
+        border-left: 2vw solid $light-sec-nav-border-bottom;
         padding-left: $space-from-navbar;
         font-size: 18px;
         div {
@@ -117,7 +117,7 @@
         justify-content: space-between;
         background-color: $light-sec-nav;
         height: $logged-in-height;     
-        border-left: 2vw solid $sec-navbar-dropdwon-border;
+        border-left: 2vw solid $light-sec-nav-border-bottom;
         padding-left: $space-from-navbar;
         .arrow_container {
             height: 100%;
@@ -142,7 +142,7 @@
         left: 0;
         width: 98vw;
         padding: 15px 0;
-        border-left: 2vw solid $sec-navbar-dropdwon-border;
+        border-left: 2vw solid $light-sec-nav-border-bottom;
         display: none;
         li {
             list-style-type: none;
@@ -155,7 +155,7 @@
                 margin-left: -2vw;
                 color: #000;     
                 padding-left: $space-from-navbar;  
-                border-left: 2vw solid $sec-navbar-dropdwon-border;
+                border-left: 2vw solid $light-sec-nav-border-bottom;
                 &:hover {
                     border-left: 2vw solid rgba($color: $logo-nav, $alpha: 1.0);
                 }

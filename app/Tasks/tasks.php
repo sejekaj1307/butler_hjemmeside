@@ -90,16 +90,16 @@
                 $display_create_task_pop_up = "none";
                 $display_tasks_service_case_pop_up = "none";
 
-                //har vi en post? har serveren en request?
+
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
-                    //create
+                    //create pop up
                     if($_REQUEST['knap'] == "Opret ny opgave")
                     {
                         $display_create_task_pop_up = "flex";
 
                     }
-                    //create, køres hvis "create button" bliver requested
+                    //Create
                     if($_REQUEST['knap'] == "Opret ny")
                     {
                         $task_title = $_REQUEST['task_title_c'];
@@ -194,7 +194,6 @@
                     //Execute - confirm delete
                     if($_REQUEST['knap'] == "Slet")
                     {
-                        //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede id forbliver det samme hvis siden genindlæses.
                         $id = $_SESSION["selected_task"];
                         $sql = $conn->prepare("delete from tasks where id = ?");
                         $sql->bind_param("i", $id);

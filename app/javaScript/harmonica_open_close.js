@@ -12,3 +12,4 @@ function harmonica_open_close(id, drop_down_classname) {
         }
     }
 }
+
