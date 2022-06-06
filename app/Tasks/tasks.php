@@ -68,7 +68,6 @@
 
         <form action="tasks.php" method="post">
             <?php 
-            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
                 function findes($id, $c)
                 {
                     $sql = $c->prepare("select * from tasks where id = ?");
@@ -109,8 +108,24 @@
                         $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                         $comment = $_REQUEST['comment_c'];
                         
-                        $sql = $conn->prepare("insert into tasks (task_title, priority, status, deadline, updated_initials, comment) values (?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param("ssssss", $task_title, $priority, $status, $deadline, $updated_initials, $comment);
+                        $sql = $conn->prepare("insert into tasks (
+                            task_title, 
+                            priority, 
+                            status, 
+                            deadline, 
+                            updated_initials, 
+                            comment
+                        ) 
+                        values (?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param(
+                            "ssssss", 
+                            $task_title, 
+                            $priority, 
+                            $status, 
+                            $deadline, 
+                            $updated_initials, 
+                            $comment
+                        );
                         $sql->execute();
                         $display_create_task_pop_up = "none";
                         $display_overlay = "none";
@@ -156,9 +171,16 @@
                         $comment = $_REQUEST['comment_u'];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                            if(findes($id, $conn)) 
                             {
-                                $sql = $conn->prepare("update tasks set task_title = ?, priority = ?, status = ?, deadline = ?, updated_initials = ?, comment = ? where id = ?");
+                                $sql = $conn->prepare("
+                                    update tasks set task_title = ?, 
+                                    priority = ?, 
+                                    status = ?, 
+                                    deadline = ?, 
+                                    updated_initials = ?, 
+                                    comment = ? 
+                                    where id = ?");
                                 $sql->bind_param("ssssssi", $task_title, $priority, $status, $deadline, $updated_initials, $comment, $id);
                                 $sql->execute();
                                 $display_edit_task_pop_up = "none";

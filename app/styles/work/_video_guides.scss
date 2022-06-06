@@ -3,9 +3,9 @@
     .iframe_container_parent {
         width: 100%;
         .iframe_container {
-            position: relative; /*Lets us use absolute positioning for the iframe.*/
+            position: relative; 
             width: 100%;
-            padding-bottom: 56.25%; /*The 16:9 aspect ratio corresponds to a height that is 56.25% of the width.*/
+            padding-bottom: 56.25%; 
             .video { 
                 position: absolute;
                 top: 0;

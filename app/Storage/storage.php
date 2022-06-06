@@ -242,7 +242,9 @@
                                 if(!in_array($row['element_location'], $seen_element_location)){
                                     array_push($seen_element_location, $row['element_location']); 
                                     echo '<div class="harmonica_data_row" >';
-                                        echo '<div class="harmonica_information" onclick="harmonica_open_close('. array_search($row["element_location"], $seen_element_location) .', '. "'harmonica_data_row_all_info'" .')" >  ';
+
+                                        echo '<div onclick="harmonica_open_close('. array_search($row["element_location"], $seen_element_location) .', '. "'harmonica_data_row_all_info'" .')" >  ';
+
                                             echo '<p class="harmonica_task_header">' . $row['element_location'] . '</p>';
                                         echo '</div>';
                                     echo '</div>';         
