@@ -57,12 +57,12 @@
         </div>
 
 
-<!-- -----------------------------
-            Sager
------------------------------- -->
+    <!-- -----------------------------
+                Archived Cases
+    ------------------------------ -->
     <form action="archived_cases.php" method="post">
         <?php
-            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+            //function to validate id, it returns a true $result if there's $rows in database
             function findes($id, $c)
             {
                 $sql = $c->prepare("select * from cases where id = ?");
@@ -87,7 +87,7 @@
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
-                    //Execute - confirm archive
+                    //Activate pop up
                     if(str_contains($_REQUEST['knap'] , "activate"))
                     {
                         $split = explode("_", $_REQUEST['knap']);
@@ -117,7 +117,7 @@
                         $est_end_date = "";
                     }
 
-                    //Archive
+                    //Archive - confirm activate
                     if($_REQUEST['knap'] == "Arkiver")
                     {
                         $id = $_SESSION["selected_case"];
@@ -136,10 +136,13 @@
                 }
             ?>
 
-
+        <!-- -------------------------------
+                    Archived Cases TABLE
+        ------------------------------ ---->
         <div class="case_list_page">
             <?php 
-                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                //SQl query to aquire all data from task cases archived_at field in db is filled in
+                //list headers
                 $sql = "select * from cases where archived_at != ''";
                 $result = $conn->query($sql);
 
@@ -181,6 +184,7 @@
                             } else {
                                 $status_color = "#BBFFB9";
                             }
+                            //list content
                             echo '<div class="case_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'case_dropdown_mobile'" .') " style="border-left: 5px solid' . $status_color . '">';
                                 echo '<div class="case_information">';
                                     echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
@@ -192,6 +196,7 @@
                                     echo '<p class="case_est_start">' . '<span class="dropdown_inline_headers">Seneste </span>'  . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
                                     echo '<p class="case_deadline">' . '<span class="dropdown_inline_headers">Seneste </span>'  . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
                                 echo '</div>';
+                                //buttons to show pop up modals
                                 echo '<div class="button_container">';
                                     echo '<button type="submit" name="knap" value="activate_' . $row['id'] . '"><img src="../img/activate.png" alt="Employee icon" class="edit_icons"<button>';
                                 echo '</div>';
@@ -205,11 +210,11 @@
         </div>
 
         <?php 
-        //Man skal huske at slukke for forbindelsen. Det er ikke så vigtigt i små programmer, men vi gør det for en god ordens skyld
+            //closing connection to database for security reasons
             $conn->close();
         ?>
         <!------------------------
-                archive pop up
+                Activate pop up
         ------------------------->
         <div class="pop_up_modal_container"  style="display: <?php echo $display_activate_case_pop_up ?>">
             <div class="pop_up_modal">
@@ -227,6 +232,7 @@
 
 
     </div>
+    <!-- Javascript import -->
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>

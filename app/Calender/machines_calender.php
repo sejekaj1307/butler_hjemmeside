@@ -51,7 +51,9 @@
             </ul>
         </div>
 
-
+        <!------------------------
+                Calender Machines
+        ------------------------->
         <div class="calender_container">
             <p>Kommer snart</p>
         </div>

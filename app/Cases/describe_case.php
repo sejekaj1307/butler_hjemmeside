@@ -137,11 +137,11 @@
 
 
     <!-- -----------------------------
-                Sager
+                Describe case CRUD
     ------------------------------ -->
-    <form action="describe_case.php?case_nr=<?php echo $case_nr;?>" method="post"> <!-- Skal den her være cases? -->
+    <form action="describe_case.php?case_nr=<?php echo $case_nr;?>" method="post">
         <?php
-            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+            //function to validate id, it returns a true $result if there's $rows in database
             function findes($id, $c)
             {
                 $sql = $c->prepare("select * from cases where id = ?");
@@ -163,12 +163,12 @@
             // CRUD, create, read, update, delete - og confirm og cancel knap til delete
             if($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                //create, køres hvis "Tilføj ny medarbejder" bliver requested
+                //create, pop up
                 if($_REQUEST['knap'] == "Opret ny sag")
                 {
                     $display_create_case_pop_up = "flex";
                 }
-                //read, koden køres hvis "read button" bliver requested 
+                //read
                 if(str_contains($_REQUEST['knap'] , "read"))
                 {
                     $split = explode("_", $_REQUEST['knap']);
@@ -201,7 +201,7 @@
                     
                     if(is_numeric($id) && is_integer(0 + $id))
                     {
-                        if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                        if(findes($id, $conn)) //updatea all of the chosen objects elements to database
                         {
                             $sql = $conn->prepare("update cases set client = ?, client_case_nr = ?, case_nr = ?, case_responsible = ?, location = ?, zip_code = ?, job_type = ?, machines = ?, employees = ?, comment_road_info = ?, comment_extra_work = ?, status = ?, est_start_date = ?, est_end_date = ? where id = ?");
                             $sql->bind_param("ssssssssssssssi", 
@@ -242,7 +242,7 @@
                     );
                 }
                 
-                //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                //cancel 
                 if($_REQUEST['knap'] == "Annuller")
                 {
                     $id = "";
@@ -259,7 +259,9 @@
             }
         ?>
 
-
+        <!-----------------------------
+            Describe case content
+        ------------------------------>
         <div class="case_list_page">
             <div class="describe_case_navbar">
                 <div class="button_container">
@@ -352,7 +354,7 @@
 
 
         <?php 
-        //Man skal huske at slukke for forbindelsen. Det er ikke så vigtigt i små programmer, men vi gør det for en god ordens skyld
+            //closing connection to database for security reasons
             $conn->close();
         ?>
     </form>
@@ -360,30 +362,11 @@
 
 
     </div>
+
+    <!-- Javascript import -->
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
     <script src="open_close_functions.js"></script>
-    <!-- <script>
-        /* When the user clicks on the button,
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // Close the dropdown menu if the user clicks outside of it
-        window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-            }
-        }
-        }
-</script> -->
 </body>
 
 </html>

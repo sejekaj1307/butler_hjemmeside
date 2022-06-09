@@ -58,9 +58,9 @@
         </div>
 
 
-<!-- -----------------------------
-            Sager
------------------------------- -->
+    <!-- -----------------------------
+                Sager
+    ------------------------------ -->
     <form action="cases.php" method="post">
         <?php
             //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
@@ -91,12 +91,12 @@
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
-                    //create, køres hvis "Opret ny medarbejder" bliver requested
+                    //create pop up
                     if($_REQUEST['knap'] == "Opret ny sag")
                     {
                         $display_create_case_pop_up = "flex";
                     }
-                    //create, køres hvis "create button" bliver requested
+                    //create
                     if($_REQUEST['knap'] == "Opret")
                     {
                         $case_nr = $_REQUEST['case_nr_c'];
@@ -150,7 +150,7 @@
                         $sql->execute();
                         
                     }
-                    //read, koden køres hvis "read button" bliver requested 
+                    //read
                     if(str_contains($_REQUEST['knap'] , "read"))
                     {
                         $split = explode("_", $_REQUEST['knap']);
@@ -186,7 +186,7 @@
 
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                            if(findes($id, $conn)) //updatea all of the chosen objects elements to database
                             {
                                 $sql = $conn->prepare("update cases set case_nr = ?, case_responsible = ?, status = ?, location = ? where id = ?");
                                 $sql->bind_param("ssssi", $case_nr, $case_responsible, $status, $location, $id);
@@ -201,7 +201,7 @@
                         $id = $split[1];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            if(findes($id, $conn)) 
                             {
                                 $_SESSION["selected_case"] = $id;
                                 $sql = $conn->prepare("select case_nr from cases where id = ?");
@@ -227,7 +227,7 @@
                         $display_delete_case_pop_up = "none";
                         
                     }
-                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    //cancel 
                     if($_REQUEST['knap'] == "Annuller")
                     {
                         $id = "";
@@ -249,7 +249,7 @@
                         $id = $split[1];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            if(findes($id, $conn))
                             {
                                 $_SESSION["selected_case"] = $id;
                                 $sql = $conn->prepare("select case_nr from cases where id = ?");
@@ -280,14 +280,16 @@
                 }
             ?>
 
-
+        <!-- ------------------
+                Cases TABLE
+        ------------------- -->
         <div class="case_list_page">
             <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny sag"></div>
             <?php 
-                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                //SQl query to aquire all data from cases where archived_at field in db is empty
+                //list headers
                 $sql = "select * from cases where archived_at = ''";
                 $result = $conn->query($sql);
-
                 echo '<div class="case_list">';
                     echo '<div class="list_color_guide_container">';
                         echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Oprettet af leder</p></div>';
@@ -325,8 +327,7 @@
                             } else {
                                 $status_color = "#BBFFB9";
                             }
-
-
+                            //list content
                             echo '<div class="case_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'case_dropdown_mobile'" .') " style="border-left: 5px solid' . $status_color . '")>';
                                 echo '<div class="case_information"> ';
                                     echo '<p class="case_nr">' . $row["case_nr"] . '</p>';
@@ -338,6 +339,7 @@
                                     echo '<p class="case_est_start">' . '<span class="dropdown_inline_headers">Forventet start </span>' . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
                                     echo '<p class="case_deadline">' . '<span class="dropdown_inline_headers">Forventet deadline </span>' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
                                 echo '</div>';
+                                //buttons to show pop up modals
                                 echo '<div class="button_container">';
                                         echo '<a class="describe_case_link" href="describe_case.php?case_nr=' . $row['case_nr'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"></a>';
                                         echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/archive.png" alt="Employee icon" class="edit_icons"><button>';
@@ -352,7 +354,7 @@
         </div>
 
         <?php 
-        //Man skal huske at slukke for forbindelsen. Det er ikke så vigtigt i små programmer, men vi gør det for en god ordens skyld
+                //closing connection to database for security reasons
             $conn->close();
         ?>
 
@@ -451,6 +453,8 @@
 
 
     </div>
+
+    <!-- Javascript import -->
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>
