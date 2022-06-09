@@ -67,6 +67,7 @@
         ------------------------------ -->
         <form action="tasks.php" method="post">
             <?php 
+                //function to validate id, it returns a true $result if there's $rows in database
                 function findes($id, $c)
                 {
                     $sql = $c->prepare("select * from tasks where id = ?");
@@ -274,7 +275,7 @@
             ?>
 
             <!-- ------------------
-                    TABLE
+                    Tasks TABLE
             ------------------- -->
             <div class="task_list_page">
                 <div class="add_new_link"><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny opgave"></div>
@@ -435,11 +436,7 @@
                     </div>
                 </div>
             </div>
-
         </form>
-
-
-
 
 
 
