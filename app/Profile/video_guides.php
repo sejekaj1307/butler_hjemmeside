@@ -61,7 +61,7 @@
 
 
         <!------------------------------
-                content on page
+                    Videos
         ------------------------------->
         <div class="profile_list">
             
@@ -153,7 +153,7 @@
 
 
 
-
+    <!-- Javascript import -->
     <script src="../javaScript/navbars.js"></script>
 </body>
 </html>

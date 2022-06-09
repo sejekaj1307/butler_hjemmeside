@@ -60,7 +60,7 @@
 
 
     <!-- -----------------------------
-                Notifications
+            Notifications CRUD
     ------------------------------ -->
     <form action="notifications.php" method="post">
         <?php
@@ -119,7 +119,7 @@
                         $display_archive_notification_pop_up = "none";
                         
                     }
-                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    //cancel 
                     if($_REQUEST['knap'] == "Annuller")
                     {
                         $id = "";
@@ -128,14 +128,17 @@
             ?>
 
 
-        <!-- Notifications -->
+        <!-- -----------------------------
+                Notification list
+        ------------------------------ -->
         <div class="notification_list_page">
             <div class="notification_navbar">
                 <button class="notification_navbar_active"><a href="notifications.php">Notifikationer</a></button>
                 <button><a href="archived_notifications.php">Arkiverede</a></button>
             </div>
             <?php 
-                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                //SQl query to aquire all data from notifications where archived_at field in db is empty and order after created_at
+                //list header
                 $sql = "select * from notifications where archived_at = '' order by created_at asc";
                 $result = $conn->query($sql);
                 echo '<div class="notification_list">';
@@ -151,11 +154,12 @@
                                     echo '<p class="notification_date">' . $row['created_at'] . '</p>';
                                 echo '</div>';         
                             }
+                            //list content
                             echo '<div class="notification_row" id="'. array_search($row["created_at"], $seen_created_at_headers) .'">';
                                 echo '<div class="notification_information">';
                                     echo '<p class="harmonica_title">' .  $row["text"] . '</p>';
                                 echo "</div>";
-                            
+                                //buttons to show pop up modals
                                 echo '<div class="button_container">';  
                                     echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/archive.png" alt="Employee icon" class="edit_icons"<button>';
                                     echo '<button type="submit" name="knap" value="update' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
@@ -169,7 +173,7 @@
         </div>
 
         <?php 
-        //Man skal huske at slukke for forbindelsen. Det er ikke så vigtigt i små programmer, men vi gør det for en god ordens skyld
+            //closing connection to database for security reasons
             $conn->close();
         ?>
 
@@ -191,9 +195,9 @@
         
     </form>
 
-
-
     </div>
+
+    <!-- Javascript import -->
     <script src="../javaScript/navbars.js"></script>
 </body>
 

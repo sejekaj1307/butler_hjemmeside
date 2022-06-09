@@ -61,7 +61,7 @@
 
     
         <!-- -----------------------------
-                    Storage
+                    Storage CRUD
         ------------------------------ -->
         <!-- FORM emploeyee list with CRUD PHP and pop-up modals  -->
         <form action="storage.php" method="post">
