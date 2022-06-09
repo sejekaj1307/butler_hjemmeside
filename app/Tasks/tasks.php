@@ -170,7 +170,7 @@
                         $comment = $_REQUEST['comment_u'];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) 
+                            if(findes($id, $conn)) //updatea all of the chosen objects elements to database
                             {
                                 $sql = $conn->prepare("
                                     update tasks set task_title = ?, 

@@ -159,7 +159,7 @@
                         $comment = $_REQUEST['comment_u'];
                         if(is_numeric($id) && is_integer(0 + $id))
                         { 
-                            if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                            if(findes($id, $conn)) //updatea all of the chosen objects elements to database
                             {
                                 $sql = $conn->prepare("update tasks_service set task_header = ?, task_title = ?, priority = ?, status = ?, last_service = ?, deadline = ?, updated_initials = ?, comment = ? where id = ?");
                                 $sql->bind_param("ssssssssi", $task_header, $task_title, $priority, $status, $last_service, $deadline, $updated_initials, $comment, $id);
@@ -175,7 +175,7 @@
                         $id = $split[1];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            if(findes($id, $conn)) 
                             {
                                 $_SESSION["selected_task"] = $id;
                                 $sql = $conn->prepare("select task_title from tasks_service where id = ?");
