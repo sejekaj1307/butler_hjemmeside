@@ -264,7 +264,7 @@
 
         <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
         <?php 
-        //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årcases
+        //closing connection to database for security reasons
             $conn->close();
         ?>
 

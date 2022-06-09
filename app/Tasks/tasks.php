@@ -63,9 +63,8 @@
         </div>
 
         <!-- -----------------------------
-                    Sager
+                    Tasks
         ------------------------------ -->
-
         <form action="tasks.php" method="post">
             <?php 
                 function findes($id, $c)
@@ -196,7 +195,7 @@
                         $id = $split[1];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            if(findes($id, $conn)) 
                             {
                                 $_SESSION["selected_task"] = $id;
                                 $sql = $conn->prepare("select task_title from tasks where id = ?");
@@ -222,7 +221,7 @@
                         $sql->execute();
                         $display_delete_task_pop_up = "none";
                     }
-                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    //cancel 
                     if($_REQUEST['knap'] == "Annuller")
                     {
                         $id = "";
@@ -244,7 +243,7 @@
                         $id = $split[1];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            if(findes($id, $conn)) 
                             {
                                 $_SESSION["selected_task"] = $id;
                                 $sql = $conn->prepare("select task_title from tasks where id = ?");
@@ -279,7 +278,7 @@
 
                 <div class="add_new_link"><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny opgave"></div>
                 <?php 
-                    //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                    //SQl query to aquire all data from task when archived_at field in db is empty
                     $sql = "select * from tasks where archived_at = ''";
                     $result = $conn->query($sql);
                     echo '<div class="task_list">';
@@ -330,7 +329,7 @@
                                         echo '<p class="task_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["updated_initials"] . '</p>';
                                         echo '<p class="task_comment">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["comment"] . '</p>';
                                     echo '</div>';
-
+                                    //buttons to show pop up modals
                                     echo '<div class="button_container">';
                                         echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
                                         echo '<button type="submit" name="knap" value="arc_' . $row['id'] . '"><img src="../img/archive.png" alt="Employee icon" class="edit_icons"<button>';
@@ -344,9 +343,8 @@
                 ?>
             </div>
 
-        <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
             <?php 
-            //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årcases
+            //closing connection to database for security reasons
                 $conn->close();
             ?>
 
@@ -444,7 +442,7 @@
 
     </div>
 
-
+    <!-- Javascript import -->
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 
