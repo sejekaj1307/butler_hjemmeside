@@ -21,7 +21,7 @@
     ------------------------------->
     <form class="loginForm" method="post">
         <?php
-            $fejltekst = "";
+            $error_message = "";
             if($_SERVER['REQUEST_METHOD'] === 'POST') //array, webserver
             {
                 //Login, if login button is pressed
@@ -42,27 +42,26 @@
                             $password = $row['password']; 
                             if($passwordInput == $password) 
                             {
-                                // echo "<script> window.location.href = 'Medarbejdere/employees.php'; </script>"; //HEADER
                                 $_SESSION['logged_in_user_global'] = array("id"=>$row["id"],"email"=>$useremail, "first_name"=>$row['first_name'], "last_name"=>$row['last_name'], "initials"=>$row['initials']);
-                          
+                                //redicret user to time Registration page - when logged in
                                 echo "<script> window.location.href = 'Time_registration/time_registration.php'; </script>"; //HEADER
                                 
                             }
                             else { 
-                                $fejltekst = "Forkert email eller password";
-                                $tekstfarve = "#ff0000";
+                                $error_message = "Forkert email eller password";
+                                $error_message_color = "#ff0000";
                             }
                         }
                         else //if it doesn't match, tell user. 
                         {
-                            $fejltekst = "Forkert email eller password";
-                            $tekstfarve = "#ff0000";
+                            $error_message = "Forkert email eller password";
+                            $error_message_color = "#ff0000";
                         }
                     } 
                     else //If user clicks login without input
                     {
-                        $fejltekst = "Venligst indtast dine loginoplysninger";
-                        $tekstfarve = "#ff0000";
+                        $error_message = "Venligst indtast dine loginoplysninger";
+                        $error_message_color = "#ff0000";
                     }
                 }
             }
@@ -80,7 +79,7 @@
             <div class="loginErrorMessage"></div>
             
 
-            <p class="error_message" style="color: <?php echo $tekstfarve ?>"><?php echo $fejltekst ?> </p>
+            <p class="error_message" style="color: <?php echo $error_message_color ?>"><?php echo $error_message ?> </p>
             <input class="login_btn" type="submit" name="knap" value="Login" >
         </div>
     </form>
@@ -94,22 +93,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <script src="index.js"></script> -->
 </body>
 
 </html>
