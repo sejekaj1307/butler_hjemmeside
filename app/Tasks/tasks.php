@@ -347,7 +347,7 @@
             </div>
 
             <?php 
-            //closing connection to database for security reasons
+                //closing connection to database for security reasons
                 $conn->close();
             ?>
 

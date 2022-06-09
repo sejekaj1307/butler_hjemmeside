@@ -42,7 +42,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/web/styles.css">
-    <title>Sager</title>
+    <title>Profil</title>
 </head>
 
 <body>
@@ -61,9 +61,11 @@
         </ul>
         <div class="log_out_container"><a href="../Data/log_out.php">Log ud</a></div>
     </div>
-<!-- ----------------------
-Masthead er i formen grundet at session variablen måske bliver opdateret
------------------------- -->
+    <!-- Masthead is placed inside the form tag, because it might get updated when user updates their profile -->
+
+        <!---------------------------
+                Profile CRUD
+        ---------------------------->
         <form action="profile.php" method="post" enctype="multipart/form-data">
             <?php
                 function findes($id, $c)
@@ -198,28 +200,30 @@ Masthead er i formen grundet at session variablen måske bliver opdateret
                 ?>
 
         <!-- Masthead -->
-    <div class="site_container">
-        <div class="sec-navbar-mobile">
-            <div class="logged_in">
-                <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> <?php echo $_SESSION['logged_in_user_global']['last_name'] . ', ' . $_SESSION['logged_in_user_global']['first_name'];?> </div>
-                <div class="navbar_bars"></div>
+        <div class="site_container">
+            <div class="sec-navbar-mobile">
+                <div class="logged_in">
+                    <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> <?php echo $_SESSION['logged_in_user_global']['last_name'] . ', ' . $_SESSION['logged_in_user_global']['first_name'];?> </div>
+                    <div class="navbar_bars"></div>
+                </div>
+                <h2 class="sec-navbar-mobile-header">Sager liste<div class="arrow_container"><img src="../img/arrow.png"
+                            alt="arrow" class="sec_nav_dropdown_arrow"></div>
+                </h2>
+                <ul class="sec_navbar_ul_dropdown">
+                    <li><a href="../Profile/profile.php" class="active_site_dropdown">Profil</a></li>
+                    <li><a href="../Profile/notifications.php">Notifikationer</a>
+                    <li><a href="../Profile/video_guides.php">Hjælpevideoer</a>
+                    </li>
+                </ul>
             </div>
-            <h2 class="sec-navbar-mobile-header">Sager liste<div class="arrow_container"><img src="../img/arrow.png"
-                        alt="arrow" class="sec_nav_dropdown_arrow"></div>
-            </h2>
-            <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Profile/profile.php" class="active_site_dropdown">Profil</a></li>
-                <li><a href="../Profile/notifications.php">Notifikationer</a>
-                <li><a href="../Profile/video_guides.php">Hjælpevideoer</a>
-                </li>
-            </ul>
-        </div>
 
+
+            <!-------------------------------
+                Profile page container
+            -------------------------------->
             <div class="profile_page">
-
-                <div class="pic_and_info_container"> <!-- container til billede, farve og personlige oplysninger-->
+                <div class="pic_and_info_container"> 
                     <div class="profile_pic_container">
-                        <!-- <img class="profile_pic" src="profile_img/tester.jpg" alt="Profil billede"> -->
                         <img class="profile_pic" src="<?php echo $picture_path;?>" alt="Profil billede"> 
                         <div class="profile_color" style="background-color: <?php echo $colour?>">Din farve</div>
                     </div>
@@ -237,10 +241,11 @@ Masthead er i formen grundet at session variablen måske bliver opdateret
                         <div class="input_container"><input type="submit" name="knap" value="Rediger profil"></div>
                     </div>
                 </div>
-
+                <!-- calender container -->
                 <div class="profile_calender">
                     Kalender kommer senere
                 </div>
+                <!-- weeklies container -->
                 <div class="profile_weeklies">
                     Ugeseddler kommer senere
                 </div>
@@ -248,7 +253,7 @@ Masthead er i formen grundet at session variablen måske bliver opdateret
 
 
             <?php 
-            //Man skal huske at slukke for forbindelsen. Det er ikke så vigtigt i små programmer, men vi gør det for en god ordens skyld
+                //closing connection to database for security reasons
                 $conn->close();
             ?>
 
@@ -284,6 +289,7 @@ Masthead er i formen grundet at session variablen måske bliver opdateret
 
 
     </div>
+    <!-- Javascript import -->
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>

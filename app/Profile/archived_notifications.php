@@ -64,7 +64,7 @@
     ------------------------------ -->
     <form action="archived_notifications.php" method="post">
         <?php
-            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+            //funktion to validate, it returns true $result, if there's $rows in database validering
             function findes($id, $c)
             {
                 $sql = $c->prepare("select * from notifications where id = ?");
