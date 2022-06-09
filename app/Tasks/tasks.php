@@ -3,7 +3,7 @@
     session_start(); 
 
     //connection to database
-    $conn = new mysqli("mlsdesign.dk.mysql", "mlsdesign_dkbutler_db", "mls_design97", "mlsdesign_dkbutler_db");
+    $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
 
     //If the user is trying go around the log in process, redirect the user back to the index.php 
     if($_SESSION['logged_in_user_global']['last_name'] == ""){

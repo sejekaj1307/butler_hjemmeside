@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $conn = new mysqli("mlsdesign.dk.mysql", "mlsdesign_dkbutler_db", "mls_design97", "mlsdesign_dkbutler_db");
+    $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
 
     $my_cases = array();
     $my_case_job_types = array();
