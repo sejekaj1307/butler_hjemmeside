@@ -63,7 +63,7 @@
         </div>
 
         <!-- -----------------------------
-                    Tasks
+                    Tasks CRUD
         ------------------------------ -->
         <form action="tasks.php" method="post">
             <?php 
@@ -279,7 +279,7 @@
             <div class="task_list_page">
                 <div class="add_new_link"><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny opgave"></div>
                 <?php 
-                    //SQl query to aquire all data from task when archived_at field in db is empty
+                    //SQl query to aquire all data from task where archived_at field in db is empty
                     //list headers
                     $sql = "select * from tasks where archived_at = ''";
                     $result = $conn->query($sql);
