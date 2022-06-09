@@ -273,11 +273,14 @@
                 }
             ?>
 
+            <!-- ------------------
+                    TABLE
+            ------------------- -->
             <div class="task_list_page">
-
                 <div class="add_new_link"><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny opgave"></div>
                 <?php 
                     //SQl query to aquire all data from task when archived_at field in db is empty
+                    //list headers
                     $sql = "select * from tasks where archived_at = ''";
                     $result = $conn->query($sql);
                     echo '<div class="task_list">';
@@ -317,6 +320,7 @@
                             } else {
                                 $status_color = "#BBFFB9";
                             }
+                            //list content
                                 echo '<div class="task_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'task_dropdown_mobile'" .') " style="border-left: 5px solid ' . $status_color . '">';
                                     echo '<div class="task_information"> ';
                                         echo '<p class="task_name">' . $row["task_title"] . '</p>';

@@ -218,11 +218,14 @@
             ?>
 
 
-            <!-- SELVE TABELLEN -->
+            <!-- ------------------
+                    TABLE
+            ------------------- -->
             <div class="profile_list">
                 <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny planlagt service"></div>
                 <?php 
                     //SQl query to aquire all data from task_service for each task header
+                    //list headers
                     $sql = "select * from tasks_service order by task_header asc";
                     $result = $conn->query($sql);
                     echo '<div class="harmonica_container">';
@@ -270,6 +273,7 @@
                                 } else {
                                     $status_color = "#BBFFB9";
                                 }
+                                //list content
                                 echo '<div class="harmonica_data_row_all_info" id="'. array_search($row["task_header"], $seen_task_headers) .'" style="border-left: 5px solid ' . $status_color . '">';
                                     echo '<div class="data_row_info">';
                                         echo '<p class="harmonica_title">' .  $row["task_title"] . '</p>';

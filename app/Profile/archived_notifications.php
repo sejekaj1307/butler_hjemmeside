@@ -92,7 +92,7 @@
                         $id = $_SESSION["selected_notification"];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            if(findes($id, $conn)) 
                             {
                                 $id = $_SESSION["selected_notification"];
                                 $sql = $conn->prepare("update notifications set archived_at = '' where id = ?");
@@ -119,7 +119,7 @@
                                 }
                         $display_archive_notification_pop_up = "flex";                        
                     }
-                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    //cancel 
                     if($_REQUEST['knap'] == "Annuller")
                     {
                         $id = "";
@@ -135,7 +135,8 @@
                 <button class="notification_navbar_active"><a href="archived_notifications.php">Arkiverede</a></button>
             </div>
             <?php 
-                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                //SQl query to aquire all data from notification table where archived_at field in db is filled in and order by created_at date
+                //list headers
                 $sql = "select * from notifications where archived_at != '' order by created_at asc";
                 $result = $conn->query($sql);
                 echo '<div class="notification_list">';
@@ -151,11 +152,12 @@
                                     echo '<p class="notification_date">' . $row['created_at'] . '</p>';
                                 echo '</div>';         
                             }
+                            //list content
                             echo '<div class="notification_row" id="'. array_search($row["created_at"], $seen_created_at_headers) .'">';
                                 echo '<div class="notification_information">';
                                     echo '<p class="harmonica_title">' .  $row["text"] . '</p>';
                                 echo "</div>";
-                            
+                                //buttons to show pop up modals
                                 echo '<div class="button_container">';  
                                     echo '<button type="submit" name="knap" value="activate_' . $row['id'] . '"><img src="../img/activate.png" alt="Employee icon" class="edit_icons"<button>';
                                 echo '</div>';
@@ -168,7 +170,7 @@
         </div>
 
         <?php 
-        //Man skal huske at slukke for forbindelsen. Det er ikke så vigtigt i små programmer, men vi gør det for en god ordens skyld
+            //closing connection to database for security reasons
             $conn->close();
         ?>
 
@@ -190,9 +192,9 @@
         
     </form>
 
-
-
     </div>
+
+    <!-- Javascript import -->
     <script src="../javaScript/navbars.js"></script>
 </body>
 

@@ -137,10 +137,13 @@
                 }
             ?>
 
-
+            <!-- ------------------
+                    TABLE
+            ------------------- -->
             <div class="case_list_page">
                 <?php 
                     //SQl query to aquire all data from tasks where arhived_at field is filled in
+                    //task headers
                     $sql = "select * from tasks where archived_at != ''";
                     $result = $conn->query($sql);
 
@@ -180,6 +183,7 @@
                                 } else {
                                     $status_color = "#BBFFB9";
                                 }
+                                //list content
                                 echo '<div class="task_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'task_dropdown_mobile'" .') " style="border-left: 5px solid' . $status_color . '">';
                                     echo '<div class="task_information"> ';
                                         echo '<p class="task_name">' . $row["task_title"] . '</p>';

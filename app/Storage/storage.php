@@ -209,11 +209,14 @@
                 }
             ?>
 
-            <!-- SELVE TABELLEN -->
+            <!-- ------------------
+                    TABLE
+            ------------------- -->
             <div class="profile_list">
                 <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret nyt element"></div>
                 <?php 
-                    //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                    //SQl query to aquire all data from storage order by element location
+                    //list headers
                     $sql = "select * from storage order by element_location asc";
                     $result = $conn->query($sql);
                     echo '<div class="harmonica_container">';
@@ -262,7 +265,7 @@
                                     $status = "Fuld";
                                     $status_color = "#BBFFB9";
                                 }
-                                                        
+                                //list content                       
                                 echo '<div class="harmonica_data_row_all_info" id="'. array_search($row["element_location"], $seen_element_location) .'" style="border-left: 5px solid ' . $status_color . '" >';
                                     echo '<div class="data_row_info">';
                                         echo '<p class="harmonica_element">' . $row["element"] . '</p>';
@@ -271,7 +274,7 @@
                                         echo '<p class="harmonica_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
                                         echo '<p class="harmonica_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
                                     echo "</div>";
-                                
+                                    //buttons to show pop up modals
                                     echo '<div class="button_container">';
                                         echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
                                         echo '<button type="submit" name="knap" value="slet_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
@@ -286,8 +289,6 @@
             </div>
                                 
 
-
-            <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
             <?php 
             //closing connection to database for security reasons
                 $conn->close();
@@ -363,6 +364,7 @@
         </form>
     </div>
 
+    <!-- Javascript import -->
     <script src="../javaScript/harmonica_open_close.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>
