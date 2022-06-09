@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/web/styles.css">
-    <title>Arkiverede cases</title>
+    <title>Arkiverede opgaver</title>
 </head>
 
 <body>
@@ -58,32 +58,32 @@
         </div>
 
 
-<!-- -----------------------------
-            Sager
------------------------------- -->
-    <form action="archived_tasks.php" method="post">
-        <?php
-            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
-            function findes($id, $c)
-            {
-                $sql = $c->prepare("select * from tasks where id = ?");
-                $sql->bind_param("i", $id);
-                $sql->execute();
-                $result = $sql->get_result();
-                if($result->num_rows > 0)
+        <!-- -----------------------------
+                    Tasks
+        ------------------------------ -->
+        <form action="archived_tasks.php" method="post">
+            <?php
+                //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+                function findes($id, $c)
                 {
-                    return true;
+                    $sql = $c->prepare("select * from tasks where id = ?");
+                    $sql->bind_param("i", $id);
+                    $sql->execute();
+                    $result = $sql->get_result();
+                    if($result->num_rows > 0)
+                    {
+                        return true;
+                    }
+                    else 
+                    {
+                        return false;
+                    }
                 }
-                else 
-                {
-                    return false;
-                }
-            }
-            //variables to show or hide pop-up modals
-            $display_activate_case_pop_up = "none";
+                //variables to show or hide pop-up modals
+                $display_activate_case_pop_up = "none";
 
 
-        ?>
+            ?>
             <?php
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -105,7 +105,7 @@
                                 }
                         $display_activate_case_pop_up = "flex";                        
                     }
-                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    //cancel 
                     if($_REQUEST['knap'] == "Annuller")
                     {
                         $id = "";
@@ -138,94 +138,94 @@
             ?>
 
 
-        <div class="case_list_page">
-            <?php 
-                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
-                $sql = "select * from tasks where archived_at != ''";
-                $result = $conn->query($sql);
+            <div class="case_list_page">
+                <?php 
+                    //SQl query to aquire all data from tasks where arhived_at field is filled in
+                    $sql = "select * from tasks where archived_at != ''";
+                    $result = $conn->query($sql);
 
-                echo '<div class="task_list">';
-                    echo '<div class="list_color_guide_container">';
-                            echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Ikke startet</p></div>';
-                            echo '<div class="list_color_guide_element"><div class="color orange"></div><p class="color_description">Startet</p></div>';
-                            echo '<div class="list_color_guide_element"><div class="color yellow"></div><p class="color_description">Venter</p></div>';
-                            echo '<div class="list_color_guide_element"><div class="color green"></div><p class="color_description">Fuldført</p></div>';
+                    echo '<div class="task_list">';
+                        echo '<div class="list_color_guide_container">';
+                                echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Ikke startet</p></div>';
+                                echo '<div class="list_color_guide_element"><div class="color orange"></div><p class="color_description">Startet</p></div>';
+                                echo '<div class="list_color_guide_element"><div class="color yellow"></div><p class="color_description">Venter</p></div>';
+                                echo '<div class="list_color_guide_element"><div class="color green"></div><p class="color_description">Fuldført</p></div>';
+                            echo '</div>';
+                        echo '<div class="task_list_header">';
+                            echo '<div class="task_mobile_headers">';
+                                echo '<p class="task_name_header">Opgave</p>';
+                            echo '</div>';
+                            echo '<div class="task_all_headers">';
+                                echo '<p class="task_archived_at_header">Arkiveret</p>';
+                                echo '<p class="task_archived_initials_header">Arkiveret af</p>';
+                                echo '<p class="task_updated_initials_header">Seneste</p>';
+                                echo '<p class="task_comment_header">Bemærkninger</p>';
+                                echo '<p class="button_container_header">Aktiver</p>';
+                            echo '</div>';
                         echo '</div>';
-                    echo '<div class="task_list_header">';
-                        echo '<div class="task_mobile_headers">';
-                            echo '<p class="task_name_header">Opgave</p>';
-                        echo '</div>';
-                        echo '<div class="task_all_headers">';
-                            echo '<p class="task_archived_at_header">Arkiveret</p>';
-                            echo '<p class="task_archived_initials_header">Arkiveret af</p>';
-                            echo '<p class="task_updated_initials_header">Seneste</p>';
-                            echo '<p class="task_comment_header">Bemærkninger</p>';
-                            echo '<p class="button_container_header">Aktiver</p>';
-                        echo '</div>';
+
+                        //if og while her 
+                        if($result->num_rows > 0)
+                        {
+                            $list_order_id = 1;
+                            while($row = $result->fetch_assoc())
+                            {
+                                //statuscolor
+                                if($row['status'] == "Ikke startet") {
+                                    $status_color = "#FFA2A2";
+                                } else if ($row['status'] == "Startet") {
+                                    $status_color = "#FFFC9E";
+                                }else if ($row['status'] == "Venter") {
+                                    $status_color = "#FFD391";
+                                } else {
+                                    $status_color = "#BBFFB9";
+                                }
+                                echo '<div class="task_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'task_dropdown_mobile'" .') " style="border-left: 5px solid' . $status_color . '">';
+                                    echo '<div class="task_information"> ';
+                                        echo '<p class="task_name">' . $row["task_title"] . '</p>';
+                                    echo '</div>';
+                                    echo '<div class="task_dropdown_mobile">';
+                                        echo '<p class="task_archived_at">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["archived_at"] . '</p>';
+                                        echo '<p class="task_archived_initials">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["archived_initials"] . '</p>';
+                                        echo '<p class="task_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["updated_initials"] . '</p>';
+                                        echo '<p class="task_comment">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["comment"] . '</p>';
+                                    echo '</div>';
+                                    //buttons to show pop up modals
+                                    echo '<div class="button_container">';
+                                        echo '<button type="submit" name="knap" value="activate_' . $row['id'] . '"><img src="../img/activate.png" alt="Employee icon" class="edit_icons"<button>';
+                                    echo '</div>';
+                                echo '</div>'; 
+                                $list_order_id += 1;
+                            }   
+                        }
                     echo '</div>';
 
-                    //if og while her 
-                    if($result->num_rows > 0)
-                    {
-                        $list_order_id = 1;
-                        while($row = $result->fetch_assoc())
-                        {
-                            //statuscolor
-                            if($row['status'] == "Ikke startet") {
-                                $status_color = "#FFA2A2";
-                            } else if ($row['status'] == "Startet") {
-                                $status_color = "#FFFC9E";
-                            }else if ($row['status'] == "Venter") {
-                                $status_color = "#FFD391";
-                            } else {
-                                $status_color = "#BBFFB9";
-                            }
-                            echo '<div class="task_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'task_dropdown_mobile'" .') " style="border-left: 5px solid' . $status_color . '">';
-                                echo '<div class="task_information"> ';
-                                    echo '<p class="task_name">' . $row["task_title"] . '</p>';
-                                echo '</div>';
-                                echo '<div class="task_dropdown_mobile">';
-                                    echo '<p class="task_archived_at">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["archived_at"] . '</p>';
-                                    echo '<p class="task_archived_initials">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["archived_initials"] . '</p>';
-                                    echo '<p class="task_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["updated_initials"] . '</p>';
-                                    echo '<p class="task_comment">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["comment"] . '</p>';
-                                echo '</div>';
-                                
-                                echo '<div class="button_container">';
-                                    echo '<button type="submit" name="knap" value="activate_' . $row['id'] . '"><img src="../img/activate.png" alt="Employee icon" class="edit_icons"<button>';
-                                echo '</div>';
-                            echo '</div>'; 
-                            $list_order_id += 1;
-                        }   
-                    }
-                echo '</div>';
+                ?>
+            </div>
 
+            <?php 
+                //closing connection to database for security reasons
+                $conn->close();
             ?>
-        </div>
-
-        <?php 
-        //Man skal huske at slukke for forbindelsen. Det er ikke så vigtigt i små programmer, men vi gør det for en god ordens skyld
-            $conn->close();
-        ?>
-        <!------------------------
-                archive pop up
-        ------------------------->
-        <div class="pop_up_modal_container" style="display: <?php echo $display_activate_case_pop_up ?>">
-            <div class="pop_up_modal">
-                <h3>Gør sagen aktiv igen?</h3>
-                <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_task_name"];?>"</i></p>
-                <div class="pop-up-btn-container">
-                    <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
-                    <input type="submit" name="knap" value="Aktiver" class="pop_up_confirm">
+            <!------------------------
+                    archive pop up
+            ------------------------->
+            <div class="pop_up_modal_container" style="display: <?php echo $display_activate_case_pop_up ?>">
+                <div class="pop_up_modal">
+                    <h3>Gør sagen aktiv igen?</h3>
+                    <p class="pop_up_selected_information"><i>"<?php echo $_SESSION["selected_task_name"];?>"</i></p>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Anuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Aktiver" class="pop_up_confirm">
+                    </div>
                 </div>
             </div>
-        </div>
-        
-    </form>
-
-
+            
+        </form>
 
     </div>
+
+    <!-- Javascript import -->
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>

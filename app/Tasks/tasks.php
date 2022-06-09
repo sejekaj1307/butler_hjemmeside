@@ -207,7 +207,6 @@
                                     $row = $result->fetch_assoc();
                                     $_SESSION["selected_task_name"] = $row['task_title'];
                                 }
-
                                 $display_delete_task_pop_up = "flex";
                             }
                         }
