@@ -60,7 +60,9 @@
 
 
     
-
+        <!-- -----------------------------
+                    Storage
+        ------------------------------ -->
         <!-- FORM emploeyee list with CRUD PHP and pop-up modals  -->
         <form action="storage.php" method="post">
             <?php 
@@ -92,12 +94,12 @@
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
-                    //create, køres hvis "Opret ny medarbejder" bliver requested
+                    //create, if "opret ny element" button is requested
                     if($_REQUEST['knap'] == "Opret nyt element")
                     {
                         $display_create_element_pop_up = "flex";
                     }
-                    //create, køres hvis "create button" bliver requested
+                    //create, if "create" button is requested
                     if($_REQUEST['knap'] == "Opret")
                     {
                         $location = $_REQUEST['element_location_c'];
@@ -111,7 +113,7 @@
                         $sql->execute();
                         
                     }
-                    //read, koden køres hvis "read button" bliver requested 
+                    //read, if the button read is requested
                     if(str_contains($_REQUEST['knap'] , "read"))
                     {
                         $split = explode("_", $_REQUEST['knap']);
@@ -150,7 +152,7 @@
                         $comment = $_REQUEST['comment_u'];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                            if(findes($id, $conn)) //updatea all of the chosen objects elements to database
                             {
                                 $sql = $conn->prepare("update storage set element = ?, element_location = ?, quantity = ?, min_quantity = ?, updated_initials = ?, comment = ? where id = ?");
                                 $sql->bind_param("ssiissi", $element, $element_location, $quantity, $min_quantity, $updated_initials, $comment, $id);
@@ -158,7 +160,6 @@
                             }
                         }
                     }
-                    // Skal man kunne slette dem?
                     //delete
                     if(str_contains($_REQUEST['knap'] , "slet"))
                     {
@@ -166,7 +167,7 @@
                         $id = $split[1];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            if(findes($id, $conn)) 
                             {
                                 $_SESSION["selected_element"] = $id;
                                 $sql = $conn->prepare("select element from storage where id = ?");
@@ -193,7 +194,7 @@
                         $display_delete_storage_pop_up = "none";
                         
                     }
-                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    //cancel 
                     if($_REQUEST['knap'] == "Annuller")
                     {
                         $id = "";

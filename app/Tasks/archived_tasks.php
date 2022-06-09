@@ -59,7 +59,7 @@
 
 
         <!-- -----------------------------
-                    Tasks
+                Archived tasks
         ------------------------------ -->
         <form action="archived_tasks.php" method="post">
             <?php
