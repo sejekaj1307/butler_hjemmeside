@@ -1,11 +1,15 @@
 <?php
+    //Start session and create connection to datebase
     session_start();
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
 
+    //Initilize arrays to hold every possible time registration input field
     $time_reg_id = array();
     $time_reg_input_types = array();
     $time_reg_input_labels = array();
     $time_reg_job_type = array();
+
+    //Fetch the data for the four arrays from the "time_reg_fields" table
     $sql = "select * from time_reg_fields";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -16,18 +20,19 @@
             array_push($time_reg_job_type, $row["job_type"]);
         }
     }
-    //TODO: remove this 
-    //$_SESSION['logged_in_user_global'] = array("initials"=>'BL');
 
+    //Initilize arrays to store my cases and the job types to each case
     $my_cases = array();
     $my_case_job_types = array();
+
+    //Fetch the data for the two arrays from the "cases" table
     $sql = "select * from cases";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            
             $this_row_employees_json = json_decode($row['employees'], true);      
             if(!empty($this_row_employees_json)){
+                //Check if the logged in user initials is assosiated with true or false in the table.
                 if($this_row_employees_json[$_SESSION['logged_in_user_global']['initials']]){
                     array_push($my_cases, $row["case_nr"]);
                     array_push($my_case_job_types, $row["job_type"]);
@@ -35,6 +40,7 @@
             }
         }
     }
+    //Check if the user has selected a case or if the first case should be shown
     if(!empty($_GET['cases_selected'])){
         $my_case_job_types = json_decode($my_case_job_types[array_search($_GET['cases_selected'], $my_cases)], true);
     }
@@ -42,14 +48,16 @@
         $my_case_job_types = json_decode($my_case_job_types[0], true);
     }
 
+    //the "Generel" option should always be avaiable and if therefor added last
     $my_case_job_types["Generel"] = true;
     $my_case_job_types = array_keys(array_filter($my_case_job_types));
 
+    //These variables are used to keep track of the multi layered option menu to create a new time registration field
     $level_1 = "none";
     $level_2 = "none";
     $level_1_selected = 0;
 
-   
+    //Try to find data added today to the table "daily_reports". If no data is found, it is a new day (see next else statement)
     $sql = $conn->prepare("select * from daily_reports where date = ? AND case_nr = ?");
     $myDate = date('d-m-Y');
     $myTime = date('h:i');
@@ -116,6 +124,7 @@
             </h2>
             <ul class="sec_navbar_ul_dropdown">
                 <?php
+                    //Loop through my_cases array and create a tab for each. Highlight the selected case that is currently displaying
                     for($i=0; $i<count($my_cases); $i++){
                         $selected_case = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
                         if($my_cases[$i] == $selected_case){
@@ -125,6 +134,7 @@
                             echo '<li><a href="time_registration.php?cases_selected=' . $my_cases[$i] . '">'. $my_cases[$i] .'</a></li>';
                         }
                     }
+                    //No matter what cases the user is associated with, they should always see the internal_case tab. If it is the only one, select it
                     if(empty($selected_case)){
                         echo '<li><a href="../Time_registration/internal_case.php" class="active_site_dropdown">2022 intern sag</a></li>';
                     }
@@ -141,7 +151,7 @@
 
     <form action="time_registration.php?cases_selected=<?php echo !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : ''?>" method="post">
             <?php 
-            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+            //Function to validate if the id exsists in the "daily_reports" table. 
                 function findes($id, $c)
                 {
                     $sql = $c->prepare("select * from daily_reports where id = ?");
@@ -157,24 +167,24 @@
                         return false;
                     }
                 }
-                //variables to show or hide pop-up modals
+                //Variables to show or hide pop-up modals
                 $display_create_time_reg_field_pop_up = "none";
                 $display_delete_time_reg_field_pop_up = "none";
             ?>
 
             <?php
-                // CRUD, create, read, update, delete - og confirm og cancel knap til delete
+                // CRUD, create, read, update, delete - and confirm and cancel button to delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
                     
-                   //read, koden køres hvis "read button" bliver requested 
+                   //Read, the code is excecuted if "read button" is requested 
                     if(str_contains($_REQUEST['knap'] , "read"))
                     {
                         $display_create_time_reg_field_pop_up = "flex";  
                         $level_1 = "flex";
                         $level_2 = "none";  
                     }
-                    //update
+                    //Update
                     if($_REQUEST['knap'] == "Opdater") 
                     {
                         $field_to_update = array();
@@ -191,7 +201,7 @@
                             $sql->execute();  
                         }
                     }
-                    //delete
+                    //Delete
                     if(str_contains($_REQUEST['knap'] , "slet"))
                     {
                         $split = explode("_", $_REQUEST['knap']);
@@ -216,7 +226,7 @@
                             }
                         }
                     }
-                    //Execute - confirm delete
+                    //Execute - Confirm delete
                     if($_REQUEST['knap'] == "Slet")
                     {
                         $id = $_SESSION["tidsregistreringsFeltTilDelete"];
@@ -226,12 +236,13 @@
                         $display_delete_time_reg_field_pop_up = "none";
                         
                     }
-                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    //Cancel - Resets the popup modals display value
                     if($_REQUEST['knap'] == "Annuller")
                     {
                         $display_create_time_reg_field_pop_up = "none";
                         $display_delete_time_reg_field_pop_up = "none";
                     }
+                    //Check if the first layer of options should be shown for creating a new time registration field
                     if(str_contains($_REQUEST['knap'],"level1"))
                     {   
                         $split = explode("_", $_REQUEST['knap']);
@@ -240,6 +251,8 @@
                         $level_2 = "flex";
                         $display_create_time_reg_field_pop_up = "flex";
                     }
+                    //Check if the second layer of options should be shown for creating a new time registration field
+                    //Since this is the last layer we create the new time registration field as well
                     if(str_contains($_REQUEST['knap'],"level2"))
                     {
                         $split = explode("_", $_REQUEST['knap']);
@@ -254,9 +267,11 @@
                         $sql->bind_param("isssss", $time_reg_id_c, $time_reg_data, $user_initials, $myDate, $myTime, $this_case_nr);
                         $sql->execute();
 
+                        //Reset the display of the option box for creating a new time registration field
                         $level_1 = "none";
                         $level_2 = "none";
                     }
+                    //Quick option for the user to get the time right now, instead of having to type it manual
                     if(str_contains($_REQUEST['knap'],"get_time"))
                     {
                         $split = explode("_", $_REQUEST['knap']);
@@ -264,7 +279,7 @@
                         $myTime = date('h:i');
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            if(findes($id, $conn)) 
                             {   
                                 $sql = $conn->prepare("update daily_reports set time_reg_data = ? where id = ?");
                                 $sql->bind_param("si", $myTime, $id);
@@ -290,6 +305,7 @@
 
                 <div class="time_reg_basics_container">
                 <?php
+                    //Fetch all data from today's report
                     $this_case_nr = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
                     $sql = $conn->prepare("select * from daily_reports where date = ? AND case_nr = ?");
                     $myDate = date('d-m-Y');
@@ -300,6 +316,7 @@
                     $temp_id = 0;
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
+                            //Create a row with each time registration field
                             $id = array_search($row["time_reg_field_id"], $time_reg_id);
                             echo '<div class="daily_reports_data_row" >';
                                 echo '<div class="label_and_input_container">';
@@ -331,6 +348,7 @@
                         <div style="display: <?php echo $level_1 ?>">
                             <ul>
                                 <?php
+                                    //In the first layer the user can choose which job type is needed e.g. CPT or General
                                     for ($i = 0; $i < count($my_case_job_types); $i++) {
                                         echo '<li><button type="submit" name="knap" value="level1_' . $i . '">' . $my_case_job_types[$i] . '</button></li>';
                                     }
@@ -340,6 +358,7 @@
                         <div style="display: <?php echo $level_2 ?>">
                             <ul>
                                 <?php
+                                    //In the second layer the user can choose which time registration field is needed in the choosen job type
                                     for ($i = 0; $i < count($time_reg_job_type); $i++) {
                                         if($time_reg_job_type[$i] == $my_case_job_types[$level_1_selected]){
                                             echo '<li><button type="submit" name="knap" value="level2_' . $i . '">' . $time_reg_input_labels[$i] . '</button></li>';
@@ -378,6 +397,7 @@
     <script src="../javaScript/navbars.js"></script>
 
     <!-- This cannot be moved to a .js file because we are looking for a php variable -->
+    <!-- This is used to check if there is any unsaved changes before the user leaves the site -->
     <script type="text/JavaScript">
         window.onbeforeunload = ExitPage;
         var all_time_reg_fields = document.querySelectorAll('[id="time_reg_field"]');
@@ -385,12 +405,14 @@
         function myFunction(){
             opdate_cliecked = true;
         }
+        //Called if the user tries to leave the page
         function ExitPage()
         {
             if(!opdate_cliecked && checkForUnsavedWordk()){
                 return "Are you sure you want to exit this page?";
             }
         }
+        //Checks all time registration fields and checks if the data have been saved in the database
         function checkForUnsavedWordk() {
             var unsavedWork = <?=json_encode($daily_report_data)?> ;
             for(let i = 0; i<all_time_reg_fields.length; i++){

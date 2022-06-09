@@ -1,16 +1,20 @@
 <?php
+    //Start session and create connection to datebase
     session_start();
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
 
+    //Initilize arrays to store my cases and the job types to each case
     $my_cases = array();
     $my_case_job_types = array();
+
+    //Fetch the data for the two arrays from the "cases" table
     $sql = "select * from cases";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            
             $this_row_employees_json = json_decode($row['employees'], true);      
             if(!empty($this_row_employees_json)){
+                //Check if the logged in user initials is assosiated with true or false in the table.
                 if($this_row_employees_json[$_SESSION['logged_in_user_global']['initials']]){
                     array_push($my_cases, $row["case_nr"]);
                     array_push($my_case_job_types, $row["job_type"]);
@@ -59,6 +63,7 @@
             <h2 class="sec-navbar-mobile-header">Tidsregistrering<div class="arrow_container"><img src="../img/arrow.png" alt="arrow" class="sec_nav_dropdown_arrow"></div></h2>
             <ul class="sec_navbar_ul_dropdown">
                 <?php
+                    //Loop through my_cases array and create a tab for each. Highlight the selected case that is currently displaying
                     for($i=0; $i<count($my_cases); $i++){
                         $selected_case = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
                         if($my_cases[$i] == $selected_case){
@@ -68,6 +73,7 @@
                             echo '<li><a href="time_registration.php?cases_selected=' . $my_cases[$i] . '">'. $my_cases[$i] .'</a></li>';
                         }
                     }
+                    //No matter what cases the user is associated with, they should always see the internal_case tab. If it is the only one, select it
                     if(empty($selected_case)){
                         echo '<li><a href="../Time_registration/internal_case.php" class="active_site_dropdown">2022 intern sag</a></li>';
                     }
@@ -78,13 +84,9 @@
             </ul>
         </div>
 
-
-
-
-
-    <form action="time_registration_spending.php" method="post">
+        <form action="time_registration_spending.php" method="post">
             <?php 
-            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+            //Function to validate if the id exsists in the "daily_reports" table. 
                 function findes($id, $c)
                 {
                     $sql = $c->prepare("select * from daily_reports where id = ?");
@@ -100,12 +102,10 @@
                         return false;
                     }
                 }
-                //variables to show or hide pop-up modals
+                //Variables to show or hide pop-up modals
                 $display_create_time_reg_field_pop_up = "none";
                 $display_delete_time_reg_field_pop_up = "none";
             ?>
-
-
 
             <!-- ------------------------------
                     Time registration
@@ -118,64 +118,10 @@
                     </div>
                     <button class="update_button" type="submit" name="knap" value="Opdater" onclick="myFunction()">Gem ændringer</button>
                 </div>           
-
                 <div class="time_reg_basics_container">
-
-
                 <button class="add_new_time_reg" type="submit" name="knap" value="read"><img src="../img/time_reg_cross.png" alt="Tilføj ny linje"></button>
                 </div>
             </div>
-
-
-             <!---------------------------
-                Add new time reg field
-            ---------------------------->
-            <div class="pop_up_modal_container" style="display: <?php echo $display_create_time_reg_field_pop_up ?>">
-                <!-- <div class="pop_up_modal">
-                    <h3>Tilføj nyt tidsregistrerings felt</h3>    
-                    <div class="dropdown">
-                        <div style="display: <?php echo $level_1 ?>">
-                            <ul>
-                                <?php
-                                    for ($i = 0; $i < count($my_case_job_types); $i++) {
-                                        echo '<li><button type="submit" name="knap" value="level1_' . $i . '">' . $my_case_job_types[$i] . '</button></li>';
-                                    }
-                                ?>
-                            </ul>
-                        </div>
-                        <div style="display: <?php echo $level_2 ?>">
-                            <ul>
-                                <?php
-                                    for ($i = 0; $i < count($time_reg_job_type); $i++) {
-                                        if($time_reg_job_type[$i] == $my_case_job_types[$level_1_selected]){
-                                            echo '<li><button type="submit" name="knap" value="level2_' . $i . '">' . $time_reg_input_labels[$i] . '</button></li>';
-                                        }
-                                    }
-                                ?>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="pop-up-btn-container">
-                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                        <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
-                    </div>
-                </div> -->
-            </div>
-            <!------------------------
-                    delete pop up
-            ------------------------->
-            <div class="pop_up_modal_container" style="display: <?php echo $display_delete_time_reg_field_pop_up ?>">
-                <div class="pop_up_modal" >
-                    <h3>Slet tidsregistrerings felt</h3>
-                    <!-- <p class="pop_up_selected_information"><i>"<?php echo "noget";?>"</i></p>
-                    <div class="pop-up-btn-container">
-                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                        <input type="submit" name="knap" value="Slet" class="pop_up_confirm">
-                    </div> -->
-                </div>
-            </div>
-
 
         </form>
     </div>
