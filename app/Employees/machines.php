@@ -62,10 +62,12 @@
 
 
 
-        <!-- FORM emploeyee list with CRUD PHP and pop-up modals  -->
+        <!-- -----------------------------
+                    Machines CRUD
+        ------------------------------ -->
         <form action="machines.php" method="post">
             <?php 
-            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+                //function to validate id, it returns a true $result if there's $rows in database
                 function findes($id, $c)
                 {
                     $sql = $c->prepare("select * from machines where id = ?");
@@ -90,12 +92,12 @@
             // CRUD, create, read, update, delete - og confirm og cancel knap til delete
             if($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                //create, køres hvis "Opret ny medarbejder" bliver requested
+                //create pop up
                 if($_REQUEST['knap'] == "Opret ny maskine")
                 {
                     $display_create_machine_pop_up = "flex";
                 }
-                //create, køres hvis "create button" bliver requested
+                //create
                 if($_REQUEST['knap'] == "Opret ny")
                 {
                     $name = $_REQUEST['name_c'];
@@ -107,7 +109,7 @@
                     $sql->execute();
                     $display_create_machine_pop_up = "none";
                 }
-                //read, koden køres hvis "read button" bliver requested 
+                //read 
                 if(str_contains($_REQUEST['knap'] , "read"))
                 {
                     $split = explode("_", $_REQUEST['knap']);
@@ -139,7 +141,7 @@
                     $link = $_REQUEST['link_u'];
                     if(is_numeric($id) && is_integer(0 + $id))
                     {
-                        if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                        if(findes($id, $conn)) //updatea all of the chosen objects elements to database
                         {
                             $sql = $conn->prepare("update machines set name = ?, name_nordic = ?, link = ? where id = ?");
                             $sql->bind_param("sssi", $name, $name_nordic, $link, $id);
@@ -154,7 +156,7 @@
                     $id = $split[1];
                     if(is_numeric($id) && is_integer(0 + $id))
                     {
-                        if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                        if(findes($id, $conn)) 
                         {
                             $_SESSION["selected_machine"] = $id;
                             $sql = $conn->prepare("select name from machines where id = ?");
@@ -174,14 +176,13 @@
                 //Execute - confirm delete
                 if($_REQUEST['knap'] == "Slet")
                 {
-                    //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede id forbliver det samme hvis siden genindlæses.
                     $id = $_SESSION["selected_machine"];
                     $sql = $conn->prepare("delete from machines where id = ?");
                     $sql->bind_param("i", $id);
                     $sql->execute();
                     $display_delete_machine_pop_up = "none";
                 }
-                //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                //cancel 
                 if($_REQUEST['knap'] == "Annuller")
                 {
                     $id = "";
@@ -200,8 +201,10 @@
 
 
 
-        <!-- SELVE TABELLEN -->
-        <div class="profile_list">
+        <!-- ------------------------
+                machines TABLE
+        ------------------- -------->
+        <div class="employee_list_page">
             <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny maskine"></div>
             <?php 
                 //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
@@ -232,7 +235,7 @@
                                     echo '<p class="machine_nordic_name">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["name_nordic"] . '</p>';
                                     echo '<p class="machine_link">' . '<span class="dropdown_inline_headers">Seneste </span>'  . "<a target='_blank' href=" . $row['link'] . ">Link til BB hjemmeside</a>" . '</p>';
                                 echo '</div>';
-                                
+                                //buttons to show pop up modals
                                 echo '<div class="button_container">';
                                     echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
                                     echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
@@ -248,7 +251,6 @@
 
 
 
-        <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
             <?php 
             //closing connection to database for security reasons
                 $conn->close();
@@ -303,7 +305,7 @@
 
     </div>
 
-
+    <!-- Javascript import -->
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>

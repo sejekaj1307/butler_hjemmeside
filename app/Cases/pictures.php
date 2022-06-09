@@ -63,11 +63,11 @@
 
 
     <!-- -----------------------------
-                Sager
+                Pictures
     ------------------------------ -->
     <form action="describe_case.php" method="post"> <!-- Skal den her være cases? -->
         <?php
-            //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+            //function to validate id, it returns a true $result if there's $rows in database
             function findes($id, $c)
             {
                 $sql = $c->prepare("select * from cases where id = ?");
@@ -84,19 +84,19 @@
                 }
             }
 
-
-        $display_describe_case_pop_up = "none";
+            //variables to show or hide pop-up-modals
+            $display_describe_case_pop_up = "none";
         ?>
         <?php
             // CRUD, create, read, update, delete - og confirm og cancel knap til delete
             if($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                //create, køres hvis "Tilføj ny medarbejder" bliver requested
+                //create pop up
                 if($_REQUEST['knap'] == "Opret ny sag")
                 {
                     $display_create_case_pop_up = "flex";
                 }
-                //read, koden køres hvis "read button" bliver requested 
+                //read
                 if(str_contains($_REQUEST['knap'] , "read"))
                 {
                     $split = explode("_", $_REQUEST['knap']);
@@ -118,7 +118,7 @@
 
                     if(is_numeric($id) && is_integer(0 + $id))
                     {
-                        if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                        if(findes($id, $conn)) 
                         {
                             $sql = $conn->prepare("update cases set case_nr = ?, case_responsible = ?, status = ?, location = ? where id = ?");
                             $sql->bind_param("ssssi", $case_nr, $case_responsible, $status, $location, $id);
@@ -126,8 +126,7 @@
                         }
                     }
                 }
-                
-                //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                //cancel
                 if($_REQUEST['knap'] == "Annuller")
                 {
                     $id = "";
@@ -144,7 +143,9 @@
             }
         ?>
 
-
+        <!-- ----------------------
+                pictures TABLE
+        ------------------- ------>
         <div class="case_list_page">
             <div class="describe_case_navbar">
                 <div class="button_container">
@@ -163,7 +164,7 @@
 
 
         <?php 
-        //Man skal huske at slukke for forbindelsen. Det er ikke så vigtigt i små programmer, men vi gør det for en god ordens skyld
+            //closing connection to database for security reasons
             $conn->close();
         ?>
 
@@ -179,7 +180,8 @@
 
 
     </div>
-    <script src="../javaScript/open_close_lists_mobile.js"></script>
+
+    <!-- Javascript import -->
     <script src="../javaScript/navbars.js"></script>
 </body>
 

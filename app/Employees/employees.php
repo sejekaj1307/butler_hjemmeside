@@ -60,7 +60,9 @@
 
 
 
-        <!-- FORM emploeyee list with CRUD PHP and pop-up modals  -->
+        <!-- -----------------------------
+                    Employee CRUD
+        ------------------------------ -->
         <form action="employees.php" method="post">
             <?php 
             //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
@@ -91,12 +93,12 @@
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
-                    //create, køres hvis "Opret ny medarbejder" bliver requested
+                    //create
                     if($_REQUEST['knap'] == "Opret ny medarbejder")
                     {
                         $display_create_employee_pop_up = "flex";
                     }
-                    //create, køres hvis "create button" bliver requested
+                    //create
                     if($_REQUEST['knap'] == "Opret ny")
                     {
                         $first_name = $_REQUEST['first_name_c'];
@@ -113,7 +115,7 @@
                         $sql->bind_param("sssssssss", $first_name, $last_name, $initials, $phone, $phone_private, $email, $email_private, $emergency_name, $emergency_phone);
                         $sql->execute();
                     }
-                    //read, koden køres hvis "read button" bliver requested 
+                    //read
                     if(str_contains($_REQUEST['knap'] , "read"))
                     {
                         $split = explode("_", $_REQUEST['knap']);
@@ -159,7 +161,7 @@
 
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                            if(findes($id, $conn))//updatea all of the chosen objects elements to database
                             {
                                 $sql = $conn->prepare("update employees set first_name = ?, last_name = ?, initials = ?, phone = ?, phone_private = ?, email = ?, email_private = ?, emergency_name = ?, emergency_phone = ? where id = ?");
                                 $sql->bind_param("sssssssssi", $first_name, $last_name, $initials, $phone, $phone_private, $email, $email_private, $emergency_name, $emergency_phone, $id);
@@ -174,7 +176,7 @@
                         $id = $split[1];
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            if(findes($id, $conn)) 
                             {
                                 $_SESSION["selected_employee"] = $id;
                                 $sql = $conn->prepare("select first_name, last_name from employees where id = ?");
@@ -201,7 +203,7 @@
                         $display_delete_employee_pop_up = "none";
                         
                     }
-                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    //cancel
                     if($_REQUEST['knap'] == "Annuller")
                     {
                         $id = "";
@@ -218,13 +220,14 @@
                 }
             ?>
 
-            <!-- SELVE TABELLEN -->
-            <div class="profile_list">
+        <!-- -----------------------------
+                Employee table
+        ------------------------------ -->
+            <div class="employee_list_page">
                 <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny medarbejder"></div>
                 <?php 
-
-
-                    //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                    //SQl query to aquire all data from employees 
+                    //list headers
                     $sql = "select * from employees";
                     $result = $conn->query($sql);
                     echo '<div class="employee_list">';
@@ -248,6 +251,7 @@
                             $list_order_id = 1;
                             while($row = $result->fetch_assoc())
                             {
+                            //list content
                                 echo '<div class="employee_data_row" style="border-left: 5px solid' . $row['colour'] . '" >';
                                     echo '<div class="mobile_employee_information" onclick="open_close_lists_mobile('. $list_order_id .', '. "'employee_dropdown_mobile'" .') " >  ';
                                         echo '<p class="employee_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
@@ -259,7 +263,7 @@
                                         echo '<p class="employee_email">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["email"] . '</p>';
                                         echo '<p class="employee_emergency">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</p>';
                                     echo '</div>';
-
+                                    //buttons to show pop up modals
                                     echo '<div class="button_container">';
                                         echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
                                         echo '<button type="submit" name="knap" value="slet_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
@@ -274,7 +278,7 @@
 
 
 
-            <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
+
             <?php 
             //closing connection to database for security reasons
                 $conn->close();
@@ -341,6 +345,7 @@
         </form>
     </div>
 
+    <!-- javascript import -->
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>

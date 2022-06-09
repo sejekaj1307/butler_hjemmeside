@@ -60,7 +60,7 @@
 
 
     <!-- -----------------------------
-                Notifications
+        archived notifications CRUD
     ------------------------------ -->
     <form action="archived_notifications.php" method="post">
         <?php
@@ -128,7 +128,9 @@
             ?>
 
 
-        <!-- Notifications -->
+    <!-- -----------------------------
+            archived notifications
+    ------------------------------ -->
         <div class="notification_list_page">
             <div class="notification_navbar">
                 <button><a href="notifications.php">Notifikationer</a></button>
@@ -177,7 +179,7 @@
 
 
         <!------------------------
-                aktiver pop up
+              activate pop up
         ------------------------->
         <div class="pop_up_modal_container" style="display: <?php echo $display_archive_notification_pop_up ?>">
             <div class="pop_up_modal">

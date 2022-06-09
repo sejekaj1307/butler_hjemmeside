@@ -58,10 +58,12 @@
         </div>
 
 
-    <!-- FORM emploeyee list with CRUD PHP and pop-up modals  -->
+    <!-- ------------------------
+            External CRUD
+    ------------------- -------->
     <form action="externals.php" method="post">
         <?php 
-        //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
+            //function to validate id, it returns a true $result if there's $rows in database
             function findes($id, $c)
             {
                 $sql = $c->prepare("select * from externals where id = ?");
@@ -87,12 +89,12 @@
         // CRUD, create, read, update, delete - og confirm og cancel knap til delete
         if($_SERVER['REQUEST_METHOD'] === 'POST')
         {
-            //create, køres hvis "Opret ny ekstern" bliver requested
+            //create pop up
             if($_REQUEST['knap'] == "Opret ny ekstern")
             {
                 $display_create_external_pop_up = "flex";
             }
-            //create, køres hvis "create button" bliver requested
+            //create
             if($_REQUEST['knap'] == "Opret ny")
             {
                 $first_name = $_REQUEST['first_name_c'];
@@ -107,7 +109,7 @@
                 $sql->execute();
             
             }
-            //read, koden køres hvis "read button" bliver requested 
+            //read
             if(str_contains($_REQUEST['knap'] , "read"))
             {
                 $split = explode("_", $_REQUEST['knap']);
@@ -147,7 +149,7 @@
 
                 if(is_numeric($id) && is_integer(0 + $id))
                 {
-                    if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                    if(findes($id, $conn)) //updatea all of the chosen objects elements to database
                     {
                         $sql = $conn->prepare("update externals set first_name = ?, last_name = ?, phone = ?, phone_private = ?, email = ?, contact_type = ? where id = ?"); 
                         $sql->bind_param("ssssssi", $first_name, $last_name, $phone, $phone_private, $email, $contact_type, $id); 
@@ -162,7 +164,7 @@
                 $id = $split[1];
                 if(is_numeric($id) && is_integer(0 + $id))
                 {
-                    if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                    if(findes($id, $conn)) 
                     {
                         $_SESSION["selected_external"] = $id;
                         $sql = $conn->prepare("select first_name, last_name from externals where id = ?");
@@ -183,15 +185,13 @@
             //Execute - confirm delete
             if($_REQUEST['knap'] == "Slet")
             {
-                //jeg gør brug af $_SESSION variablen for at sikre at hvis der sker ændringer i inputfeltet at det indtastede id forbliver det samme hvis siden genindlæses.
-                //Vi skal have fat i bilid, men vi kan ikke længere bruge den tidligere variabel. Vi skal sikre at brugeren ikke har ændret tallet i mellemtiden
                 $id = $_SESSION["selected_external"];
                 $sql = $conn->prepare("delete from externals where id = ?");
                 $sql->bind_param("i", $id);
                 $sql->execute();
                 $display_delete_external_pop_up = "none";                
             }
-            //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+            //cancel 
             if($_REQUEST['knap'] == "Annuller")
             {
                 $id = "";
@@ -211,10 +211,11 @@
 
 
         <!-- SELVE TABELLEN -->
-        <div class="profile_list">
+        <div class="employee_list_page">
             <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny ekstern"  ></div>
             <?php 
-                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                //SQl query to aquire all data from externals
+                //list headers
                 $sql = "select * from externals";
                 $result = $conn->query($sql);
 
@@ -236,6 +237,7 @@
                         $list_order_id = 1;
                         while($row = $result->fetch_assoc())
                         {
+                            //list content
                             echo '<div class="external_data_row">';
                                 echo '<div class="mobile_external_information" onclick="open_close_lists_mobile('. $list_order_id .', '. "'external_dropdown_mobile'" .')")> ';
                                     echo '<p class="external_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
@@ -246,7 +248,7 @@
                                     echo '<p class="external_email">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["email"] . '</p>';
                                     echo '<p class="external_product">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["contact_type"] . '</p>';
                                 echo '</div>';
-
+                                //buttons to show pop up modals
                                 echo '<div class="button_container">';
                                     echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
                                     echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
@@ -262,9 +264,8 @@
 
 
 
-        <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
         <?php 
-        //closing connection to database for security reasons
+            //closing connection to database for security reasons
             $conn->close();
         ?>
 
@@ -328,7 +329,7 @@
 
 
 
-
+    <!-- Javascript import -->
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>

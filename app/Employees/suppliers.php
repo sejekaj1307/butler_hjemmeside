@@ -60,7 +60,9 @@
         </div>
 
 
-    <!-- FORM emploeyee list with CRUD PHP and pop-up modals  -->
+    <!-- -----------------------------
+                suppliers CRUD
+    ------------------------------ -->
     <form action="suppliers.php" method="post">
         <?php 
         //funktion til validering, den returnerer et true $result, hvis der er $rows i databasen
@@ -90,12 +92,12 @@
         // CRUD, create, read, update, delete - og confirm og cancel knap til delete
         if($_SERVER['REQUEST_METHOD'] === 'POST')
         {
-            //create, køres hvis "Opret ny medarbejder" bliver requested
+            //create pop up
             if($_REQUEST['knap'] == "Opret ny leverandør")
             {
                 $display_create_supplier_pop_up = "flex";
             }
-            //create, køres hvis "create button" bliver requested
+            //create
             if($_REQUEST['knap'] == "Opret ny")
             {
                 $first_name = $_REQUEST['first_name_c'];
@@ -110,7 +112,7 @@
                 $sql->execute();
                 $display_create_supplier_pop_up = "none"; 
             }
-            //read, koden køres hvis "read button" bliver requested 
+            //read 
             if(str_contains($_REQUEST['knap'] , "read"))
             {
                 $split = explode("_", $_REQUEST['knap']);
@@ -148,7 +150,7 @@
                 $product = $_REQUEST['product_u'];
                 if(is_numeric($id) && is_integer(0 + $id))
                 {
-                    if(findes($id, $conn)) //opdaterer alle objektets elementer til databasen
+                    if(findes($id, $conn)) 
                     {
                         $sql = $conn->prepare("update suppliers set first_name = ?, last_name = ?, phone = ?, address = ?, email = ?, product = ? where id = ?");
                         $sql->bind_param("ssssssi", $first_name, $last_name, $phone, $address, $email, $product, $id);
@@ -164,7 +166,7 @@
                 $id = $split[1];
                 if(is_numeric($id) && is_integer(0 + $id))
                 {
-                    if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                    if(findes($id, $conn))
                     {
                         $_SESSION["selected_supplier"] = $id;
                         $sql = $conn->prepare("select first_name, last_name from suppliers where id = ?");
@@ -190,7 +192,7 @@
                 $sql->execute();          
                 $display_delete_supplier_pop_up = "none";      
             }
-            //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+            //cancel 
             if($_REQUEST['knap'] == "Annuller")
             {
                 $id = "";
@@ -208,11 +210,14 @@
 
 
 
-        <!-- SELVE TABELLEN -->
-        <div class="profile_list">
+        <!-- -----------------------------
+                  supplier TABLE
+        ------------------------------ -->
+        <div class="employee_list_page">
             <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny leverandør"></div>
             <?php 
-                //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                //SQl query to aquire all data from suppliers
+                //list headers
                 $sql = "select * from suppliers";
                 $result = $conn->query($sql);
 
@@ -234,6 +239,7 @@
                         $list_order_id = 1;
                         while($row = $result->fetch_assoc())
                         {
+                            //list content
                             echo '<div class="external_data_row">';
                                 echo '<div class="mobile_external_information" onclick="open_close_lists_mobile('. $list_order_id .', '. "'external_dropdown_mobile'" .')">';
                                     echo '<p class="external_name">' . $row["last_name"] . ", " . $row["first_name"] . '</p>';
@@ -244,7 +250,7 @@
                                     echo '<p class="external_email">' . '<span class="dropdown_inline_headers">Email </span>'  . $row["email"] . '</p>';
                                     echo '<p class="external_product">' . '<span class="dropdown_inline_headers">Kontakttype </span>'  . $row["product"] . '</p>';
                                 echo '</div>';
-                                
+                                //buttons to show pop up modals
                                 echo '<div class="button_container">';
                                     echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
                                     echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
@@ -259,7 +265,7 @@
 
 
 
-        <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
+
             <?php 
             //closing connection to database for security reasons
                 $conn->close();
@@ -325,7 +331,7 @@
 
 
 
-
+    <!-- Javascript import -->
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>

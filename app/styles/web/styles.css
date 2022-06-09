@@ -1670,7 +1670,7 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.time_registration, .profile_list, .calender_container, .task_list_page, .archived_case_list_page, .case_list_page, .in_house_time, .profile_page, .notification_list_page {
+.time_registration, .profile_list, .calender_container, .task_list_page, .archived_case_list_page, .case_list_page, .in_house_time, .profile_page, .notification_list_page, .employee_list_page {
   width: 90vw;
   margin: 50px auto;
 }
@@ -1680,7 +1680,7 @@
   .site_container {
     margin-left: 22vw;
   }
-  .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time, .profile_page, .notification_list_page {
+  .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time, .profile_page, .notification_list_page, .employee_list_page {
     width: 68vw;
     margin-left: 50px;
     margin-top: 50px;
@@ -1692,7 +1692,7 @@
   .site_container {
     margin-left: 16vw;
   }
-  .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time, .profile_page, .notification_list_page {
+  .time_registration, .profile_list, .case_list_page, .calender_container, .task_list_page, .archived_case_list, .in_house_time, .profile_page, .notification_list_page, .employee_list_page {
     width: 72vw;
     margin-left: 100px;
     margin-top: 50px;
