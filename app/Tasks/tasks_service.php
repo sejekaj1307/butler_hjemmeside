@@ -61,9 +61,6 @@
         </div>
 
 
-
-
-
         <!-- FORM emploeyee list with CRUD PHP and pop-up modals  -->
         <form action="tasks_service.php" method="post">
             <?php 
@@ -88,7 +85,6 @@
                 $display_edit_task_service_pop_up = "none";
                 $display_create_task_service_pop_up = "none";
                 $display_delete_harmonica_pop_up = "none";
-
             ?>
 
             <?php
@@ -170,7 +166,6 @@
                             }
                         }
                     }
-                    // Skal man kunne slette dem?
                     //delete
                     if(str_contains($_REQUEST['knap'] , "delete"))
                     {
@@ -204,26 +199,28 @@
                         $display_delete_harmonica_pop_up = "none";
                         
                     }
-                    //cancel - samme som clear funktionen, den ryder alle input felterne og knapperne får deres start værdi
+                    //cancel 
                     if($_REQUEST['knap'] == "Annuller")
                     {
                         $id = "";
-                        $first_name = "";
-                        $initials = "";
-                        $phone = "";
-                        $phone_private = "";
-                        $email = "";
-                        $emergency_name = "";
+                        $task_title = "";
+                        $task_header = "";
+                        $priority = "";
+                        $last_service = "";
+                        $deadline = "";
+                        $updated_initials = "";
+                        $comment = "";
                         $display_none_archive_pop_up = "none";
                     }
                 }
             ?>
 
+
             <!-- SELVE TABELLEN -->
             <div class="profile_list">
                 <div class="add_new_link" ><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret ny planlagt service"></div>
                 <?php 
-                    //Vi skal have vist tabellen på siden. query er en forspørgsel, som sættes ud fra sql. (den sql vi gerne vil have lavet, send den som en forespørgesel til databasen)
+                    //SQl query to aquire all data from task_service for each task header
                     $sql = "select * from tasks_service order by task_header asc";
                     $result = $conn->query($sql);
                     echo '<div class="harmonica_container">';
@@ -281,7 +278,7 @@
                                         echo '<p class="tasks_service_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>' . $row["updated_initials"] . '</p>';
                                         echo '<p class="tasks_service_harmonica_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>' . $row["comment"] . '</p>';
                                     echo "</div>";
-                                
+                                    //buttons to show pop up modals
                                     echo '<div class="button_container">';
                                         echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
                                         echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
@@ -297,7 +294,7 @@
 
 
 
-            <!-- KNAPPERNE OG INPUT FELTERNE TIL AT ÆNDRE OG READ -->
+
             <?php 
             //Jeg lukker forbindelsen til databasen, af sikkerhedsmæssige årcases
                 $conn->close();
@@ -398,6 +395,7 @@
         </form>
     </div>
 
+    <!-- Javascript import -->
     <script src="../javaScript/harmonica_open_close.js"></script>
     <script src="../javaScript/navbars.js"></script>
 </body>
