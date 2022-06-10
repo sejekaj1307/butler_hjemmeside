@@ -312,7 +312,7 @@
                     <div class="pop-up-row"><p>Element : </p><input type="text" name="element_c" value="<?php echo isset($element) ? $element : '' ?>"></div>
                     <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_c" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
                     <div class="pop-up-row"><p>Min. antal : </p><input type="number" name="min_quantity_c" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
-                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_c" maxlength="50" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opret" class="pop_up_confirm">
@@ -339,7 +339,7 @@
                     <div class="pop-up-row"><p>Element : </p><input type="text" name="element_u" value="<?php echo isset($element) ? $element : '' ?>"></div>
                     <div class="pop-up-row"><p>Antal : </p><input type="number" name="quantity_u" value="<?php echo isset($quantity) ? $quantity : '' ?>"></div>
                     <div class="pop-up-row"><p>Min. antal : </p><input type="number" name="min_quantity_u" value="<?php echo isset($min_quantity) ? $min_quantity : '' ?>"></div>
-                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" maxlength="50" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">

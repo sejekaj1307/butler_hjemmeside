@@ -368,7 +368,7 @@
                         </select>
                     </div> 
                     <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                    <div class="pop-up-row"><p>Bemærkning : </p><input autocomplete="off" type="text" name="comment_c" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                    <div class="pop-up-row"><p>Bemærkning : </p><input autocomplete="off" type="text" name="comment_c" maxlength="50" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
@@ -402,7 +402,7 @@
                         </select>
                     </div>
                     <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                    <div class="pop-up-row"><p>Bemærkning : </p><input      type="text" name="comment_u" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" maxlength="50" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">

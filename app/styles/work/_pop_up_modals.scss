@@ -48,6 +48,9 @@
         width: 70%;
         justify-content: space-between;   
         margin: 40px 0 20px 0;  
+        #one_button_center {
+            margin: 0 auto;
+        }
         .pop_up_cancel, .pop_up_confirm {
             width: 7vw;
             min-width: 90px;

@@ -370,8 +370,8 @@
                     </div>
 
                     <div class="pop-up-btn-container">
-                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                        <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
+                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel" id="one_button_center">
+                        <!-- <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm"> --> <!--I dont think we need this button any more-->
                     </div>
                 </div>
             </div>
