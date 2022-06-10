@@ -304,7 +304,7 @@
                         echo '</div>';
                         echo '<div class="case_all_headers">';
                             echo '<p class="case_status_header">Status</p>';
-                            echo '<p class="case_location_header">Sagsoversigt</p>';
+                            echo '<p class="case_location_header">Adresse</p>';
                             echo '<p class="case_est_start_header">Opstart</p>';
                             echo '<p class="case_deadline_header">Deadline</p>';
                             echo '<p class="button_container_header">Rediger</p>';
@@ -335,7 +335,7 @@
                                 echo '</div>';
                                 echo '<div class="case_dropdown_mobile">';
                                     echo '<p class="case_status">' . '<span class="dropdown_inline_headers">Status </span>' . $row["status"] . '</p>';
-                                    echo '<p class="case_location">' . '<span class="dropdown_inline_headers">Lokation </span>' . $row["location"] . '</p>';
+                                    echo '<p class="case_location">' . '<span class="dropdown_inline_headers">Adresse </span>' . $row["location"] . '</p>';
                                     echo '<p class="case_est_start">' . '<span class="dropdown_inline_headers">Forventet start </span>' . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
                                     echo '<p class="case_deadline">' . '<span class="dropdown_inline_headers">Forventet deadline </span>' . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
                                 echo '</div>';
@@ -375,7 +375,7 @@
                         ?>
                     </select>
                 </div>
-                <div class="pop-up-row"><p>Lokation : </p><input autocomplete="off" type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
+                <div class="pop-up-row"><p>Adresse : </p><input autocomplete="off" type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
                 <div class="pop-up-row"><p>Startdato : </p><input autocomplete="off" type="date" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
                 <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
                 <div class="pop-up-btn-container">
@@ -411,7 +411,7 @@
                             <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
                         </select>
                     </div>
-                <div class="pop-up-row"><p>Lokation : </p><input autocomplete="off" type="text" name="location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
+                <div class="pop-up-row"><p>Adresse : </p><input autocomplete="off" type="text" name="location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
                 <div class="pop-up-row"><p>Startdato : </p><input autocomplete="off" type="date" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
                 <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
                 <div class="pop-up-btn-container">

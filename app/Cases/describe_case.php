@@ -129,9 +129,8 @@
                         alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Cases/cases.php">Sager liste</a></li>
+                <li><a href="../Cases/cases.php" class="active_site_dropdown">Sager liste</a></li>
                 <li><a href="../Cases/archived_cases.php">Arkiverede sager</a>
-                <li><a href="../Cases/describe_case.php" class="active_site_dropdown">Beskriv sag</a></li>
             </ul>
         </div>
 
@@ -282,7 +281,7 @@
                         <div class="large_inputs"><p>Tilkørsel - pladsforhold, adgang, tid, støj, mm.</p><textarea name="comment_road_info" type="subject"><?php echo $this_case->get_comment_road_info();?></textarea></div>
                     </div>
                     <div class="top_inputs_container">
-                        <div class="small_inputs"><p>Lokation :</p><input autocomplete="off" name="location" type="text" value="<?php echo $this_case->get_location();?>"></div>
+                        <div class="small_inputs"><p>Adresse :</p><input autocomplete="off" name="location" type="text" value="<?php echo $this_case->get_location();?>"></div>
                         <div class="small_inputs"><p>Postnummer :</p><input autocomplete="off" name="zip_code" type="text" value="<?php echo $this_case->get_zip_code();?>"></div>
                         <div id="list1" class="dropdown-check-list" tabindex="100">
                             <div class="small_inputs"><p>Maskiner :</p>

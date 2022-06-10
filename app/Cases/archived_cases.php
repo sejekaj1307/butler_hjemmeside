@@ -191,10 +191,10 @@
                                     echo '<p class="case_responsible">' . $row["case_responsible"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="case_dropdown_mobile">';
-                                    echo '<p class="case_status">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["status"] . '</p>';
-                                    echo '<p class="case_location">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["location"] . '</p>';
-                                    echo '<p class="case_est_start">' . '<span class="dropdown_inline_headers">Seneste </span>'  . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
-                                    echo '<p class="case_deadline">' . '<span class="dropdown_inline_headers">Seneste </span>'  . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
+                                    echo '<p class="case_status">' . '<span class="dropdown_inline_headers">Status </span>'  . $row["status"] . '</p>';
+                                    echo '<p class="case_location">' . '<span class="dropdown_inline_headers">Adresse </span>'  . $row["location"] . '</p>';
+                                    echo '<p class="case_est_start">' . '<span class="dropdown_inline_headers">Start d. </span>'  . date_format(new DateTime($row["est_start_date"]), 'd-m-y') . '</p>';
+                                    echo '<p class="case_deadline">' . '<span class="dropdown_inline_headers">Slut d. </span>'  . date_format(new DateTime($row["est_end_date"]), 'd-m-y') . '</p>';
                                 echo '</div>';
                                 //buttons to show pop up modals
                                 echo '<div class="button_container">';
