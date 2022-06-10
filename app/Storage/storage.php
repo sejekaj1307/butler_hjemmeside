@@ -22,7 +22,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/web/styles.css">
-    <title>Storage - storage</title>
+    <title>Lager</title>
 </head>
 
 <body>
@@ -54,7 +54,7 @@
                         alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Storage/storage.php" class="active_site_dropdown">Lade lager</a></li>
+                <li><a href="../Storage/storage.php" class="active_site_dropdown">Lade</a></li>
             </ul>
         </div>
 

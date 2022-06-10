@@ -249,6 +249,10 @@
                 <div class="profile_weeklies">
                     Ugeseddler kommer senere
                 </div>
+                <!-- certificates container -->
+                <div class="certificates">
+                    Certifikater kommer senere
+                </div>
             </div>
 
 

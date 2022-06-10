@@ -246,7 +246,7 @@
                                 echo '<p class="tasks_service_harmonica_deadline_header">Deadline</p>';
                                 echo '<p class="tasks_service_updated_initials_header">Seneste</p>';
                                 echo '<p class="tasks_service_harmonica_comment_header">Bemærkning</p>';
-                                echo '<p class="button_container_header">Aktiver</p>';
+                                echo '<p class="button_container_header">Rediger</p>';
                             echo '</div>';
                         echo '</div>';
                         //if og while her

@@ -1215,7 +1215,7 @@
   color: #000;
 }
 
-.profile_page .profile_calender, .profile_page .profile_weeklies {
+.profile_page .profile_calender, .profile_page .profile_weeklies, .profile_page .certificates {
   margin: 50px 0;
   height: 100px;
   background-color: #e0e2fd;
