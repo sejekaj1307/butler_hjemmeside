@@ -239,7 +239,7 @@
                         echo '</div>';
                         //if og while her
                         $seen_element_location=array();
-                        //
+                        //element location - harmonica open-close fields
                         if($result->num_rows > 0)
                         {
                             while($row = $result->fetch_assoc()) {
@@ -247,7 +247,7 @@
                                     array_push($seen_element_location, $row['element_location']); 
                                     echo '<div class="harmonica_data_row" >';
 
-                                        echo '<div onclick="harmonica_open_close('. array_search($row["element_location"], $seen_element_location) .', '. "'harmonica_data_row_all_info'" .')" >  ';
+                                        echo '<div class="harmonica_information" onclick="harmonica_open_close('. array_search($row["element_location"], $seen_element_location) .', '. "'harmonica_data_row_all_info'" .')" >  ';
 
                                             echo '<p class="harmonica_task_header">' . $row['element_location'] . '</p>';
                                         echo '</div>';

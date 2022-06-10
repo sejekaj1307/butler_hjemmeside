@@ -353,11 +353,11 @@
   padding: 10px 15px;
 }
 
-.harmonica_container .harmonica_headers .harmonica_all_headers, .harmonica_container .harmonica_headers .harmonica_all_headers {
+.harmonica_container .harmonica_headers .harmonica_all_headers {
   display: none;
 }
 
-.harmonica_container .harmonica_data_row .harmonica_information, .harmonica_container .harmonica_data_row .harmonica_information, .harmonica_container .harmonica_data_row .harmonica_information, .harmonica_container .harmonica_data_row .harmonica_information {
+.harmonica_container .harmonica_data_row .harmonica_information {
   background-color: #EEF2FD;
   border: 1px solid #AEBFF6;
   border-bottom: 2px solid #AEBFF6;
