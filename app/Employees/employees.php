@@ -110,9 +110,13 @@
                         $email_private = $_REQUEST['email_private_c'];
                         $emergency_name = $_REQUEST['emergency_name_c'];
                         $emergency_phone = $_REQUEST['emergency_phone_c'];
+                        $picture_path = "";
+                        $colour = "";
+                        $admin_status = "";
+                        $password = "";
                         
-                        $sql = $conn->prepare("insert into employees (first_name, last_name, initials, phone, phone_private, email, email_private, emergency_name, emergency_phone) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param("sssssssss", $first_name, $last_name, $initials, $phone, $phone_private, $email, $email_private, $emergency_name, $emergency_phone);
+                        $sql = $conn->prepare("insert into employees (first_name, last_name, initials, phone, phone_private, email, email_private, emergency_name, emergency_phone, picture_path, colour, admin_status, password) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("sssssssssssss", $first_name, $last_name, $initials, $phone, $phone_private, $email, $email_private, $emergency_name, $emergency_phone, $picture_path, $colour, $admin_status, $password);
                         $sql->execute();
                     }
                     //read
@@ -258,10 +262,10 @@
                                         echo '<p class="employee_initials">' . $row["initials"] . '</p>';
                                     echo '</div>';
                                     echo '<div class="employee_dropdown_mobile" id="'. $row["id"] .'">';
-                                        echo '<p class="employee_phone">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["phone"] . '</p>';
-                                        echo '<p class="employee_phone">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["phone_private"] . '</p>';
-                                        echo '<p class="employee_email">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["email"] . '</p>';
-                                        echo '<p class="employee_emergency">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</p>';
+                                        echo '<p class="employee_phone">' . '<span class="dropdown_inline_headers">Tlf. nr </span>'  . $row["phone"] . '</p>';
+                                        echo '<p class="employee_phone">' . '<span class="dropdown_inline_headers">Mobil </span>'  . $row["phone_private"] . '</p>';
+                                        echo '<p class="employee_email">' . '<span class="dropdown_inline_headers">Email </span>'  . $row["email"] . '</p>';
+                                        echo '<p class="employee_emergency">' . '<span class="dropdown_inline_headers">Kontakperson </span>'  . $row["emergency_name"] . ", " . $row["emergency_phone"] . '</p>';
                                     echo '</div>';
                                     //buttons to show pop up modals
                                     echo '<div class="button_container">';

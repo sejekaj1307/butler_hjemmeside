@@ -107,25 +107,11 @@
                         $deadline = $_REQUEST['deadline_c'];
                         $updated_initials = $_SESSION['logged_in_user_global']['initials'];
                         $comment = $_REQUEST['comment_c'];
-                        
-                        $sql = $conn->prepare("insert into tasks (
-                            task_title, 
-                            priority, 
-                            status, 
-                            deadline, 
-                            updated_initials, 
-                            comment
-                        ) 
-                        values (?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param(
-                            "ssssss", 
-                            $task_title, 
-                            $priority, 
-                            $status, 
-                            $deadline, 
-                            $updated_initials, 
-                            $comment
-                        );
+                        $updated_at = "";
+                        $archived_at = "";
+                        $archived_initials = "";
+                        $sql = $conn->prepare("insert into tasks (task_title, priority, status, deadline, updated_initials, comment, updated_at, archived_at, archived_initials) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("sssssssss", $task_title, $priority, $status, $deadline, $updated_initials, $comment, $updated_at, $archived_at, $archived_initials);
                         $sql->execute();
                         $display_create_task_pop_up = "none";
                         $display_overlay = "none";

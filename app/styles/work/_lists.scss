@@ -1,5 +1,3 @@
-
-
 /*-------------------------------
             Lists
 -------------------------------*/
@@ -20,13 +18,13 @@
         .employee_mobile_headers, .case_mobile_headers { //Når der er flere headers i mobil versionen der skal vises
             display: flex;
             .employee_name_header { //Første header på alle headers
-                width: 80%;
+                width: 45%;
             }
         }
         .employee_all_headers, .machines_all_headers, .external_all_headers, .case_all_headers, .task_all_headers { //div rundt om navn- og initialer-header kun på employees siden
             display: flex;
             flex-direction: row;
-            display: none;                 
+            display: none;         
         }
     }
     .employee_data_row, .external_data_row, .machine_data_row, .case_data_row, .task_data_row { //borders on the side of the container
@@ -59,16 +57,13 @@
     display: flex;
     width: 100%;
     align-items: center;
-
     .dropdown_inline_headers {
         font-weight: 600;
         display: flex;
         width: 45% !important;  
-        padding: 0 10px;
-        
+        padding: 0 15px 0 0;
     }
 }
-
 
 .case_nr_header, .case_nr, .employee_name {
     width: 45% !important;
@@ -109,10 +104,13 @@
     .add_new_link {
         display: flex;
     }
-            .dropdown_inline_headers {
-                display: none;
-            }    
-
+    .dropdown_inline_headers {
+        display: none;
+    }    
+    .case_dropdown_mobile p, .external_dropdown_mobile p,  .machine_dropdown_mobile p, 
+    .external_dropdown_mobile p, .employee_dropdown_mobile p, .task_dropdown_mobile p,  .task_dropdown_mobile p, .case_dropdown_mobile{
+        width: initial;
+    }
     /*---------------------------
             Employees 1200
     ---------------------------*/
@@ -175,10 +173,10 @@
         width: 5vw !important;
     }
     .employee_phone, .employee_phone_header {
-        width: 7vw !important;
+        width: 6.5vw !important;
     }
     .employee_email, .employee_email_header{
-        width: 21vw;
+        width: 21vw !important;
     }
     .employee_emergency, .employee_emergency_header {
         width: 14vw !important;
@@ -223,7 +221,7 @@
         width: 9vw !important;
     }
     .case_location_header, .case_location {
-        width: 18vw !important;
+        width: 16vw !important;
     }
     .case_est_start_header, .case_est_start, .case_deadline_header, .case_deadline, .case_archived_at_header, .case_archived_at {
         width: 10vw !important;

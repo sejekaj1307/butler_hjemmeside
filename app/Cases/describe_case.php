@@ -25,6 +25,7 @@
     }
 
     $this_row_employees_json = json_decode($row['employees'], true);
+    $this_row_employee_leader_json = json_decode($row['employee_leader'], true);
     $this_case_machines_json = json_decode($row['machines'], true);
     $this_case_job_types_json = json_decode($row['job_type'], true);
     
@@ -55,8 +56,13 @@
     {
         while($row = $result->fetch_assoc())
         {
+            //employees on case
             if (!array_key_exists($row['initials'], $this_row_employees_json)){
                 $this_row_employees_json[$row['initials']] = false;
+            }
+            //boreformand
+            if (!array_key_exists($row['initials'], $this_row_employee_leader_json)){
+                $this_row_employee_leader_json[$row['initials']] = false;
             }
             array_push($employees_initials_list, $row["initials"]);
         }
@@ -181,16 +187,25 @@
                 //update
                 if($_REQUEST['knap'] == "Opdater") 
                 {
+                    //employees
                     for($i=0; $i<count($employees_initials_list); $i++){
                         $this_row_employees_json[$employees_initials_list[$i]] = !empty($_REQUEST["employee_checkbox_".$i]) ? true : false;
                     }
                     $new_employee_data = json_encode($this_row_employees_json);
 
+                    //Boreformand
+                    for($i=0; $i<count($employees_initials_list); $i++){ 
+                        $this_row_employee_leader_json[$employees_initials_list[$i]] = !empty($_REQUEST["employee_leader_checkbox_".$i]) ? true : false;
+                    }
+                    $new_employee_leader_data = json_encode($this_row_employee_leader_json);
+
+                    //machines
                     for($i=0; $i<count($machine_name_list); $i++){
                         $this_case_machines_json[$machine_name_list[$i]] = !empty($_REQUEST["machine_checkbox_".$i]) ? true : false;
                     }
                     $new_machine_data = json_encode($this_case_machines_json);
 
+                    //job types
                     for($i=0; $i<count($case_job_types_list); $i++){
                         $this_case_job_types_json[$case_job_types_list[$i]] = !empty($_REQUEST["job_type_checkbox_".$i]) ? true : false;
                     }
@@ -277,7 +292,17 @@
                         <div class="small_inputs"><p>Kunde :</p><input autocomplete="off" name="client" type="text" value="<?php echo $this_case->get_client();?>"></div>
                         <div class="small_inputs"><p>Kundesag nr :</p><input autocomplete="off" name="client_case_nr" type="text" value="<?php echo $this_case->get_client_case_nr();?>"></div>
                         <div class="small_inputs"><p>Intern sag nr. :</p><input autocomplete="off" name="case_nr" type="text" value="<?php echo $this_case->get_case_nr();?>"></div>
-                        <div class="small_inputs"><p>Ansvarlig :</p><input autocomplete="off" name="case_responsible" type="text" value="<?php echo $this_case->get_case_responsible();?>"></div>
+                        <div class="small_inputs">
+                            <p>Ansvarlig :</p>
+                            <!-- <input autocomplete="off" name="case_responsible" type="text" value="<?php echo $this_case->get_case_responsible();?>"> -->
+                            <select name="case_responsible">
+                                <?php
+                                    foreach($case_responsible_initials_list as $case_responsible_initials){ 
+                                        echo "<option " . ($this_case->get_case_responsible() == $case_responsible_initials ? 'selected' : '') . " value=" . $case_responsible_initials . ">" . $case_responsible_initials . "</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>
                         <div class="large_inputs"><p>Tilkørsel - pladsforhold, adgang, tid, støj, mm.</p><textarea name="comment_road_info" type="subject"><?php echo $this_case->get_comment_road_info();?></textarea></div>
                     </div>
                     <div class="top_inputs_container">
@@ -305,6 +330,20 @@
                                         <?php
                                             for($i=0; $i<count($employees_initials_list); $i++){
                                                 echo '<li><input name="employee_checkbox_' . $i . '" type="checkbox" ' . ($this_row_employees_json[$employees_initials_list[$i]] ? 'checked' : '') . '/>' . $employees_initials_list[$i] . '</li>';
+                                            }
+                                        ?> 
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>  
+                        <div id="list1" class="dropdown-check-list" tabindex="100">
+                            <div class="small_inputs tester"><p>Boreforemand :</p>
+                                <div class="dropdown list1">
+                                    <p class="dropbtn">Boreformand</p>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <?php
+                                            for($i=0; $i<count($employees_initials_list); $i++){ //employee_leader = boreformand
+                                                echo '<li><input name="employee_leader_checkbox_' . $i . '" type="checkbox" ' . ($this_row_employee_leader_json[$employees_initials_list[$i]] ? 'checked' : '') . '/>' . $employees_initials_list[$i] . '</li>';
                                             }
                                         ?> 
                                     </div>

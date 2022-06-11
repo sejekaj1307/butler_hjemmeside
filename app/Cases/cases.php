@@ -118,6 +118,7 @@
                             {
                                 if (!array_key_exists($row['initials'], $employees_initials_list)){
                                     $employees_initials_list[$row['initials']] = false;
+                                    $employee_leader_initials_list[$row['initials']] = false;
                                 }
                             }
                         }
@@ -142,11 +143,20 @@
                             }
                         }
                         $employees_initials_list = json_encode($employees_initials_list);
+                        $employee_leader_initials_list = json_encode($employee_leader_initials_list);
                         $machine_name_list = json_encode($machine_name_list);
                         $default_case_job_types_json = json_encode($default_case_job_types_json);
                         
-                        $sql = $conn->prepare("insert into cases (case_nr, case_responsible, status, location, est_start_date, est_end_date, machines, job_type, employees) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param("sssssssss", $case_nr, $case_responsible, $status, $location, $est_start_date, $est_end_date, $machine_name_list, $default_case_job_types_json, $employees_initials_list);
+                        $client = "";
+                        $client_case_nr = "";
+                        $zip_code = "";
+                        $comment_road_info = "";
+                        $comment_extra_work = "";
+                        $archived_initials = "";
+                        $archived_at = "";
+
+                        $sql = $conn->prepare("insert into cases (case_nr, client, client_case_nr, location, zip_code, case_responsible, est_start_date, est_end_date, status, job_type, machines, employees, employee_leader, comment_road_info, comment_extra_work, archived_initials, archived_at) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("sssssssssssssssss", $case_nr, $client, $client_case_nr, $location, $zip_code, $case_responsible, $est_start_date, $est_end_date, $status, $default_case_job_types_json, $machine_name_list, $employees_initials_list, $employee_leader_initials_list, $comment_road_info, $comment_extra_work, $archived_initials, $archived_at);
                         $sql->execute();
                         
                     }

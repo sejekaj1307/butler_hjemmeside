@@ -90,7 +90,7 @@
   padding: 30px 0;
   width: 27vw;
   min-width: 400px;
-  margin: 14vh auto;
+  margin: auto;
   background-color: #fff;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -566,7 +566,7 @@
 }
 
 .employee_list .employee_list_header .employee_mobile_headers .employee_name_header, .employee_list .employee_list_header .case_mobile_headers .employee_name_header, .employee_list .machine_list_header .employee_mobile_headers .employee_name_header, .employee_list .machine_list_header .case_mobile_headers .employee_name_header, .employee_list .external_list_header .employee_mobile_headers .employee_name_header, .employee_list .external_list_header .case_mobile_headers .employee_name_header, .employee_list .case_list_header .employee_mobile_headers .employee_name_header, .employee_list .case_list_header .case_mobile_headers .employee_name_header, .employee_list .task_list_header .employee_mobile_headers .employee_name_header, .employee_list .task_list_header .case_mobile_headers .employee_name_header, .external_list .employee_list_header .employee_mobile_headers .employee_name_header, .external_list .employee_list_header .case_mobile_headers .employee_name_header, .external_list .machine_list_header .employee_mobile_headers .employee_name_header, .external_list .machine_list_header .case_mobile_headers .employee_name_header, .external_list .external_list_header .employee_mobile_headers .employee_name_header, .external_list .external_list_header .case_mobile_headers .employee_name_header, .external_list .case_list_header .employee_mobile_headers .employee_name_header, .external_list .case_list_header .case_mobile_headers .employee_name_header, .external_list .task_list_header .employee_mobile_headers .employee_name_header, .external_list .task_list_header .case_mobile_headers .employee_name_header, .machine_list .employee_list_header .employee_mobile_headers .employee_name_header, .machine_list .employee_list_header .case_mobile_headers .employee_name_header, .machine_list .machine_list_header .employee_mobile_headers .employee_name_header, .machine_list .machine_list_header .case_mobile_headers .employee_name_header, .machine_list .external_list_header .employee_mobile_headers .employee_name_header, .machine_list .external_list_header .case_mobile_headers .employee_name_header, .machine_list .case_list_header .employee_mobile_headers .employee_name_header, .machine_list .case_list_header .case_mobile_headers .employee_name_header, .machine_list .task_list_header .employee_mobile_headers .employee_name_header, .machine_list .task_list_header .case_mobile_headers .employee_name_header, .case_list .employee_list_header .employee_mobile_headers .employee_name_header, .case_list .employee_list_header .case_mobile_headers .employee_name_header, .case_list .machine_list_header .employee_mobile_headers .employee_name_header, .case_list .machine_list_header .case_mobile_headers .employee_name_header, .case_list .external_list_header .employee_mobile_headers .employee_name_header, .case_list .external_list_header .case_mobile_headers .employee_name_header, .case_list .case_list_header .employee_mobile_headers .employee_name_header, .case_list .case_list_header .case_mobile_headers .employee_name_header, .case_list .task_list_header .employee_mobile_headers .employee_name_header, .case_list .task_list_header .case_mobile_headers .employee_name_header, .task_list .employee_list_header .employee_mobile_headers .employee_name_header, .task_list .employee_list_header .case_mobile_headers .employee_name_header, .task_list .machine_list_header .employee_mobile_headers .employee_name_header, .task_list .machine_list_header .case_mobile_headers .employee_name_header, .task_list .external_list_header .employee_mobile_headers .employee_name_header, .task_list .external_list_header .case_mobile_headers .employee_name_header, .task_list .case_list_header .employee_mobile_headers .employee_name_header, .task_list .case_list_header .case_mobile_headers .employee_name_header, .task_list .task_list_header .employee_mobile_headers .employee_name_header, .task_list .task_list_header .case_mobile_headers .employee_name_header {
-  width: 80%;
+  width: 45%;
 }
 
 .employee_list .employee_list_header .employee_all_headers, .employee_list .employee_list_header .machines_all_headers, .employee_list .employee_list_header .external_all_headers, .employee_list .employee_list_header .case_all_headers, .employee_list .employee_list_header .task_all_headers, .employee_list .machine_list_header .employee_all_headers, .employee_list .machine_list_header .machines_all_headers, .employee_list .machine_list_header .external_all_headers, .employee_list .machine_list_header .case_all_headers, .employee_list .machine_list_header .task_all_headers, .employee_list .external_list_header .employee_all_headers, .employee_list .external_list_header .machines_all_headers, .employee_list .external_list_header .external_all_headers, .employee_list .external_list_header .case_all_headers, .employee_list .external_list_header .task_all_headers, .employee_list .case_list_header .employee_all_headers, .employee_list .case_list_header .machines_all_headers, .employee_list .case_list_header .external_all_headers, .employee_list .case_list_header .case_all_headers, .employee_list .case_list_header .task_all_headers, .employee_list .task_list_header .employee_all_headers, .employee_list .task_list_header .machines_all_headers, .employee_list .task_list_header .external_all_headers, .employee_list .task_list_header .case_all_headers, .employee_list .task_list_header .task_all_headers, .external_list .employee_list_header .employee_all_headers, .external_list .employee_list_header .machines_all_headers, .external_list .employee_list_header .external_all_headers, .external_list .employee_list_header .case_all_headers, .external_list .employee_list_header .task_all_headers, .external_list .machine_list_header .employee_all_headers, .external_list .machine_list_header .machines_all_headers, .external_list .machine_list_header .external_all_headers, .external_list .machine_list_header .case_all_headers, .external_list .machine_list_header .task_all_headers, .external_list .external_list_header .employee_all_headers, .external_list .external_list_header .machines_all_headers, .external_list .external_list_header .external_all_headers, .external_list .external_list_header .case_all_headers, .external_list .external_list_header .task_all_headers, .external_list .case_list_header .employee_all_headers, .external_list .case_list_header .machines_all_headers, .external_list .case_list_header .external_all_headers, .external_list .case_list_header .case_all_headers, .external_list .case_list_header .task_all_headers, .external_list .task_list_header .employee_all_headers, .external_list .task_list_header .machines_all_headers, .external_list .task_list_header .external_all_headers, .external_list .task_list_header .case_all_headers, .external_list .task_list_header .task_all_headers, .machine_list .employee_list_header .employee_all_headers, .machine_list .employee_list_header .machines_all_headers, .machine_list .employee_list_header .external_all_headers, .machine_list .employee_list_header .case_all_headers, .machine_list .employee_list_header .task_all_headers, .machine_list .machine_list_header .employee_all_headers, .machine_list .machine_list_header .machines_all_headers, .machine_list .machine_list_header .external_all_headers, .machine_list .machine_list_header .case_all_headers, .machine_list .machine_list_header .task_all_headers, .machine_list .external_list_header .employee_all_headers, .machine_list .external_list_header .machines_all_headers, .machine_list .external_list_header .external_all_headers, .machine_list .external_list_header .case_all_headers, .machine_list .external_list_header .task_all_headers, .machine_list .case_list_header .employee_all_headers, .machine_list .case_list_header .machines_all_headers, .machine_list .case_list_header .external_all_headers, .machine_list .case_list_header .case_all_headers, .machine_list .case_list_header .task_all_headers, .machine_list .task_list_header .employee_all_headers, .machine_list .task_list_header .machines_all_headers, .machine_list .task_list_header .external_all_headers, .machine_list .task_list_header .case_all_headers, .machine_list .task_list_header .task_all_headers, .case_list .employee_list_header .employee_all_headers, .case_list .employee_list_header .machines_all_headers, .case_list .employee_list_header .external_all_headers, .case_list .employee_list_header .case_all_headers, .case_list .employee_list_header .task_all_headers, .case_list .machine_list_header .employee_all_headers, .case_list .machine_list_header .machines_all_headers, .case_list .machine_list_header .external_all_headers, .case_list .machine_list_header .case_all_headers, .case_list .machine_list_header .task_all_headers, .case_list .external_list_header .employee_all_headers, .case_list .external_list_header .machines_all_headers, .case_list .external_list_header .external_all_headers, .case_list .external_list_header .case_all_headers, .case_list .external_list_header .task_all_headers, .case_list .case_list_header .employee_all_headers, .case_list .case_list_header .machines_all_headers, .case_list .case_list_header .external_all_headers, .case_list .case_list_header .case_all_headers, .case_list .case_list_header .task_all_headers, .case_list .task_list_header .employee_all_headers, .case_list .task_list_header .machines_all_headers, .case_list .task_list_header .external_all_headers, .case_list .task_list_header .case_all_headers, .case_list .task_list_header .task_all_headers, .task_list .employee_list_header .employee_all_headers, .task_list .employee_list_header .machines_all_headers, .task_list .employee_list_header .external_all_headers, .task_list .employee_list_header .case_all_headers, .task_list .employee_list_header .task_all_headers, .task_list .machine_list_header .employee_all_headers, .task_list .machine_list_header .machines_all_headers, .task_list .machine_list_header .external_all_headers, .task_list .machine_list_header .case_all_headers, .task_list .machine_list_header .task_all_headers, .task_list .external_list_header .employee_all_headers, .task_list .external_list_header .machines_all_headers, .task_list .external_list_header .external_all_headers, .task_list .external_list_header .case_all_headers, .task_list .external_list_header .task_all_headers, .task_list .case_list_header .employee_all_headers, .task_list .case_list_header .machines_all_headers, .task_list .case_list_header .external_all_headers, .task_list .case_list_header .case_all_headers, .task_list .case_list_header .task_all_headers, .task_list .task_list_header .employee_all_headers, .task_list .task_list_header .machines_all_headers, .task_list .task_list_header .external_all_headers, .task_list .task_list_header .case_all_headers, .task_list .task_list_header .task_all_headers {
@@ -629,7 +629,7 @@
   display: -ms-flexbox;
   display: flex;
   width: 45% !important;
-  padding: 0 10px;
+  padding: 0 15px 0 0;
 }
 
 .case_nr_header, .case_nr, .employee_name {
@@ -670,6 +670,10 @@
   }
   .dropdown_inline_headers {
     display: none;
+  }
+  .case_dropdown_mobile p, .external_dropdown_mobile p, .machine_dropdown_mobile p,
+  .external_dropdown_mobile p, .employee_dropdown_mobile p, .task_dropdown_mobile p, .task_dropdown_mobile p, .case_dropdown_mobile {
+    width: initial;
   }
   /*---------------------------
             Employees 1200
@@ -755,10 +759,10 @@
     width: 5vw !important;
   }
   .employee_phone, .employee_phone_header {
-    width: 7vw !important;
+    width: 6.5vw !important;
   }
   .employee_email, .employee_email_header {
-    width: 21vw;
+    width: 21vw !important;
   }
   .employee_emergency, .employee_emergency_header {
     width: 14vw !important;
@@ -803,7 +807,7 @@
     width: 9vw !important;
   }
   .case_location_header, .case_location {
-    width: 18vw !important;
+    width: 16vw !important;
   }
   .case_est_start_header, .case_est_start, .case_deadline_header, .case_deadline, .case_archived_at_header, .case_archived_at {
     width: 10vw !important;
@@ -994,7 +998,7 @@
     padding-right: 5px;
     text-align: end;
   }
-  .describe_case_info_container .top_inputs_container .small_inputs input {
+  .describe_case_info_container .top_inputs_container .small_inputs input, .describe_case_info_container .top_inputs_container .small_inputs select {
     width: 70%;
     height: 25px;
     border-radius: 5px;

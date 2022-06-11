@@ -103,13 +103,13 @@
                     if($_REQUEST['knap'] == "Opret")
                     {
                         $location = $_REQUEST['element_location_c'];
-                        
                         $element = $_REQUEST['element_c'];
                         $quantity = $_REQUEST['quantity_c'];
                         $min_quantity = $_REQUEST['min_quantity_c'];
                         $comment = $_REQUEST['comment_c'];
-                        $sql = $conn->prepare("insert into storage (element_location, element, quantity, min_quantity, comment) values (?, ?, ?, ?, ?)");
-                        $sql->bind_param("ssiis", $location, $element, $quantity, $min_quantity, $comment);
+                        $updated_initials = $_SESSION['logged_in_user_global']['initials'];
+                        $sql = $conn->prepare("insert into storage (element_location, element, quantity, min_quantity, comment, updated_initials) values (?, ?, ?, ?, ?, ?)");
+                        $sql->bind_param("ssiiss", $location, $element, $quantity, $min_quantity, $comment, $updated_initials);
                         $sql->execute();
                         
                     }
