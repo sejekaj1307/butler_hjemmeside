@@ -1,7 +1,7 @@
 /*-------------------------------
             Lists
 -------------------------------*/
-.employee_list, .external_list, .machine_list, .case_list, .task_list { //Aller yderste der har alt
+.employee_list, .external_list, .machine_list, .case_list, .task_list, .certificate_list { //Aller yderste der har alt
     flex-direction: column;
     p {
         padding: 10px 0 10px 15px;
@@ -114,7 +114,7 @@
     /*---------------------------
             Employees 1200
     ---------------------------*/
-    .employee_list, .external_list, .machine_list, .case_list, .task_list {
+    .employee_list, .external_list, .machine_list, .case_list, .task_list, .certificate_list {
         p {
             padding: 17px 0;
         }

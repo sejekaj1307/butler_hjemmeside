@@ -297,27 +297,27 @@
                             $list_order_id = 1;
                             while($row = $result->fetch_assoc())
                             {
-                            //statuscolor
-                            if($row['status'] == "Ikke startet") {
-                                $status_color = "#FFA2A2";
-                            } else if ($row['status'] == "Startet") {
-                                $status_color = "#FFD391";
-                            }else if ($row['status'] == "Venter") {
-                                $status_color = "#FFFC9E";
-                            } else {
-                                $status_color = "#BBFFB9";
-                            }
-                            //list content
+                                //statuscolor
+                                if($row['status'] == "Ikke startet") {
+                                    $status_color = "#FFA2A2";
+                                } else if ($row['status'] == "Startet") {
+                                    $status_color = "#FFD391";
+                                }else if ($row['status'] == "Venter") {
+                                    $status_color = "#FFFC9E";
+                                } else {
+                                    $status_color = "#BBFFB9";
+                                }
+                                //list content
                                 echo '<div class="task_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'task_dropdown_mobile'" .') " style="border-left: 5px solid ' . $status_color . '">';
                                     echo '<div class="task_information"> ';
                                         echo '<p class="task_name">' . $row["task_title"] . '</p>';
                                     echo '</div>';
                                     echo '<div class="task_dropdown_mobile">';
-                                        echo '<p class="task_prority">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["priority"] . '</p>';
-                                        echo '<p class="task_status">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["status"] . '</p>';
-                                        echo '<p class="task_deadline">' . '<span class="dropdown_inline_headers">Seneste </span>'  . date_format(new DateTime($row["deadline"]), 'd-m-y') . '</p>';
+                                        echo '<p class="task_prority">' . '<span class="dropdown_inline_headers">Prioritet </span>'  . $row["priority"] . '</p>';
+                                        echo '<p class="task_status">' . '<span class="dropdown_inline_headers">Status </span>'  . $row["status"] . '</p>';
+                                        echo '<p class="task_deadline">' . '<span class="dropdown_inline_headers">Deadline </span>'  . date_format(new DateTime($row["deadline"]), 'd-m-y') . '</p>';
                                         echo '<p class="task_updated_initials">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["updated_initials"] . '</p>';
-                                        echo '<p class="task_comment">' . '<span class="dropdown_inline_headers">Seneste </span>'  . $row["comment"] . '</p>';
+                                        echo '<p class="task_comment">' . '<span class="dropdown_inline_headers">Bemærkning </span>'  . $row["comment"] . '</p>';
                                     echo '</div>';
                                     //buttons to show pop up modals
                                     echo '<div class="button_container">';

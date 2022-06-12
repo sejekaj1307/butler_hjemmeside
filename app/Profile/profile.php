@@ -5,6 +5,8 @@
     //connection to database
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
 
+    $cert_status = ""; //This variable has to be defined for the html to work correctly. It is for "Create new" priority drop-down menu.
+
     //If the user is trying go around the log in process, redirect the user back to the index.php 
     if($_SESSION['logged_in_user_global']['last_name'] == ""){
         echo "<script> window.location.href = '../index.php'; </script>";
@@ -85,7 +87,8 @@
                 }
                 //variables to show or hide pop-up modals
                 $display_edit_profile_pop_up = "none";
-
+                $display_create_cert_pop_up = "none";
+                $display_update_cert_pop_up = "none";
 
                     // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                     if($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -196,6 +199,9 @@
 
                             $display_edit_profile_pop_up = "none";
                         }
+                            /*-------------------------------
+                                    CRUD certificates
+                            --------------------------------*/
                     }
                 ?>
 
@@ -249,10 +255,70 @@
                 <div class="profile_weeklies">
                     Ugeseddler kommer senere
                 </div>
-                <!-- certificates container -->
-                <div class="certificates">
-                    Certifikater kommer senere
-                </div>
+            </div>
+
+            <!-- -----------------------
+                Certificates TABLE
+            ------------------------ -->
+            <div class="certificate_list">
+                <div class="add_new_link"><img src="../img/kryds.png" alt="plus"><input type="submit" name="knap" value="Opret nyt certifikat"></div>
+                <?php 
+                    //SQl query to aquire all data from task where archived_at field in db is empty
+                    //list headers
+                    $sql = "select * from certificates";
+                    $result = $conn->query($sql);
+                    echo '<div class="task_list">';
+
+                        echo '<div class="task_list_header">';
+                            echo '<div class="task_mobile_headers">';
+                                echo '<p class="task_name_header">Certifikat navn</p>';
+                            echo '</div>';
+                            echo '<div class="task_all_headers">';
+                                echo '<p class="task_prority_header">Status</p>';
+                                echo '<p class="task_status_header">Udstedt</p>';
+                                echo '<p class="task_deadline_header">Deadline</p>';
+                                echo '<p class="button_container_header">Rediger</p>';
+                            echo '</div>';
+                        echo '</div>';
+
+                        //if og while her 
+                        if($result->num_rows > 0)
+                        {
+                            $list_order_id = 1;
+                            while($row = $result->fetch_assoc())
+                            {
+                                //statuscolor
+                                if($row['cert_status'] == "Udløbet") {
+                                    $status_color = "#FFA2A2";
+                                } else if ($row['cert_status'] == "Aktiv") {
+                                    $status_color = "#BBFFB9";
+                                }else if ($row['cert_status'] == "Ved at udløbe") {
+                                    $status_color = "#FFF06B";
+                                }
+
+
+
+                                //list content
+                                echo '<div class="task_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'task_dropdown_mobile'" .') " style="border-left: 5px solid ' . $status_color . '">';
+                                    echo '<div class="task_information"> ';
+                                        echo '<p class="task_name">' . $row["cert_name"] . '</p>';
+                                    echo '</div>';
+                                    echo '<div class="task_dropdown_mobile">';
+                                        echo '<p class="task_prority">' . '<span class="dropdown_inline_headers">Status </span>'  . $row["cert_status"] . '</p>';
+                                        echo '<p class="task_deadline">' . '<span class="dropdown_inline_headers">Udstedt </span>'  . date_format(new DateTime($row["cert_taken"]), 'd-m-y') . '</p>';
+                                        echo '<p class="task_deadline">' . '<span class="dropdown_inline_headers">Deadline </span>'  . date_format(new DateTime($row["cert_deadline"]), 'd-m-y') . '</p>';
+                                    echo '</div>';
+                                    //buttons to show pop up modals
+                                    echo '<div class="button_container">';
+                                        echo '<button type="submit" name="knap" value="read_' . $row['id'] . '"><img src="../img/edit.png" alt="Employee icon" class="edit_icons"<button>';
+                                        echo '<button type="submit" name="knap" value="delete_' . $row['id'] . '"><img src="../img/trash.png" alt="Employee icon" class="edit_icons"<button>';
+                                    echo '</div>';
+                                echo '</div>'; 
+                                $list_order_id += 1;
+                            }   
+                        }
+                    echo '</div>';
+                ?>
             </div>
 
 
@@ -262,7 +328,7 @@
             ?>
 
         
-
+            
             <!----------------------------
                     Edit profile pop-op
             ----------------------------->
@@ -282,6 +348,54 @@
                     <div class="pop-up-row"><p>Upload billede : </p><input type="file" name="image" value="Upload"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+                    </div>
+                </div>
+            </div>
+            <!-----------------------------------
+                Create new Certificates pop-op
+            ------------------------------------>
+            <div class="pop_up_modal_container" style="display: <?php echo $display_create_cert_pop_up ?>">
+                <div class="pop_up_modal" >
+                    <h3>Opret nyt certifikat</h3>
+                    <div class="pop-up-row"><p>Certifikat navn : </p><input autocomplete="off" type="text" name="cert_name_c" value="<?php echo isset($cert_name) ? $cert_name : '' ?>"></div>
+                    <div class="pop-up-row">
+                        <p>Status : </p>
+                        <select name="cert_status_c">
+                            <option <?php echo $cert_status == "Udløbet" ? 'selected' : '' ?> value="Udløbet">Udløbet</option>
+                            <option <?php echo $cert_status == "Aktiv" ? 'selected' : '' ?> value="Aktiv">Aktiv</option>
+                            <option <?php echo $cert_status == "Ved at udløbe" ? 'selected' : '' ?> value="Ved at udløbe">Ved at udløbe</option>
+                        </select>
+                    </div>
+                    <div class="pop-up-row"><p>Udstedt : </p><input autocomplete="off" type="date" name="cert_taken_c" value="<?php echo isset($cert_taken) ? $cert_taken : '' ?>"></div>
+                    <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="cert_deadline_c" value="<?php echo isset($cert_deadline) ? $cert_deadline : '' ?>"></div>
+                    <div class="pop-up-row"><p>Link : </p><input type="text" name="cert_link_c" maxlength="500" value="<?php echo isset($cert_link) ? $cert_link : '' ?>"></div>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+                    </div>
+                </div>
+            </div>
+            <!--------------------------------
+                update certificates pop-op
+            --------------------------------->
+            <div class="pop_up_modal_container" style="display: <?php echo $display_update_cert_pop_up ?>">
+                <div class="pop_up_modal" >
+                    <h3>Opdater certifikat</h3>
+                    <div class="pop-up-row"><p>Certifikat navn : </p><input autocomplete="off" type="text" name="cert_name_u" value="<?php echo isset($cert_name) ? $cert_name : '' ?>"></div>
+                    <div class="pop-up-row">
+                        <p>Status : </p>
+                        <select name="cert_status_u">
+                            <option <?php echo $cert_status == "Udløbet" ? 'selected' : '' ?> value="Udløbet">Udløbet</option>
+                            <option <?php echo $cert_status == "Aktiv" ? 'selected' : '' ?> value="Aktiv">Aktiv</option>
+                            <option <?php echo $cert_status == "Ved at udløbe" ? 'selected' : '' ?> value="Ved at udløbe">Ved at udløbe</option>
+                        </select>
+                    </div>
+                    <div class="pop-up-row"><p>Udstedt : </p><input autocomplete="off" type="date" name="cert_taken_u" value="<?php echo isset($cert_taken) ? $cert_taken : '' ?>"></div>
+                    <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="cert_deadline_u" value="<?php echo isset($cert_deadline) ? $cert_deadline : '' ?>"></div>
+                    <div class="pop-up-row"><p>Link : </p><input type="text" name="cert_link_u" maxlength="500" value="<?php echo isset($cert_link) ? $cert_link : '' ?>"></div>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
                     </div>
                 </div>
