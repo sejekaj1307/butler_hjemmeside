@@ -3,6 +3,8 @@
     session_start();
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
 
+    date_default_timezone_set('Europe/Copenhagen');
+
     //Initilize arrays to hold every possible time registration input field
     $time_reg_id = array();
     $time_reg_input_types = array();
@@ -92,7 +94,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/web/styles.css">
-    <title>Time_registration</title>
+    <title>Tidsregistrering</title>
 </head>
 
 <body>
@@ -136,7 +138,7 @@
                     }
                     //No matter what cases the user is associated with, they should always see the internal_case tab. If it is the only one, select it
                     if(empty($selected_case)){
-                        echo '<li><a href="../Time_registration/internal_case.php" class="active_site_dropdown">2022 intern sag</a></li>';
+                         echo "<script> window.location.href = 'internal_case.php'; </script>"; 
                     }
                     else {
                         echo '<li><a href="../Time_registration/internal_case.php">2022 intern sag</a></li>';
