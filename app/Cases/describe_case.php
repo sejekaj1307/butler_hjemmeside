@@ -117,7 +117,7 @@
             <li><a href="../Employees/employees.php">Medarbejder</a></li>
             <li><a href="../Calender/machines_calender.php">Kalender</a></li>
             <li><a href="../Cases/cases.php" class="active-main-site">Sager</a></li>
-            <li><a href="../Time_registration/time_registration.php">Tidsregistrering</a></li>
+            <li><a href="../Time_registration/internal_case.php">Tidsregistrering</a></li>
             <li><a href="../Tasks/tasks.php">Opgaver</a></li>
             <li><a href="../Storage/storage.php">Lager styring</a></li>
         </ul>
@@ -217,11 +217,10 @@
                     {
                         if(findes($id, $conn)) //updatea all of the chosen objects elements to database
                         {
-                            $sql = $conn->prepare("update cases set client = ?, client_case_nr = ?, case_nr = ?, case_responsible = ?, location = ?, zip_code = ?, job_type = ?, machines = ?, employees = ?, comment_road_info = ?, comment_extra_work = ?, status = ?, est_start_date = ?, est_end_date = ? where id = ?");
-                            $sql->bind_param("ssssssssssssssi", 
+                            $sql = $conn->prepare("update cases set client = ?, client_case_nr = ?, case_responsible = ?, location = ?, zip_code = ?, job_type = ?, machines = ?, employees = ?, comment_road_info = ?, comment_extra_work = ?, status = ?, est_start_date = ?, est_end_date = ? where id = ?");
+                            $sql->bind_param("sssssssssssssi", 
                                 $_REQUEST['client'],
                                 $_REQUEST['client_case_nr'],
-                                $_REQUEST['case_nr'],
                                 $_REQUEST['case_responsible'],
                                 $_REQUEST['location'],
                                 $_REQUEST['zip_code'],
@@ -242,7 +241,7 @@
                         $id,
                         $_REQUEST['client'],
                         $_REQUEST['client_case_nr'],
-                        $_REQUEST['case_nr'],
+                        $_GET['case_nr'],
                         $_REQUEST['case_responsible'],
                         $_REQUEST['location'],
                         $_REQUEST['zip_code'],
@@ -291,7 +290,6 @@
                     <div class="top_inputs_container">
                         <div class="small_inputs"><p>Kunde :</p><input autocomplete="off" name="client" type="text" value="<?php echo $this_case->get_client();?>"></div>
                         <div class="small_inputs"><p>Kundesag nr :</p><input autocomplete="off" name="client_case_nr" type="text" value="<?php echo $this_case->get_client_case_nr();?>"></div>
-                        <div class="small_inputs"><p>Intern sag nr. :</p><input autocomplete="off" name="case_nr" type="text" value="<?php echo $this_case->get_case_nr();?>"></div>
                         <div class="small_inputs">
                             <p>Ansvarlig :</p>
                             <!-- <input autocomplete="off" name="case_responsible" type="text" value="<?php echo $this_case->get_case_responsible();?>"> -->
@@ -303,6 +301,20 @@
                                 ?>
                             </select>
                         </div>
+                        <div id="list1" class="dropdown-check-list" tabindex="100">
+                            <div class="small_inputs tester"><p>Boreforemand :</p>
+                                <div class="dropdown list1">
+                                    <p class="dropbtn">Boreformand</p>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <?php
+                                            for($i=0; $i<count($employees_initials_list); $i++){ //employee_leader = boreformand
+                                                echo '<li><input name="employee_leader_checkbox_' . $i . '" type="checkbox" ' . ($this_row_employee_leader_json[$employees_initials_list[$i]] ? 'checked' : '') . '/>' . $employees_initials_list[$i] . '</li>';
+                                            }
+                                        ?> 
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>  
                         <div class="large_inputs"><p>Tilkørsel - pladsforhold, adgang, tid, støj, mm.</p><textarea name="comment_road_info" type="subject"><?php echo $this_case->get_comment_road_info();?></textarea></div>
                     </div>
                     <div class="top_inputs_container">
@@ -336,21 +348,6 @@
                                 </div>
                             </div>  
                         </div>  
-                        <div id="list1" class="dropdown-check-list" tabindex="100">
-                            <div class="small_inputs tester"><p>Boreforemand :</p>
-                                <div class="dropdown list1">
-                                    <p class="dropbtn">Boreformand</p>
-                                    <div id="myDropdown" class="dropdown-content">
-                                        <?php
-                                            for($i=0; $i<count($employees_initials_list); $i++){ //employee_leader = boreformand
-                                                echo '<li><input name="employee_leader_checkbox_' . $i . '" type="checkbox" ' . ($this_row_employee_leader_json[$employees_initials_list[$i]] ? 'checked' : '') . '/>' . $employees_initials_list[$i] . '</li>';
-                                            }
-                                        ?> 
-                                    </div>
-                                </div>
-                            </div>  
-                        </div>  
-
                         <div class="large_inputs"><p>Ekstra arbejde/ventetid</p><textarea name="comment_extra_work" type="subject"><?php echo $this_case->get_comment_extra_work();?></textarea></div>
                     </div>
                 </div>

@@ -27,7 +27,7 @@
             <li><a href="../Employees/employees.php">Medarbejder</a></li>
             <li><a href="../Calender/machines_calender.php" class="active-main-site">Kalender</a></li>
             <li><a href="../Cases/cases.php">Sager</a></li>
-            <li><a href="../Time_registration/time_registration.php">Tidsregistrering</a></li>
+            <li><a href="../Time_registration/internal_case.php">Tidsregistrering</a></li>
             <li><a href="../Tasks/tasks.php">Opgaver</a></li>
             <li><a href="../Storage/storage.php">Lager styring</a></li>
         </ul>
