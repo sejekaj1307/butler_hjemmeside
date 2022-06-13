@@ -110,11 +110,11 @@
                         $email_private = $_REQUEST['email_private_c'];
                         $emergency_name = $_REQUEST['emergency_name_c'];
                         $emergency_phone = $_REQUEST['emergency_phone_c'];
+                        $colour = $_REQUEST['html5colorpicker']; 
                         $picture_path = "";
-                        $colour = "";
                         $admin_status = "";
                         $password = "";
-                        
+                       
                         $sql = $conn->prepare("insert into employees (first_name, last_name, initials, phone, phone_private, email, email_private, emergency_name, emergency_phone, picture_path, colour, admin_status, password) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                         $sql->bind_param("sssssssssssss", $first_name, $last_name, $initials, $phone, $phone_private, $email, $email_private, $emergency_name, $emergency_phone, $picture_path, $colour, $admin_status, $password);
                         $sql->execute();
@@ -303,6 +303,8 @@
                     <div class="pop-up-row"><p>Privat email : </p><input type="text" name="email_private_c" value="<?php echo isset($email_private) ? $email_private : '' ?>"></div>
                     <div class="pop-up-row"><p>Kontaktperson : </p><input type="text" name="emergency_name_c" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Kontaktperson tlf. : </p><input type="text" name="emergency_phone_c" value="<?php echo isset($emergency_phone) ? $emergency_phone : '' ?>"></div>
+                    <div class="pop-up-row"><p>Medarbejder farve : </p><input type="color" name="html5colorpicker" onchange="clickColor(0, -1, -1, 5)"></div>
+                    <div class="pop-up-row"><p>Upload billede : </p><input type="file" name="image" value="Upload"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
