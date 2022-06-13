@@ -10,15 +10,13 @@
 }
 
 .login_container {
+        @include flex_column_center();
         background-color: rgba(255, 255, 255, 0.5);
         box-shadow: 5px 5px 20px rgb(68, 68, 68);
         width: 80vw;
         margin: 20% auto;
-        display: flex;
-        flex-direction: column;
         padding: 50px 20px;
-        align-items: center;
-        justify-content: center;
+
         .login_header {
                 font-size: 30px;
                 color: #202020;

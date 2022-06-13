@@ -4,8 +4,7 @@
 .time_registration {
     .time_registration_navbar_container, .in_house_time_navbar {
         border-bottom: 3px solid $th_border_bottom;
-        display: flex;
-        justify-content: space-between;
+        @include flex_space_between();
         height: 45px;
         .time_registration_navbar {
             display: flex;
@@ -33,22 +32,17 @@
             }
         }
         .update_button {
+            @include link_white($link_color:#fff);
+            @include flex_row_center();
             border: none;
-            height: 100%;
-            width: 100%;
             max-width: 170px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             background-color: $button_color_green;
-            color: #fff;
-            font-size: 14px;
             cursor: pointer;
             &:hover {
                 background-color: $button_color_green_hover;
             }
+        }
     }
-}
     //Time reg container
     .time_reg_basics_container {
         border: 2px solid $tr_border_bottom;
@@ -65,14 +59,12 @@
         }
     }
     .daily_reports_data_row {
-        display: flex;
-        justify-content: space-between;
+        @include flex_space_between();
         margin: 15px 0;
         .label_and_input_container {
             width: 95%;
-            display: flex;
+            @include flex_space_between();
             align-items: center;
-            justify-content: space-between;
             padding-right: 15px;
             .row_label {
                 width: 40%;
@@ -107,24 +99,16 @@
                 cursor: pointer;
             }
         }
-
-        
     }
 }
 
 
 /*Tablet - S */
 @media screen and(min-width: 900px) {
-    .label_and_input_container {
+    .label_and_input_container, .input_container .row_input, .input_container .row_input_other {
         .row_label {
             width: 30%;
             max-width: 140px;
-        }
-        .input_container {
-            .row_input, .row_input_other {
-                width: 30%;
-                max-width: 140px;
-            }
         }
     }
 }

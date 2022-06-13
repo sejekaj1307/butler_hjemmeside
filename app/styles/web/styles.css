@@ -121,6 +121,13 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -145,10 +152,14 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 70%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  width: 70%;
   margin: 40px 0 20px 0;
 }
 
@@ -198,6 +209,12 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100%;
 }
 
@@ -213,6 +230,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -220,12 +241,12 @@
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  height: 30px;
+  height: 35px;
   background-color: #fff;
-  border: 2px solid #C6D7FF;
+  border: 2px solid #dae6ff;
   border-radius: 7px;
-  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.068);
-          box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.068);
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .pop_up_modal .dropdown ul li button:hover {
@@ -922,8 +943,8 @@
 /*Lille pc - M*/
 @media screen and (min-width: 1200px) {
   /*---------------------------------
-        Describe case
----------------------------------*/
+            Describe case
+    ---------------------------------*/
   .describe_case_link {
     display: -webkit-box !important;
     display: -ms-flexbox !important;
@@ -933,10 +954,14 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    border-bottom: 2px solid #5068CB;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    border-bottom: 2px solid #5068CB;
   }
   .describe_case_navbar .button_container {
     display: -webkit-box;
@@ -945,8 +970,6 @@
   }
   .describe_case_navbar .button_container button {
     background: none;
-    margin: 0;
-    padding: 0;
     border: 1px solid #B2C7F9;
     width: 130px;
     height: 45px;
@@ -990,11 +1013,11 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background-color: #EEF2FD;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    background-color: #EEF2FD;
     padding: 40px 20px 30px 20px;
   }
   .describe_case_info_container h1 {
@@ -1005,6 +1028,10 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
@@ -1017,10 +1044,14 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    padding: 10px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    padding: 10px;
   }
   .describe_case_info_container .top_inputs_container .small_inputs p {
     width: 30%;
@@ -1038,8 +1069,6 @@
   }
   .describe_case_info_container .top_inputs_container .large_inputs textarea {
     width: 100%;
-    min-width: 100%;
-    max-width: 100%;
     height: 100px;
     max-height: 200px;
     border-radius: 5px;
@@ -1059,6 +1088,10 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -1070,6 +1103,10 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -1088,6 +1125,10 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -1109,6 +1150,10 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -1152,6 +1197,10 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -1183,6 +1232,12 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: initial;
+      -ms-flex-align: initial;
+          align-items: initial;
 }
 
 .profile_page .pic_and_info_container .profile_pic_container {
@@ -1199,23 +1254,26 @@
 
 .profile_page .pic_and_info_container .profile_pic_container .profile_pic {
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
 }
 
 .profile_page .pic_and_info_container .profile_pic_container .profile_color {
   width: 100%;
   height: 30px;
-  max-width: 400px;
+  max-width: 300px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #659265;
 }
 
 .profile_page .pic_and_info_container .profile_info {
@@ -1261,23 +1319,20 @@
 /*Tablet - S */
 @media screen and (min-width: 900px) {
   .profile_page .pic_and_info_container {
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
   }
   .profile_page .pic_and_info_container .profile_pic_container {
-    width: 30%;
+    max-width: 350px;
     margin-bottom: 0;
   }
   .profile_page .pic_and_info_container .profile_info {
-    width: 65%;
+    width: 83%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1292,25 +1347,6 @@
 }
 
 /*Lille pc - M*/
-@media screen and (min-width: 1200px) {
-  .profile_page .pic_and_info_container {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-  }
-  .profile_page .pic_and_info_container .profile_pic_container {
-    width: 22%;
-    margin-bottom: 0;
-  }
-  .profile_page .pic_and_info_container .profile_info {
-    width: 75%;
-  }
-}
-
 /*Stor pc - L*/
 /*---------------------------------
     Time registration navbar
@@ -1320,6 +1356,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -1374,22 +1414,28 @@
 }
 
 .time_registration .time_registration_navbar_container .update_button, .time_registration .in_house_time_navbar .update_button {
-  border: none;
-  height: 100%;
-  width: 100%;
-  max-width: 170px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 17px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: none;
+  max-width: 170px;
   background-color: #149DB9;
-  color: #fff;
-  font-size: 14px;
   cursor: pointer;
 }
 
@@ -1418,6 +1464,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -1429,12 +1479,16 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-right: 15px;
 }
 
@@ -1481,11 +1535,7 @@
 
 /*Tablet - S */
 @media screen and (min-width: 900px) {
-  .label_and_input_container .row_label {
-    width: 30%;
-    max-width: 140px;
-  }
-  .label_and_input_container .input_container .row_input, .label_and_input_container .input_container .row_input_other {
+  .label_and_input_container .row_label, .input_container .row_input .row_label, .input_container .row_input_other .row_label {
     width: 30%;
     max-width: 140px;
   }
@@ -1504,25 +1554,30 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background: none;
-  border: 2px solid #D0DDFB;
-  min-width: 100px;
-  width: 150px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background: none;
+  border: 2px solid #D0DDFB;
+  min-width: 100px;
+  width: 150px;
 }
 
 .notification_list_page .notification_navbar button a {
   text-decoration: none;
   color: #000;
+  font-size: 17px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100% !important;
+  width: 100%;
   height: 100%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -1556,6 +1611,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -1573,10 +1632,14 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  width: 20%;
+  width: 12%;
   padding-left: 10px;
 }
 
@@ -1596,7 +1659,7 @@
     width: 78%;
   }
   .notification_list_page .notification_row .button_container {
-    width: 10%;
+    width: 10% !important;
   }
 }
 
@@ -1605,13 +1668,15 @@
   .notification_list_page .notification_row .notification_information {
     width: 85%;
   }
-  .notification_list_page .notification_row .button_container {
-    width: 5%;
-    max-width: 200px;
-  }
 }
 
 /*Stor pc - L*/
+@media screen and (min-width: 1600px) {
+  .notification_list_page .notification_row .button_container {
+    width: 5% !important;
+  }
+}
+
 /*---------------------------------
         Login page
 ---------------------------------*/
@@ -1622,11 +1687,6 @@
 }
 
 .login_container {
-  background-color: rgba(255, 255, 255, 0.5);
-  -webkit-box-shadow: 5px 5px 20px #444444;
-          box-shadow: 5px 5px 20px #444444;
-  width: 80vw;
-  margin: 20% auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1634,13 +1694,18 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 50px 20px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow: 5px 5px 20px #444444;
+          box-shadow: 5px 5px 20px #444444;
+  width: 80vw;
+  margin: 20% auto;
+  padding: 50px 20px;
 }
 
 .login_container .login_header {
@@ -1779,6 +1844,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -1940,6 +2009,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;

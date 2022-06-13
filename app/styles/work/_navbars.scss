@@ -1,13 +1,13 @@
 /*---------------------------
             Navbar
 ---------------------------*/
-    .navbar_container {
-        width: 100%;
-        position: absolute;
-        background-color: $main-nav;
-        display: flex;
-        flex-direction: column;
-        display: none;
+.navbar_container {
+    width: 100%;
+    position: absolute;
+    background-color: $main-nav;
+    display: flex;
+    flex-direction: column;
+    display: none;
     .navbar_top {
         height: $logged-in-height-s;  
         display: flex;
@@ -21,18 +21,13 @@
     }
     .navbar_mid {
         height: $nav_sec_height;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flex_row_center();
         .day_task_logo {
             width: 30%;
         }
     }
-
     .navbar_ul {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        @include flex_column_space_between();
         margin: 0 0 80px 0;
         padding-top: 50px;
         li {
@@ -50,7 +45,6 @@
             }
         }
     }
-
     .log_out_container {
         position: relative;
         bottom: 0;
@@ -72,9 +66,7 @@
           Masthead
 ---------------------------*/
 .sec-navbar-mobile {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    @include flex_column_space_between();
     .logged_in {
         min-height: $logged-in-height !important;
         height: $logged-in-height;
@@ -114,9 +106,7 @@
             height: 100%;
             width: 60px;
             margin-right: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include flex_row_center();
             cursor: pointer;
             .sec_nav_dropdown_arrow {
                 width: 22px;
@@ -191,12 +181,9 @@
         display: none;
     }
 
-
-
     /*---------------------------
             Masthead 900
     ---------------------------*/
-
     .site_container {          
         margin-left: $nav_with-s;
     }
@@ -248,12 +235,8 @@
 }
 
 
-
-
-
 /*Lille pc - M*/
 @media screen and(min-width: 1200px) {   
-
     /*---------------------------
                Navbar 1150
     ---------------------------*/

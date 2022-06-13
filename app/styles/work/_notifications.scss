@@ -1,36 +1,26 @@
-
 .notification_list_page {
     .notification_navbar {
         height: 40px;
         display: flex;
         border-bottom: 3px solid $th_border_bottom;
-    button {
-        display: flex;
-        background: none;
-        border: 2px solid $time_navbar_blue;
-        min-width: 100px;
-        width: 150px;
-        justify-content: center;
-        align-items: center;
-        a {
-            text-decoration: none;
-            color: #000;
-            display: flex;
-            width: 100% !important;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-        }
+        button {
+            @include flex_row_center();
+            background: none;
+            border: 2px solid $time_navbar_blue;
+            min-width: 100px;
+            width: 150px;
+            a {
+                @include link_center($link_color:#000);
+            }
             &:hover {
                 cursor: pointer;
                 background-color: $time_navbar_blue;        
             }
+        }
+        .notification_navbar_active {
+            background-color: $time_navbar_blue;
+        }
     }
-    .notification_navbar_active {
-        background-color: $time_navbar_blue;
-    }
-}
-
     .notification_list {
         border: 1px solid $light-sec-nav-border-bottom;
         .notification_date{
@@ -41,20 +31,16 @@
         }
     }
     .notification_row {
-        display: flex;
-        justify-content: space-between;
-
+        @include flex_space_between();
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.116);
         padding: 10px 15px;
         .notification_information {
         padding: 20px 0;
         width: 78%;
-
         }
         .button_container {
-            display: flex;
-            justify-content: space-between;
-            width: 20%;
+            @include flex_space_between();
+            width: 12%;
             padding-left: 10px;
             button {
                 background: none;
@@ -68,23 +54,18 @@
     }
 }
 
-
-
 /*Tablet - S */
 @media screen and(min-width: 900px) {
-
     .notification_list_page {
         .notification_row {
             .notification_information {
                 width: 78%;
             }
             .button_container {
-                width: 10%;
+                width: 10% !important;
             }
         }
     }
-
-
 }
 
 /*Lille pc - M*/
@@ -94,19 +75,19 @@
             .notification_information {
                 width: 85%;
             }
-            .button_container {
-                width: 5%; 
-                max-width: 200px;
-            }
         }
     }
-
 }
-
 
 /*Stor pc - L*/
 @media screen and(min-width: 1600px) {
-
+.notification_list_page {
+        .notification_row {
+            .button_container {
+                width: 5% !important;
+            }
+        }
+    }
 }
 
 

@@ -30,8 +30,7 @@
     .pop-up-row {
         margin: 10px 0;
         width: 63%;
-        display: flex;
-        align-items: center;
+        @include flex_row_center();
         p {
             flex: 3;
             text-align: end;
@@ -44,9 +43,8 @@
     }
     
     .pop-up-btn-container {
-        display: flex;
+        @include flex_space_between();
         width: 70%;
-        justify-content: space-between;   
         margin: 40px 0 20px 0;  
         #one_button_center {
             margin: 0 auto;
@@ -69,29 +67,26 @@
             }
         }
     }
-    //time registration options
+    //time registration options - pop up
     .dropdown {
         width: 40%;
         max-width: 200px;
         ul {
             list-style: none;
-            display: flex;
-            flex-direction: column;
+            @include flex_column_center();
             width: 100%;
             li {   
                 margin: 8px 0;
                 display: flex;
                 width: 100%;
                 button {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    @include flex_row_center();
                     width: 100%;
-                    height: 30px;
+                    height: 35px;
                     background-color: #fff;
-                    border: 2px solid #C6D7FF;
+                    border: 2px solid #dae6ff;
                     border-radius: 7px;
-                    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.068);
+                    box-shadow: $drop_shadow_mild;
                     &:hover {
                         background-color: #C6D7FF;
                         cursor: pointer;

@@ -33,11 +33,10 @@
 @media screen and(min-width: 900px) {
     .list_color_guide_container {
         justify-content: flex-end;
-            :last-child {
-                margin-right: 0;
-            }
+        :last-child {
+            margin-right: 0;
+        }
         .list_color_guide_element {
-
             .color {
                 height: 5px;
                 width: 25px;
