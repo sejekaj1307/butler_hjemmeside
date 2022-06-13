@@ -1,0 +1,52 @@
+//display flex with flexdirection coloumn or row
+@mixin flex_column() {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex_row() {
+    display: flex;
+    flex-direction: row;    
+}
+
+//buttons
+@mixin rounded_btn() {
+    width: 7vw;
+    min-width: 90px;
+    height: 35px;
+    border: none;
+    box-shadow: $drop_shadow;
+    border-radius: 10px;
+    color: #fff;   
+}
+
+
+//links
+@mixin link_white($link_color) {
+    text-decoration: none;
+    color: $link_color;
+    font-size: 17px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+@mixin link_center($link_color) {
+    text-decoration: none;
+    color: $link_color;
+    font-size: 17px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+//input fields
+@mixin input() {
+    
+}
+@mixin select() {
+    
+}

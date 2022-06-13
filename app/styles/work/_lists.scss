@@ -210,7 +210,10 @@
     }
     .machine_link_header, .machine_link {
         width: 16vw !important;
-    } 
+        a{
+            @include link_white($link_color:#000);
+        }
+    }  
     /*------------------------------------
             cases width 1200
     ------------------------------------*/             

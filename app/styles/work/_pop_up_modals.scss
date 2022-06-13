@@ -19,7 +19,7 @@
     align-items: center;
     border-bottom: 3px solid $button_color_green;
     border-top: 2.5px solid $button_color_green;
-    box-shadow: 5px 10px 20px rgba($color: #000000, $alpha: 0.3);
+    box-shadow: $drop_shadow;
     h3 {
         margin: 20px 0 35px 0;
         font-size: 23px;
@@ -52,13 +52,7 @@
             margin: 0 auto;
         }
         .pop_up_cancel, .pop_up_confirm {
-            width: 7vw;
-            min-width: 90px;
-            height: 35px;
-            border: none;
-            box-shadow: 5px 10px 20px rgba($color: #000000, $alpha: 0.2);
-            border-radius: 10px;
-            color: #fff;
+                @include rounded_btn();
             cursor: pointer;
         }
         .pop_up_cancel {

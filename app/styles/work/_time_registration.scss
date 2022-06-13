@@ -22,13 +22,7 @@
                 font-size: 14px;
                 cursor: pointer;
                 a {
-                    text-decoration: none;
-                    color: #000;
-                    display: flex;
-                    width: 100%;
-                    height: 100%;
-                    justify-content: center;
-                    align-items: center;
+                    @include link_center($link_color:#000);
                 }
                 &:hover {
                     background-color: $time_navbar_blue;

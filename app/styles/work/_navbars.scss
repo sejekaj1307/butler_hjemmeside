@@ -38,12 +38,9 @@
         li {
             list-style-type: none;
             a{
-                color: #fff;
-                text-decoration: none;
+                @include link_center($link_color:#fff);
                 height: 60px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                width: initial;
                 &:hover {
                     background-color: $logo-nav;
                 }
@@ -65,13 +62,7 @@
             background-color: $log_out_blue_hover;
         }
         a {
-            color: #fff;
-            height: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
+            @include link_center($link_color:#fff);
         }
     }
 }
@@ -147,13 +138,10 @@
         li {
             list-style-type: none;
             a {
-                text-decoration: none;
-                display: flex;
+                @include link_center($link_color:#000);
                 margin-right: 90px;
                 height: 40px;
-                align-items: center;
                 margin-left: -2vw;
-                color: #000;     
                 padding-left: $space-from-navbar;  
                 border-left: 2vw solid $light-sec-nav-border-bottom;
                 &:hover {
@@ -166,9 +154,6 @@
         }  
     }
 }
-
-
-
 
 
 
@@ -187,8 +172,8 @@
             height: $logged-in-height-s;
         }
         .navbar_ul {
-        margin-top: 20%;
-        padding-top: 0;
+            margin-top: 20%;
+            padding-top: 0;
             li {
                 a {
                     justify-content: left;
@@ -243,10 +228,7 @@
             li {
                 list-style-type: none;
                 a {
-                    text-decoration: none;
-                    display: flex;
-                    margin-right: 90px;
-                    align-items: center;
+                    justify-content: center;
                     margin-left: 0;    
                     border-left: 0;
                     padding: 0;

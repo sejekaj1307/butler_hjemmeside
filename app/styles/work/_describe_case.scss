@@ -34,14 +34,7 @@
             width: 130px;
             height: 45px;
             a {
-                font-size: 17px;
-                display: flex;
-                width: 100%;
-                height: 100%;
-                text-decoration: none;
-                color: #000;
-                align-items: center;
-                justify-content: center;
+                @include link_center($link_color:#000);
                 &:hover {
                     cursor: pointer;
                     background-color: #B2C7F9;

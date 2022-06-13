@@ -2,7 +2,8 @@
       colours
 ------------------*/
 /*Navbar*/
-/*Table colours*/
+/* Table colours */
+/* font colors */
 /*------------------------
         navbars
 ------------------------*/
@@ -160,8 +161,8 @@
   min-width: 90px;
   height: 35px;
   border: none;
-  -webkit-box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
-          box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
@@ -796,6 +797,16 @@
   .machine_link_header, .machine_link {
     width: 16vw !important;
   }
+  .machine_link_header a, .machine_link a {
+    text-decoration: none;
+    color: #000;
+    font-size: 17px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
   /*------------------------------------
             cases width 1200
     ------------------------------------*/
@@ -941,20 +952,20 @@
     height: 45px;
   }
   .describe_case_navbar .button_container button a {
+    text-decoration: none;
+    color: #000;
     font-size: 17px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     width: 100%;
     height: 100%;
-    text-decoration: none;
-    color: #000;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .describe_case_navbar .button_container button a:hover {
     cursor: pointer;
@@ -1340,6 +1351,7 @@
 .time_registration .time_registration_navbar_container .time_registration_navbar button a, .time_registration .in_house_time_navbar .time_registration_navbar button a {
   text-decoration: none;
   color: #000;
+  font-size: 17px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1799,18 +1811,22 @@
 }
 
 .navbar_container .navbar_ul li a {
-  color: #fff;
   text-decoration: none;
-  height: 60px;
+  color: #fff;
+  font-size: 17px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
+  height: 100%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 60px;
+  width: initial;
 }
 
 .navbar_container .navbar_ul li a:hover {
@@ -1835,19 +1851,20 @@
 }
 
 .navbar_container .log_out_container a {
+  text-decoration: none;
   color: #fff;
-  height: 100%;
-  width: 100%;
+  font-size: 17px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
+  height: 100%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  text-decoration: none;
 }
 
 /*---------------------------
@@ -1962,16 +1979,22 @@
 
 .sec-navbar-mobile .sec_navbar_ul_dropdown li a {
   text-decoration: none;
+  color: #000;
+  font-size: 17px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-right: 90px;
-  height: 40px;
+  width: 100%;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-right: 90px;
+  height: 40px;
   margin-left: -2vw;
-  color: #000;
   padding-left: 30px;
   border-left: 2vw solid #87AFFF;
 }
@@ -2060,14 +2083,9 @@
     list-style-type: none;
   }
   .sec-navbar-mobile .sec_navbar_ul_dropdown li a {
-    text-decoration: none;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin-right: 90px;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     margin-left: 0;
     border-left: 0;
     padding: 0;
