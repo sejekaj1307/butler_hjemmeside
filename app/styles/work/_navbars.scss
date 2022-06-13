@@ -144,6 +144,7 @@
                 margin-left: -2vw;
                 padding-left: $space-from-navbar;  
                 border-left: 2vw solid $light-sec-nav-border-bottom;
+                width: unset;
                 &:hover {
                     border-left: 2vw solid rgba($color: $logo-nav, $alpha: 1.0);
                 }
@@ -154,8 +155,6 @@
         }  
     }
 }
-
-
 
 
 /*Tablet - S */
@@ -246,15 +245,7 @@
             }  
         }
     }
-
-
 }
-
-
-
-
-
-
 
 
 

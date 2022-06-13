@@ -1997,6 +1997,7 @@
   margin-left: -2vw;
   padding-left: 30px;
   border-left: 2vw solid #87AFFF;
+  width: unset;
 }
 
 .sec-navbar-mobile .sec_navbar_ul_dropdown li a:hover {
