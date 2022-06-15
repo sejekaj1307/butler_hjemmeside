@@ -389,7 +389,11 @@
                         $sql = "select * from certificates";
                         $result = $conn->query($sql);
                         echo '<div class="certificate_list">';
-
+                            echo '<div class="list_color_guide_container">';
+                                echo '<div class="list_color_guide_element"><div class="color red"></div><p class="color_description">Udløbet</p></div>';
+                                echo '<div class="list_color_guide_element"><div class="color yellow"></div><p class="color_description">Ved at udløbe</p></div>';
+                                echo '<div class="list_color_guide_element"><div class="color green"></div><p class="color_description">Aktiv</p></div>';
+                            echo '</div>';
                             echo '<div class="certificate_list_header">';
                                 echo '<p class="certificates_name_header">Certifikat navn</p>';
                                 echo '<div class="certificate_list_all_headers">';
