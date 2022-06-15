@@ -255,32 +255,15 @@
             //closing connection to database for security reasons
                 $conn->close();
             ?>
-
-            <!----------------------------
-                    Edit profile pop-op
-            ----------------------------->
-            <div class="pop_up_modal_container" style="display: <?php echo $display_edit_machine_pop_up ?>">
-                <div class="pop_up_modal">
-                    <h3>Rediger maskine</h3>
-                    <div class="pop-up-row"><p>Navn : </p><input type="text" name="name_u" value="<?php echo isset($name) ? $name : '' ?>"></div>
-                    <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_u" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
-                    <div class="pop-up-row"><p>Link : </p><input type="text" name="link_u" value="<?php echo isset($link) ? $link : '' ?>"></div>
-                    <div class="pop-up-btn-container">
-                        <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
-                        <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
-                    </div>
-                </div>
-            </div>
-
             <!---------------------------
                 Add new employee pop-up
             ---------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_machine_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Opret ny maskine</h3>
-                    <div class="pop-up-row"><p>Navn : </p><input type="text" name="name_c" value="<?php echo isset($name) ? $name : '' ?>"></div>
-                    <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_c" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
-                    <div class="pop-up-row"><p>Link : </p><input type="text" name="link_c" value="<?php echo isset($link) ? $link : '' ?>"></div>
+                    <div class="pop-up-row"><p>Navn : </p><input type="text" name="name_c" maxlength="50" value="<?php echo isset($name) ? $name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_c" maxlength="50" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
+                    <div class="pop-up-row"><p>Link : </p><input type="text" name="link_c" maxlength="500" value="<?php echo isset($link) ? $link : '' ?>"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
@@ -288,6 +271,21 @@
                 </div>
             </div>
 
+            <!----------------------------
+                    Edit profile pop-op
+            ----------------------------->
+            <div class="pop_up_modal_container" style="display: <?php echo $display_edit_machine_pop_up ?>">
+                <div class="pop_up_modal">
+                    <h3>Rediger maskine</h3>
+                    <div class="pop-up-row"><p>Navn : </p><input type="text" name="name_u" maxlength="50" value="<?php echo isset($name) ? $name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Nordisk navn : </p><input type="text" name="name_nordic_u" maxlength="50" value="<?php echo isset($name_nordic) ? $name_nordic : '' ?>"></div>
+                    <div class="pop-up-row"><p>Link : </p><input type="text" name="link_u" maxlength="500" value="<?php echo isset($link) ? $link : '' ?>"></div>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
+                    </div>
+                </div>
+            </div>
             <!------------------------
                     delete pop up
             ------------------------->

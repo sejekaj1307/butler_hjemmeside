@@ -344,7 +344,7 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_task_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Opret ny opgave</h3>
-                    <div class="pop-up-row"><p>Opgave : </p><input autocomplete="off" type="text" name="task_title_c" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
+                    <div class="pop-up-row"><p>Opgave : </p><input autocomplete="off" type="text" name="task_title_c" maxlength="55" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                     <div class="pop-up-row">
                         <p>Prioritet : </p>
                         <select name="priority_c">
@@ -354,7 +354,7 @@
                         </select>
                     </div> 
                     <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="deadline_c" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                    <div class="pop-up-row"><p>Bemærkning : </p><input autocomplete="off" type="text" name="comment_c" maxlength="50" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                    <div class="pop-up-row"><p>Bemærkning : </p><input autocomplete="off" type="text" name="comment_c" maxlength="100" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
@@ -369,7 +369,7 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_task_pop_up ?>">
                 <div class="pop_up_modal" >
                     <h3>Rediger opgave</h3>
-                    <div class="pop-up-row"><p>Opgave : </p><input autocomplete="off" type="text" name="task_title_u" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
+                    <div class="pop-up-row"><p>Opgave : </p><input autocomplete="off" type="text" name="task_title_u" maxlength="55" value="<?php echo isset($task_title) ? $task_title : '' ?>"></div>
                     <div class="pop-up-row">
                         <p>Prioritet : </p>
                         <select name="priority_u">
@@ -388,7 +388,7 @@
                         </select>
                     </div>
                     <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="deadline_u" value="<?php echo isset($deadline) ? $deadline : '' ?>"></div>
-                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" maxlength="50" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
+                    <div class="pop-up-row"><p>Bemærkning : </p><input type="text" name="comment_u" maxlength="100" value="<?php echo isset($comment) ? $comment : '' ?>"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">

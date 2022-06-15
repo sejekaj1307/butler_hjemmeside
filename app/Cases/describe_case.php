@@ -288,8 +288,8 @@
                 <h1>Sagsinfo - sag nr <?php echo $case_nr?></h1>
                 <div class="input_container">
                     <div class="top_inputs_container">
-                        <div class="small_inputs"><p>Kunde :</p><input autocomplete="off" name="client" type="text" value="<?php echo $this_case->get_client();?>"></div>
-                        <div class="small_inputs"><p>Kundesag nr :</p><input autocomplete="off" name="client_case_nr" type="text" value="<?php echo $this_case->get_client_case_nr();?>"></div>
+                        <div class="small_inputs"><p>Kunde :</p><input autocomplete="off" name="client" maxlength="200" type="text" value="<?php echo $this_case->get_client();?>"></div>
+                        <div class="small_inputs"><p>Kundesag nr :</p><input autocomplete="off" name="client_case_nr" maxlength="50" type="text" value="<?php echo $this_case->get_client_case_nr();?>"></div>
                         <div class="small_inputs">
                             <p>Ansvarlig :</p>
                             <!-- <input autocomplete="off" name="case_responsible" type="text" value="<?php echo $this_case->get_case_responsible();?>"> -->
@@ -318,8 +318,8 @@
                         <div class="large_inputs"><p>Tilkørsel - pladsforhold, adgang, tid, støj, mm.</p><textarea name="comment_road_info" type="subject"><?php echo $this_case->get_comment_road_info();?></textarea></div>
                     </div>
                     <div class="top_inputs_container">
-                        <div class="small_inputs"><p>Adresse :</p><input autocomplete="off" name="location" type="text" value="<?php echo $this_case->get_location();?>"></div>
-                        <div class="small_inputs"><p>Postnummer :</p><input autocomplete="off" name="zip_code" type="text" value="<?php echo $this_case->get_zip_code();?>"></div>
+                        <div class="small_inputs"><p>Adresse :</p><input autocomplete="off" name="location" type="text" maxlength="200" value="<?php echo $this_case->get_location();?>"></div>
+                        <div class="small_inputs"><p>Postnummer :</p><input autocomplete="off" name="zip_code" type="text" maxlength="50" value="<?php echo $this_case->get_zip_code();?>"></div>
                         <div id="list1" class="dropdown-check-list" tabindex="100">
                             <div class="small_inputs"><p>Maskiner :</p>
                                 <div class="dropdown list1">

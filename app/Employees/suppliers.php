@@ -278,12 +278,12 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_supplier_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Rediger leverandør</h3>
-                    <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
-                    <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_u" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
-                    <div class="pop-up-row"><p>Tlf. nr : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
-                    <div class="pop-up-row"><p>Adresse : </p><input type="text" name="address_u" value="<?php echo isset($address) ? $address : '' ?>"></div>
-                    <div class="pop-up-row"><p>Email : </p><input type="text" name="email_u" value="<?php echo isset($email) ? $email : '' ?>"></div>
-                    <div class="pop-up-row"><p>Kontakt type : </p><input type="text" name="product_u" value="<?php echo isset($product) ? $product : '' ?>"></div>
+                    <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_u" maxlength="50" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_u" maxlength="50" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Tlf. nr : </p><input type="text" name="phone_u" maxlength="50" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
+                    <div class="pop-up-row"><p>Adresse : </p><input type="text" name="address_u" maxlength="100" value="<?php echo isset($address) ? $address : '' ?>"></div>
+                    <div class="pop-up-row"><p>Email : </p><input type="text" name="email_u" maxlength="100" value="<?php echo isset($email) ? $email : '' ?>"></div>
+                    <div class="pop-up-row"><p>Kontakt type : </p><input type="text" name="product_u" maxlength="100" value="<?php echo isset($product) ? $product : '' ?>"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel" >
                         <input type="submit" name="knap" value="Opdater" class="pop_up_confirm">
@@ -297,12 +297,12 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_supplier_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Opret ny leverandør</h3>
-                    <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
-                    <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_c" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
-                    <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_c" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
-                    <div class="pop-up-row"><p>Adresse : </p><input type="text" name="address_c" value="<?php echo isset($address) ? $address : '' ?>"></div>
-                    <div class="pop-up-row"><p>Email : </p><input type="text" name="email_c" value="<?php echo isset($email) ? $email : '' ?>"></div>
-                    <div class="pop-up-row"><p>Kontakt type : </p><input type="text" name="product_c" value="<?php echo isset($product) ? $product : '' ?>"></div>
+                    <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_c" maxlength="50" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_c" maxlength="50" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>phone : </p><input type="text" name="phone_c" maxlength="50" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
+                    <div class="pop-up-row"><p>Adresse : </p><input type="text" name="address_c" maxlength="100" value="<?php echo isset($address) ? $address : '' ?>"></div>
+                    <div class="pop-up-row"><p>Email : </p><input type="text" name="email_c" maxlength="100" value="<?php echo isset($email) ? $email : '' ?>"></div>
+                    <div class="pop-up-row"><p>Kontakt type : </p><input type="text" name="product_c" maxlength="100" value="<?php echo isset($product) ? $product : '' ?>"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller"  class="pop_up_cancel" >
                         <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">

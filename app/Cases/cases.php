@@ -374,7 +374,7 @@
         <div class="pop_up_modal_container" style="display: <?php echo $display_create_case_pop_up ?>">
             <div class="pop_up_modal">
                 <h3>Opret ny sag</h3>
-                <div class="pop-up-row"><p>Sagssnr. : </p><input autocomplete="off" type="text" name="case_nr_c" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
+                <div class="pop-up-row"><p>Sagssnr. : </p><input autocomplete="off" type="text" name="case_nr_c" maxlength="50" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
                 <div class="pop-up-row">
                     <p>Ansvarlig : </p>
                     <select name="case_responsible_c">
@@ -385,7 +385,7 @@
                         ?>
                     </select>
                 </div>
-                <div class="pop-up-row"><p>Adresse : </p><input autocomplete="off" type="text" name="location_c" value="<?php echo isset($location) ? $location : '' ?>"></div>
+                <div class="pop-up-row"><p>Adresse : </p><input autocomplete="off" type="text" name="location_c" maxlength="200" value="<?php echo isset($location) ? $location : '' ?>"></div>
                 <div class="pop-up-row"><p>Startdato : </p><input autocomplete="off" type="date" name="est_start_date_c" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
                 <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="est_end_date_c" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
                 <div class="pop-up-btn-container">
@@ -401,7 +401,7 @@
         <div class="pop_up_modal_container" style="display: <?php echo $display_edit_case_pop_up ?>">
             <div class="pop_up_modal">
                 <h3>Opdater sag</h3>
-                <div class="pop-up-row"><p>Sagssnr. : </p><input autocomplete="off" type="text" name="case_nr_u" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
+                <div class="pop-up-row"><p>Sagssnr. : </p><input autocomplete="off" type="text" name="case_nr_u" maxlength="50" value="<?php echo isset($case_nr) ? $case_nr : '' ?>"></div>
                 <div class="pop-up-row">
                     <p>Ansvarlig : </p>
                     <select name="case_responsible_u">
@@ -421,7 +421,7 @@
                             <option <?php echo $status == "Fuldført" ? 'selected' : '' ?> value="Fuldført">Fuldført</option>
                         </select>
                     </div>
-                <div class="pop-up-row"><p>Adresse : </p><input autocomplete="off" type="text" name="location_u" value="<?php echo isset($location) ? $location : '' ?>"></div>
+                <div class="pop-up-row"><p>Adresse : </p><input autocomplete="off" type="text" name="location_u" maxlength="200" value="<?php echo isset($location) ? $location : '' ?>"></div>
                 <div class="pop-up-row"><p>Startdato : </p><input autocomplete="off" type="date" name="est_start_date_u" value="<?php echo isset($est_start_date) ? $est_start_date : '' ?>"></div>
                 <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="est_end_date_u" value="<?php echo isset($est_end_date) ? $est_end_date : '' ?>"></div>
                 <div class="pop-up-btn-container">

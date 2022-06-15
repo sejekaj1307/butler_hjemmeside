@@ -294,17 +294,17 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_create_employee_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Opret ny medarbejder</h3>
-                    <div class="pop-up-row"><p>Navn : </p><input type="text" name="first_name_c" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
-                    <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_c" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
-                    <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials_c" value="<?php echo isset($initials) ? $initials : '' ?>"></div>
-                    <div class="pop-up-row"><p>Arbejds tlf. : </p><input type="text" name="phone_c" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
-                    <div class="pop-up-row"><p>Privat Mobil : </p><input type="text" name="phone_private_c" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
-                    <div class="pop-up-row"><p>Email : </p><input type="text" name="email_c" value="<?php echo isset($email) ? $email : '' ?>"></div>
-                    <div class="pop-up-row"><p>Privat email : </p><input type="text" name="email_private_c" value="<?php echo isset($email_private) ? $email_private : '' ?>"></div>
-                    <div class="pop-up-row"><p>Kontaktperson : </p><input type="text" name="emergency_name_c" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
-                    <div class="pop-up-row"><p>Kontaktperson tlf. : </p><input type="text" name="emergency_phone_c" value="<?php echo isset($emergency_phone) ? $emergency_phone : '' ?>"></div>
+                    <div class="pop-up-row"><p>Navn : </p><input type="text" name="first_name_c" maxlength="50" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_c" maxlength="50" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials_c" maxlength="50" value="<?php echo isset($initials) ? $initials : '' ?>"></div>
+                    <div class="pop-up-row"><p>Arbejds tlf. : </p><input type="text" name="phone_c" maxlength="50" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
+                    <div class="pop-up-row"><p>Privat Mobil : </p><input type="text" name="phone_private_c" maxlength="50" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
+                    <div class="pop-up-row"><p>Email : </p><input type="text" name="email_c" maxlength="100" value="<?php echo isset($email) ? $email : '' ?>"></div>
+                    <div class="pop-up-row"><p>Privat email : </p><input type="text" name="email_private_c" maxlength="100" value="<?php echo isset($email_private) ? $email_private : '' ?>"></div>
+                    <div class="pop-up-row"><p>Kontaktperson : </p><input type="text" name="emergency_name_c" maxlength="100" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Kontaktperson tlf. : </p><input type="text" name="emergency_phone_c" maxlength="50" value="<?php echo isset($emergency_phone) ? $emergency_phone : '' ?>"></div>
                     <div class="pop-up-row"><p>Medarbejder farve : </p><input type="color" name="html5colorpicker" onchange="clickColor(0, -1, -1, 5)"></div>
-                    <div class="pop-up-row"><p>Upload billede : </p><input type="file" name="image" value="Upload"></div>
+                    <div class="pop-up-row"><p>Upload billede : </p><input type="file" name="image" maxlength="500" value="Upload"></div>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
                         <input type="submit" name="knap" value="Opret ny" class="pop_up_confirm">
@@ -318,13 +318,13 @@
             <div class="pop_up_modal_container" style="display: <?php echo $display_edit_employee_pop_up ?>">
                 <div class="pop_up_modal">
                     <h3>Rediger medarbejder</h3>
-                    <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_u" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
-                    <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_u" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
-                    <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials_u" value="<?php echo isset($initials) ? $initials : '' ?>"></div>
-                    <div class="pop-up-row"><p>Arbejds tlf. : </p><input type="text" name="phone_u" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
-                    <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private_u" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
-                    <div class="pop-up-row"><p>Email : </p><input type="text" name="email_u" value="<?php echo isset($email) ? $email : '' ?>"></div>
-                    <div class="pop-up-row"><p>Privat email : </p><input type="text" name="email_private_u" value="<?php echo isset($email_private) ? $email_private : '' ?>"></div>
+                    <div class="pop-up-row"><p>Fornavn : </p><input type="text" name="first_name_u" maxlength="50" value="<?php echo isset($first_name) ? $first_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Efternavn : </p><input type="text" name="last_name_u" maxlength="50" value="<?php echo isset($last_name) ? $last_name : '' ?>"></div>
+                    <div class="pop-up-row"><p>Initialer : </p><input type="text" name="initials_u" maxlength="50" value="<?php echo isset($initials) ? $initials : '' ?>"></div>
+                    <div class="pop-up-row"><p>Arbejds tlf. : </p><input type="text" name="phone_u" maxlength="50" value="<?php echo isset($phone) ? $phone : '' ?>"></div>
+                    <div class="pop-up-row"><p>Mobil : </p><input type="text" name="phone_private_u" maxlength="50" value="<?php echo isset($phone_private) ? $phone_private : '' ?>"></div>
+                    <div class="pop-up-row"><p>Email : </p><input type="text" name="email_u" maxlength="100" value="<?php echo isset($email) ? $email : '' ?>"></div>
+                    <div class="pop-up-row"><p>Privat email : </p><input type="text" name="email_private_u" maxlength="100" value="<?php echo isset($email_private) ? $email_private : '' ?>"></div>
                     <div class="pop-up-row"><p>Kontaktperson : </p><input type="text" name="emergency_name_u" value="<?php echo isset($emergency_name) ? $emergency_name : '' ?>"></div>
                     <div class="pop-up-row"><p>Kontaktperson tlf. : </p><input type="text" name="emergency_phone_u" value="<?php echo isset($emergency_phone) ? $emergency_phone : '' ?>"></div>
                     <div class="pop-up-btn-container">
