@@ -15,12 +15,10 @@
     Element locations in tasks_service
 ------------------------------------*/
     $tasks_machines_options = array(
-        "Bil 1", 
-        "Bil 2",
-        "Bil 3",
-        "Bil 4",
-        "Bil 5",
-        "Bil 6"
+        "Bil", 
+        "Lastbil",
+        "Maskiner",
+        "Cone kalibrering"
     );
 
 /*-- ---------------------------------

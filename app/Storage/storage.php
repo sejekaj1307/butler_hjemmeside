@@ -50,11 +50,11 @@
                 <div><img src="../img/person-login.png" alt="Employee icon" class="employee_icon"> <?php echo $_SESSION['logged_in_user_global']['last_name'] . ', ' . $_SESSION['logged_in_user_global']['first_name'];?> </div>
                 <div class="navbar_bars"></div>
             </div>
-            <h2 class="sec-navbar-mobile-header">Lade lager <div class="arrow_container"><img src="../img/arrow.png"
+            <h2 class="sec-navbar-mobile-header">Fortet <div class="arrow_container"><img src="../img/arrow.png"
                         alt="arrow" class="sec_nav_dropdown_arrow"></div>
             </h2>
             <ul class="sec_navbar_ul_dropdown">
-                <li><a href="../Storage/storage.php" class="active_site_dropdown">Lade</a></li>
+                <li><a href="../Storage/storage.php" class="active_site_dropdown">Fortet</a></li>
             </ul>
         </div>
 
