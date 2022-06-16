@@ -117,7 +117,7 @@
 
 .pop_up_modal .pop-up-row {
   margin: 10px 0;
-  width: 63%;
+  width: 72%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -141,10 +141,9 @@
 }
 
 .pop_up_modal .pop-up-row input, .pop_up_modal .pop-up-row select {
-  -webkit-box-flex: 5;
-      -ms-flex: 5;
-          flex: 5;
-  width: 60% !important;
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
   height: 30px;
 }
 

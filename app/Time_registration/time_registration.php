@@ -126,22 +126,23 @@
             </h2>
             <ul class="sec_navbar_ul_dropdown">
                 <?php
+                    $selected_case = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
+                     //No matter what cases the user is associated with, they should always see the internal_case tab. If it is the only one, select it
+                    if(empty($selected_case)){
+                         echo "<script> window.location.href = 'internal_case.php'; </script>"; 
+                    }
+                    else {
+                        echo '<li><a href="../Time_registration/internal_case.php">2022 intern sag</a></li>';
+                    }
                     //Loop through my_cases array and create a tab for each. Highlight the selected case that is currently displaying
                     for($i=0; $i<count($my_cases); $i++){
-                        $selected_case = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
+                        
                         if($my_cases[$i] == $selected_case){
                             echo '<li><a href="time_registration.php?cases_selected=' . $my_cases[$i] . '" class="active_site_dropdown">'. $my_cases[$i] .'</a></li>';
                         }
                         else {
                             echo '<li><a href="time_registration.php?cases_selected=' . $my_cases[$i] . '">'. $my_cases[$i] .'</a></li>';
                         }
-                    }
-                    //No matter what cases the user is associated with, they should always see the internal_case tab. If it is the only one, select it
-                    if(empty($selected_case)){
-                         echo "<script> window.location.href = 'internal_case.php'; </script>"; 
-                    }
-                    else {
-                        echo '<li><a href="../Time_registration/internal_case.php">2022 intern sag</a></li>';
                     }
                 ?>
             </ul>

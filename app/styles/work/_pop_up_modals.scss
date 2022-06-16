@@ -29,15 +29,14 @@
     }
     .pop-up-row {
         margin: 10px 0;
-        width: 63%;
+        width: 72%;
         @include flex_row_center();
         p {
             flex: 3;
             text-align: end;
         }
         input, select {
-            flex: 5;
-            width: 60% !important;
+            flex: 4;
             height: 30px;
         }
     }
