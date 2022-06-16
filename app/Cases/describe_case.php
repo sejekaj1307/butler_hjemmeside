@@ -104,6 +104,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/web/styles.css">
+    <link rel="stylesheet" href="drop_down_select.css">
     <title>Beskriv sag</title>
 </head>
 
@@ -348,6 +349,20 @@
                                 </div>
                             </div>  
                         </div>  
+
+                        <label for="combo1" class="combo-label">Multiselect with comma-separated values</label>
+                        <div class="combo js-csv">
+                            <div role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-owns="listbox1" class="input-wrapper">
+                            <input
+                                aria-activedescendant=""
+                                aria-autocomplete="list"
+                                id="combo1"
+                                class="combo-input"
+                                type="text">
+                            </div>
+                            <div class="combo-menu" role="listbox" aria-multiselectable="true" id="listbox1"></div>
+                        </div>
+
                         <div class="large_inputs"><p>Ekstra arbejde/ventetid</p><textarea name="comment_extra_work" type="subject"><?php echo $this_case->get_comment_extra_work();?></textarea></div>
                     </div>
                 </div>
@@ -402,6 +417,7 @@
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
     <script src="open_close_functions.js"></script>
+    <script src="drop_down_select.js"></script>
 </body>
 
 </html>
