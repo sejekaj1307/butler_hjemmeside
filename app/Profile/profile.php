@@ -90,6 +90,14 @@
             $display_create_cert_pop_up = "none";
             $display_update_cert_pop_up = "none";
             $display_delete_cert_pop_up = "none";
+            if(empty($_SESSION['display_change_password_pop_up'])){
+                $_SESSION['display_change_password_pop_up'] = "none";
+            }
+            
+            if(empty($_SESSION['error_text'])){
+                $_SESSION['error_text'] = "";
+            }
+
 
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
                 if($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -122,7 +130,7 @@
                                 $display_edit_profile_pop_up = "flex";
                             }
                         }
-                                $display_edit_profile_pop_up = "flex";
+                        $display_edit_profile_pop_up = "flex";
                     }
                     //update
                     if($_REQUEST['knap'] == "Opdater profil") 
@@ -184,6 +192,89 @@
                             }
                         }
                     }
+
+
+
+
+
+
+
+
+
+
+
+
+                    /*-------------------------------
+                            password CRUD
+                    -------------------------------*/
+                    //read, koden køres hvis "read button" bliver requested 
+                    if(($_REQUEST['knap'] == "Skift password"))
+                    {
+                        $id = $_SESSION['logged_in_user_global']['id'];
+                        if(is_numeric($id) && is_numeric(0 + $id))
+                        {
+                            $sql = $conn->prepare( "select * from employees where id = ?");
+                            $sql->bind_param("i", $id); 
+                            $sql->execute();
+                            $result = $sql->get_result();
+                            if($result->num_rows > 0) 
+                            {
+                                $row = $result->fetch_assoc();
+                                $id = $row['id'];
+                                $_SESSION["selected_employee"] = $id;
+                                $password_new = $row['password'];
+                                $_SESSION['error_text'] = "";
+                                
+                                $_SESSION['display_change_password_pop_up'] = "flex";
+                            }
+                        }
+                    }
+                    //update
+                    if($_REQUEST['knap'] == "Bekræft nyt password") 
+                    {
+                        $id = $_SESSION["selected_employee"];
+                        $password_new = $_REQUEST['password_new'];
+                        $password_new2 = $_REQUEST['password_new2'];
+
+
+                        if(is_numeric($id) && is_integer(0 + $id))
+                        {
+                            if(findes($id, $conn)) //updatea all of the chosen objects elements to database
+                            {
+                                if($password_new != $password_new2) {
+                                    $_SESSION['error_text'] = "Passwords matcher ikke";
+                                } 
+                                else if($password_new == ""){
+                                    $_SESSION['error_text'] = "Passwords er tomt";
+                                }
+                                else {
+                                    $sql = $conn->prepare("update employees set password = ? where id = ?");
+                                    $sql->bind_param("si", $password_new, $id);
+                                    $sql->execute();    
+                                    $_SESSION['display_change_password_pop_up'] = "none";
+                                }
+                            }
+                        }
+
+                        
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                     /*-------------------------------
@@ -248,7 +339,8 @@
                         $cert_name = $_REQUEST['cert_name_u'];
                         $cert_taken = $_REQUEST['cert_taken_u'];
                         $cert_deadline = $_REQUEST['cert_deadline_u'];
-                        $cert_status = $_REQUEST['cert_status_u'];
+                        //TODO: Update cert_status correct
+                        $cert_status = "";
                         $cert_link = $_REQUEST['cert_link_u'];
                         $cert_employee_initials = "";
                         if(is_numeric($id) && is_integer(0 + $id))
@@ -295,7 +387,10 @@
                         $sql->execute();
                         $display_delete_cert_pop_up = "none";
                     }
-                    //cancel 
+
+                    /*-------------------------------
+                            cancel buttons
+                    -------------------------------*/
                     if($_REQUEST['knap'] == "Annuller")
                     {
                         //cancel edit certificate
@@ -322,6 +417,9 @@
                         $display_edit_task_pop_up = "none";
                         $display_delete_task_pop_up = "none";
                         $display_create_task_pop_up = "none";
+                        $_SESSION['display_change_password_pop_up'] = "none";
+                        $_SESSION['error_text'] = "";
+
                     }
                 }
             ?>
@@ -344,7 +442,6 @@
                     </ul>
                 </div>
 
-
                 <!-------------------------------
                     Profile page container
                 -------------------------------->
@@ -364,6 +461,7 @@
                                 <p><b>Privat email : </b><?php echo $email_private; ?></p>
                                 <p><b>Kontaktperson : </b><?php echo $emergency_name; ?></p>
                                 <p><b>Kontaktperson nr. : </b><?php echo $emergency_phone; ?></p>
+                                <input type="submit" name="knap" value="Skift password">
                             </div>
                             <div class="input_container"><input type="submit" name="knap" value="Rediger profil"></div>
                         </div>
@@ -410,22 +508,28 @@
                                 $list_order_id = 1;
                                 while($row = $result->fetch_assoc())
                                 {
-                                    //statuscolor
-                                    if($row['cert_status'] == "Udløbet") {
+                                    $status = "";
+                                    //If we are passed the deadline
+                                    if(strtotime(date_format(new DateTime($row["cert_deadline"]), 'Y-m-d')) < strtotime(date('Y-m-d'))){
+                                        $status = "Udløbet";
                                         $status_color = "#FFA2A2";
-                                    } else if ($row['cert_status'] == "Aktiv") {
-                                        $status_color = "#BBFFB9";
-                                    }else if ($row['cert_status'] == "Ved at udløbe") {
+                                    }
+                                    else if(strtotime(date_format(new DateTime($row["cert_deadline"]), 'Y-m-d')) < strtotime(date('Y-m-d', strtotime("28 days")))){
+                                        $status = "Ved at udløbe";
                                         $status_color = "#FFF06B";
                                     }
-
+                                    else {
+                                        $status = "Aktiv";
+                                        $status_color = "#BBFFB9";
+                                    }
+                                    
                                     //list content
                                     echo '<div class="certificates_data_row" onclick="open_close_lists_mobile('. $list_order_id .', '. "'task_dropdown_mobile'" .') " style="border-left: 5px solid ' . $status_color . '">';
                                         echo '<div class="certificates_information"> ';
                                             echo '<p class="certificates_name">' . $row["cert_name"] . '</p>';
                                         echo '</div>';
                                         echo '<div class="certificates_dropdown_mobile">';
-                                            echo '<p class="certificates_status">' . '<span class="dropdown_inline_headers">Status </span>'  . $row["cert_status"] . '</p>';
+                                            echo '<p class="certificates_status">' . '<span class="dropdown_inline_headers">Status </span>'  . $status . '</p>';
                                             echo '<p class="certificates_taken">' . '<span class="dropdown_inline_headers">Udstedt </span>'  . date_format(new DateTime($row["cert_taken"]), 'd-m-y') . '</p>';
                                             echo '<p class="certificates_deadline">' . '<span class="dropdown_inline_headers">Deadline </span>'  . date_format(new DateTime($row["cert_deadline"]), 'd-m-y') . '</p>';
                                         echo '</div>';
@@ -496,6 +600,24 @@
                     </div>
                 </div>
             </div>
+
+            <!----------------------------
+                    Edit password pop-op
+            ----------------------------->
+            <div class="pop_up_modal_container" style="display: <?php echo $_SESSION['display_change_password_pop_up'] ?>">
+                <div class="pop_up_modal">
+                    <h3>Skift password</h3>
+                    <!-- <div class="pop-up-row"><p>Nuværende password : </p><input type="text" name="password_old" maxlength="50" value="<?php echo isset($password_old) ? $password_old : '' ?>"></div> -->
+                    <div class="pop-up-row"><p>Nyt password : </p><input type="text" name="password_new" maxlength="50" value="<?php echo isset($password_new) ? $password_new : '' ?>"></div>
+                    <div class="pop-up-row"><p>Nyt password : </p><input type="text" name="password_new2" maxlength="50" value="<?php echo isset($password_new2) ? $password_new2 : '' ?>"></div>
+                    <p><?php echo $_SESSION['error_text'] ?></p>
+                    <div class="pop-up-btn-container">
+                        <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
+                        <input type="submit" name="knap" value="Bekræft nyt password" class="pop_up_confirm">
+                    </div>
+                </div>
+            </div>
+
             <!--------------------------------
                 update certificates pop-op
             --------------------------------->
@@ -503,14 +625,6 @@
                 <div class="pop_up_modal" >
                     <h3>Opdater certifikat</h3>
                     <div class="pop-up-row"><p>Certifikat navn : </p><input autocomplete="off" type="text" name="cert_name_u" maxlength="50" value="<?php echo isset($cert_name) ? $cert_name : '' ?>"></div>
-                    <div class="pop-up-row">
-                        <p>Status : </p>
-                        <select name="cert_status_u">
-                            <option <?php echo $cert_status == "Udløbet" ? 'selected' : '' ?> value="Udløbet">Udløbet</option>
-                            <option <?php echo $cert_status == "Aktiv" ? 'selected' : '' ?> value="Aktiv">Aktiv</option>
-                            <option <?php echo $cert_status == "Ved at udløbe" ? 'selected' : '' ?> value="Ved at udløbe">Ved at udløbe</option>
-                        </select>
-                    </div>
                     <div class="pop-up-row"><p>Udstedt : </p><input autocomplete="off" type="date" name="cert_taken_u" value="<?php echo isset($cert_taken) ? $cert_taken : '' ?>"></div>
                     <div class="pop-up-row"><p>Deadline : </p><input autocomplete="off" type="date" name="cert_deadline_u" value="<?php echo isset($cert_deadline) ? $cert_deadline : '' ?>"></div>
                     <div class="pop-up-row"><p>Link : </p><input type="text" name="cert_link_u" maxlength="500" value="<?php echo isset($cert_link) ? $cert_link : '' ?>"></div>
@@ -520,6 +634,7 @@
                     </div>
                 </div>
             </div>
+
             <!------------------------
                 delete cert pop up
             ------------------------->
@@ -533,8 +648,6 @@
                     </div>
                 </div>
             </div>
-
-      
     </form>
 
 
