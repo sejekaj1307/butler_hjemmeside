@@ -76,7 +76,7 @@
                     <p>Hvis du ønsker mere information se også brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/Opret-ny-opgave-og-rediger-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe class="video" src="https://www.youtube.com/embed/vix6nQdLrug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                 </div>
             </div>
             
@@ -92,8 +92,9 @@
                     <p>Hvis du ønsker mere information se også brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/Arkiver-aktiver-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe class="video" src="https://www.youtube.com/embed/36Iv8TVj_jY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                 </div>
+
             </div>
             
             <!-- Video 3 slet opgave -->
@@ -106,7 +107,7 @@
                     <p>Hvis du ønsker mere information se også brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/Slet-opgave-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe class="video" src="https://www.youtube.com/embed/R6vcEIT-BKE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                 </div>
             </div>
             <!-- Video 4 planlagt service -->
@@ -118,7 +119,7 @@
                     <p>Hvis du ønsker mere information se også brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/planlagt-service-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe class="video" src="https://www.youtube.com/embed/fB0ynEXreKs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                 </div>
             </div>
             <!-- Video 5 Opret ny sag -->
@@ -132,7 +133,7 @@
                     <p>Hvis du ønsker mere information se også brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/Opret-ny-sag-hjælpevideo.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe class="video" src="https://www.youtube.com/embed/yA8lD7ZVZ7U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                 </div>
             </div>
             <!-- Video 6 beskriv ny sag -->
@@ -146,7 +147,7 @@
                     <p>Hvis du ønsker mere information se også brugermanualen.</p>
                 </div>
                 <div class="iframe_container_parent">
-                    <div class="iframe_container"><iframe sandbox class="video" src="video_guides/beskriv-sag-hjælpevideomp4.mp4" allowfullscreen></iframe></div>
+                    <div class="iframe_container"><iframe class="video" src="https://www.youtube.com/embed/QLIxuXxAS20" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                 </div>
             </div>
     </div>

@@ -104,7 +104,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/web/styles.css">
-    <link rel="stylesheet" href="drop_down_select.css">
+    <link rel="stylesheet" href=".drop_down_select.css">
     <title>Beskriv sag</title>
 </head>
 
