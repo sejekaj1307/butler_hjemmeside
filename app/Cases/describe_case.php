@@ -15,7 +15,7 @@
     //Get case_nr from the URL
     $case_nr = $_GET['case_nr'];
     
-    //Fetch data for the selected case
+    //Fetch data for the selected case (we know there should only be one result so we don't need a loop
     $sql = $conn->prepare("select * from cases where case_nr = ?");
     $sql->bind_param("s", $case_nr);
     $sql->execute();
@@ -24,11 +24,15 @@
         $row = $result->fetch_assoc();
     }
 
+    //Get all relevent information about the case
+    //Same as in time registration. The database stores the data as a varchar (string) and we need that to be an array of key/value.
+    //This can also be refered to as a json object and therefor we use json_docode
     $this_row_employees_json = json_decode($row['employees'], true);
     $this_row_employee_leader_json = json_decode($row['employee_leader'], true);
     $this_case_machines_json = json_decode($row['machines'], true);
     $this_case_job_types_json = json_decode($row['job_type'], true);
     
+    //Create an object to store all data
     $this_case = new case_describe_data(
         $row["id"], 
         $row["client"], 
@@ -46,7 +50,7 @@
         $row["est_end_date"]
     );
 
-    //This is for the employee drop down menu
+    //This is for the employee drop down menu (Get all initials)
     $employees_initials_list = array();
     $sql = "select initials from employees";
     $result = $conn->query($sql);
@@ -57,10 +61,12 @@
         while($row = $result->fetch_assoc())
         {
             //employees on case
+            //This will handle if there has been added a new user after the case has been created
             if (!array_key_exists($row['initials'], $this_row_employees_json)){
                 $this_row_employees_json[$row['initials']] = false;
             }
             //boreformand
+            //This will handle if there has been added a new user after the case has been created
             if (!array_key_exists($row['initials'], $this_row_employee_leader_json)){
                 $this_row_employee_leader_json[$row['initials']] = false;
             }
@@ -78,6 +84,7 @@
     {
         while($row = $result->fetch_assoc())
         {
+            //This will handle if there has been added a new machine after the case has been created
             if (!array_key_exists($row['name'], $this_case_machines_json)){
                 $this_case_machines_json[$row['name']] = false;
             }
@@ -86,7 +93,6 @@
     }
     //This is for the job_type drop down menu
     //case_job_types_list is defined in the data file
-    
     for($i=0; $i<count($case_job_types_list); $i++)
     {
         if (!array_key_exists($case_job_types_list[$i], $this_case_job_types_json)){
