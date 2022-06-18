@@ -194,16 +194,6 @@
                     }
 
 
-
-
-
-
-
-
-
-
-
-
                     /*-------------------------------
                             password CRUD
                     -------------------------------*/
@@ -230,7 +220,7 @@
                         }
                     }
                     //update
-                    if($_REQUEST['knap'] == "Bekræft nyt password") 
+                    if($_REQUEST['knap'] == "Bekræft password") 
                     {
                         $id = $_SESSION["selected_employee"];
                         $password_new = $_REQUEST['password_new'];
@@ -258,23 +248,6 @@
 
                         
                     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                     /*-------------------------------
@@ -602,18 +575,17 @@
             </div>
 
             <!----------------------------
-                    Edit password pop-op
+                Edit password pop-op
             ----------------------------->
             <div class="pop_up_modal_container" style="display: <?php echo $_SESSION['display_change_password_pop_up'] ?>">
                 <div class="pop_up_modal">
                     <h3>Skift password</h3>
-                    <!-- <div class="pop-up-row"><p>Nuværende password : </p><input type="text" name="password_old" maxlength="50" value="<?php echo isset($password_old) ? $password_old : '' ?>"></div> -->
-                    <div class="pop-up-row"><p>Nyt password : </p><input type="text" name="password_new" maxlength="50" value="<?php echo isset($password_new) ? $password_new : '' ?>"></div>
-                    <div class="pop-up-row"><p>Nyt password : </p><input type="text" name="password_new2" maxlength="50" value="<?php echo isset($password_new2) ? $password_new2 : '' ?>"></div>
+                    <div class="pop-up-row"><p>Nyt password : </p><input type="password" class="password_input"  value="<?php echo isset($password_new) ? $password_new : '' ?>"><div class="input_field_S" onclick="toggle_password_type('password_input', 'toggle_password_icon')"><img id="toggle_password_icon" src="../img/toggle_password_type_icon.png" alt="eye icon"></div></div>
+                    <div class="pop-up-row"><p>Bekræft password : </p><input type="password" class="password_input2" ><div class="input_field_S" onclick="toggle_password_type('password_input2', 'toggle_password_icon2')"><img id="toggle_password_icon2" src="../img/toggle_password_type_icon.png" alt="eye icon"></div></div>
                     <p><?php echo $_SESSION['error_text'] ?></p>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
-                        <input type="submit" name="knap" value="Bekræft nyt password" class="pop_up_confirm">
+                        <input type="submit" name="knap" value="Bekræft password" class="pop_up_confirm">
                     </div>
                 </div>
             </div>
@@ -656,6 +628,7 @@
     <!-- Javascript import -->
     <script src="../javaScript/open_close_lists_mobile.js"></script>
     <script src="../javaScript/navbars.js"></script>
+    <script src="password_type_toggle.js"></script>
 </body>
 
 </html>
