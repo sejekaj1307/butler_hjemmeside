@@ -116,7 +116,6 @@
                             {
                                 $row = $result->fetch_assoc();
                                 $id = $row['id'];
-                                $_SESSION["selected_employee"] = $id;
                                 $first_name = $row['first_name'];
                                 $last_name = $row['last_name'];
                                 $initials = $row['initials'];
@@ -135,7 +134,7 @@
                     //update
                     if($_REQUEST['knap'] == "Opdater profil") 
                     {
-                        $id = $_SESSION["selected_employee"];
+                        $id = $_SESSION['logged_in_user_global']['id'];
                         $first_name = $_REQUEST['first_name_u'];
                         $last_name = $_REQUEST['last_name_u'];
                         $initials = $_REQUEST['initials_u'];
@@ -211,7 +210,6 @@
                             {
                                 $row = $result->fetch_assoc();
                                 $id = $row['id'];
-                                $_SESSION["selected_employee"] = $id;
                                 $password_new = $row['password'];
                                 $_SESSION['error_text'] = "";
                                 
@@ -222,7 +220,7 @@
                     //update
                     if($_REQUEST['knap'] == "Bekræft password") 
                     {
-                        $id = $_SESSION["selected_employee"];
+                        $id = $_SESSION['logged_in_user_global']['id'];
                         $password_new = $_REQUEST['password_new'];
                         $password_new2 = $_REQUEST['password_new2'];
 

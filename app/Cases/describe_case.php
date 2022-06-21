@@ -94,7 +94,6 @@
             $this_case_job_types_json[$case_job_types_list[$i]] = false;
         }
     }
-    
 ?>
 
 <!DOCTYPE html>
@@ -164,7 +163,6 @@
                     return false;
                 }
             }
-
         ?>
         <?php
             // CRUD, create, read, update, delete - og confirm og cancel knap til delete
@@ -174,8 +172,8 @@
                 if($_REQUEST['knap'] == "Opdater") 
                 {
                     //employees
-                    for($i=0; $i<count($employees_initials_list); $i++){
-                        $this_row_employees_json[$employees_initials_list[$i]] =  empty($_REQUEST["employee_checkbox_".$i]) ? false : true; //this_row_employees_json is the key-value pair array
+                    for($i=0; $i<count($employees_initials_list); $i++){ //Jeg definerer en forløkke, her defineres i, som sættes til 0, forløkken skal loope igennem så længe i er mindre end antallet af elementer i listen, og i++ som betyder den incrementer og altså plusser med en for hver gang den looper igennem
+                        $this_row_employees_json[$employees_initials_list[$i]] =  empty($_REQUEST["employee_checkbox_".$i]) ? false : true; //this_row_employees_json is the key-value pair array  
                     }
                     $new_employee_data = json_encode($this_row_employees_json); 
 
@@ -322,7 +320,10 @@
                             </div>  
                         </div>  
 
-                        <label for="combo1" class="combo-label">Multiselect with comma-separated values</label>
+                        <!--------------------------------------------
+                                Upcoming code for select menus
+                        -------------------------  ------------------>
+                        <!-- <label for="combo1" class="combo-label">Multiselect with comma-separated values</label>
                         <div class="combo js-csv">
                             <div role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-owns="listbox1" class="input-wrapper">
                             <input
@@ -333,7 +334,7 @@
                                 type="text">
                             </div>
                             <div class="combo-menu" role="listbox" aria-multiselectable="true" id="listbox1"></div>
-                        </div>
+                        </div> -->
 
                         <div class="large_inputs"><p>Ekstra arbejde/ventetid</p><textarea name="comment_extra_work" type="subject"><?php echo $this_case->get_comment_extra_work();?></textarea></div>
                     </div>
