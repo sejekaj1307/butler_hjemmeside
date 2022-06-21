@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="../styles/web/styles.css">
     <title>Sager</title>
 </head>
-
 <body>
     <!-- Navigationsbar -->
     <div class="navbar_container">
@@ -84,8 +83,6 @@
             $display_delete_case_pop_up = "none";
             $display_archive_case_pop_up = "none";
             $display_create_case_pop_up = "none";
-
-
         ?>
             <?php
                 // CRUD, create, read, update, delete - og confirm og cancel knap til delete
@@ -108,6 +105,7 @@
                         $date_now = new DateTime();
                         $date_now_formatted = $date_now->format('Y-m-d');
 
+                        //employees / boreformand
                         $employees_initials_list = array();
                         
                         $sql = "select initials from employees";
@@ -122,7 +120,7 @@
                                 }
                             }
                         }
-
+                        //machines
                         $machine_name_list = array();
                         $sql = "select name from machines";
                         $result = $conn->query($sql);
@@ -135,17 +133,20 @@
                                 }
                             }
                         }
+                        //job types
                         $default_job_types_json = array();
                         for($i=0; $i<count($case_job_types_list); $i++)
                         {
                             if (!array_key_exists($case_job_types_list[$i], $default_job_types_json)){
-                                $default_case_job_types_json[$case_job_types_list[$i]] = false;
+                                $default_job_types_json[$case_job_types_list[$i]] = false;
                             }
                         }
+
+                        //encode all json objects to string to db
                         $employees_initials_list = json_encode($employees_initials_list);
                         $employee_leader_initials_list = json_encode($employee_leader_initials_list);
                         $machine_name_list = json_encode($machine_name_list);
-                        $default_case_job_types_json = json_encode($default_case_job_types_json);
+                        $default_job_types_json = json_encode($default_job_types_json);
                         
                         $client = "";
                         $client_case_nr = "";
@@ -156,53 +157,9 @@
                         $archived_at = "";
 
                         $sql = $conn->prepare("insert into cases (case_nr, client, client_case_nr, location, zip_code, case_responsible, est_start_date, est_end_date, status, job_type, machines, employees, employee_leader, comment_road_info, comment_extra_work, archived_initials, archived_at) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                        $sql->bind_param("sssssssssssssssss", $case_nr, $client, $client_case_nr, $location, $zip_code, $case_responsible, $est_start_date, $est_end_date, $status, $default_case_job_types_json, $machine_name_list, $employees_initials_list, $employee_leader_initials_list, $comment_road_info, $comment_extra_work, $archived_initials, $archived_at);
+                        $sql->bind_param("sssssssssssssssss", $case_nr, $client, $client_case_nr, $location, $zip_code, $case_responsible, $est_start_date, $est_end_date, $status, $default_job_types_json, $machine_name_list, $employees_initials_list, $employee_leader_initials_list, $comment_road_info, $comment_extra_work, $archived_initials, $archived_at);
                         $sql->execute();
                         
-                    }
-                    //read
-                    if(str_contains($_REQUEST['knap'] , "read"))
-                    {
-                        $split = explode("_", $_REQUEST['knap']);
-                        $id = $split[1];
-                        if(is_numeric($id) && is_numeric(0 + $id))
-                        {
-                            $sql = $conn->prepare( "select * from cases where id = ?");
-                            $sql->bind_param("i", $id); 
-                            $sql->execute();
-                            $result = $sql->get_result();
-                            if($result->num_rows > 0) 
-                            {
-                                $row = $result->fetch_assoc();
-                                $id = $row['id'];
-                                $_SESSION["selected_task"] = $id;
-                                $case_nr = $row['case_nr'];
-                                $case_responsible = $row['case_responsible'];
-                                $status = $row['status'];
-                                $location = $row['location'];
-
-                                $display_edit_case_pop_up = "flex";
-                            }
-                        }
-                    }
-                    //update
-                    if($_REQUEST['knap'] == "Opdater") 
-                    {
-                        $id = $_SESSION["selected_task"];
-                        $case_nr = $_REQUEST['case_nr_u'];
-                        $case_responsible = $_REQUEST['case_responsible_u'];
-                        $status = $_REQUEST['status_u'];
-                        $location = $_REQUEST['location_u'];
-
-                        if(is_numeric($id) && is_integer(0 + $id))
-                        {
-                            if(findes($id, $conn)) //updatea all of the chosen objects elements to database
-                            {
-                                $sql = $conn->prepare("update cases set case_nr = ?, case_responsible = ?, status = ?, location = ? where id = ?");
-                                $sql->bind_param("ssssi", $case_nr, $case_responsible, $status, $location, $id);
-                                $sql->execute();    
-                            }
-                        }
                     }
                     //delete
                     if(str_contains($_REQUEST['knap'] , "delete"))
@@ -279,7 +236,7 @@
                     if($_REQUEST['knap'] == "Arkiver")
                     {
                         $date_now = new DateTime();
-                        $date_now_formatted = $date_now->format('Y-m-d H:i:s');
+                        $date_now_formatted = $date_now->format('Y-m-d');
                         $id = $_SESSION["selected_case"];
                         $sql = $conn->prepare("update cases set archived_at = ? where id = ?");
                         $sql->bind_param("si", $date_now_formatted, $id);

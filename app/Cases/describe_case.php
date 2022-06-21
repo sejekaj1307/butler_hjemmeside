@@ -24,11 +24,13 @@
         $row = $result->fetch_assoc();
     }
 
+    //decoding the string
     $this_row_employees_json = json_decode($row['employees'], true);
     $this_row_employee_leader_json = json_decode($row['employee_leader'], true);
     $this_case_machines_json = json_decode($row['machines'], true);
     $this_case_job_types_json = json_decode($row['job_type'], true);
     
+    //class from class file in data folder
     $this_case = new case_describe_data(
         $row["id"], 
         $row["client"], 
@@ -56,15 +58,15 @@
     {
         while($row = $result->fetch_assoc())
         {
-            //employees on case
+            //employees on case - DECODED string
             if (!array_key_exists($row['initials'], $this_row_employees_json)){
-                $this_row_employees_json[$row['initials']] = false;
+                $this_row_employees_json[$row['initials']] = false;  //if a new employee is add to employees table-db, after the case has been created
             }
-            //boreformand
+            //boreformand - DECODED string
             if (!array_key_exists($row['initials'], $this_row_employee_leader_json)){
                 $this_row_employee_leader_json[$row['initials']] = false;
             }
-            array_push($employees_initials_list, $row["initials"]);
+            array_push($employees_initials_list, $row["initials"]); //creates a list of all employeess
         }
     }
 
@@ -86,7 +88,6 @@
     }
     //This is for the job_type drop down menu
     //case_job_types_list is defined in the data file
-    
     for($i=0; $i<count($case_job_types_list); $i++)
     {
         if (!array_key_exists($case_job_types_list[$i], $this_case_job_types_json)){
@@ -169,50 +170,36 @@
             // CRUD, create, read, update, delete - og confirm og cancel knap til delete
             if($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                //create, pop up
-                if($_REQUEST['knap'] == "Opret ny sag")
-                {
-                    $display_create_case_pop_up = "flex";
-                }
-                //read
-                if(str_contains($_REQUEST['knap'] , "read"))
-                {
-                    $split = explode("_", $_REQUEST['knap']);
-                    $id = $split[1];
-                    if(is_numeric($id) && is_numeric(0 + $id))
-                    {
-                        
-                        
-                    }
-                }
                 //update
                 if($_REQUEST['knap'] == "Opdater") 
                 {
                     //employees
                     for($i=0; $i<count($employees_initials_list); $i++){
-                        $this_row_employees_json[$employees_initials_list[$i]] = !empty($_REQUEST["employee_checkbox_".$i]) ? true : false;
+                        $this_row_employees_json[$employees_initials_list[$i]] =  empty($_REQUEST["employee_checkbox_".$i]) ? false : true; //this_row_employees_json is the key-value pair array
                     }
-                    $new_employee_data = json_encode($this_row_employees_json);
+                    $new_employee_data = json_encode($this_row_employees_json); 
 
                     //Boreformand
                     for($i=0; $i<count($employees_initials_list); $i++){ 
-                        $this_row_employee_leader_json[$employees_initials_list[$i]] = !empty($_REQUEST["employee_leader_checkbox_".$i]) ? true : false;
+                        $this_row_employee_leader_json[$employees_initials_list[$i]] = empty($_REQUEST["employee_leader_checkbox_".$i]) ? false : true;
                     }
                     $new_employee_leader_data = json_encode($this_row_employee_leader_json);
 
                     //machines
                     for($i=0; $i<count($machine_name_list); $i++){
-                        $this_case_machines_json[$machine_name_list[$i]] = !empty($_REQUEST["machine_checkbox_".$i]) ? true : false;
+                        $this_case_machines_json[$machine_name_list[$i]] = empty($_REQUEST["machine_checkbox_".$i]) ? false : true;
                     }
                     $new_machine_data = json_encode($this_case_machines_json);
 
                     //job types
                     for($i=0; $i<count($case_job_types_list); $i++){
-                        $this_case_job_types_json[$case_job_types_list[$i]] = !empty($_REQUEST["job_type_checkbox_".$i]) ? true : false;
+                        $this_case_job_types_json[$case_job_types_list[$i]] = empty($_REQUEST["job_type_checkbox_".$i]) ? false : true;
                     }
                     $new_job_type_data = json_encode($this_case_job_types_json);
 
-                    $id = $this_case->get_id();
+
+
+                    $id = $this_case->get_id(); //from obejct - class case_describe_data
                     
                     if(is_numeric($id) && is_integer(0 + $id))
                     {
@@ -238,8 +225,8 @@
                             $sql->execute();    
                         }
                     }
-                    $this_case = new case_describe_data(
-                        $id,
+                    $this_case = new case_describe_data( //override the old data with a new object
+                        $id, //musn't change id, because it's primary key
                         $_REQUEST['client'],
                         $_REQUEST['client_case_nr'],
                         $_GET['case_nr'],
@@ -256,20 +243,6 @@
                     );
                 }
                 
-                //cancel 
-                if($_REQUEST['knap'] == "Annuller")
-                {
-                    $id = "";
-                    $case_nr = "";
-                    $case_responsible = "";
-                    $status = "";
-                    $location = "";
-                    $est_start_date = "";
-                    $est_end_date = "";
-                    $display_delete_case_pop_up = "none";
-                    $display_create_case_pop_up = "none";
-                    $display_edit_case_pop_up = "none";
-                }
             }
         ?>
 
@@ -293,10 +266,9 @@
                         <div class="small_inputs"><p>Kundesag nr :</p><input autocomplete="off" name="client_case_nr" maxlength="50" type="text" value="<?php echo $this_case->get_client_case_nr();?>"></div>
                         <div class="small_inputs">
                             <p>Ansvarlig :</p>
-                            <!-- <input autocomplete="off" name="case_responsible" type="text" value="<?php echo $this_case->get_case_responsible();?>"> -->
                             <select name="case_responsible">
                                 <?php
-                                    foreach($case_responsible_initials_list as $case_responsible_initials){ 
+                                    foreach($case_responsible_initials_list as $case_responsible_initials){ //from data file
                                         echo "<option " . ($this_case->get_case_responsible() == $case_responsible_initials ? 'selected' : '') . " value=" . $case_responsible_initials . ">" . $case_responsible_initials . "</option>";
                                     }
                                 ?>

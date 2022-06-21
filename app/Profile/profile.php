@@ -245,8 +245,6 @@
                                 }
                             }
                         }
-
-                        
                     }
 
 
@@ -257,7 +255,6 @@
                     if($_REQUEST['knap'] == "Opret nyt certifikat")
                     {
                         $display_create_cert_pop_up = "flex";
-
                     }
                     //Create
                     if($_REQUEST['knap'] == "Opret ny")
@@ -524,7 +521,6 @@
                     //closing connection to database for security reasons
                     $conn->close();
                 ?>
-
         
             <!-----------------------------------
                 Create new Certificates pop-op
