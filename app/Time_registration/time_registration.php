@@ -3,9 +3,11 @@
     session_start();
     $conn = new mysqli("localhost:3306", "pass", "pass", "butler_db");
 
+    //Sets all use of "date()" to have the correct time
     date_default_timezone_set('Europe/Copenhagen');
 
     //Initilize arrays to hold every possible time registration input field
+    //This is used to later create new time registration fields without having the do multiple sql queries
     $time_reg_id = array();
     $time_reg_input_types = array();
     $time_reg_input_labels = array();
@@ -14,8 +16,11 @@
     //Fetch the data for the four arrays from the "time_reg_fields" table
     $sql = "select * from time_reg_fields";
     $result = $conn->query($sql);
+    //Check if there is any results
     if ($result->num_rows > 0) {
+        //Loop through the query result
         while ($row = $result->fetch_assoc()) {
+            //Store each columns value in arrays.
             array_push($time_reg_id, $row["id"]);
             array_push($time_reg_input_types, $row["input_type"]);
             array_push($time_reg_input_labels, $row["input_lable"]);
@@ -24,6 +29,8 @@
     }
 
     //Initilize arrays to store my cases and the job types to each case
+    //This is need so that an employee can only registre time used on a case that he is currently working on.
+    //Further more, the employee won't be needing any onther job_type time registration fields than the ones on the active cases
     $my_cases = array();
     $my_case_job_types = array();
 
@@ -32,10 +39,14 @@
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            //Since we store an true/false value for each employee, it can be seen as a json object. However in the database
+            //we only store a varchar (string). Therefor we need to json_decode the string to get an array of key/value type.
+            //What this means is that we can do as following: $this_row_employees_json["SI"] = true. "SI" is the key and true is the value
             $this_row_employees_json = json_decode($row['employees'], true);      
             if(!empty($this_row_employees_json)){
                 //Check if the logged in user initials is assosiated with true or false in the table.
                 if($this_row_employees_json[$_SESSION['logged_in_user_global']['initials']]){
+                    //If the user is listed in the current case, we add that cases and its job types to our arrays
                     array_push($my_cases, $row["case_nr"]);
                     array_push($my_case_job_types, $row["job_type"]);
                 }
@@ -43,7 +54,10 @@
         }
     }
     //Check if the user has selected a case or if the first case should be shown
+    //In other words if the variable in the url "cases_selected" is not defined we just take the first job type of the first case
     if(!empty($_GET['cases_selected'])){
+        //"array_search" returns the index of where "cases_selected" is in $my_cases
+        //"json_decode" trunes a string into an key/value array
         $my_case_job_types = json_decode($my_case_job_types[array_search($_GET['cases_selected'], $my_cases)], true);
     }
     else {
@@ -52,6 +66,7 @@
 
     //the "Generel" option should always be avaiable and if therefor added last
     $my_case_job_types["Generel"] = true;
+    //The next line gets a list of all keys in $my_case_job_types. This is used when showing the first level of the drop down menu
     $my_case_job_types = array_keys(array_filter($my_case_job_types));
 
     //These variables are used to keep track of the multi layered option menu to create a new time registration field
@@ -61,14 +76,18 @@
 
     //Try to find data added today to the table "daily_reports". If no data is found, it is a new day (see next else statement)
     $sql = $conn->prepare("select * from daily_reports where date = ? AND case_nr = ?");
+    //Gets the day-month-year of today
     $myDate = date('d-m-Y');
+    //Gets the hour-minutes of today
     $myTime = date('h:i');
+    //Check if a case has been selected
     $this_case_nr = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
     $sql->bind_param("ss", $myDate, $this_case_nr);
     $sql->execute();
     $result = $sql->get_result();
     
     $daily_report_data = array();
+    //Check if there is any results for the selected case
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             array_push($daily_report_data, $row["id"] . '_' . $row["time_reg_data"]);
@@ -76,8 +95,11 @@
     }
     //If it is a new day we need to generate the basic fields for the daily report
     else {
+        //"Mød" is the default field we want and got an id of 14 in our database
         $general_time_reg_fields_ids = array(14);
+        //Check if a case has been selected
         $this_case_nr = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
+        //Loop through all default fields (in this case we only have one) and add it to the daily report of today
         foreach($general_time_reg_fields_ids as $general_time_reg_fields_id){
             $sql = $conn->prepare("insert into daily_reports (time_reg_field_id, time_reg_data, user_initials, date, time, case_nr) values (?, '', ?, ?, ?, ?)");
             $sql->bind_param("issss", $general_time_reg_fields_id, $_SESSION['logged_in_user_global']['initials'], $myDate, $myTime, $this_case_nr);
@@ -127,7 +149,7 @@
             <ul class="sec_navbar_ul_dropdown">
                 <?php
                     $selected_case = !empty($_GET['cases_selected']) ? $_GET['cases_selected'] : '';
-                     //No matter what cases the user is associated with, they should always see the internal_case tab. If it is the only one, select it
+                    //If there is no case selected -> move to internal_case.php else create a tab that allows the user to go to internal_case.php
                     if(empty($selected_case)){
                          echo "<script> window.location.href = 'internal_case.php'; </script>"; 
                     }
@@ -192,12 +214,14 @@
                     {
                         $field_to_update = array();
                         
+                        //Loop through all time registrations fields on the page and get their data. If there is any data, add it to an array
                         for($i=0; $i<count($daily_report_data); $i++){
                             $split = explode("_", $daily_report_data[$i]);
                             if($split[1] != $_REQUEST['time_reg_field_'.$i]){
                                 array_push($field_to_update, array("daily_report_id"=>$split[0], "time_reg_data"=>$_REQUEST['time_reg_field_'.$i]));
                             }
                         }
+                        //Loop through all time registration fields that should be updated and update them in the database
                         foreach($field_to_update as $data){
                             $sql = $conn->prepare("update daily_reports set time_reg_data = ? where id = ?");
                             $sql->bind_param("si", $data['time_reg_data'], $data['daily_report_id']);
@@ -205,6 +229,7 @@
                         }
                     }
                     //Delete
+                    //Since you cannot delete a daily report this is for deleating a single time registration field
                     if(str_contains($_REQUEST['knap'] , "slet"))
                     {
                         $split = explode("_", $_REQUEST['knap']);
@@ -212,7 +237,7 @@
                         
                         if(is_numeric($id) && is_integer(0 + $id))
                         {
-                            if(findes($id, $conn)) //sætter manuelt alle knapper til deres modsatte værdi
+                            if(findes($id, $conn)) 
                             {
                                 $sql = $conn->prepare("select * from daily_reports where id = ?");
                                 $sql->bind_param("i", $id);
@@ -229,7 +254,7 @@
                             }
                         }
                     }
-                    //Execute - Confirm delete
+                    //Execute - Confirm delete of time registration field
                     if($_REQUEST['knap'] == "Slet")
                     {
                         $id = $_SESSION["tidsregistreringsFeltTilDelete"];

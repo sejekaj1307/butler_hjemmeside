@@ -15,7 +15,7 @@
     //Get case_nr from the URL
     $case_nr = $_GET['case_nr'];
     
-    //Fetch data for the selected case
+    //Fetch data for the selected case (we know there should only be one result so we don't need a loop
     $sql = $conn->prepare("select * from cases where case_nr = ?");
     $sql->bind_param("s", $case_nr);
     $sql->execute();
@@ -48,7 +48,7 @@
         $row["est_end_date"]
     );
 
-    //This is for the employee drop down menu
+    //This is for the employee drop down menu (Get all initials)
     $employees_initials_list = array();
     $sql = "select initials from employees";
     $result = $conn->query($sql);
@@ -80,6 +80,7 @@
     {
         while($row = $result->fetch_assoc())
         {
+            //This will handle if there has been added a new machine after the case has been created
             if (!array_key_exists($row['name'], $this_case_machines_json)){
                 $this_case_machines_json[$row['name']] = false;
             }
