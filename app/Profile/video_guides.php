@@ -10,7 +10,6 @@
         echo "<script> window.location.href = '../index.php'; </script>";
     }
 
-    $priority = ""; //This variable has to be defined for the html to work correctly. It is for "Create new" priority drop-down menu.   
 ?>
 
 <!DOCTYPE html>

@@ -424,33 +424,7 @@
 
     <script src="../javaScript/navbars.js"></script>
 
-    <!-- This cannot be moved to a .js file because we are looking for a php variable -->
-    <!-- This is used to check if there is any unsaved changes before the user leaves the site -->
-    <script type="text/JavaScript">
-        window.onbeforeunload = ExitPage;
-        var all_time_reg_fields = document.querySelectorAll('[id="time_reg_field"]');
-        var opdate_cliecked = false;
-        function myFunction(){
-            opdate_cliecked = true;
-        }
-        //Called if the user tries to leave the page
-        function ExitPage()
-        {
-            if(!opdate_cliecked && checkForUnsavedWordk()){
-                return "Are you sure you want to exit this page?";
-            }
-        }
-        //Checks all time registration fields and checks if the data have been saved in the database
-        function checkForUnsavedWordk() {
-            var unsavedWork = <?=json_encode($daily_report_data)?> ;
-            for(let i = 0; i<all_time_reg_fields.length; i++){
-                if(unsavedWork[i].split("_")[1] != all_time_reg_fields[i].value){
-                    return true;
-                }
-            }
-            return false;
-        }
-    </script>
+
 </body>
 
 </html>
