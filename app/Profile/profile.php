@@ -147,23 +147,27 @@
                         $colour = $_REQUEST['html5colorpicker']; 
 
                         $hasImage = false;
-                        if (!empty($_FILES["image"]["name"])){
-                            $fileName = basename($_FILES["image"]["name"]);
-                            $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+                        //if there is a picture in the input field enter if-statement
+                        if (!empty($_FILES["image"]["name"])){ //two dimensional array = it has 2 keys - it has 1 value but 2 keys = image in name in input - name is from array
+                            $fileName = basename($_FILES["image"]["name"]); //picture-name
+                            $fileType = pathinfo($fileName, PATHINFO_EXTENSION); //extract the extension
                             $target_file = "profile_img/" . $fileName;
 
-                            $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-                            if (in_array($fileType, $allowTypes)){
-                                $file_tmp_name = $_FILES['image']['tmp_name'];
+                            $allowTypes = array('jpg', 'png', 'jpeg');
+                            if (in_array($fileType, $allowTypes)){ //is the picture the correct type?
+                                $file_tmp_name = $_FILES['image']['tmp_name']; //temporary name - copy the filepath of the user's pc - tmp because it depends on the user
                                 
                                 $hasImage = true;
-                            } if (move_uploaded_file($file_tmp_name, $target_file))  {
-                                $msg = "Image uploaded successfully";
+                            } 
+                            if (move_uploaded_file($file_tmp_name, $target_file))  {
+                                $msg = "Billedet blev uploaded til profilen";
                                 $fileName = "profile_img/" . $fileName;
             
                                 $picture_path = $target_file;
                             } else {
-                                $msg = "Failed to upload image";
+                                $msg = "Billedet blev ikke uploaded til profilen";
+                                
+                                $hasImage = false;
                             }
                         }
                         if(is_numeric($id) && is_integer(0 + $id))
@@ -292,7 +296,6 @@
                         $cert_name = $_REQUEST['cert_name_u'];
                         $cert_taken = $_REQUEST['cert_taken_u'];
                         $cert_deadline = $_REQUEST['cert_deadline_u'];
-                        //TODO: Update cert_status correct
                         $cert_status = "";
                         $cert_link = $_REQUEST['cert_link_u'];
                         $cert_employee_initials = "";
