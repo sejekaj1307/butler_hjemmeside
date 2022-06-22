@@ -196,28 +196,13 @@
                     /*-------------------------------
                             password CRUD
                     -------------------------------*/
-                    //read, koden køres hvis "read button" bliver requested 
+                    //get password and show pop-up
                     if(($_REQUEST['knap'] == "Skift password"))
                     {
-                        $id = $_SESSION['logged_in_user_global']['id'];
-                        if(is_numeric($id) && is_numeric(0 + $id))
-                        {
-                            $sql = $conn->prepare( "select * from employees where id = ?");
-                            $sql->bind_param("i", $id); 
-                            $sql->execute();
-                            $result = $sql->get_result();
-                            if($result->num_rows > 0) 
-                            {
-                                $row = $result->fetch_assoc();
-                                $id = $row['id'];
-                                $password_new = $row['password'];
-                                $_SESSION['error_text'] = "";
-                                
-                                $_SESSION['display_change_password_pop_up'] = "flex";
-                            }
-                        }
+                        $_SESSION['error_text'] = "";
+                        $_SESSION['display_change_password_pop_up'] = "flex";
                     }
-                    //update
+                    //update password
                     if($_REQUEST['knap'] == "Bekræft password") 
                     {
                         $id = $_SESSION['logged_in_user_global']['id'];
@@ -574,8 +559,8 @@
             <div class="pop_up_modal_container" style="display: <?php echo $_SESSION['display_change_password_pop_up'] ?>">
                 <div class="pop_up_modal">
                     <h3>Skift password</h3>
-                    <div class="pop-up-row"><p>Nyt password : </p><input type="password" class="password_input"  value="<?php echo isset($password_new) ? $password_new : '' ?>"><div class="input_field_S" onclick="toggle_password_type('password_input', 'toggle_password_icon')"><img id="toggle_password_icon" src="../img/toggle_password_type_icon.png" alt="eye icon"></div></div>
-                    <div class="pop-up-row"><p>Bekræft password : </p><input type="password" class="password_input2" ><div class="input_field_S" onclick="toggle_password_type('password_input2', 'toggle_password_icon2')"><img id="toggle_password_icon2" src="../img/toggle_password_type_icon.png" alt="eye icon"></div></div>
+                    <div class="pop-up-row"><p>Nyt password : </p><input type="password" class="password_input" id="password_input" name="password_new" value=""><div class="input_field_S" onclick="toggle_password_type('password_input', 'toggle_password_icon')"><img id="toggle_password_icon" src="../img/toggle_password_type_icon.png" alt="eye icon"></div></div>
+                    <div class="pop-up-row"><p>Bekræft password : </p><input type="password" class="password_input2" id="password_input2" name="password_new2" value=""><div class="input_field_S" onclick="toggle_password_type('password_input2', 'toggle_password_icon2')"><img id="toggle_password_icon2" src="../img/toggle_password_type_icon.png" alt="eye icon"></div></div>
                     <p><?php echo $_SESSION['error_text'] ?></p>
                     <div class="pop-up-btn-container">
                         <input type="submit" name="knap" value="Annuller" class="pop_up_cancel">
